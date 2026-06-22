@@ -1,0 +1,32 @@
+{
+  "name": "Tópico",
+  "path": "/topics/:slug",
+  "sections": [
+    {
+      "__resolveType": "site/sections/Blog/BlogHeader.tsx",
+      "logoAlt": "Blog",
+      "showReadingProgress": false
+    },
+    {
+      "__resolveType": "site/sections/Blog/BlogHome.tsx",
+      "posts": {
+        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "sortBy": "date_desc",
+        "count": 100,
+        "filterBy": "category",
+        "slug": {
+          "__resolveType": "website/functions/requestToParam.ts",
+          "param": "slug"
+        }
+      },
+      "perPage": 10,
+      "baseUrl": "/topics/"
+    }
+  ],
+  "__resolveType": "website/pages/Page.tsx",
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx",
+    "title": "{{category}} — Blog",
+    "description": "Artigos sobre {{category}} no Blog."
+  }
+}

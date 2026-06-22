@@ -1,0 +1,54 @@
+﻿{
+  "name": "collections/blog/posts/ai-assisted-development",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Desenvolvimento assistido por IA: o que mudou no fluxo de trabalho real",
+    "slug": "ai-assisted-development",
+    "date": "2025-06-10",
+    "excerpt": "LLMs mudaram como escrevemos código. Mas o impacto real não é na velocidade de escrita — é na capacidade de explorar espaços de solução que antes seriam caros demais para tentar.",
+    "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Desenvolvedor usando IA para escrever código",
+    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
+    "categories": [{ "name": "Culture", "slug": "culture" }],
+    "seo": {
+      "title": "Desenvolvimento assistido por IA: o que mudou no fluxo real — Blog",
+      "description": "O impacto real de LLMs no desenvolvimento não é velocidade de escrita — é exploração de espaços de solução."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Passei os últimos 18 meses usando assistentes de IA (Claude, Copilot, Cursor) como parte central do meu workflow. A narrativa popular é 'escreve código mais rápido'. A realidade é mais sutil e mais interessante."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O que realmente melhorou",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<strong>Exploração de alternativas</strong>: antes, tentar 3 abordagens diferentes custava 3x o tempo. Com IA, custa 1.3x\n<strong>Prototipação rápida</strong>: uma ideia nova fica funcionando em minutos, não horas\n<strong>Contexto novo</strong>: entrar em uma codebase desconhecida levava dias. Com IA é horas\n<strong>Documentação</strong>: escrever docs é o trabalho que mais eu adiava. Agora é trivial"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O que não melhorou",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "IA não melhora julgamento. A pergunta 'devo construir isso?' continua sendo humana. IA não melhora design de sistemas — ela é boa em implementar soluções, não em questionar se aquela é a solução certa. E ela não melhora code review — ela pode revisar sintaxe, não arquitetura."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "IA tornou devs mais produtivos da mesma forma que calculadoras tornaram matemáticos mais produtivos — na parte mecânica. O trabalho criativo continua humano.",
+        "attribution": "Carla Figueiredo"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "info",
+        "title": "A habilidade mais valiosa agora",
+        "body": "Saber fazer a pergunta certa para a IA. Engenheiros que conseguem decompor problemas complexos em sub-problemas bem definidos e comunicar contexto de forma precisa amplificam muito mais seu trabalho com IA do que quem usa como autocomplete."
+      }
+    ]
+  }
+}

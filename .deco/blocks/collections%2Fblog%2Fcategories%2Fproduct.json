@@ -1,0 +1,9 @@
+{
+  "name": "collections/blog/categories/product",
+  "__resolveType": "blog/loaders/Category.ts",
+  "category": {
+    "name": "Product",
+    "slug": "product",
+    "description": "Estratégia de produto, métricas, roadmap e como tomar decisões que importam."
+  }
+}

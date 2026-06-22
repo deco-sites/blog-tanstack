@@ -1,0 +1,71 @@
+﻿{
+  "name": "collections/blog/posts/tanstack-start-guide",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Construindo com TanStack Start: guia prático",
+    "slug": "tanstack-start-guide",
+    "date": "2025-05-20",
+    "excerpt": "TanStack Start chegou para ficar. File-based routing, SSR nativo, type-safe data loading e integração perfeita com Cloudflare Workers. Veja como funciona na prática.",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Logo TanStack Start com código React",
+    "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
+    "categories": [{ "name": "Engineering", "slug": "engineering" }],
+    "seo": {
+      "title": "Construindo com TanStack Start: guia prático — Blog",
+      "description": "File-based routing, SSR nativo e integração com Cloudflare Workers. Guia prático de TanStack Start."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "TanStack Start 1.0 trouxe algo que a comunidade React esperava há anos: um framework full-stack com type-safety de verdade de ponta a ponta. Não apenas os tipos do componente — mas os tipos da requisição até a resposta, passando pelo loader, pelo cache e pela renderização."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "File-based routing",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "As rotas em TanStack Start seguem a convenção de arquivos na pasta <code>src/routes/</code>. Cada arquivo exporta uma função <code>createFileRoute</code> que define os loaders, meta e o componente da rota."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Type-safe loaders",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "O grande diferencial do TanStack Start é que os <strong>loaders são type-safe</strong>. O tipo retornado pelo loader é inferido automaticamente pelo componente. Nenhuma asserção de tipo manual, nenhum <code>as unknown as SomeType</code>."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "success",
+        "title": "React Query integration",
+        "body": "TanStack Start funciona nativamente com TanStack Query. Loaders podem pre-popular o cache do Query, e os componentes usam <code>useSuspenseQuery</code> para data fetching progressivo sem waterfalls."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Deploy no Cloudflare Workers",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "O <code>@cloudflare/vite-plugin</code> integra o build do TanStack Start diretamente ao Workers runtime. O resultado é um bundle único que roda no edge, globalmente, com latência de milissegundos."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "SSR no edge — HTML gerado pelo Worker, não pelo servidor de origem\nSWR automático — stale-while-revalidate via headers HTTP\nAssets estáticos servidos pelo CDN da Cloudflare\nDurável objects para estado server-side quando necessário"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Integração com deco.cx",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "O <code>@decocms/start</code> adiciona uma camada de CMS sobre o TanStack Start. Seções são componentes React com props tipadas. O Studio do deco.cx usa esses tipos para gerar formulários de edição automaticamente. Times não-técnicos editam conteúdo; engenheiros escrevem componentes — sem fricção."
+      }
+    ]
+  }
+}

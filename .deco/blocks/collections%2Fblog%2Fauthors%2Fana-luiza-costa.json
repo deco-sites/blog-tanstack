@@ -1,0 +1,11 @@
+﻿{
+  "name": "collections/blog/authors/ana-luiza-costa",
+  "__resolveType": "blog/loaders/Author.ts",
+  "author": {
+    "name": "Ana Luiza Costa",
+    "email": "ana@deco.cx",
+    "jobTitle": "Senior Product Designer",
+    "company": "deco.cx",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&q=80&auto=format"
+  }
+}

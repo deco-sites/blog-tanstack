@@ -1,0 +1,59 @@
+﻿{
+  "name": "collections/blog/posts/product-led-growth",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Product-led growth: como o produto vira o canal de aquisição",
+    "slug": "product-led-growth",
+    "date": "2025-02-05",
+    "excerpt": "PLG não é uma estratégia de marketing — é uma filosofia de produto. Quando o produto entrega valor antes de pedir pagamento, ele se torna o melhor vendedor que você tem.",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Gráfico de crescimento product-led",
+    "authors": [{ "name": "Rafael Melo", "email": "rafael@deco.cx" }],
+    "categories": [{ "name": "Product", "slug": "product" }],
+    "seo": {
+      "title": "Product-led growth: como o produto vira o canal de aquisição — Blog",
+      "description": "PLG não é marketing — é filosofia de produto. Quando o produto entrega valor antes do pagamento, ele vira vendedor."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "definition",
+        "title": "O que é PLG",
+        "body": "Product-led growth (PLG) é uma estratégia onde o produto é o principal mecanismo de aquisição, conversão e expansão. O produto entrega valor imediatamente, sem necessidade de vendedor. Exemplos: Figma, Notion, Slack, Vercel."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Por que PLG ganhou",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "O custo de aquisição por vendas enterprise escala linear com o crescimento. PLG escala sublinear — uma vez que o flywheel está girando, cada usuário que adota traz outros. O Figma chegou a $10B de valuation sem uma força de vendas significativa porque o produto <em>se vendia</em>."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "A métrica que importa: time-to-value",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "A pergunta central de PLG: quanto tempo leva para o usuário ter o primeiro 'aha moment'? Para Slack, é a 2.000ª mensagem enviada — o momento em que a equipe percebe que é mais rápido do que e-mail. Para Figma, é o primeiro arquivo compartilhado com um não-designer."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Como construir para PLG",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "ordered",
+        "items": "<strong>Defina o aha moment</strong>: qual ação específica no produto indica que o usuário entendeu o valor?\n<strong>Reduza o atrito até esse momento</strong>: remova tudo que está entre signup e aha moment\n<strong>Meça e otimize o funil</strong>: quais passos têm maior drop-off? Por quê?\n<strong>Construa viral loops</strong>: o produto incentiva compartilhamento e convite?"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "PLG não significa 'sem vendas'. Significa que o produto qualifica o lead antes do vendedor ligar. O vendedor chega quando o usuário já entendeu o valor.",
+        "attribution": "Rafael Melo, PM"
+      }
+    ]
+  }
+}

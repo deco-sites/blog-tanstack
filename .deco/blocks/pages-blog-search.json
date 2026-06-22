@@ -1,0 +1,26 @@
+{
+  "name": "Busca",
+  "path": "/search",
+  "sections": [
+    {
+      "__resolveType": "site/sections/Blog/BlogHeader.tsx",
+      "logoAlt": "Blog",
+      "showReadingProgress": false
+    },
+    {
+      "__resolveType": "site/sections/Blog/BlogSearch.tsx",
+      "posts": {
+        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "sortBy": "date_desc",
+        "count": 100
+      },
+      "placeholder": "Buscar artigos..."
+    }
+  ],
+  "__resolveType": "website/pages/Page.tsx",
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx",
+    "title": "Busca — Blog",
+    "noIndex": true
+  }
+}

@@ -1,0 +1,64 @@
+﻿{
+  "name": "collections/blog/posts/edge-computing-future",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "O futuro da computação na borda: por que o edge ganhou",
+    "slug": "edge-computing-future",
+    "date": "2025-02-18",
+    "excerpt": "Edge computing não é tendência — é a arquitetura padrão para aplicações web de alta performance. Entenda por que a latência geográfica importa mais do que você pensa.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Mapa mundi com pontos de presença de edge computing",
+    "authors": [{ "name": "Rafael Melo", "email": "rafael@deco.cx" }],
+    "categories": [{ "name": "Product", "slug": "product" }],
+    "seo": {
+      "title": "O futuro da computação na borda — Blog",
+      "description": "Edge computing não é tendência — é a arquitetura padrão para aplicações web de alta performance."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Em 2020, 'edge computing' soava como jargão de vendedor. Em 2025, é a arquitetura padrão para qualquer aplicação séria. O que mudou não foi a tecnologia — foi o custo e a simplicidade de deployment."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "A física não mente",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "A velocidade da luz no fibra ótica é ~200.000 km/s. Um servidor em São Paulo respondendo para um usuário em Tokyo leva ~110ms só de ida — 220ms de round trip. Isso é antes de qualquer processamento. Com edge, você coloca o compute a 20-30ms de qualquer usuário no mundo."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O que roda bem no edge",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "SSR de páginas estáticas com personalização leve\nA/B testing sem round trip para o servidor de origem\nAutenticação e autorização (JWT validation)\nRewrites e redirects — sem latência adicional\nCache inteligente com SWR"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O que não roda bem no edge",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "Queries pesadas em banco de dados relacional\nProcessamento de arquivos grandes\nLLM inference (ainda — isso está mudando)\nOperações que precisam de estado global consistente"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "definition",
+        "title": "Stale-While-Revalidate",
+        "body": "SWR é uma estratégia de cache onde o servidor retorna a resposta em cache imediatamente (evitando latência) e revalida em segundo plano. Para blogs editoriais, é a estratégia perfeita: conteúdo serve em &lt;10ms e atualiza silenciosamente quando muda."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "O edge não é sobre onde você roda seu código. É sobre não fazer seus usuários pagar pela sua geografia.",
+        "attribution": "Rafael Melo, PM"
+      }
+    ]
+  }
+}

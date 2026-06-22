@@ -1,0 +1,54 @@
+﻿{
+  "name": "collections/blog/posts/remote-first-culture",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Remote-first: o que separa times que funcionam dos que fingem",
+    "slug": "remote-first-culture",
+    "date": "2025-01-20",
+    "excerpt": "Remote-first não é só trabalhar de casa. É uma mudança de como times se comunicam, tomam decisões e criam confiança. O que aprendi gerenciando times distribuídos por 4 anos.",
+    "image": "https://images.unsplash.com/photo-1521898284481-a5ec348b88e1?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Pessoa trabalhando remotamente com foco",
+    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
+    "categories": [{ "name": "Culture", "slug": "culture" }],
+    "seo": {
+      "title": "Remote-first: o que separa times que funcionam dos que fingem — Blog",
+      "description": "Remote-first é uma mudança de como times se comunicam e criam confiança. O que aprendi em 4 anos."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "A maioria das empresas que 'adotou' remote work em 2020 na verdade adotou <em>remote-optional</em> com viés presencial. As reuniões ainda acontecem no escritório, as decisões ainda são tomadas no corredor, e quem está remoto sente que está em desvantagem. Isso não é remote-first — é escritório com câmera."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Comunicação assíncrona não é opcional",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Times remote-first que funcionam têm uma coisa em comum: eles <strong>documentam por padrão</strong>. Cada decisão, cada contexto, cada 'por que não fizemos X' está escrito. Não porque alguém mandou — porque eles entenderam que comunicação síncrona não escala com fusos e com crescimento."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "Se a decisão não está escrita, ela não foi tomada — foi susurrada.",
+        "attribution": "Carla Figueiredo"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Os rituais que funcionam",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<strong>Weekly written update</strong>: cada pessoa escreve o que fez, o que vai fazer e o que está bloqueando — antes da reunião semanal\n<strong>Decision log</strong>: um documento compartilhado onde cada decisão importante tem contexto, alternativas consideradas e dono\n<strong>No-meeting Wednesdays</strong>: pelo menos um dia da semana sem reuniões para trabalho profundo\n<strong>Loom > Zoom</strong>: explicações assíncronas em vídeo evitam reuniões de status"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "warning",
+        "title": "Anti-padrão comum",
+        "body": "Reuniões diárias de status (daily standups síncronos) criam a ilusão de alinhamento mas destroem foco. Substitua por updates escritos assíncronos — use o standups só para resolver bloqueios reais."
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+﻿{
+  "name": "collections/blog/posts/accessibility-guide",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Acessibilidade não é opcional: o checklist que todo dev deveria ter",
+    "slug": "accessibility-web-checklist",
+    "date": "2025-05-10",
+    "excerpt": "1 bilhão de pessoas no mundo tem alguma deficiência. Se seu site não é acessível, você está excluindo 15% da população global — e provavelmente violando leis em vários países.",
+    "image": "https://images.unsplash.com/photo-1516116216624-53ad39fcc843?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Pessoa usando leitor de tela em computador",
+    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
+    "categories": [{ "name": "Engineering", "slug": "engineering" }],
+    "seo": {
+      "title": "Acessibilidade web: o checklist que todo dev deveria ter — Blog",
+      "description": "1 bilhão de pessoas tem alguma deficiência. Checklist completo de acessibilidade para desenvolvedores."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "warning",
+        "title": "Contexto legal",
+        "body": "A Lei Brasileira de Inclusão (LBI) exige que sites de empresas sejam acessíveis. Na Europa, a EAA (European Accessibility Act) entrou em vigor em 2025. Nos EUA, o ADA cobre sites de empresas com mais de 15 funcionários. Acessibilidade não é apenas ética — é legal."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "As quatro categorias do WCAG",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "WCAG 2.2 organiza acessibilidade em quatro princípios: <strong>Percebível</strong> (conteúdo pode ser percebido por todos os sentidos), <strong>Operável</strong> (interface pode ser navegada por teclado), <strong>Compreensível</strong> (conteúdo é legível e previsível), <strong>Robusto</strong> (funciona com tecnologias assistivas)."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Checklist básico",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "Todas as imagens têm <code>alt</code> descritivo (ou <code>alt=\"\"</code> para imagens decorativas)\nContraste de cor mínimo 4.5:1 para texto normal, 3:1 para texto grande\nTodos os elementos interativos são acessíveis por teclado\nFoco visível em todos os elementos focáveis (<code>:focus-visible</code>)\nFormulários têm <code>&lt;label&gt;</code> associado a cada <code>&lt;input&gt;</code>\nHeadings seguem hierarquia lógica (h1 → h2 → h3)\nLinks têm texto descritivo (não 'clique aqui')"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Como testar",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "ordered",
+        "items": "Navegue apenas com teclado — consiga usar tudo?\nAtivar VoiceOver (Mac) ou NVDA (Windows) e navegar pela página\nRodar axe DevTools no Chrome — score zero é o mínimo\nTestar com zoom 200% — layout ainda funciona?\nVerificar em modo high contrast do Windows"
+      }
+    ]
+  }
+}

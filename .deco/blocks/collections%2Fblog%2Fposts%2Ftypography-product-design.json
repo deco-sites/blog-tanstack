@@ -1,0 +1,66 @@
+﻿{
+  "name": "collections/blog/posts/typography-product-design",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Tipografia em produto: os princípios que fazem a diferença",
+    "slug": "typography-in-product-design",
+    "date": "2025-03-25",
+    "excerpt": "Tipografia é 95% do design web. Mas a maioria dos times trata como detalhe cosmético. Aqui estão os princípios que uso para criar hierarquia visual que converte.",
+    "image": "https://images.unsplash.com/photo-1467912407355-245f30185020?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Exemplo de tipografia com hierarquia visual clara",
+    "authors": [{ "name": "Ana Luiza Costa", "email": "ana@deco.cx" }],
+    "categories": [{ "name": "Design", "slug": "design" }],
+    "seo": {
+      "title": "Tipografia em produto: princípios que fazem a diferença — Blog",
+      "description": "Os princípios de tipografia que criam hierarquia visual e conversão em interfaces de produto."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Oliver Reichenstein escreveu em 2006 que 'web design é 95% tipografia'. Em 2025, essa proporção só aumentou. Mais conteúdo, mais texto, mais necessidade de hierarquia clara. E ainda assim, a maioria dos times de produto trata tipografia como step final, não como fundação."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Tamanho de fonte não é hierarquia",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "O erro mais comum: criar hierarquia apenas com tamanho. Hierarquia real usa a combinação de <strong>tamanho</strong>, <strong>peso</strong>, <strong>cor</strong> e <strong>espaçamento</strong>. Um H2 de 24px bold e um H3 de 20px regular comunicam muito mais diferença hierárquica do que um H2 de 28px e H3 de 20px, ambos semibold."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "line-height e legibilidade",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Para corpo de texto longo, <code>line-height: 1.7-1.8</code> é o ponto ideal para a maioria das fontes. Menor que isso e o texto sufoca. Maior e os olhos perdem o fio. Para headings, <code>line-height: 1.1-1.2</code> mantém o grupo visual coeso."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "text-wrap: balance e pretty",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "CSS moderno adicionou duas propriedades que deveriam ser padrão em todo projeto: <code>text-wrap: balance</code> para headings (distribui as linhas de forma mais equilibrada) e <code>text-wrap: pretty</code> para parágrafos (evita palavras soltas na última linha)."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "success",
+        "title": "Regra de ouro",
+        "body": "Aplique <code>text-wrap: balance</code> em todos os elementos <code>h1</code>-<code>h3</code> e <code>text-wrap: pretty</code> em todos os parágrafos. É a melhoria de UX de menor custo que existe."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "A escolha da fonte importa",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Sans-serif humanistas (Inter, Ubuntu, Geist) têm abertura maior nas letras — melhor legibilidade em telas. Geométricas (Futura, Circular) têm mais personalidade mas menos legibilidade em textos longos. Para blogs: humanista no corpo, geométrica em headings é a combinação clássica que funciona."
+      }
+    ]
+  }
+}

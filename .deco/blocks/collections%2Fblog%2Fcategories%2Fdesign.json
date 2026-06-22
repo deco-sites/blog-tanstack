@@ -1,0 +1,9 @@
+{
+  "name": "collections/blog/categories/design",
+  "__resolveType": "blog/loaders/Category.ts",
+  "category": {
+    "name": "Design",
+    "slug": "design",
+    "description": "Design systems, tipografia, acessibilidade e experiência do usuário."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "collections/blog/categories/culture",
+  "__resolveType": "blog/loaders/Category.ts",
+  "category": {
+    "name": "Culture",
+    "slug": "culture",
+    "description": "Time, remote work, cultura de produto, crescimento e vida na empresa."
+  }
+}

@@ -1,0 +1,87 @@
+﻿{
+  "name": "collections/blog/posts/composable-architecture",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Por que arquitetura composable importa em 2025",
+    "slug": "composable-architecture-2025",
+    "date": "2025-04-15",
+    "excerpt": "Composabilidade deixou de ser buzzword: é a diferença entre times que entregam rápido e times presos em acoplamento. Entenda os princípios e como aplicar.",
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Diagrama de blocos de arquitetura composable",
+    "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
+    "categories": [{ "name": "Engineering", "slug": "engineering" }],
+    "seo": {
+      "title": "Por que arquitetura composable importa em 2025 — Blog",
+      "description": "Composabilidade deixou de ser buzzword: é a diferença entre times que entregam rápido e times presos em acoplamento."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "summary",
+        "title": "TL;DR",
+        "body": "Arquitetura composable divide o sistema em unidades pequenas, bem definidas e intercambiáveis. Cada unidade tem contrato claro. Times entregam mais rápido porque mudanças são locais, não globais."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Existe uma tensão clássica no design de plataformas web. Dê flexibilidade demais e você terá sites inconsistentes e difíceis de manter. Dê de menos e você sufoca a experimentação. A maioria das plataformas resolve isso escolhendo um lado — e os times vivem com o tradeoff."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O que composable realmente significa",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "<strong>Composable</strong> virou buzzword, então vamos ser específicos. Em sistemas bem projetados, composabilidade significa:"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "Qualquer seção pode ser colocada em qualquer página sem se acoplar aos dados daquela página\nSeções declaram suas próprias necessidades de dados via loaders — sem prop drilling\nApps são unidades auto-contidas: trazem suas próprias seções, loaders e ações\nPáginas são montadas a partir de seções, sem escrever código"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O custo do acoplamento",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Acoplamento é a razão pela qual refatorações grandes são tão caras. Quando o componente A conhece os detalhes internos do componente B, uma mudança em B quebra A. Multiplique isso por 50 componentes e você tem um sistema onde ninguém consegue fazer mudanças com confiança."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "A parte mais difícil do design de plataformas não é o dia um — é o mês doze, quando o codebase cresceu e você precisa fazer mudanças sem regressões.",
+        "attribution": "Lucas Bastos, Staff Engineer"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Princípios práticos",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Três princípios que aplicamos no dia a dia para manter composabilidade real:"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "ordered",
+        "items": "<strong>Contratos explícitos</strong>: props são tipadas, loaders são interfaces públicas\n<strong>Dados fluem para baixo, eventos para cima</strong>: nenhuma seção modifica estado global\n<strong>Substituição sem surpresa</strong>: qualquer seção pode ser trocada sem efeito colateral"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "info",
+        "title": "Dica de implementação",
+        "body": "Comece pela borda. Identifique a seção mais usada no seu projeto e extraia seu loader para uma interface pública. Isso força você a pensar no contrato antes da implementação."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Composabilidade que escala",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Sites que começam composable ficam composable. Isso não é acidente — é arquitetura. Unidades pequenas, bem definidas, com contratos claros são mais fáceis de entender, testar e substituir do que sistemas grandes e acoplados."
+      }
+    ]
+  }
+}

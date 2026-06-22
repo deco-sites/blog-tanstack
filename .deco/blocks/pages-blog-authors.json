@@ -1,0 +1,26 @@
+{
+  "name": "Autores",
+  "path": "/authors",
+  "sections": [
+    {
+      "__resolveType": "site/sections/Blog/BlogHeader.tsx",
+      "logoAlt": "Blog",
+      "showReadingProgress": false
+    },
+    {
+      "__resolveType": "site/sections/Blog/BlogAuthors.tsx",
+      "heading": "Autores",
+      "posts": {
+        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "sortBy": "date_desc",
+        "count": 100
+      }
+    }
+  ],
+  "__resolveType": "website/pages/Page.tsx",
+  "seo": {
+    "__resolveType": "website/sections/Seo/SeoV2.tsx",
+    "title": "Autores — Blog",
+    "description": "Conheça os autores do Blog: engenheiros, designers, PMs e writers."
+  }
+}

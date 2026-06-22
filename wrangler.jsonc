@@ -1,0 +1,27 @@
+{
+  "name": "blog-tanstack",
+  "account_id": "",
+  "compatibility_date": "2026-02-14",
+  "compatibility_flags": ["nodejs_compat", "no_handle_cross_request_promise_resolution"],
+  "main": "./src/worker-entry.ts",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 0.01,
+      "persist": true
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01,
+      "persist": true
+    }
+  },
+  "vars": {
+    "DECO_SITE_NAME": "blog-tanstack",
+    "DECO_ENV_NAME": "production"
+  }
+}

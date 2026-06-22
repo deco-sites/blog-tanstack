@@ -1,0 +1,65 @@
+﻿{
+  "name": "collections/blog/posts/seo-geo-guide",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "SEO e GEO em 2025: como ser encontrado por humanos e por IAs",
+    "slug": "seo-geo-guide-2025",
+    "date": "2025-06-15",
+    "excerpt": "Google ainda domina a busca. Mas ChatGPT, Perplexity e Gemini estão mudando como as pessoas descobrem conteúdo. Estratégia completa de SEO clássico + GEO para blogs técnicos.",
+    "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Diagrama de SEO e GEO com motores de busca e IA",
+    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
+    "categories": [{ "name": "Product", "slug": "product" }],
+    "seo": {
+      "title": "SEO e GEO em 2025: como ser encontrado por humanos e IAs — Blog",
+      "description": "Estratégia completa de SEO clássico + GEO para blogs técnicos: JSON-LD, speakable schema, e-e-a-t."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "definition",
+        "title": "O que é GEO",
+        "body": "GEO (Generative Engine Optimization) é o conjunto de práticas para fazer seu conteúdo aparecer em respostas geradas por IAs (ChatGPT, Perplexity, Gemini, Google SGE). Diferente do SEO clássico que otimiza para ranking em páginas de resultado, GEO otimiza para ser citado em respostas geradas."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "SEO técnico ainda importa",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "JSON-LD <code>BlogPosting</code> com todos os campos — headline, description, author, datePublished, image\nOpen Graph para rich previews em redes sociais e mensageiros\nCanonical URL em cada página — evita conteúdo duplicado\nSitemap XML dinâmico — todas as URLs atualizadas automaticamente\n<code>rel=\"prev/next\"</code> em páginas paginadas — sinal de estrutura para crawlers\nMeta description do excerpt — máx 155 caracteres"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "E-E-A-T: experiência, expertise, autoridade, confiança",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Google avalia E-E-A-T para conteúdo editorial. Para blogs técnicos: cada post deve ter um autor real com bio, foto e perfis externos verificáveis. A <code>Person</code> schema no JSON-LD deve incluir <code>sameAs</code> com LinkedIn, GitHub e Twitter do autor."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "GEO: como IAs selecionam conteúdo para citar",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "LLMs usados em buscas (ChatGPT com Bing, Perplexity, Gemini) preferem conteúdo que é <strong>estruturado</strong>, <strong>explícito</strong> e <strong>citável</strong>. Parágrafos curtos, listas com pontos claros, definições explícitas, e dados com fontes são muito mais propícios a aparecer em respostas geradas."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<strong>Speakable schema</strong>: aponta os seletores CSS com o conteúdo mais importante do artigo\n<strong>FAQ schema</strong>: perguntas e respostas estruturadas são ouro para LLMs\n<strong>Definições explícitas</strong>: use callouts de definição — IAs adoram definir termos\n<strong>TL;DR no início</strong>: resuma o artigo em 2-3 pontos — aparecem em respostas curtas\n<strong>Dados com fontes</strong>: afirmações verificáveis têm mais chance de serem citadas"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "success",
+        "title": "Dica prática",
+        "body": "Escreva o título e o primeiro parágrafo assumindo que a IA vai ler apenas isso. Se o valor do artigo não estiver claro nesses 150 primeiros caracteres, reescreva."
+      }
+    ]
+  }
+}

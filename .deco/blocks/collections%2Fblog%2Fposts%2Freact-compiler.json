@@ -1,0 +1,70 @@
+﻿{
+  "name": "collections/blog/posts/react-compiler",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "React Compiler: o que muda na prática para seu projeto",
+    "slug": "react-compiler-practical-guide",
+    "date": "2025-06-01",
+    "excerpt": "O React Compiler elimina a necessidade de useMemo, useCallback e memo manual. Mas quando realmente ajuda, quando não ajuda, e como habilitá-lo no seu projeto.",
+    "image": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Diagrama do React Compiler transformando componentes",
+    "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
+    "categories": [{ "name": "Engineering", "slug": "engineering" }],
+    "seo": {
+      "title": "React Compiler: o que muda na prática — Blog",
+      "description": "O React Compiler elimina useMemo e useCallback manuais. Quando ajuda, quando não ajuda, como habilitar."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "summary",
+        "title": "O que é",
+        "body": "React Compiler é um compilador Babel/SWC que analisa seus componentes em build time e insere memoização automaticamente onde é seguro. Resultado: menos re-renders, sem esforço manual."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O problema que resolve",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "React re-renderiza componentes quando props ou estado mudam. Mas também re-renderiza filhos de componentes que re-renderizaram, mesmo que as props do filho não tenham mudado. <code>useMemo</code>, <code>useCallback</code> e <code>React.memo</code> foram as ferramentas para evitar isso — mas exigem que o dev identifique manualmente onde usar."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Como habilitar no Vite",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Com <code>@vitejs/plugin-react</code>, a configuração é direta. Instale o pacote <code>babel-plugin-react-compiler</code> e adicione ao plugin React:"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "info",
+        "title": "Pré-requisito",
+        "body": "O React Compiler exige React 19+. Componentes com regras violadas do React (mutação de props, efeitos colaterais em render) serão ignorados pelo compilador — não quebrarão, só não ganharão otimização automática."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Quando o compilador ajuda mais",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "Listas com muitos itens que re-renderizam frequentemente\nComponentes com lógica derivada de props complexas\nÁrvores de componentes sem memoização manual existente\nCódigo legado onde adicionar useMemo seria arriscado"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Quando o compilador não ajuda",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "Componentes que já têm memoização manual bem colocada\nBottlenecks que vêm de I/O, não de CPU\nCódigo que viola as regras do React (será ignorado)\nBundleware (o compilador não reduz bundle size)"
+      }
+    ]
+  }
+}

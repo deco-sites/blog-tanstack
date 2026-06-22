@@ -1,0 +1,62 @@
+﻿{
+  "name": "collections/blog/posts/css-performance",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "CSS moderno e performance: o que mudou com Tailwind v4",
+    "slug": "css-performance-tailwind-v4",
+    "date": "2025-04-28",
+    "excerpt": "Tailwind v4 com o novo engine Oxide é 10x mais rápido. Mas performance de CSS não é só sobre build speed — é sobre como o browser parse e aplica seus estilos.",
+    "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Código CSS com Tailwind v4",
+    "authors": [{ "name": "Ana Luiza Costa", "email": "ana@deco.cx" }],
+    "categories": [{ "name": "Performance", "slug": "performance" }],
+    "seo": {
+      "title": "CSS moderno e performance com Tailwind v4 — Blog",
+      "description": "Tailwind v4 com Oxide é 10x mais rápido. Como o browser parse CSS e estratégias para CLS zero."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Tailwind v4 não é só uma atualização de versão — é uma reescrita completa do engine de geração de CSS. O novo engine Oxide, escrito em Rust, é <strong>10x mais rápido</strong> no cold start e 100x mais rápido em rebuilds incrementais."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O que mudou na API",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "A maior mudança: configuração migrou de <code>tailwind.config.js</code> para CSS nativo com a diretiva <code>@theme</code>. Isso significa que seu design token system fica no mesmo arquivo que seus estilos — sem saltar entre arquivos."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<code>@import \"tailwindcss\"</code> substitui as três diretivas base\n<code>@theme</code> define design tokens em CSS nativo\n<code>@plugin</code> para plugins como DaisyUI v5\nVariáveis CSS nativas geradas automaticamente — <code>var(--color-primary)</code>"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "CSS e CLS: a relação que poucos percebem",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "CLS (Cumulative Layout Shift) não é só sobre imagens sem dimensões. CSS que carrega assincronamente pode causar refluxo. A solução é garantir que o CSS crítico esteja inline no <code>&lt;head&gt;</code> e o resto seja carregado via <code>link rel=preload</code>."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "success",
+        "title": "Tailwind e Critical CSS",
+        "body": "Com Tailwind v4, todo o CSS é gerado estaticamente no build. Isso torna trivial injetar o CSS crítico inline — basta ler o arquivo gerado e colocá-lo em uma tag <code>&lt;style&gt;</code> no head. Sem CSS não-crítico bloqueando o render."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Fontes e CLS: o problema das web fonts",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Web fonts são a segunda maior causa de CLS em blogs. O padrão de não-bloqueio: carregue via <code>&lt;link media=\"print\"&gt;</code>, troque para <code>media=\"all\"</code> via script depois que o DOM está pronto. Isso garante que o browser nunca espere pela font para renderizar o conteúdo."
+      }
+    ]
+  }
+}

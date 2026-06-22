@@ -1,0 +1,63 @@
+﻿{
+  "name": "collections/blog/posts/product-metrics",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "As métricas de produto que realmente importam",
+    "slug": "product-metrics-that-matter",
+    "date": "2025-01-15",
+    "excerpt": "Vanity metrics são fáceis de melhorar e não mudam nada. As métricas que importam são difíceis de mexer e predizem crescimento real. Como separar uma das outras.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Dashboard de métricas de produto",
+    "authors": [{ "name": "Rafael Melo", "email": "rafael@deco.cx" }],
+    "categories": [{ "name": "Product", "slug": "product" }],
+    "seo": {
+      "title": "As métricas de produto que realmente importam — Blog",
+      "description": "Vanity metrics não mudam nada. Como identificar as métricas que predizem crescimento real."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "summary",
+        "title": "TL;DR",
+        "body": "Boa métrica: é acionável, é uma taxa (não um número absoluto), e muda quando você muda o produto. Ruim: pageviews, downloads, usuários cadastrados. Boa: DAU/MAU ratio, retention D30, time-to-value."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "O teste da métrica de vaidade",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Uma métrica é de vaidade se você consegue melhorá-la sem melhorar o negócio. Downloads? Rode uma campanha de aquisição barata. Pageviews? Adicione páginas inúteis. Cadastros? Abaixe a barra de entrada. Nenhum desses movimentos cria valor real."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "North Star Metric",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Cada produto tem uma North Star — a única métrica que, se cresce, indica que você está criando valor real. Para Airbnb é noites reservadas. Para Spotify é minutos de streaming. Para Figma é arquivos compartilhados. A escolha da NSM força clareza sobre o que o produto realmente faz."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Retenção é a métrica mãe",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Qualquer produto pode ter boa aquisição e crescer no curto prazo. O que separa produtos que constroem negócios duráveis é retenção. Se você adquire 100 usuários e retém 5% em D30, o balde está furado — nenhum investimento em aquisição vai resolver."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<strong>D1 retention</strong>: voltaram no dia seguinte? Indica se o produto tem valor imediato\n<strong>D7 retention</strong>: voltaram na semana? Indica se há hábito sendo formado\n<strong>D30 retention</strong>: voltaram no mês? Indica valor duradouro\n<strong>DAU/MAU</strong>: porcentagem de usuários mensais que usam todo dia — indicador de stickiness"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "Se você não consegue medir retenção, você não tem um produto — você tem um experimento.",
+        "attribution": "Rafael Melo, PM"
+      }
+    ]
+  }
+}

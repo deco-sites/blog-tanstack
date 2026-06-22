@@ -1,0 +1,92 @@
+@import "../../tailwind.css";
+
+/* ── Base resets ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Ubuntu", "Helvetica Neue", Arial, sans-serif;
+  color: #1a1a18;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── View Transitions API ─────────────────────────────────── */
+@view-transition {
+  navigation: auto;
+}
+
+/* ── Focus styles ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #ff6011;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Scrollbar thin ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e4e3df;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a09a;
+}
+
+/* ── Prevent FOUC on hero mode header ─────────────────────── */
+body:has([data-blog-hero-image]) [data-blog-header] {
+  position: fixed !important;
+  top: 0; left: 0; right: 0; width: 100%;
+  background-color: transparent !important;
+  border-bottom-color: transparent !important;
+  transition:
+    background-color 250ms cubic-bezier(0.16,1,0.3,1),
+    border-color     250ms cubic-bezier(0.16,1,0.3,1),
+    backdrop-filter  250ms cubic-bezier(0.16,1,0.3,1),
+    box-shadow       250ms cubic-bezier(0.16,1,0.3,1) !important;
+}
+body:has([data-blog-hero-image]) [data-blog-header] .blog-header-logo-text,
+body:has([data-blog-hero-image]) [data-blog-header] [data-blog-nav] {
+  color: rgba(255,255,255,0.92) !important;
+}
+body:has([data-blog-hero-image]) [data-blog-header].blog-header--scrolled {
+  background-color: rgba(255,255,255,0.95) !important;
+  border-bottom-color: #e4e3df !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 1px 24px rgba(26,26,24,0.08) !important;
+}
+body:has([data-blog-hero-image]) [data-blog-header].blog-header--scrolled .blog-header-logo-text,
+body:has([data-blog-hero-image]) [data-blog-header].blog-header--scrolled [data-blog-nav] {
+  color: #7a7a74 !important;
+}
+
+/* ── Blog index header compensation ───────────────────────── */
+body:has([data-blog-index]) [data-blog-header] {
+  position: fixed !important;
+  top: 0; left: 0; right: 0; width: 100%;
+  transition:
+    background-color 250ms cubic-bezier(0.16,1,0.3,1),
+    border-color     250ms cubic-bezier(0.16,1,0.3,1),
+    backdrop-filter  250ms cubic-bezier(0.16,1,0.3,1),
+    box-shadow       250ms cubic-bezier(0.16,1,0.3,1) !important;
+}
+
+/* ── Code syntax highlight baseline ──────────────────────── */
+.hljs-keyword { color: #ff79c6; }
+.hljs-string  { color: #f1fa8c; }
+.hljs-comment { color: #6272a4; font-style: italic; }
+.hljs-number  { color: #bd93f9; }
+.hljs-built_in { color: #8be9fd; }

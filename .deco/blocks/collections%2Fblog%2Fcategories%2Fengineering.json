@@ -1,0 +1,9 @@
+{
+  "name": "collections/blog/categories/engineering",
+  "__resolveType": "blog/loaders/Category.ts",
+  "category": {
+    "name": "Engineering",
+    "slug": "engineering",
+    "description": "Arquitetura, padrões de código, ferramentas e boas práticas de engenharia de software."
+  }
+}

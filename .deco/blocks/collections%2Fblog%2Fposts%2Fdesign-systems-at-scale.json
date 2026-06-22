@@ -1,0 +1,67 @@
+﻿{
+  "name": "collections/blog/posts/design-systems-at-scale",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Design systems em escala: o que aprendi depois de 3 anos",
+    "slug": "design-systems-at-scale",
+    "date": "2025-03-10",
+    "excerpt": "Criar um design system é fácil. Fazer o time usar é difícil. Mantê-lo relevante por anos é quase impossível. Três lições que mudaram minha abordagem.",
+    "image": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Componentes de design system organizados",
+    "authors": [{ "name": "Ana Luiza Costa", "email": "ana@deco.cx" }],
+    "categories": [{ "name": "Design", "slug": "design" }],
+    "seo": {
+      "title": "Design systems em escala: o que aprendi depois de 3 anos — Blog",
+      "description": "Criar um design system é fácil. Fazer o time usar é difícil. Três lições que mudaram minha abordagem."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Passei três anos construindo e mantendo design systems para times que variavam de 5 a 80 pessoas. O que aprendi não está em nenhum livro de UX: design systems não são problema de design — são problema de <strong>adoção e governança</strong>."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Lição 1: Componentes são contratos, não artefatos",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "O erro mais comum: times de design criam componentes bonitos em Figma, entregam para o dev e consideram o trabalho feito. Na prática, o componente vira um <em>artefato</em> — um snapshot do que era verdade naquele momento. Sem responsável, sem processo de atualização, ele rapidamente fica obsoleto."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "Um componente sem dono não é um componente — é uma dívida técnica esperando acontecer.",
+        "attribution": "Ana Luiza Costa"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Lição 2: Documentação que ninguém lê não existe",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Passamos semanas escrevendo documentação exaustiva de uso de cada componente. Os devs não leram. Percebemos que documentação funciona quando está <strong>no lugar onde o dev já está</strong>: no IDE, na própria Storybook, no PR review."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "JSDoc inline nos componentes — aparece no autocomplete do VS Code\nStorybook com exemplos reais, não hipotéticos\nLinting rules que fazem erros de uso virarem erros de build\nChangelogs no formato convencional — devs leem BREAKING CHANGES"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Lição 3: Versione como biblioteca, não como produto",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Design systems que tratam cada mudança como 'update do produto' criam caos. Cada mudança pode quebrar N consumidores. Semver + changelogs automatizados resolvem isso: consumidores optam por atualizar quando estão prontos."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "info",
+        "title": "Ferramenta recomendada",
+        "body": "Changesets + GitHub Actions automatiza o processo inteiro: bump de versão, geração de changelog e publicação no npm. Zero overhead manual."
+      }
+    ]
+  }
+}

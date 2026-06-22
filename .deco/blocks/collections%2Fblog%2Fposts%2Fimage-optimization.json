@@ -1,0 +1,64 @@
+﻿{
+  "name": "collections/blog/posts/image-optimization",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "title": "Otimização de imagens na web: o guia completo para 2025",
+    "slug": "image-optimization-web-2025",
+    "date": "2025-04-05",
+    "excerpt": "Imagens são responsáveis por 60-70% do peso de uma página web típica. Com os formatos e estratégias certos, você pode servir imagens 80% menores sem perda perceptível.",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&h=720&fit=crop&q=80&auto=format",
+    "alt": "Comparação visual entre imagens otimizadas e não otimizadas",
+    "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
+    "categories": [{ "name": "Performance", "slug": "performance" }],
+    "seo": {
+      "title": "Otimização de imagens na web: guia completo 2025 — Blog",
+      "description": "Imagens = 60-70% do peso de uma página. Como servir imagens 80% menores sem perda perceptível."
+    },
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Escolha o formato certo",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<strong>WebP</strong>: 25-35% menor que JPEG/PNG com qualidade equivalente — suporte de 97% dos browsers\n<strong>AVIF</strong>: 50% menor que JPEG — suporte de 93% dos browsers, encoding mais lento\n<strong>SVG</strong>: para ícones, logos e ilustrações simples — infinitamente escalável sem peso\n<strong>GIF</strong>: nunca em 2025 — use video/webm para animações (10x menor)\n<strong>Regra prática</strong>: fotos → AVIF com fallback WebP. Logos → SVG. Ícones → SVG ou icon font"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Dimensões e responsive images",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Servir uma imagem de 2400px em um dispositivo mobile de 390px de largura é desperdiçar 38x dados do usuário. O atributo <code>srcset</code> resolve isso: você fornece múltiplos tamanhos e o browser escolhe o ideal."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Callout.tsx",
+        "variant": "info",
+        "title": "CDN de imagens",
+        "body": "Serviços como Cloudinary, imgix e o próprio deco.cx CDN fazem resize e conversão de formato on-the-fly. Você envia a imagem original em alta resolução uma vez e eles servem o tamanho e formato certos para cada dispositivo automaticamente."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Loading strategy",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "<code>loading=\"eager\"</code> + <code>fetchpriority=\"high\"</code>: apenas o LCP (imagem hero)\n<code>loading=\"lazy\"</code>: todas as demais imagens — o browser só baixa quando próximo do viewport\n<code>decoding=\"async\"</code>: sempre — libera o main thread para outras tarefas\n<code>width</code> e <code>height</code> sempre definidos: evita CLS durante o carregamento"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Compression settings",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Para JPEG/WebP, qualidade 75-85 é o ponto ótimo para a maioria das fotos — humanos não percebem a diferença em relação à qualidade 100, mas o arquivo é 3-4x menor. Para AVIF, qualidade 50-65 produz resultados similares ao JPEG 90."
+      }
+    ]
+  }
+}
