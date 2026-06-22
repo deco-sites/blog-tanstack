@@ -1,0 +1,80 @@
+{
+  "name": "collections/blog/posts/a3f8d2c1e9b4",
+  "__resolveType": "blog/loaders/Blogpost.ts",
+  "post": {
+    "authors": [{ "name": "Deco Team", "email": "team@deco.cx" }],
+    "categories": [{ "name": "Performance", "slug": "performance" }],
+    "title": "Why Performance Is the Feature: Building Sub-100ms Web Experiences",
+    "excerpt": "Speed is not a nice-to-have — it's the most impactful UX decision you make. Here's how to build websites that respond before users even notice they clicked.",
+    "slug": "why-performance-is-the-feature",
+    "date": "2024-05-01",
+    "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/4763/682eb374-def2-4e85-a45d-b3a7ff8a31a9",
+    "sections": [
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Every 100ms of latency costs roughly 1% of revenue. That number, cited repeatedly in industry research from Amazon to Google, has become one of the most repeated facts in web performance. Yet most teams treat performance as a post-launch concern — something to optimize <em>after</em> features ship."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "This essay argues the opposite: <strong>performance is the feature</strong>. It's not a metric to chase — it's a user experience decision that happens before any UI is designed."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "The Perception Gap",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Human perception has hard limits. Under 100ms feels <em>instant</em>. Between 100ms and 300ms feels <em>fast</em>. From 300ms to 1s, users start to notice the wait. Beyond 1s, they start to disengage."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "These aren't arbitrary thresholds — they map to how the brain processes causality. Below 100ms, an action and its result feel <em>connected</em>. Above it, they start to feel like separate events. The web page stops feeling like a tool and starts feeling like a request you made."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Quote.tsx",
+        "quote": "Performance is the art of avoiding work, and doing it elegantly."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Where Modern Sites Lose the Race",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Most modern web stacks add latency in predictable places. Understanding them is half the battle:"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/List.tsx",
+        "style": "unordered",
+        "items": "Waterfall API calls — each page section fetches independently, compounding delays\nClient-side rendering — the browser downloads JS before any content appears\nUnoptimized images — the single largest contributor to page weight on most sites\nMissing CDN caching — every request hits the origin server instead of a nearby edge node\nThird-party scripts — analytics, chat widgets, and A/B tools can each add 200–500ms"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "The Edge Advantage",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "Running your rendering logic at the network edge — in data centers close to every user — is one of the most powerful architectural shifts available today. When a request arrives, the nearest edge node can serve a cached or computed response in under 20ms, instead of the 200–400ms round trip to a central origin."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "This is the architecture Deco.cx is built on. Pages are rendered at the edge with fine-grained caching per section, so even dynamic pages feel instant. The framework handles cache invalidation when content changes — you get the performance of a static site with the flexibility of a dynamic one."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Heading.tsx",
+        "text": "Performance as a Culture, Not a Sprint",
+        "level": "2"
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "The teams with the fastest sites treat performance the same way they treat accessibility or security: as an ongoing discipline with clear ownership, not a one-off project. They measure before they ship, set budgets for bundle sizes and TTFBs, and make performance part of their definition of done."
+      },
+      {
+        "__resolveType": "blog/sections/blocks/Paragraph.tsx",
+        "html": "The technical choices matter — edge rendering, partial hydration, image optimization — but so does the culture. A team that celebrates a 50ms improvement ships fast products. A team that doesn't measure never will."
+      }
+    ]
+  }
+}
