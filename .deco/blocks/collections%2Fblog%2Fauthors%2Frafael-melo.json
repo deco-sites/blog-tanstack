@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/authors/rafael-melo",
   "__resolveType": "blog/loaders/Author.ts",
   "author": {

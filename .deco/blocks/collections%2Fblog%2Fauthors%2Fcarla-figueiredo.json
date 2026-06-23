@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/authors/carla-figueiredo",
   "__resolveType": "blog/loaders/Author.ts",
   "author": {

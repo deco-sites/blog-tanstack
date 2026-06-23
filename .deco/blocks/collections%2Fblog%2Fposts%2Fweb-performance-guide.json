@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/posts/web-performance-guide",
   "__resolveType": "blog/loaders/Blogpost.ts",
   "post": {

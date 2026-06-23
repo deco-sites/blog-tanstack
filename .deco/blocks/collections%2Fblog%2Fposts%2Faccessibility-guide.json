@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/posts/accessibility-guide",
   "__resolveType": "blog/loaders/Blogpost.ts",
   "post": {

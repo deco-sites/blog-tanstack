@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/posts/composable-architecture",
   "__resolveType": "blog/loaders/Blogpost.ts",
   "post": {

@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/posts/remote-first-culture",
   "__resolveType": "blog/loaders/Blogpost.ts",
   "post": {

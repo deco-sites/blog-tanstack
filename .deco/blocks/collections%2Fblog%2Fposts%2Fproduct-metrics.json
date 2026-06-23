@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/posts/product-metrics",
   "__resolveType": "blog/loaders/Blogpost.ts",
   "post": {

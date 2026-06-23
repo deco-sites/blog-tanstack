@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "collections/blog/posts/image-optimization",
   "__resolveType": "blog/loaders/Blogpost.ts",
   "post": {

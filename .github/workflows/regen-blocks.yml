@@ -1,0 +1,17 @@
+name: Regenerate blocks.gen.json
+
+# Thin caller for decocms/deco-start's central regen-blocks workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".deco/blocks/**"
+
+permissions:
+  contents: write
+
+jobs:
+  regen:
+    uses: decocms/deco-start/.github/workflows/regen-blocks.yml@v2
+    secrets: inherit
