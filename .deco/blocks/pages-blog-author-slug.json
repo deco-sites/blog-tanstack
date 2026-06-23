@@ -25,7 +25,6 @@
   ],
   "__resolveType": "website/pages/Page.tsx",
   "seo": {
-    "__resolveType": "website/sections/Seo/SeoV2.tsx",
-    "title": "Posts de {{author}} — Blog"
+    "__resolveType": "site/sections/Seo/SeoBlogAuthor.tsx"
   }
 }

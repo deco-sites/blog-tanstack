@@ -30,7 +30,7 @@
   ],
   "__resolveType": "website/pages/Page.tsx",
   "seo": {
-    "__resolveType": "blog/sections/Seo/SeoBlogPost.tsx",
+    "__resolveType": "site/sections/Seo/SeoBlogPost.tsx",
     "jsonLD": {
       "__resolveType": "blog/loaders/BlogPostPage.ts",
       "slug": {
