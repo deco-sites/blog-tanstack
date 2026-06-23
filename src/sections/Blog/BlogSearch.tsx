@@ -335,3 +335,4 @@ export default function BlogSearch(
 }
 
 export const eager = true;
+export const sync = true;

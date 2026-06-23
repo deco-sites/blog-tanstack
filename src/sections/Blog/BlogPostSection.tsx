@@ -195,7 +195,7 @@ function AnimatedTitle({ text }: { text: string }) {
           </span>
         );
         return wi < words.length - 1
-          ? [wordEl, <span key={`sp${wi}`}></span>]
+          ? [wordEl, <span key={`sp${wi}`}>{" "}</span>]
           : [wordEl];
       })}
     </span>

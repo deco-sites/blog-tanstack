@@ -9,9 +9,28 @@ export interface Props {
 
 export async function loader(
   props: Props,
-  req: Request,
-): Promise<Props & { siteConfig: SiteConfig }> {
-  return { ...props, siteConfig: getSiteConfig() };
+  _req: Request,
+): Promise<
+  Props & {
+    siteConfig: SiteConfig;
+    title?: string;
+    description?: string;
+    canonical?: string;
+    image?: string;
+    noIndexing?: boolean;
+  }
+> {
+  const siteConfig = getSiteConfig();
+  const seo = props.jsonLD?.seo;
+  return {
+    ...props,
+    siteConfig,
+    title: seo?.title,
+    description: seo?.description,
+    canonical: seo?.canonical,
+    image: seo?.image,
+    noIndexing: seo?.noIndexing,
+  };
 }
 
 export default function SeoBlogPost(
