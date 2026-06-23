@@ -1,6 +1,6 @@
 {
   "name": "blog-tanstack",
-  "account_id": "",
+  "account_id": "5a1b2df5a0bc67d87ce502cbb21af183",
   "compatibility_date": "2026-02-14",
   "compatibility_flags": ["nodejs_compat", "no_handle_cross_request_promise_resolution"],
   "main": "./src/worker-entry.ts",
