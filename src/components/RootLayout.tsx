@@ -1,5 +1,10 @@
-import { useEffect, type ReactNode } from "react";
-import { HeadContent, Scripts, ScriptOnce, ScrollRestoration } from "@tanstack/react-router";
+import { type ReactNode, useEffect } from "react";
+import {
+  HeadContent,
+  ScriptOnce,
+  Scripts,
+  ScrollRestoration,
+} from "@tanstack/react-router";
 import {
   LiveControls,
   NavigationProgress,
@@ -143,10 +148,16 @@ export function RootLayout({
         <HeadContent />
       </head>
       <body className={bodyClassName} suppressHydrationWarning>
+        <a
+          href="#main-content"
+          className="skip-to-main"
+        >
+          Pular para o conteúdo principal
+        </a>
         <ScriptOnce children={buildDecoEventsBootstrap()} />
         <ScriptOnce children={HX_ON_POLYFILL} />
         <NavigationProgress />
-        <main>
+        <main id="main-content">
           <StableOutlet />
         </main>
         {children}

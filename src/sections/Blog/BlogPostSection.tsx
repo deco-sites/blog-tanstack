@@ -1,5 +1,6 @@
-import { useId, type ReactNode } from "react";
-import type { BlogPost, BlogPostPage, Author } from "@decocms/apps/blog/types";
+import { type ReactNode, useId } from "react";
+import type { Author, BlogPost, BlogPostPage } from "@decocms/apps/blog/types";
+import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 // Block components
 import Heading from "./blocks/Heading";
@@ -14,6 +15,7 @@ import BlockImage from "./blocks/BlockImage";
 import Video from "./blocks/Video";
 import Divider from "./blocks/Divider";
 import CallToAction from "./blocks/CallToAction";
+import Faq from "./blocks/Faq";
 
 export interface Props {
   /** @description Página do post do blog */
@@ -23,6 +25,13 @@ export interface Props {
    * @description Conecte ao blog/loaders/BlogpostList.ts
    */
   relatedPosts?: BlogPost[] | null;
+}
+
+export async function loader(
+  props: Props,
+  req: Request,
+): Promise<Props & { siteConfig: SiteConfig }> {
+  return { ...props, siteConfig: getSiteConfig() };
 }
 
 type AnyComponent = (props: any) => ReactNode;
@@ -40,6 +49,7 @@ const BLOCK_COMPONENTS: Record<string, AnyComponent> = {
   "blog/sections/blocks/Video.tsx": Video,
   "blog/sections/blocks/Divider.tsx": Divider,
   "blog/sections/blocks/CallToAction.tsx": CallToAction,
+  "blog/sections/blocks/Faq.tsx": Faq,
   // Local section paths
   "sections/Blog/blocks/Heading.tsx": Heading,
   "sections/Blog/blocks/Paragraph.tsx": Paragraph,
@@ -53,6 +63,7 @@ const BLOCK_COMPONENTS: Record<string, AnyComponent> = {
   "sections/Blog/blocks/Video.tsx": Video,
   "sections/Blog/blocks/Divider.tsx": Divider,
   "sections/Blog/blocks/CallToAction.tsx": CallToAction,
+  "sections/Blog/blocks/Faq.tsx": Faq,
 };
 
 function stripHtml(html: string): string {
@@ -80,7 +91,11 @@ function extractToc(sections: any[]): TocItem[] {
   const items: TocItem[] = [];
   for (const s of sections) {
     const rt = (s?.__resolveType as string) ?? "";
-    if (rt.includes("Heading") && (s.level === "2" || s.level === "h2" || s.level === "3" || s.level === "h3")) {
+    if (
+      rt.includes("Heading") &&
+      (s.level === "2" || s.level === "h2" || s.level === "3" ||
+        s.level === "h3")
+    ) {
       items.push({
         id: toAnchorId(s.text ?? ""),
         text: stripHtml(s.text ?? ""),
@@ -99,10 +114,17 @@ function renderBlock(section: any, idx: number): ReactNode {
   const Component = BLOCK_COMPONENTS[resolveType];
   if (!Component) return null;
   const { __resolveType: _rt, ...props } = section;
-  if (resolveType.includes("Heading") && (props.level === "2" || props.level === "h2" || props.level === "3" || props.level === "h3")) {
+  if (
+    resolveType.includes("Heading") &&
+    (props.level === "2" || props.level === "h2" || props.level === "3" ||
+      props.level === "h3")
+  ) {
     return <Component key={idx} {...props} id={toAnchorId(props.text ?? "")} />;
   }
-  if ((resolveType.includes("Steps") || resolveType.includes("Checklist")) && props.title) {
+  if (
+    (resolveType.includes("Steps") || resolveType.includes("Checklist")) &&
+    props.title
+  ) {
     return <Component key={idx} {...props} id={toAnchorId(props.title)} />;
   }
   return <Component key={idx} {...props} />;
@@ -151,13 +173,20 @@ function AnimatedTitle({ text }: { text: string }) {
     <span aria-hidden="true">
       {words.flatMap((word, wi) => {
         const wordEl = (
-          <span key={`w${wi}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          <span
+            key={`w${wi}`}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          >
             {word.split("").map((char) => {
               const delay = charIdx++ * 22;
               return (
                 <span
                   key={`c${delay}`}
-                  style={{ display: "inline-block", animation: `charIn 0.55s cubic-bezier(0.16,1,0.3,1) ${delay}ms both` }}
+                  style={{
+                    display: "inline-block",
+                    animation:
+                      `charIn 0.55s cubic-bezier(0.16,1,0.3,1) ${delay}ms both`,
+                  }}
                 >
                   {char}
                 </span>
@@ -165,14 +194,18 @@ function AnimatedTitle({ text }: { text: string }) {
             })}
           </span>
         );
-        return wi < words.length - 1 ? [wordEl, <span key={`sp${wi}`}> </span>] : [wordEl];
+        return wi < words.length - 1
+          ? [wordEl, <span key={`sp${wi}`}></span>]
+          : [wordEl];
       })}
     </span>
   );
 }
 
 function AuthorInitial({ name }: { name: string }) {
-  const initials = name.split(" ").slice(0, 2).map((w) => w[0]?.toUpperCase() ?? "").join("");
+  const initials = name.split(" ").slice(0, 2).map((w) =>
+    w[0]?.toUpperCase() ?? ""
+  ).join("");
   return (
     <div
       className="w-10 h-10 rounded-full bg-[#ff6011] text-white flex items-center justify-center flex-shrink-0 text-sm font-bold select-none"
@@ -183,39 +216,127 @@ function AuthorInitial({ name }: { name: string }) {
   );
 }
 
-function buildJsonLd(post: BlogPost & { sections?: any[] }, url: string): string {
+function buildJsonLd(
+  post: BlogPost & { sections?: any[] },
+  canonicalUrl: string,
+  siteConfig: SiteConfig,
+): string[] {
   const authors: Author[] = (post.authors as Author[] | undefined) ?? [];
-  return JSON.stringify({
+  const origin = canonicalUrl.startsWith("http")
+    ? new URL(canonicalUrl).origin
+    : "";
+  const siteName = siteConfig.name;
+  const siteLogo = siteConfig.favicon ||
+    (origin ? `${origin}/favicon.svg` : "");
+
+  const blogPosting = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": canonicalUrl,
+    "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
     "headline": post.title,
     "description": post.excerpt ?? "",
-    "image": post.image ?? undefined,
-    "datePublished": post.date ?? undefined,
-    "dateModified": post.date ?? undefined,
-    "url": url,
-    "inLanguage": "pt-BR",
     "abstract": post.excerpt ?? undefined,
-    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".post-excerpt"] },
+    "image": post.image
+      ? {
+        "@type": "ImageObject",
+        "url": post.image,
+        "description": (post as any).alt ?? post.title,
+      }
+      : undefined,
+    "datePublished": post.date ? `${post.date}T00:00:00+00:00` : undefined,
+    "dateModified": post.date ? `${post.date}T00:00:00+00:00` : undefined,
+    "url": canonicalUrl,
+    "inLanguage": "pt-BR",
+    "articleSection": post.categories?.map((c) => c.name).join(", ") ??
+      undefined,
+    "keywords": post.categories?.map((c) => c.name).join(", ") ?? undefined,
+    "wordCount": post.sections ? post.sections.length * 80 : undefined,
+    "timeRequired": post.readTime ? `PT${post.readTime}M` : undefined,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        ".post-excerpt",
+        "[data-post-content] h2",
+        "[data-post-content] p:first-of-type",
+      ],
+    },
     "author": authors.map((a) => ({
       "@type": "Person",
       "name": a.name,
       "jobTitle": a.jobTitle ?? undefined,
       "image": a.avatar ?? undefined,
+      "url": a.email ? `${origin}/authors/${a.email}` : undefined,
     })),
     "publisher": {
       "@type": "Organization",
-      "name": "Blog",
+      "@id": origin ? `${origin}/#organization` : undefined,
+      "name": siteName,
+      "url": origin || undefined,
+      "logo": siteLogo
+        ? { "@type": "ImageObject", "url": siteLogo }
+        : undefined,
     },
-    "keywords": post.categories?.map((c) => c.name).join(", ") ?? undefined,
-  });
+    "isPartOf": {
+      "@type": "Blog",
+      "@id": origin ? `${origin}/#blog` : undefined,
+      "url": origin ? `${origin}/` : "/",
+      "name": siteName,
+    },
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": siteName,
+        "item": origin ? `${origin}/` : "/",
+      },
+      ...(post.categories?.[0]
+        ? [{
+          "@type": "ListItem",
+          "position": 2,
+          "name": post.categories[0].name,
+          "item": origin
+            ? `${origin}/topics/${post.categories[0].slug}`
+            : `/topics/${post.categories[0].slug}`,
+        }]
+        : []),
+      {
+        "@type": "ListItem",
+        "position": post.categories?.[0] ? 3 : 2,
+        "name": post.title,
+        "item": canonicalUrl,
+      },
+    ],
+  };
+
+  return [JSON.stringify(blogPosting), JSON.stringify(breadcrumb)];
 }
 
-export default function BlogPostSection({ page, relatedPosts }: Props) {
+export default function BlogPostSection(
+  { page, relatedPosts, siteConfig = getSiteConfig() }: Props & {
+    // @ts-ignore injected by loader
+    siteConfig?: SiteConfig;
+  },
+) {
   if (!page?.post) return null;
 
   const post = page.post as BlogPost & { sections?: any[] };
-  const { title, image, date, authors, sections, content, excerpt, categories, slug } = post;
+  const {
+    title,
+    image,
+    date,
+    authors,
+    sections,
+    content,
+    excerpt,
+    categories,
+    slug,
+  } = post;
   const alt = (post as any).alt;
 
   const authorsArray: Author[] = (authors as Author[] | undefined) ?? [];
@@ -224,24 +345,41 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
   const hasToc = toc.length > 1;
   const tocNavId = useId().replace(/:/g, "-");
 
-  const related = (relatedPosts ?? []).filter((p) => p.slug !== slug).slice(0, 2);
+  const related = (relatedPosts ?? []).filter((p) => p.slug !== slug).slice(
+    0,
+    2,
+  );
 
-  // JSON-LD for SEO/GEO
-  const canonicalUrl = typeof window !== "undefined"
-    ? window.location.href
-    : `/${slug}`;
+  // JSON-LD for SEO/GEO — prefer the canonical URL set by the BlogPostPage loader
+  // (absolute URL like https://domain.com/slug), fall back to window.location on client
+  const canonicalUrl = page?.seo?.canonical ??
+    (typeof window !== "undefined" ? window.location.href : `/${slug}`);
+
+  const [blogPostingJsonLd, breadcrumbJsonLd] = buildJsonLd(
+    post,
+    canonicalUrl,
+    siteConfig,
+  );
 
   return (
     <div className="bg-white min-h-screen" data-blog-post-section="">
       {/* JSON-LD structured data — BlogPosting */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: buildJsonLd(post, canonicalUrl) }}
+        dangerouslySetInnerHTML={{ __html: blogPostingJsonLd }}
+      />
+      {/* JSON-LD — BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
       />
 
       {/* Hero image */}
       {image && (
-        <figure className="m-0 w-full overflow-hidden bg-[#f0efeb] max-h-[520px] relative" data-blog-hero-image="">
+        <figure
+          className="m-0 w-full overflow-hidden bg-[#f0efeb] max-h-[520px] relative"
+          data-blog-hero-image=""
+        >
           <img
             src={image}
             alt={alt || title}
@@ -260,13 +398,20 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
         <div
           aria-hidden="true"
           className="relative pointer-events-none select-none"
-          style={{ zIndex: 1, marginTop: -180, height: 180, background: "linear-gradient(to bottom,transparent 0%,rgba(255,255,255,0.8) 55%,#fff 100%)" }}
+          style={{
+            zIndex: 1,
+            marginTop: -180,
+            height: 180,
+            background:
+              "linear-gradient(to bottom,transparent 0%,rgba(255,255,255,0.8) 55%,#fff 100%)",
+          }}
         />
       )}
 
       {/* Hero mode styles — injected AFTER hero image for CSS :has() to work (zero FOUC) */}
       {image && (
-        <style>{`
+        <style>
+          {`
           body:has([data-blog-hero-image]) [data-blog-header]:not(.blog-header--scrolled) {
             background-color: transparent !important;
             border-bottom-color: transparent !important;
@@ -313,11 +458,13 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
           .post-anim-3 { animation: postFadeUp 0.70s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
           .post-anim-4 { animation: postFadeUp 0.70s cubic-bezier(0.16,1,0.3,1) 0.42s both; }
           .post-anim-5 { animation: postFadeUp 0.65s cubic-bezier(0.16,1,0.3,1) 0.55s both; }
-        `}</style>
+        `}
+        </style>
       )}
 
       {!image && (
-        <style>{`
+        <style>
+          {`
           @keyframes charIn {
             from { opacity: 0; transform: translateY(0.4em); }
             to   { opacity: 1; transform: translateY(0); }
@@ -331,31 +478,44 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
           .post-anim-3 { animation: postFadeUp 0.70s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
           .post-anim-4 { animation: postFadeUp 0.70s cubic-bezier(0.16,1,0.3,1) 0.42s both; }
           .post-anim-5 { animation: postFadeUp 0.65s cubic-bezier(0.16,1,0.3,1) 0.55s both; }
-        `}</style>
+        `}
+        </style>
       )}
 
       <div className="max-w-[1200px] mx-auto px-[clamp(1rem,3vw,2rem)] pt-8 pb-20 box-border">
         <div className={hasToc ? "flex gap-16 xl:gap-24" : ""}>
-
-          {/* Article */}
-          <article className="flex-1 min-w-0 max-w-[720px]">
-
+          {/* Article — itemscope for microdata-based structured data (AEO supplement) */}
+          <article
+            className="flex-1 min-w-0 max-w-[720px]"
+            itemScope
+            itemType="https://schema.org/BlogPosting"
+          >
             {/* Breadcrumb */}
             <nav
               className="post-anim-1 flex items-center gap-2 text-[10px] tracking-[0.12em] uppercase mb-6 text-[#a0a09a] flex-wrap"
               aria-label="Breadcrumb"
             >
-              <a href="/" className="hover:text-[#ff6011] transition-colors no-underline text-[#7a7a74]">Blog</a>
+              <a
+                href="/"
+                className="hover:text-[#ff6011] transition-colors no-underline text-[#7a7a74]"
+              >
+                Blog
+              </a>
               {firstCategory && (
                 <>
                   <span>/</span>
-                  <a href={`/topics/${firstCategory.slug}`} className="hover:text-[#ff6011] transition-colors no-underline text-[#7a7a74]">
+                  <a
+                    href={`/topics/${firstCategory.slug}`}
+                    className="hover:text-[#ff6011] transition-colors no-underline text-[#7a7a74]"
+                  >
                     {firstCategory.name}
                   </a>
                 </>
               )}
               <span>/</span>
-              <span className="truncate max-w-[200px] text-[#a0a09a]">{title}</span>
+              <span className="truncate max-w-[200px] text-[#a0a09a]">
+                {title}
+              </span>
             </nav>
 
             {/* Category pill */}
@@ -369,14 +529,20 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
             )}
 
             {/* Title with letter-by-letter animation */}
-            <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-[#1a1a18] break-words [text-wrap:balance] mb-4">
+            <h1
+              className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-[#1a1a18] break-words [text-wrap:balance] mb-4"
+              itemProp="headline"
+            >
               <span className="sr-only">{title}</span>
               <AnimatedTitle text={title} />
             </h1>
 
             {/* Excerpt */}
             {excerpt && (
-              <p className="post-excerpt post-anim-4 text-[#4a4a46] text-lg leading-relaxed mb-6 [text-wrap:pretty]">
+              <p
+                className="post-excerpt post-anim-4 text-[#4a4a46] text-lg leading-relaxed mb-6 [text-wrap:pretty]"
+                itemProp="description"
+              >
                 {excerpt}
               </p>
             )}
@@ -385,27 +551,56 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
             <div className="post-anim-5 flex flex-wrap items-center gap-x-4 gap-y-2 py-5 border-y border-[#e4e3df] mb-8">
               {authorsArray.map((author) => (
                 <div key={author.email} className="flex items-center gap-2.5">
-                  {author.avatar ? (
-                    <img
-                      src={author.avatar}
-                      alt={author.name}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-8 h-8 rounded-full object-cover block flex-shrink-0"
-                    />
-                  ) : (
-                    <AuthorInitial name={author.name} />
-                  )}
-                  <span className="text-sm font-semibold text-[#1a1a18]">{author.name}</span>
+                  {author.avatar
+                    ? (
+                      <img
+                        src={author.avatar}
+                        alt={author.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-8 h-8 rounded-full object-cover block flex-shrink-0"
+                      />
+                    )
+                    : <AuthorInitial name={author.name} />}
+                  <span className="text-sm font-semibold text-[#1a1a18]">
+                    {author.name}
+                  </span>
                   {author.jobTitle && (
-                    <span className="text-xs text-[#7a7a74]">· {author.jobTitle}</span>
+                    <span className="text-xs text-[#7a7a74]">
+                      · {author.jobTitle}
+                    </span>
                   )}
                 </div>
               ))}
               {date && (
-                <time className="text-sm text-[#7a7a74] ml-auto" dateTime={date}>
+                <time
+                  className="text-sm text-[#7a7a74] ml-auto"
+                  dateTime={`${date}T00:00:00+00:00`}
+                  itemProp="datePublished"
+                >
                   {formatDate(date)}
                 </time>
+              )}
+              {post.readTime && (
+                <span
+                  className="text-sm text-[#a0a09a] flex items-center gap-1"
+                  aria-label={`Tempo de leitura: ${post.readTime} minutos`}
+                >
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  {post.readTime} min
+                </span>
               )}
             </div>
 
@@ -414,8 +609,19 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
               <details className="lg:hidden mb-8 border border-[#e4e3df] rounded overflow-hidden">
                 <summary className="flex items-center justify-between px-5 py-3.5 cursor-pointer bg-[#f7f6f3] text-[10px] font-semibold tracking-[0.14em] uppercase text-[#7a7a74] select-none list-none">
                   <span>Nesta Página</span>
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    className="w-3.5 h-3.5"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 4l4 4 4-4"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </summary>
                 <nav className="flex flex-col px-5 py-3 gap-0">
@@ -424,7 +630,9 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
                       key={item.id}
                       href={`#${item.id}`}
                       data-anchor={item.id}
-                      className={`text-sm text-[#4a4a46] hover:text-[#ff6011] transition-colors py-1.5 no-underline border-l-2 border-[#e4e3df] hover:border-[#ff6011] leading-snug ${item.depth === 3 ? "pl-7" : "pl-3"}`}
+                      className={`text-sm text-[#4a4a46] hover:text-[#ff6011] transition-colors py-1.5 no-underline border-l-2 border-[#e4e3df] hover:border-[#ff6011] leading-snug ${
+                        item.depth === 3 ? "pl-7" : "pl-3"
+                      }`}
                     >
                       {item.text}
                     </a>
@@ -434,16 +642,19 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
             )}
 
             {/* Content blocks or raw HTML */}
-            {sections && sections.length > 0 ? (
-              <div className="flex flex-col">
-                {sections.map(renderBlock)}
-              </div>
-            ) : content && (
-              <div
-                className="blog-prose"
-                dangerouslySetInnerHTML={{ __html: content as string }}
-              />
-            )}
+            {sections && sections.length > 0
+              ? (
+                <div className="flex flex-col" data-post-content="">
+                  {sections.map(renderBlock)}
+                </div>
+              )
+              : content && (
+                <div
+                  className="blog-prose"
+                  data-post-content=""
+                  dangerouslySetInnerHTML={{ __html: content as string }}
+                />
+              )}
 
             {/* Author card */}
             {authorsArray.length > 0 && (
@@ -452,24 +663,41 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
                   Sobre o{authorsArray.length > 1 ? "s Autores" : " Autor"}
                 </p>
                 {authorsArray.map((author) => (
-                  <div key={author.email} className="flex items-start gap-4 mb-6 last:mb-0">
-                    {author.avatar ? (
-                      <img
-                        src={author.avatar}
-                        alt={author.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-14 h-14 rounded-full object-cover block flex-shrink-0"
-                      />
-                    ) : (
-                      <div className="w-14 h-14 rounded-full bg-[#ff6011] text-white flex items-center justify-center flex-shrink-0 text-xl font-bold select-none">
-                        {author.name.split(" ").slice(0, 2).map((w) => w[0]?.toUpperCase() ?? "").join("")}
-                      </div>
-                    )}
+                  <div
+                    key={author.email}
+                    className="flex items-start gap-4 mb-6 last:mb-0"
+                  >
+                    {author.avatar
+                      ? (
+                        <img
+                          src={author.avatar}
+                          alt={author.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-14 h-14 rounded-full object-cover block flex-shrink-0"
+                        />
+                      )
+                      : (
+                        <div className="w-14 h-14 rounded-full bg-[#ff6011] text-white flex items-center justify-center flex-shrink-0 text-xl font-bold select-none">
+                          {author.name.split(" ").slice(0, 2).map((w) =>
+                            w[0]?.toUpperCase() ?? ""
+                          ).join("")}
+                        </div>
+                      )}
                     <div className="flex flex-col gap-0.5 pt-1">
-                      <span className="font-semibold text-[#1a1a18]">{author.name}</span>
-                      {author.jobTitle && <span className="text-xs text-[#7a7a74]">{author.jobTitle}</span>}
-                      {author.company && <span className="text-xs text-[#a0a09a]">{author.company}</span>}
+                      <span className="font-semibold text-[#1a1a18]">
+                        {author.name}
+                      </span>
+                      {author.jobTitle && (
+                        <span className="text-xs text-[#7a7a74]">
+                          {author.jobTitle}
+                        </span>
+                      )}
+                      {author.company && (
+                        <span className="text-xs text-[#a0a09a]">
+                          {author.company}
+                        </span>
+                      )}
                       <a
                         href={`/authors/${author.email}`}
                         className="mt-2 text-[10px] font-semibold tracking-[0.12em] uppercase text-[#ff6011] no-underline hover:opacity-75 transition-opacity"
@@ -502,13 +730,18 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
                       key={item.id}
                       href={`#${item.id}`}
                       data-anchor={item.id}
-                      className={`text-[13px] text-[#7a7a74] hover:text-[#ff6011] py-[5px] no-underline border-l-2 border-transparent hover:border-[#ff6011] leading-snug block transition-colors ${item.depth === 3 ? "pl-7" : "pl-4"}`}
+                      className={`text-[13px] text-[#7a7a74] hover:text-[#ff6011] py-[5px] no-underline border-l-2 border-transparent hover:border-[#ff6011] leading-snug block transition-colors ${
+                        item.depth === 3 ? "pl-7" : "pl-4"
+                      }`}
                     >
                       {item.text}
                     </a>
                   ))}
                 </nav>
-                <script defer dangerouslySetInnerHTML={{ __html: getTocScript(tocNavId) }} />
+                <script
+                  defer
+                  dangerouslySetInnerHTML={{ __html: getTocScript(tocNavId) }}
+                />
               </div>
             </aside>
           )}
@@ -542,7 +775,9 @@ export default function BlogPostSection({ page, relatedPosts }: Props) {
                     {rp.title}
                   </h3>
                   {rp.excerpt && (
-                    <p className="text-sm text-[#7a7a74] leading-relaxed line-clamp-2">{rp.excerpt}</p>
+                    <p className="text-sm text-[#7a7a74] leading-relaxed line-clamp-2">
+                      {rp.excerpt}
+                    </p>
                   )}
                   {rp.categories?.[0] && (
                     <span className="text-[10px] font-semibold tracking-[0.1em] uppercase text-[#ff6011] mt-2">

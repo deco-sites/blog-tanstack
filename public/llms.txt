@@ -1,0 +1,67 @@
+# Blog — llms.txt
+
+> Blog técnico em português (pt-BR) sobre engenharia de software, performance web, design de produto e cultura de times de tecnologia.
+
+Este blog publica artigos de profundidade técnica para engenheiros, designers e product managers.
+
+## Tópicos principais
+
+### Engenharia
+- Arquitetura composable e edge computing
+- Performance web e Core Web Vitals (LCP, CLS, INP)
+- TanStack Start, React e frameworks modernos
+- Compilador React e otimizações de renderização
+- SEO técnico e otimização para motores de busca
+
+### Design
+- Design systems em escala
+- Tipografia no design de produto
+- Acessibilidade (WCAG 2.1 / 3.0) e design inclusivo
+
+### Produto
+- Métricas de produto e frameworks de crescimento
+- Product-led growth (PLG)
+- SEO/GEO/AEO — otimização para motores de busca e IA
+
+### Cultura
+- Trabalho remoto-first e cultura assíncrona
+- IA assistida no desenvolvimento de software
+
+## Estrutura do site
+
+- `/` — Listagem dos artigos mais recentes (paginada)
+- `/topics` — Todas as categorias/tópicos disponíveis
+- `/topics/:slug` — Artigos filtrados por categoria
+- `/authors` — Perfis dos autores contribuidores
+- `/authors/:email` — Artigos de um autor específico
+- `/search?q=` — Busca textual em todos os artigos
+- `/sitemap.xml` — Sitemap XML com todas as URLs e datas
+
+## Formato de cada artigo
+
+Cada artigo inclui:
+- Headline (H1) e excerpt descritivo
+- Autor(es) com nome, cargo e empresa
+- Data de publicação (ISO 8601)
+- Categoria(s) com slug
+- Tempo estimado de leitura (minutos)
+- Conteúdo estruturado: H2/H3 headings, parágrafos, listas, callouts, citações, código
+
+## Schema.org implementado
+
+- `BlogPosting` com `mainEntityOfPage`, `author`, `publisher`, `breadcrumb`
+- `WebSite` com `SearchAction` (sitelinks search box)
+- `Blog` com `blogPost` ItemList
+- `BreadcrumbList` em todas as páginas
+- `CollectionPage` em listas (tópicos, autores, busca)
+- `Person` para perfis de autores
+
+## Idioma
+
+pt-BR (Português do Brasil)
+
+## Política de indexação
+
+O conteúdo pode ser indexado por motores de busca e sistemas de IA para fins de
+recuperação e síntese de informação. Reprodução integral sem atribuição não é
+permitida.

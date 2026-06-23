@@ -1,4 +1,5 @@
 import type { BlogPost } from "@decocms/apps/blog/types";
+import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 export interface Category {
   name: string;
@@ -26,6 +27,21 @@ export interface Props {
    * @title Descrição
    */
   description?: string;
+}
+
+export async function loader(
+  props: Props,
+  req: Request,
+): Promise<
+  Props & { origin: string; pathname: string; siteConfig: SiteConfig }
+> {
+  const url = new URL(req.url);
+  return {
+    ...props,
+    origin: url.origin,
+    pathname: url.pathname,
+    siteConfig: getSiteConfig(),
+  };
 }
 
 function countPostsByCategory(posts: BlogPost[]): Record<string, number> {
@@ -56,27 +72,98 @@ export default function BlogTopics({
   posts,
   heading = "Tópicos",
   description,
-}: Props) {
+  // @ts-ignore injected by loader
+  origin = "",
+  // @ts-ignore injected by loader
+  pathname = "/topics",
+  // @ts-ignore injected by loader
+  siteConfig = getSiteConfig(),
+}: Props & { origin?: string; pathname?: string; siteConfig?: SiteConfig }) {
   const cats = categories ?? [];
   const containerId = "blog-topics";
+  const pageUrl = `${origin}${pathname}`;
+  const siteName = siteConfig.name;
+
+  const jsonLd = JSON.stringify([
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": pageUrl,
+      "url": pageUrl,
+      "name": heading,
+      "description": description ??
+        `Explore todos os tópicos e categorias do ${siteName}.`,
+      "inLanguage": "pt-BR",
+      "isPartOf": { "@id": origin ? `${origin}/#website` : "/" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": siteName,
+            "item": origin ? `${origin}/` : "/",
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": heading,
+            "item": pageUrl,
+          },
+        ],
+      },
+      "hasPart": cats.map((c) => ({
+        "@type": "ItemList",
+        "name": c.name,
+        "url": `${origin}/topics/${c.slug}`,
+        "description": c.description ?? `Artigos sobre ${c.name}`,
+      })),
+    },
+  ]);
 
   if (cats.length === 0) {
     return (
       <div className="bg-white min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd }}
+        />
         <div className="border-b border-[#e4e3df]">
           <div className="max-w-[1280px] mx-auto px-[clamp(1rem,3vw,2rem)] py-12 md:py-16">
-            <p className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#ff6011] mb-4">Blog</p>
+            <p className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#ff6011] mb-4">
+              Blog
+            </p>
             <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold text-[#1a1a18] tracking-tight leading-tight [text-wrap:balance] mb-3">
               {heading}
             </h1>
           </div>
         </div>
         <div className="max-w-[1280px] mx-auto px-[clamp(1rem,3vw,2rem)] py-20 flex flex-col items-center text-center gap-4">
-          <svg className="w-10 h-10 text-[#e4e3df]" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <rect x="4" y="8" width="32" height="24" rx="2" stroke="currentColor" strokeWidth="1.5" />
-            <path d="M12 16h16M12 22h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <svg
+            className="w-10 h-10 text-[#e4e3df]"
+            viewBox="0 0 40 40"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect
+              x="4"
+              y="8"
+              width="32"
+              height="24"
+              rx="2"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M12 16h16M12 22h10"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
           </svg>
-          <p className="text-[#7a7a74] text-base">Nenhum tópico disponível ainda.</p>
+          <p className="text-[#7a7a74] text-base">
+            Nenhum tópico disponível ainda.
+          </p>
           <a
             href="/"
             className="mt-2 text-[11px] font-medium tracking-[0.12em] uppercase text-[#ff6011] no-underline hover:opacity-75 transition-opacity"
@@ -92,16 +179,24 @@ export default function BlogTopics({
 
   return (
     <div className="bg-white min-h-screen" id={containerId}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
 
       {/* Header */}
       <div className="border-b border-[#e4e3df]">
         <div className="max-w-[1280px] mx-auto px-[clamp(1rem,3vw,2rem)] py-12 md:py-16">
-          <p className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#ff6011] mb-4">Blog</p>
+          <p className="text-[10px] font-semibold tracking-[0.14em] uppercase text-[#ff6011] mb-4">
+            Blog
+          </p>
           <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold text-[#1a1a18] tracking-tight leading-tight [text-wrap:balance] mb-3">
             {heading}
           </h1>
           {description && (
-            <p className="text-[#7a7a74] text-base leading-relaxed max-w-[520px]">{description}</p>
+            <p className="text-[#7a7a74] text-base leading-relaxed max-w-[520px]">
+              {description}
+            </p>
           )}
         </div>
       </div>
@@ -119,7 +214,9 @@ export default function BlogTopics({
                 style={{
                   opacity: 0,
                   transform: "translateY(12px)",
-                  transition: `opacity 400ms cubic-bezier(0.16,1,0.3,1) ${i * 60}ms, transform 400ms cubic-bezier(0.16,1,0.3,1) ${i * 60}ms`,
+                  transition: `opacity 400ms cubic-bezier(0.16,1,0.3,1) ${
+                    i * 60
+                  }ms, transform 400ms cubic-bezier(0.16,1,0.3,1) ${i * 60}ms`,
                 }}
               >
                 <div className="flex flex-col gap-1">
@@ -153,8 +250,16 @@ export default function BlogTopics({
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: ".blog-reveal.is-visible{opacity:1!important;transform:none!important;}" }} />
-      <script defer dangerouslySetInnerHTML={{ __html: getScrollRevealScript(containerId) }} />
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            ".blog-reveal.is-visible{opacity:1!important;transform:none!important;}",
+        }}
+      />
+      <script
+        defer
+        dangerouslySetInnerHTML={{ __html: getScrollRevealScript(containerId) }}
+      />
     </div>
   );
 }
