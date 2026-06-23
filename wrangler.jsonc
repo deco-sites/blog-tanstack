@@ -6,22 +6,33 @@
   "main": "./src/worker-entry.ts",
   "workers_dev": true,
   "preview_urls": true,
-  "observability": {
-    "enabled": true,
-    "logs": {
-      "enabled": true,
-      "invocation_logs": true,
-      "head_sampling_rate": 0.01,
-      "persist": true
-    },
-    "traces": {
-      "enabled": true,
-      "head_sampling_rate": 0.01,
-      "persist": true
-    }
+  // Strategy B tail worker — 100% capture of producer errors that the
+  // framework's direct-POST channel can't see (uncaught throws, exceededCpu,
+  // exceededMemory, raw console.error). Invoked by CF on every request to
+  // this worker; filters and forwards to deco-otel-ingest via in-account
+  // service binding.
+  "tail_consumers": [
+    { "service": "deco-otel-tail" }
+  ],
+  // Worker version (build SHA / deployment id) — surfaced as
+  // `service.version` on every span / log line by `instrumentWorker`.
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA"
   },
+  // Cloudflare Analytics Engine dataset for high-cardinality counters
+  // (per-route request counts, cache hit/miss, request duration).
+  "analytics_engine_datasets": [
+    {
+      "binding": "DECO_METRICS",
+      "dataset": "deco_metrics_blog_tanstack"
+    }
+  ],
   "vars": {
     "DECO_SITE_NAME": "blog-tanstack",
-    "DECO_ENV_NAME": "production"
+    "DECO_ENV_NAME": "production",
+    "DECO_OTEL_METRICS_ENDPOINT": "https://otel-worker.deco.cx/v1/metrics",
+    "DECO_OTEL_LOGS_ENDPOINT": "https://otel-worker.deco.cx/v1/logs",
+    "DECO_OTEL_TRACES_ENDPOINT": "https://otel-worker.deco.cx/v1/traces",
+    "DECO_OTEL_TRACES_SAMPLING_RATE": "0.01"
   }
 }
