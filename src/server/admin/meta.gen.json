@@ -1,0 +1,2946 @@
+{
+  "major": 1,
+  "version": "1.0.0",
+  "namespace": "site",
+  "site": "blog-tanstack",
+  "manifest": {
+    "blocks": {
+      "sections": {
+        "site/sections\\Blog\\blocks\\BlockImage.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Callout.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\CallToAction.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Checklist.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Code.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Divider.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Faq.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Heading.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\List.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Paragraph.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Quote.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Steps.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\blocks\\Video.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\BlogAuthors.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\BlogHeader.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\BlogHome.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\BlogPostSection.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\BlogSearch.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Blog\\BlogTopics.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4",
+          "namespace": "site"
+        },
+        "site/sections\\Seo\\SeoBlogPost.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4",
+          "namespace": "site"
+        }
+      },
+      "loaders": {
+        "site/loaders\\BlogpostList.ts": {
+          "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw==",
+          "namespace": "site"
+        },
+        "commerce/loaders/product/extensions/listingPage.ts": {
+          "$ref": "#/definitions/Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvbGlzdGluZ1BhZ2UudHM=",
+          "namespace": "commerce"
+        },
+        "commerce/loaders/product/extensions/detailsPage.ts": {
+          "$ref": "#/definitions/Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvZGV0YWlsc1BhZ2UudHM=",
+          "namespace": "commerce"
+        }
+      },
+      "apps": {}
+    }
+  },
+  "schema": {
+    "definitions": {
+      "Resolvable": {
+        "title": "Select from saved",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "__resolveType": {
+            "type": "string"
+          }
+        }
+      },
+      "UmVzb2x2YWJsZQ==": {
+        "title": "Select from saved",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "__resolveType": {
+            "type": "string"
+          }
+        }
+      },
+      "c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw==": {
+        "title": "site/loaders\\BlogpostList.ts",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/loaders\\BlogpostList.ts"
+            ],
+            "default": "site/loaders\\BlogpostList.ts"
+          },
+          "count": {
+            "type": "number",
+            "nullable": true,
+            "title": "Posts por página (ou total)",
+            "default": 50
+          },
+          "sortBy": {
+            "type": "string",
+            "enum": [
+              "date_desc",
+              "date_asc",
+              "title_asc",
+              "title_desc"
+            ],
+            "nullable": true,
+            "title": "Ordenação",
+            "default": "date_desc"
+          },
+          "filterBy": {
+            "type": "string",
+            "enum": [
+              "category",
+              "author"
+            ],
+            "nullable": true,
+            "title": "Filtrar por",
+            "description": "\"category\" filtra pelo slug da categoria; \"author\" filtra pelo email do autor"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "title": "Slug / Email para filtro",
+            "description": "Slug da categoria ou email do autor, dependendo de filterBy"
+          }
+        }
+      },
+      "Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvbGlzdGluZ1BhZ2UudHM=": {
+        "title": "commerce/loaders/product/extensions/listingPage.ts",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "commerce/loaders/product/extensions/listingPage.ts"
+            ],
+            "default": "commerce/loaders/product/extensions/listingPage.ts"
+          },
+          "data": {
+            "title": "Data",
+            "description": "Here comes your products or anything that can be extensible.",
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              }
+            ]
+          },
+          "extensions": {
+            "type": "array",
+            "title": "The data Extensions",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Resolvable"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvZGV0YWlsc1BhZ2UudHM=": {
+        "title": "commerce/loaders/product/extensions/detailsPage.ts",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "commerce/loaders/product/extensions/detailsPage.ts"
+            ],
+            "default": "commerce/loaders/product/extensions/detailsPage.ts"
+          },
+          "data": {
+            "title": "Data",
+            "description": "Here comes your products or anything that can be extensible.",
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              }
+            ]
+          },
+          "extensions": {
+            "type": "array",
+            "title": "The data Extensions",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/Resolvable"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem (alias)"
+          },
+          "alt": {
+            "type": "string",
+            "title": "Texto alternativo"
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true,
+            "title": "Legenda"
+          },
+          "maxWidth": {
+            "type": "string",
+            "enum": [
+              "full",
+              "large",
+              "medium",
+              "small"
+            ],
+            "nullable": true,
+            "title": "Largura máxima"
+          }
+        },
+        "required": [
+          "alt"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==": {
+        "title": "site/sections\\Blog\\blocks\\BlockImage.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\BlockImage.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\BlockImage.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "success",
+              "summary",
+              "definition"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título opcional"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==": {
+        "title": "site/sections\\Blog\\blocks\\Callout.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Callout.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Callout.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Título"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Subtítulo / descrição"
+          },
+          "primaryLabel": {
+            "type": "string",
+            "title": "Texto do botão principal"
+          },
+          "primaryHref": {
+            "type": "string",
+            "title": "URL do botão principal"
+          },
+          "secondaryLabel": {
+            "type": "string",
+            "nullable": true,
+            "title": "Texto do botão secundário"
+          },
+          "secondaryHref": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do botão secundário"
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "default",
+              "minimal",
+              "highlight"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          }
+        },
+        "required": [
+          "title",
+          "primaryLabel",
+          "primaryHref"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4": {
+        "title": "site/sections\\Blog\\blocks\\CallToAction.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\CallToAction.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\CallToAction.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da lista (usado no TOC)"
+          },
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "title": "Itens"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4": {
+        "title": "site/sections\\Blog\\blocks\\Checklist.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Checklist.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Checklist.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Código"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true,
+            "title": "Linguagem (ex: typescript, bash, json)"
+          },
+          "filename": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / nome do arquivo"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==": {
+        "title": "site/sections\\Blog\\blocks\\Code.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Code.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Code.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "style": {
+            "type": "string",
+            "enum": [
+              "line",
+              "dots",
+              "ornament"
+            ],
+            "nullable": true,
+            "title": "Estilo"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==": {
+        "title": "site/sections\\Blog\\blocks\\Divider.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Divider.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Divider.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da seção (opcional)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "title": "Pergunta"
+                },
+                "answer": {
+                  "type": "string",
+                  "title": "Resposta (HTML)"
+                }
+              },
+              "required": [
+                "question",
+                "answer"
+              ]
+            },
+            "nullable": true,
+            "title": "Itens de perguntas e respostas"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4": {
+        "title": "site/sections\\Blog\\blocks\\Faq.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Faq.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Faq.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "h2",
+              "h3",
+              "h4",
+              "2",
+              "3",
+              "4"
+            ],
+            "nullable": true,
+            "title": "Nível do título"
+          },
+          "text": {
+            "type": "string",
+            "title": "Texto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "description": "HTML id for TOC anchoring — injected by BlogPostSection",
+            "title": "Id"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==": {
+        "title": "site/sections\\Blog\\blocks\\Heading.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Heading.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Heading.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Tipo de lista"
+          },
+          "style": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Estilo (alias para type)"
+          },
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "title": "Texto do item (HTML permitido)"
+                    },
+                    "children": {
+                      "type": "object",
+                      "nullable": true,
+                      "title": "Sub-items"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            ],
+            "title": "Itens",
+            "description": "Array de objetos OR string separada por \\n"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==": {
+        "title": "site/sections\\Blog\\blocks\\List.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\List.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\List.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "html": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4": {
+        "title": "site/sections\\Blog\\blocks\\Paragraph.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Paragraph.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Paragraph.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "string",
+            "nullable": true,
+            "title": "Citação"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true,
+            "title": "Citação (alias)"
+          },
+          "attribution": {
+            "type": "string",
+            "nullable": true,
+            "title": "Autor da citação"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da fonte"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=": {
+        "title": "site/sections\\Blog\\blocks\\Quote.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Quote.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Quote.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título (usado no TOC)"
+          },
+          "steps": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "title": "Passos"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "steps"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=": {
+        "title": "site/sections\\Blog\\blocks\\Steps.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Steps.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Steps.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL do vídeo (YouTube, Vimeo ou arquivo direto)"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / legenda"
+          },
+          "aspectRatio": {
+            "type": "string",
+            "enum": [
+              "16:9",
+              "4:3",
+              "1:1"
+            ],
+            "nullable": true,
+            "title": "Aspect ratio"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=": {
+        "title": "site/sections\\Blog\\blocks\\Video.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\blocks\\Video.tsx"
+            ],
+            "default": "site/sections\\Blog\\blocks\\Video.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "title": "Excerpt"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Main image",
+                  "format": "image-uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Alt text for the image"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "email": {
+                        "type": "string",
+                        "title": "Email"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Avatar"
+                      },
+                      "jobTitle": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "JobTitle"
+                      },
+                      "company": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Company"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "titleBy": "name",
+                    "widget": "author"
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "authors",
+                  "title": "Authors"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "title": "Slug"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "slug"
+                    ]
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "categories",
+                  "title": "Categories"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Date"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "content": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Post Content",
+                  "format": "rich-text"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {},
+                  "nullable": true,
+                  "title": "Sections",
+                  "label": "hidden",
+                  "changeable": "true"
+                },
+                "seo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "image-uri",
+                      "title": "Image"
+                    },
+                    "canonical": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Canonical"
+                    },
+                    "noIndexing": {
+                      "type": "boolean",
+                      "nullable": true,
+                      "title": "NoIndexing"
+                    }
+                  },
+                  "nullable": true,
+                  "title": "SEO"
+                },
+                "readTime": {
+                  "type": "number",
+                  "nullable": true,
+                  "title": "ReadTime in minutes"
+                },
+                "extraProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "title": "Key"
+                      },
+                      "value": {
+                        "type": "string",
+                        "title": "Value"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ]
+                  },
+                  "nullable": true,
+                  "title": "Extra Props"
+                },
+                "id": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Id"
+                }
+              },
+              "required": [
+                "title",
+                "excerpt",
+                "date",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Posts do blog",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts para extrair os autores únicos"
+          },
+          "heading": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da página"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Descrição"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==": {
+        "title": "site/sections\\Blog\\BlogAuthors.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\BlogAuthors.tsx"
+            ],
+            "default": "site/sections\\Blog\\BlogAuthors.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "logoUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do Logo"
+          },
+          "logoAlt": {
+            "type": "string",
+            "nullable": true,
+            "title": "Alt do Logo"
+          },
+          "showReadingProgress": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Barra de progresso de leitura"
+          },
+          "navLinks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "title": "Label"
+                },
+                "href": {
+                  "type": "string",
+                  "title": "Href"
+                }
+              },
+              "required": [
+                "label",
+                "href"
+              ]
+            },
+            "nullable": true,
+            "title": "Links de navegação"
+          },
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "title": "Excerpt"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Main image",
+                  "format": "image-uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Alt text for the image"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "email": {
+                        "type": "string",
+                        "title": "Email"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Avatar"
+                      },
+                      "jobTitle": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "JobTitle"
+                      },
+                      "company": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Company"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "titleBy": "name",
+                    "widget": "author"
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "authors",
+                  "title": "Authors"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "title": "Slug"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "slug"
+                    ]
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "categories",
+                  "title": "Categories"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Date"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "content": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Post Content",
+                  "format": "rich-text"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {},
+                  "nullable": true,
+                  "title": "Sections",
+                  "label": "hidden",
+                  "changeable": "true"
+                },
+                "seo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "image-uri",
+                      "title": "Image"
+                    },
+                    "canonical": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Canonical"
+                    },
+                    "noIndexing": {
+                      "type": "boolean",
+                      "nullable": true,
+                      "title": "NoIndexing"
+                    }
+                  },
+                  "nullable": true,
+                  "title": "SEO"
+                },
+                "readTime": {
+                  "type": "number",
+                  "nullable": true,
+                  "title": "ReadTime in minutes"
+                },
+                "extraProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "title": "Key"
+                      },
+                      "value": {
+                        "type": "string",
+                        "title": "Value"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ]
+                  },
+                  "nullable": true,
+                  "title": "Extra Props"
+                },
+                "id": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Id"
+                }
+              },
+              "required": [
+                "title",
+                "excerpt",
+                "date",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Posts para busca em tempo real",
+            "description": "Conecte ao loader blog/loaders/BlogpostList.ts (count >= 100) para habilitar busca instantânea no modal"
+          }
+        },
+        "description": "Blog header — sticky navigation with reading progress bar, hero mode,\nmobile drawer menu, and Cmd+K search command palette.\n\nHero mode: when a [data-blog-hero-image] is present on the page,\nthe header starts transparent (CSS :has() in app.css), then transitions\nto white/blurred on scroll — zero FOUC."
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4": {
+        "title": "site/sections\\Blog\\BlogHeader.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\BlogHeader.tsx"
+            ],
+            "default": "site/sections\\Blog\\BlogHeader.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "title": "Excerpt"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Main image",
+                  "format": "image-uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Alt text for the image"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "email": {
+                        "type": "string",
+                        "title": "Email"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Avatar"
+                      },
+                      "jobTitle": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "JobTitle"
+                      },
+                      "company": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Company"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "titleBy": "name",
+                    "widget": "author"
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "authors",
+                  "title": "Authors"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "title": "Slug"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "slug"
+                    ]
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "categories",
+                  "title": "Categories"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Date"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "content": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Post Content",
+                  "format": "rich-text"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {},
+                  "nullable": true,
+                  "title": "Sections",
+                  "label": "hidden",
+                  "changeable": "true"
+                },
+                "seo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "image-uri",
+                      "title": "Image"
+                    },
+                    "canonical": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Canonical"
+                    },
+                    "noIndexing": {
+                      "type": "boolean",
+                      "nullable": true,
+                      "title": "NoIndexing"
+                    }
+                  },
+                  "nullable": true,
+                  "title": "SEO"
+                },
+                "readTime": {
+                  "type": "number",
+                  "nullable": true,
+                  "title": "ReadTime in minutes"
+                },
+                "extraProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "title": "Key"
+                      },
+                      "value": {
+                        "type": "string",
+                        "title": "Value"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ]
+                  },
+                  "nullable": true,
+                  "title": "Extra Props"
+                },
+                "id": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Id"
+                }
+              },
+              "required": [
+                "title",
+                "excerpt",
+                "date",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Posts do Blog",
+            "description": "Conecte ao loader blog/loaders/BlogpostList.ts (count >= 50)"
+          },
+          "perPage": {
+            "type": "number",
+            "nullable": true,
+            "title": "Posts por página",
+            "default": 10
+          },
+          "sectionTitle": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da seção (ex: \"Engenharia\", \"Design\")",
+            "description": "Exibido quando filtrando por categoria/autor"
+          },
+          "baseUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL base para paginação",
+            "description": "Ex: \"/topics/engineering\". Padrão: raiz"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==": {
+        "title": "site/sections\\Blog\\BlogHome.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\BlogHome.tsx"
+            ],
+            "default": "site/sections\\Blog\\BlogHome.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "object",
+            "properties": {
+              "post": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "title": "Title"
+                  },
+                  "excerpt": {
+                    "type": "string",
+                    "title": "Excerpt"
+                  },
+                  "image": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Main image",
+                    "format": "image-uri"
+                  },
+                  "alt": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Alt text for the image"
+                  },
+                  "authors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name"
+                        },
+                        "email": {
+                          "type": "string",
+                          "title": "Email"
+                        },
+                        "avatar": {
+                          "type": "string",
+                          "nullable": true,
+                          "format": "image-uri",
+                          "title": "Avatar"
+                        },
+                        "jobTitle": {
+                          "type": "string",
+                          "nullable": true,
+                          "title": "JobTitle"
+                        },
+                        "company": {
+                          "type": "string",
+                          "nullable": true,
+                          "title": "Company"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "email"
+                      ],
+                      "titleBy": "name",
+                      "widget": "author"
+                    },
+                    "nullable": true,
+                    "widget": "blog",
+                    "collection": "authors",
+                    "title": "Authors"
+                  },
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name"
+                        },
+                        "slug": {
+                          "type": "string",
+                          "title": "Slug"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "slug"
+                      ]
+                    },
+                    "nullable": true,
+                    "widget": "blog",
+                    "collection": "categories",
+                    "title": "Categories"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "title": "Date"
+                  },
+                  "slug": {
+                    "type": "string",
+                    "title": "Slug"
+                  },
+                  "content": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Post Content",
+                    "format": "rich-text"
+                  },
+                  "sections": {
+                    "type": "array",
+                    "items": {},
+                    "nullable": true,
+                    "title": "Sections",
+                    "label": "hidden",
+                    "changeable": "true"
+                  },
+                  "seo": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Description"
+                      },
+                      "image": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Image"
+                      },
+                      "canonical": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Canonical"
+                      },
+                      "noIndexing": {
+                        "type": "boolean",
+                        "nullable": true,
+                        "title": "NoIndexing"
+                      }
+                    },
+                    "nullable": true,
+                    "title": "SEO"
+                  },
+                  "readTime": {
+                    "type": "number",
+                    "nullable": true,
+                    "title": "ReadTime in minutes"
+                  },
+                  "extraProps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "title": "Key"
+                        },
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        }
+                      },
+                      "required": [
+                        "key",
+                        "value"
+                      ]
+                    },
+                    "nullable": true,
+                    "title": "Extra Props"
+                  },
+                  "id": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Id"
+                  }
+                },
+                "required": [
+                  "title",
+                  "excerpt",
+                  "date",
+                  "slug"
+                ],
+                "title": "Post"
+              },
+              "seo": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Description"
+                  },
+                  "image": {
+                    "type": "string",
+                    "nullable": true,
+                    "format": "image-uri",
+                    "title": "Image"
+                  },
+                  "canonical": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Canonical"
+                  },
+                  "noIndexing": {
+                    "type": "boolean",
+                    "nullable": true,
+                    "title": "NoIndexing"
+                  }
+                },
+                "nullable": true,
+                "title": "Seo"
+              }
+            },
+            "required": [
+              "post"
+            ],
+            "nullable": true,
+            "description": "Página do post do blog",
+            "title": "Page"
+          },
+          "relatedPosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "title": "Excerpt"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Main image",
+                  "format": "image-uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Alt text for the image"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "email": {
+                        "type": "string",
+                        "title": "Email"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Avatar"
+                      },
+                      "jobTitle": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "JobTitle"
+                      },
+                      "company": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Company"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "titleBy": "name",
+                    "widget": "author"
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "authors",
+                  "title": "Authors"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "title": "Slug"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "slug"
+                    ]
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "categories",
+                  "title": "Categories"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Date"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "content": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Post Content",
+                  "format": "rich-text"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {},
+                  "nullable": true,
+                  "title": "Sections",
+                  "label": "hidden",
+                  "changeable": "true"
+                },
+                "seo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "image-uri",
+                      "title": "Image"
+                    },
+                    "canonical": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Canonical"
+                    },
+                    "noIndexing": {
+                      "type": "boolean",
+                      "nullable": true,
+                      "title": "NoIndexing"
+                    }
+                  },
+                  "nullable": true,
+                  "title": "SEO"
+                },
+                "readTime": {
+                  "type": "number",
+                  "nullable": true,
+                  "title": "ReadTime in minutes"
+                },
+                "extraProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "title": "Key"
+                      },
+                      "value": {
+                        "type": "string",
+                        "title": "Value"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ]
+                  },
+                  "nullable": true,
+                  "title": "Extra Props"
+                },
+                "id": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Id"
+                }
+              },
+              "required": [
+                "title",
+                "excerpt",
+                "date",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Posts relacionados",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=": {
+        "title": "site/sections\\Blog\\BlogPostSection.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\BlogPostSection.tsx"
+            ],
+            "default": "site/sections\\Blog\\BlogPostSection.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "title": "Excerpt"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Main image",
+                  "format": "image-uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Alt text for the image"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "email": {
+                        "type": "string",
+                        "title": "Email"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Avatar"
+                      },
+                      "jobTitle": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "JobTitle"
+                      },
+                      "company": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Company"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "titleBy": "name",
+                    "widget": "author"
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "authors",
+                  "title": "Authors"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "title": "Slug"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "slug"
+                    ]
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "categories",
+                  "title": "Categories"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Date"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "content": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Post Content",
+                  "format": "rich-text"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {},
+                  "nullable": true,
+                  "title": "Sections",
+                  "label": "hidden",
+                  "changeable": "true"
+                },
+                "seo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "image-uri",
+                      "title": "Image"
+                    },
+                    "canonical": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Canonical"
+                    },
+                    "noIndexing": {
+                      "type": "boolean",
+                      "nullable": true,
+                      "title": "NoIndexing"
+                    }
+                  },
+                  "nullable": true,
+                  "title": "SEO"
+                },
+                "readTime": {
+                  "type": "number",
+                  "nullable": true,
+                  "title": "ReadTime in minutes"
+                },
+                "extraProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "title": "Key"
+                      },
+                      "value": {
+                        "type": "string",
+                        "title": "Value"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ]
+                  },
+                  "nullable": true,
+                  "title": "Extra Props"
+                },
+                "id": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Id"
+                }
+              },
+              "required": [
+                "title",
+                "excerpt",
+                "date",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Posts para busca",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts com todos os posts"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4": {
+        "title": "site/sections\\Blog\\BlogSearch.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\BlogSearch.tsx"
+            ],
+            "default": "site/sections\\Blog\\BlogSearch.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Description"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Image"
+                }
+              },
+              "required": [
+                "name",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Categorias / Tópicos",
+            "description": "Conecte ao loader blog/loaders/GetCategories.ts"
+          },
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "excerpt": {
+                  "type": "string",
+                  "title": "Excerpt"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Main image",
+                  "format": "image-uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Alt text for the image"
+                },
+                "authors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "email": {
+                        "type": "string",
+                        "title": "Email"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Avatar"
+                      },
+                      "jobTitle": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "JobTitle"
+                      },
+                      "company": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Company"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email"
+                    ],
+                    "titleBy": "name",
+                    "widget": "author"
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "authors",
+                  "title": "Authors"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "title": "Name"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "title": "Slug"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "slug"
+                    ]
+                  },
+                  "nullable": true,
+                  "widget": "blog",
+                  "collection": "categories",
+                  "title": "Categories"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "title": "Date"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "content": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Post Content",
+                  "format": "rich-text"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {},
+                  "nullable": true,
+                  "title": "Sections",
+                  "label": "hidden",
+                  "changeable": "true"
+                },
+                "seo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Description"
+                    },
+                    "image": {
+                      "type": "string",
+                      "nullable": true,
+                      "format": "image-uri",
+                      "title": "Image"
+                    },
+                    "canonical": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Canonical"
+                    },
+                    "noIndexing": {
+                      "type": "boolean",
+                      "nullable": true,
+                      "title": "NoIndexing"
+                    }
+                  },
+                  "nullable": true,
+                  "title": "SEO"
+                },
+                "readTime": {
+                  "type": "number",
+                  "nullable": true,
+                  "title": "ReadTime in minutes"
+                },
+                "extraProps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "title": "Key"
+                      },
+                      "value": {
+                        "type": "string",
+                        "title": "Value"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ]
+                  },
+                  "nullable": true,
+                  "title": "Extra Props"
+                },
+                "id": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Id"
+                }
+              },
+              "required": [
+                "title",
+                "excerpt",
+                "date",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Posts do blog",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts para exibir a contagem de posts por tópico"
+          },
+          "heading": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da página"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Descrição"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4": {
+        "title": "site/sections\\Blog\\BlogTopics.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Blog\\BlogTopics.tsx"
+            ],
+            "default": "site/sections\\Blog\\BlogTopics.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "jsonLD": {
+            "type": "object",
+            "properties": {
+              "post": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "title": "Title"
+                  },
+                  "excerpt": {
+                    "type": "string",
+                    "title": "Excerpt"
+                  },
+                  "image": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Main image",
+                    "format": "image-uri"
+                  },
+                  "alt": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Alt text for the image"
+                  },
+                  "authors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name"
+                        },
+                        "email": {
+                          "type": "string",
+                          "title": "Email"
+                        },
+                        "avatar": {
+                          "type": "string",
+                          "nullable": true,
+                          "format": "image-uri",
+                          "title": "Avatar"
+                        },
+                        "jobTitle": {
+                          "type": "string",
+                          "nullable": true,
+                          "title": "JobTitle"
+                        },
+                        "company": {
+                          "type": "string",
+                          "nullable": true,
+                          "title": "Company"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "email"
+                      ],
+                      "titleBy": "name",
+                      "widget": "author"
+                    },
+                    "nullable": true,
+                    "widget": "blog",
+                    "collection": "authors",
+                    "title": "Authors"
+                  },
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name"
+                        },
+                        "slug": {
+                          "type": "string",
+                          "title": "Slug"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "slug"
+                      ]
+                    },
+                    "nullable": true,
+                    "widget": "blog",
+                    "collection": "categories",
+                    "title": "Categories"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "title": "Date"
+                  },
+                  "slug": {
+                    "type": "string",
+                    "title": "Slug"
+                  },
+                  "content": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Post Content",
+                    "format": "rich-text"
+                  },
+                  "sections": {
+                    "type": "array",
+                    "items": {},
+                    "nullable": true,
+                    "title": "Sections",
+                    "label": "hidden",
+                    "changeable": "true"
+                  },
+                  "seo": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Description"
+                      },
+                      "image": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "image-uri",
+                        "title": "Image"
+                      },
+                      "canonical": {
+                        "type": "string",
+                        "nullable": true,
+                        "title": "Canonical"
+                      },
+                      "noIndexing": {
+                        "type": "boolean",
+                        "nullable": true,
+                        "title": "NoIndexing"
+                      }
+                    },
+                    "nullable": true,
+                    "title": "SEO"
+                  },
+                  "readTime": {
+                    "type": "number",
+                    "nullable": true,
+                    "title": "ReadTime in minutes"
+                  },
+                  "extraProps": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "title": "Key"
+                        },
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        }
+                      },
+                      "required": [
+                        "key",
+                        "value"
+                      ]
+                    },
+                    "nullable": true,
+                    "title": "Extra Props"
+                  },
+                  "id": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Id"
+                  }
+                },
+                "required": [
+                  "title",
+                  "excerpt",
+                  "date",
+                  "slug"
+                ],
+                "title": "Post"
+              },
+              "seo": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Description"
+                  },
+                  "image": {
+                    "type": "string",
+                    "nullable": true,
+                    "format": "image-uri",
+                    "title": "Image"
+                  },
+                  "canonical": {
+                    "type": "string",
+                    "nullable": true,
+                    "title": "Canonical"
+                  },
+                  "noIndexing": {
+                    "type": "boolean",
+                    "nullable": true,
+                    "title": "NoIndexing"
+                  }
+                },
+                "nullable": true,
+                "title": "Seo"
+              }
+            },
+            "required": [
+              "post"
+            ],
+            "nullable": true,
+            "description": "Blog post page data from blog/loaders/BlogPostPage.ts",
+            "title": "JsonLD"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4": {
+        "title": "site/sections\\Seo\\SeoBlogPost.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections\\Seo\\SeoBlogPost.tsx"
+            ],
+            "default": "site/sections\\Seo\\SeoBlogPost.tsx"
+          }
+        }
+      }
+    },
+    "root": {
+      "sections": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4@Props"
+          }
+        ]
+      },
+      "loaders": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw=="
+          },
+          {
+            "$ref": "#/definitions/Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvbGlzdGluZ1BhZ2UudHM="
+          },
+          {
+            "$ref": "#/definitions/Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvZGV0YWlsc1BhZ2UudHM="
+          }
+        ]
+      },
+      "actions": {
+        "anyOf": []
+      },
+      "pages": {
+        "anyOf": []
+      },
+      "handlers": {
+        "anyOf": []
+      },
+      "matchers": {
+        "anyOf": []
+      },
+      "flags": {
+        "anyOf": []
+      },
+      "functions": {
+        "anyOf": []
+      },
+      "apps": {
+        "anyOf": []
+      }
+    }
+  },
+  "platform": "cloudflare",
+  "cloudProvider": "cloudflare"
+}
