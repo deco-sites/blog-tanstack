@@ -6,90 +6,98 @@
   "manifest": {
     "blocks": {
       "sections": {
-        "site/sections\\Blog\\blocks\\BlockImage.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==",
+        "site/sections/Blog/blocks/BlockImage.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9CbG9ja0ltYWdlLnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Callout.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==",
+        "site/sections/Blog/blocks/Callout.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DYWxsb3V0LnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\CallToAction.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4",
+        "site/sections/Blog/blocks/CallToAction.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DYWxsVG9BY3Rpb24udHN4",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Checklist.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4",
+        "site/sections/Blog/blocks/Checklist.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DaGVja2xpc3QudHN4",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Code.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==",
+        "site/sections/Blog/blocks/Code.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9Db2RlLnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Divider.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==",
+        "site/sections/Blog/blocks/Divider.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9EaXZpZGVyLnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Faq.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4",
+        "site/sections/Blog/blocks/Faq.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9GYXEudHN4",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Heading.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==",
+        "site/sections/Blog/blocks/Heading.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9IZWFkaW5nLnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\List.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==",
+        "site/sections/Blog/blocks/List.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9MaXN0LnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Paragraph.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4",
+        "site/sections/Blog/blocks/Paragraph.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9QYXJhZ3JhcGgudHN4",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Quote.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=",
+        "site/sections/Blog/blocks/Quote.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9RdW90ZS50c3g=",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Steps.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=",
+        "site/sections/Blog/blocks/Steps.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9TdGVwcy50c3g=",
           "namespace": "site"
         },
-        "site/sections\\Blog\\blocks\\Video.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=",
+        "site/sections/Blog/blocks/Video.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9WaWRlby50c3g=",
           "namespace": "site"
         },
-        "site/sections\\Blog\\BlogAuthors.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==",
+        "site/sections/Blog/BlogAuthors.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\BlogHeader.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4",
+        "site/sections/Blog/BlogHeader.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4",
           "namespace": "site"
         },
-        "site/sections\\Blog\\BlogHome.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==",
+        "site/sections/Blog/BlogHome.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==",
           "namespace": "site"
         },
-        "site/sections\\Blog\\BlogPostSection.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=",
+        "site/sections/Blog/BlogPostSection.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
           "namespace": "site"
         },
-        "site/sections\\Blog\\BlogSearch.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4",
+        "site/sections/Blog/BlogSearch.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4",
           "namespace": "site"
         },
-        "site/sections\\Blog\\BlogTopics.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4",
+        "site/sections/Blog/BlogTopics.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4",
           "namespace": "site"
         },
-        "site/sections\\Seo\\SeoBlogPost.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4",
+        "site/sections/Seo/SeoBlogAuthor.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogCategory.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogPost.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
           "namespace": "site"
         }
       },
       "loaders": {
-        "site/loaders\\BlogpostList.ts": {
-          "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw==",
+        "site/loaders/BlogpostList.ts": {
+          "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==",
           "namespace": "site"
         },
         "commerce/loaders/product/extensions/listingPage.ts": {
@@ -101,7 +109,16 @@
           "namespace": "commerce"
         }
       },
-      "apps": {}
+      "apps": {
+        "site/apps/deco/blog.ts": {
+          "$ref": "#/definitions/c2l0ZS9hcHBzL2RlY28vYmxvZy50cw==",
+          "namespace": "site"
+        },
+        "site/apps/site.ts": {
+          "$ref": "#/definitions/c2l0ZS9hcHBzL3NpdGUudHM=",
+          "namespace": "site"
+        }
+      }
     }
   },
   "schema": {
@@ -132,8 +149,8 @@
           }
         }
       },
-      "c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw==": {
-        "title": "site/loaders\\BlogpostList.ts",
+      "c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==": {
+        "title": "site/loaders/BlogpostList.ts",
         "type": "object",
         "required": [
           "__resolveType"
@@ -142,9 +159,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/loaders\\BlogpostList.ts"
+              "site/loaders/BlogpostList.ts"
             ],
-            "default": "site/loaders\\BlogpostList.ts"
+            "default": "site/loaders/BlogpostList.ts"
           },
           "count": {
             "type": "number",
@@ -292,8 +309,8 @@
           "alt"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==": {
-        "title": "site/sections\\Blog\\blocks\\BlockImage.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9CbG9ja0ltYWdlLnRzeA==": {
+        "title": "site/sections/Blog/blocks/BlockImage.tsx",
         "type": "object",
         "allOf": [
           {
@@ -307,9 +324,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\BlockImage.tsx"
+              "site/sections/Blog/blocks/BlockImage.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\BlockImage.tsx"
+            "default": "site/sections/Blog/blocks/BlockImage.tsx"
           }
         }
       },
@@ -345,8 +362,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==": {
-        "title": "site/sections\\Blog\\blocks\\Callout.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DYWxsb3V0LnRzeA==": {
+        "title": "site/sections/Blog/blocks/Callout.tsx",
         "type": "object",
         "allOf": [
           {
@@ -360,9 +377,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Callout.tsx"
+              "site/sections/Blog/blocks/Callout.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Callout.tsx"
+            "default": "site/sections/Blog/blocks/Callout.tsx"
           }
         }
       },
@@ -413,8 +430,8 @@
           "primaryHref"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4": {
-        "title": "site/sections\\Blog\\blocks\\CallToAction.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DYWxsVG9BY3Rpb24udHN4": {
+        "title": "site/sections/Blog/blocks/CallToAction.tsx",
         "type": "object",
         "allOf": [
           {
@@ -428,9 +445,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\CallToAction.tsx"
+              "site/sections/Blog/blocks/CallToAction.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\CallToAction.tsx"
+            "default": "site/sections/Blog/blocks/CallToAction.tsx"
           }
         }
       },
@@ -448,7 +465,7 @@
                 "$ref": "#/definitions/Resolvable"
               },
               {
-                "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw=="
+                "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               }
             ],
             "title": "Itens"
@@ -463,8 +480,8 @@
           "items"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4": {
-        "title": "site/sections\\Blog\\blocks\\Checklist.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DaGVja2xpc3QudHN4": {
+        "title": "site/sections/Blog/blocks/Checklist.tsx",
         "type": "object",
         "allOf": [
           {
@@ -478,9 +495,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Checklist.tsx"
+              "site/sections/Blog/blocks/Checklist.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Checklist.tsx"
+            "default": "site/sections/Blog/blocks/Checklist.tsx"
           }
         }
       },
@@ -506,8 +523,8 @@
           "code"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==": {
-        "title": "site/sections\\Blog\\blocks\\Code.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9Db2RlLnRzeA==": {
+        "title": "site/sections/Blog/blocks/Code.tsx",
         "type": "object",
         "allOf": [
           {
@@ -521,9 +538,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Code.tsx"
+              "site/sections/Blog/blocks/Code.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Code.tsx"
+            "default": "site/sections/Blog/blocks/Code.tsx"
           }
         }
       },
@@ -542,8 +559,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==": {
-        "title": "site/sections\\Blog\\blocks\\Divider.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9EaXZpZGVyLnRzeA==": {
+        "title": "site/sections/Blog/blocks/Divider.tsx",
         "type": "object",
         "allOf": [
           {
@@ -557,9 +574,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Divider.tsx"
+              "site/sections/Blog/blocks/Divider.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Divider.tsx"
+            "default": "site/sections/Blog/blocks/Divider.tsx"
           }
         }
       },
@@ -595,8 +612,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4": {
-        "title": "site/sections\\Blog\\blocks\\Faq.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9GYXEudHN4": {
+        "title": "site/sections/Blog/blocks/Faq.tsx",
         "type": "object",
         "allOf": [
           {
@@ -610,9 +627,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Faq.tsx"
+              "site/sections/Blog/blocks/Faq.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Faq.tsx"
+            "default": "site/sections/Blog/blocks/Faq.tsx"
           }
         }
       },
@@ -647,8 +664,8 @@
           "text"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==": {
-        "title": "site/sections\\Blog\\blocks\\Heading.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9IZWFkaW5nLnRzeA==": {
+        "title": "site/sections/Blog/blocks/Heading.tsx",
         "type": "object",
         "allOf": [
           {
@@ -662,9 +679,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Heading.tsx"
+              "site/sections/Blog/blocks/Heading.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Heading.tsx"
+            "default": "site/sections/Blog/blocks/Heading.tsx"
           }
         }
       },
@@ -723,8 +740,8 @@
           "items"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==": {
-        "title": "site/sections\\Blog\\blocks\\List.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9MaXN0LnRzeA==": {
+        "title": "site/sections/Blog/blocks/List.tsx",
         "type": "object",
         "allOf": [
           {
@@ -738,9 +755,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\List.tsx"
+              "site/sections/Blog/blocks/List.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\List.tsx"
+            "default": "site/sections/Blog/blocks/List.tsx"
           }
         }
       },
@@ -759,8 +776,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4": {
-        "title": "site/sections\\Blog\\blocks\\Paragraph.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9QYXJhZ3JhcGgudHN4": {
+        "title": "site/sections/Blog/blocks/Paragraph.tsx",
         "type": "object",
         "allOf": [
           {
@@ -774,9 +791,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Paragraph.tsx"
+              "site/sections/Blog/blocks/Paragraph.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Paragraph.tsx"
+            "default": "site/sections/Blog/blocks/Paragraph.tsx"
           }
         }
       },
@@ -805,8 +822,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=": {
-        "title": "site/sections\\Blog\\blocks\\Quote.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9RdW90ZS50c3g=": {
+        "title": "site/sections/Blog/blocks/Quote.tsx",
         "type": "object",
         "allOf": [
           {
@@ -820,9 +837,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Quote.tsx"
+              "site/sections/Blog/blocks/Quote.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Quote.tsx"
+            "default": "site/sections/Blog/blocks/Quote.tsx"
           }
         }
       },
@@ -840,7 +857,7 @@
                 "$ref": "#/definitions/Resolvable"
               },
               {
-                "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw=="
+                "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               }
             ],
             "title": "Passos"
@@ -855,8 +872,8 @@
           "steps"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=": {
-        "title": "site/sections\\Blog\\blocks\\Steps.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9TdGVwcy50c3g=": {
+        "title": "site/sections/Blog/blocks/Steps.tsx",
         "type": "object",
         "allOf": [
           {
@@ -870,9 +887,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Steps.tsx"
+              "site/sections/Blog/blocks/Steps.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Steps.tsx"
+            "default": "site/sections/Blog/blocks/Steps.tsx"
           }
         }
       },
@@ -903,8 +920,8 @@
           "url"
         ]
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=": {
-        "title": "site/sections\\Blog\\blocks\\Video.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9WaWRlby50c3g=": {
+        "title": "site/sections/Blog/blocks/Video.tsx",
         "type": "object",
         "allOf": [
           {
@@ -918,9 +935,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\blocks\\Video.tsx"
+              "site/sections/Blog/blocks/Video.tsx"
             ],
-            "default": "site/sections\\Blog\\blocks\\Video.tsx"
+            "default": "site/sections/Blog/blocks/Video.tsx"
           }
         }
       },
@@ -1129,8 +1146,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==": {
-        "title": "site/sections\\Blog\\BlogAuthors.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==": {
+        "title": "site/sections/Blog/BlogAuthors.tsx",
         "type": "object",
         "allOf": [
           {
@@ -1144,9 +1161,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\BlogAuthors.tsx"
+              "site/sections/Blog/BlogAuthors.tsx"
             ],
-            "default": "site/sections\\Blog\\BlogAuthors.tsx"
+            "default": "site/sections/Blog/BlogAuthors.tsx"
           }
         }
       },
@@ -1383,8 +1400,8 @@
         },
         "description": "Blog header — sticky navigation with reading progress bar, hero mode,\nmobile drawer menu, and Cmd+K search command palette.\n\nHero mode: when a [data-blog-hero-image] is present on the page,\nthe header starts transparent (CSS :has() in app.css), then transitions\nto white/blurred on scroll — zero FOUC."
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4": {
-        "title": "site/sections\\Blog\\BlogHeader.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4": {
+        "title": "site/sections/Blog/BlogHeader.tsx",
         "type": "object",
         "allOf": [
           {
@@ -1398,9 +1415,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\BlogHeader.tsx"
+              "site/sections/Blog/BlogHeader.tsx"
             ],
-            "default": "site/sections\\Blog\\BlogHeader.tsx"
+            "default": "site/sections/Blog/BlogHeader.tsx"
           }
         }
       },
@@ -1617,8 +1634,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==": {
-        "title": "site/sections\\Blog\\BlogHome.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==": {
+        "title": "site/sections/Blog/BlogHome.tsx",
         "type": "object",
         "allOf": [
           {
@@ -1632,9 +1649,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\BlogHome.tsx"
+              "site/sections/Blog/BlogHome.tsx"
             ],
-            "default": "site/sections\\Blog\\BlogHome.tsx"
+            "default": "site/sections/Blog/BlogHome.tsx"
           }
         }
       },
@@ -2062,8 +2079,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=": {
-        "title": "site/sections\\Blog\\BlogPostSection.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=": {
+        "title": "site/sections/Blog/BlogPostSection.tsx",
         "type": "object",
         "allOf": [
           {
@@ -2077,9 +2094,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\BlogPostSection.tsx"
+              "site/sections/Blog/BlogPostSection.tsx"
             ],
-            "default": "site/sections\\Blog\\BlogPostSection.tsx"
+            "default": "site/sections/Blog/BlogPostSection.tsx"
           }
         }
       },
@@ -2278,8 +2295,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4": {
-        "title": "site/sections\\Blog\\BlogSearch.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4": {
+        "title": "site/sections/Blog/BlogSearch.tsx",
         "type": "object",
         "allOf": [
           {
@@ -2293,9 +2310,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\BlogSearch.tsx"
+              "site/sections/Blog/BlogSearch.tsx"
             ],
-            "default": "site/sections\\Blog\\BlogSearch.tsx"
+            "default": "site/sections/Blog/BlogSearch.tsx"
           }
         }
       },
@@ -2537,8 +2554,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4": {
-        "title": "site/sections\\Blog\\BlogTopics.tsx",
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4": {
+        "title": "site/sections/Blog/BlogTopics.tsx",
         "type": "object",
         "allOf": [
           {
@@ -2552,9 +2569,81 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Blog\\BlogTopics.tsx"
+              "site/sections/Blog/BlogTopics.tsx"
             ],
-            "default": "site/sections\\Blog\\BlogTopics.tsx"
+            "default": "site/sections/Blog/BlogTopics.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ0F1dGhvci50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=": {
+        "title": "site/sections/Seo/SeoBlogAuthor.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ0F1dGhvci50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Seo/SeoBlogAuthor.tsx"
+            ],
+            "default": "site/sections/Seo/SeoBlogAuthor.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ0NhdGVnb3J5LnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==": {
+        "title": "site/sections/Seo/SeoBlogCategory.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ0NhdGVnb3J5LnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Seo/SeoBlogCategory.tsx"
+            ],
+            "default": "site/sections/Seo/SeoBlogCategory.tsx"
           }
         }
       },
@@ -2792,8 +2881,8 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4": {
-        "title": "site/sections\\Seo\\SeoBlogPost.tsx",
+      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4": {
+        "title": "site/sections/Seo/SeoBlogPost.tsx",
         "type": "object",
         "allOf": [
           {
@@ -2807,9 +2896,314 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site/sections\\Seo\\SeoBlogPost.tsx"
+              "site/sections/Seo/SeoBlogPost.tsx"
             ],
-            "default": "site/sections\\Seo\\SeoBlogPost.tsx"
+            "default": "site/sections/Seo/SeoBlogPost.tsx"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xhcHBzXGRlY29cYmxvZy50cw==@Props": {
+        "type": "object",
+        "properties": {
+          "pageSlug": {
+            "type": "string",
+            "nullable": true,
+            "title": "Page Slug",
+            "description": "The slug of the BlogPostPage to embed. Use :category and :slug."
+          }
+        },
+        "title": "Deco Blog"
+      },
+      "c2l0ZS9hcHBzL2RlY28vYmxvZy50cw==": {
+        "title": "site/apps/deco/blog.ts",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xhcHBzXGRlY29cYmxvZy50cw==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/apps/deco/blog.ts"
+            ],
+            "default": "site/apps/deco/blog.ts"
+          }
+        }
+      },
+      "ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xhcHBzXHNpdGUudHM=@Props": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "const": "custom",
+            "nullable": true,
+            "title": "Platform"
+          },
+          "routes": {
+            "type": "array",
+            "items": {},
+            "nullable": true,
+            "title": "Routes Map"
+          },
+          "global": {
+            "type": "array",
+            "items": {},
+            "nullable": true,
+            "title": "Global Sections"
+          },
+          "errorPage": {
+            "title": "Error Page"
+          },
+          "caching": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "nullable": true,
+                "title": "Enabled"
+              },
+              "directives": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "const": "stale-while-revalidate",
+                          "title": "Name"
+                        },
+                        "value": {
+                          "type": "number",
+                          "title": "Value"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "title": "StaleWhileRevalidate"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "const": "max-age",
+                          "title": "Name"
+                        },
+                        "value": {
+                          "type": "number",
+                          "title": "Value"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "title": "MaxAge"
+                    }
+                  ]
+                },
+                "nullable": true,
+                "title": "Directives"
+              }
+            },
+            "nullable": true,
+            "title": "Caching configuration of pages"
+          },
+          "firstByteThresholdMS": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Global Async Rendering (Deprecated)",
+            "deprecated": true,
+            "default": false
+          },
+          "avoidRedirectingToEditor": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Avoid redirecting to editor"
+          },
+          "abTesting": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "nullable": true,
+                "title": "Enabled"
+              },
+              "name": {
+                "type": "string",
+                "nullable": true,
+                "description": "The name of the A/B test — appears in cookies",
+                "title": "Name"
+              },
+              "matcher": {
+                "title": "Matcher"
+              },
+              "urlToRunAgainst": {
+                "type": "string",
+                "nullable": true,
+                "description": "URL to run the A/B test against",
+                "title": "UrlToRunAgainst"
+              },
+              "replaces": {
+                "type": "array",
+                "items": {},
+                "nullable": true,
+                "title": "Replaces"
+              },
+              "includeScriptsToHead": {
+                "type": "object",
+                "properties": {
+                  "includes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "src": {
+                          "type": "string",
+                          "title": "Src"
+                        }
+                      },
+                      "required": [
+                        "src"
+                      ]
+                    },
+                    "nullable": true,
+                    "title": "Includes"
+                  }
+                },
+                "nullable": true,
+                "title": "IncludeScriptsToHead"
+              },
+              "includeScriptsToBody": {
+                "type": "object",
+                "properties": {
+                  "includes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "src": {
+                          "type": "string",
+                          "title": "Src"
+                        }
+                      },
+                      "required": [
+                        "src"
+                      ]
+                    },
+                    "nullable": true,
+                    "title": "Includes"
+                  }
+                },
+                "nullable": true,
+                "title": "IncludeScriptsToBody"
+              }
+            },
+            "nullable": true,
+            "title": "AB Testing"
+          },
+          "flavor": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "framework": {
+                    "type": "string",
+                    "const": "fresh",
+                    "default": "fresh",
+                    "title": "Framework"
+                  }
+                },
+                "required": [
+                  "framework"
+                ],
+                "titleBy": "framework",
+                "title": "FreshFlavor"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "framework": {
+                    "type": "string",
+                    "const": "htmx",
+                    "default": "htmx",
+                    "title": "Framework"
+                  }
+                },
+                "required": [
+                  "framework"
+                ],
+                "titleBy": "framework",
+                "title": "HtmxFlavor"
+              }
+            ],
+            "nullable": true,
+            "title": "Flavor"
+          },
+          "seo": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true,
+            "title": "Seo"
+          },
+          "theme": {
+            "title": "Theme"
+          },
+          "sendToClickHouse": {
+            "type": "boolean",
+            "nullable": true,
+            "hide": "true",
+            "title": "SendToClickHouse"
+          },
+          "defaultImageQuality": {
+            "type": "string",
+            "nullable": true,
+            "title": "Default Image Quality"
+          },
+          "disableProxy": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Disable image/asset proxy for this site"
+          },
+          "whilelistURLs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "title": "Whilelist URL Patterns"
+          }
+        },
+        "title": "Site",
+        "description": "Blog site app — defines schema and platform type."
+      },
+      "c2l0ZS9hcHBzL3NpdGUudHM=": {
+        "title": "site/apps/site.ts",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xhcHBzXHNpdGUudHM=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/apps/site.ts"
+            ],
+            "default": "site/apps/site.ts"
           }
         }
       }
@@ -2821,83 +3215,91 @@
             "$ref": "#/definitions/Resolvable"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9CbG9ja0ltYWdlLnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xCbG9ja0ltYWdlLnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DYWxsb3V0LnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsb3V0LnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DYWxsVG9BY3Rpb24udHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDYWxsVG9BY3Rpb24udHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9DaGVja2xpc3QudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDaGVja2xpc3QudHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9Db2RlLnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xDb2RlLnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9EaXZpZGVyLnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xEaXZpZGVyLnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9GYXEudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xGYXEudHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9IZWFkaW5nLnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xIZWFkaW5nLnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9MaXN0LnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xMaXN0LnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9QYXJhZ3JhcGgudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xQYXJhZ3JhcGgudHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9RdW90ZS50c3g=",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xRdW90ZS50c3g=@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9TdGVwcy50c3g=",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xTdGVwcy50c3g=@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL2Jsb2Nrcy9WaWRlby50c3g=",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXGJsb2Nrc1xWaWRlby50c3g=@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dBdXRob3JzLnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIZWFkZXIudHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dIb21lLnRzeA==@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dQb3N0U2VjdGlvbi50c3g=@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dTZWFyY2gudHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xCbG9nXEJsb2dUb3BpY3MudHN4@Props"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4",
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ0F1dGhvci50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ0NhdGVnb3J5LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
             "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xzZWN0aW9uc1xTZW9cU2VvQmxvZ1Bvc3QudHN4@Props"
           }
         ]
@@ -2908,7 +3310,7 @@
             "$ref": "#/definitions/Resolvable"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9sb2FkZXJzXEJsb2dwb3N0TGlzdC50cw=="
+            "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
           },
           {
             "$ref": "#/definitions/Y29tbWVyY2UvbG9hZGVycy9wcm9kdWN0L2V4dGVuc2lvbnMvbGlzdGluZ1BhZ2UudHM="
@@ -2937,7 +3339,16 @@
         "anyOf": []
       },
       "apps": {
-        "anyOf": []
+        "anyOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9hcHBzL2RlY28vYmxvZy50cw==",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xhcHBzXGRlY29cYmxvZy50cw==@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9hcHBzL3NpdGUudHM=",
+            "inputSchema": "#/definitions/ZmlsZTovLy9DOlxVc2Vyc1xZdXJpXERlc2t0b3BcZGVjb1xibG9nLXRhbnN0YWNrXHNyY1xhcHBzXHNpdGUudHM=@Props"
+          }
+        ]
       }
     }
   },

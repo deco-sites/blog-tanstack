@@ -18,7 +18,7 @@ export const siteGlobalsBlocks: Record<string, unknown> = {
       }
     ],
     "seo": {
-      "titleTemplate": "%s",
+      "titleTemplate": "%s | Blog",
       "descriptionTemplate": "%s",
       "type": "website",
       "title": "Blog — Engenharia, Performance, Design e Produto",
