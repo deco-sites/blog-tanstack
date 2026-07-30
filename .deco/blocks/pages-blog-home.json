@@ -7,9 +7,18 @@
       "logoAlt": "Blog",
       "showReadingProgress": false,
       "navLinks": [
-        { "label": "Blog", "href": "/" },
-        { "label": "Categorias", "href": "/topics" },
-        { "label": "Autores", "href": "/authors" }
+        {
+          "label": "Blog",
+          "href": "/"
+        },
+        {
+          "label": "Categorias",
+          "href": "/topics"
+        },
+        {
+          "label": "Autores",
+          "href": "/authors"
+        }
       ]
     },
     {
