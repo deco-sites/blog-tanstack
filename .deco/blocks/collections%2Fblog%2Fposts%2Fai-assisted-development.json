@@ -8,8 +8,18 @@
     "excerpt": "LLMs mudaram como escrevemos código. Mas o impacto real não é na velocidade de escrita — é na capacidade de explorar espaços de solução que antes seriam caros demais para tentar.",
     "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1280&h=720&fit=crop&q=80&auto=format",
     "alt": "Desenvolvedor usando IA para escrever código",
-    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
-    "categories": [{ "name": "Culture", "slug": "culture" }],
+    "authors": [
+      {
+        "name": "Carla Figueiredo",
+        "email": "carla@deco.cx"
+      }
+    ],
+    "categories": [
+      {
+        "name": "Culture",
+        "slug": "culture"
+      }
+    ],
     "seo": {
       "title": "Desenvolvimento assistido por IA: o que mudou no fluxo real — Blog",
       "description": "O impacto real de LLMs no desenvolvimento não é velocidade de escrita — é exploração de espaços de solução."
@@ -17,7 +27,7 @@
     "sections": [
       {
         "__resolveType": "blog/sections/blocks/Paragraph.tsx",
-        "html": "Passei os últimos 18 meses usando assistentes de IA (Claude, Copilot, Cursor) como parte central do meu workflow. A narrativa popular é 'escreve código mais rápido'. A realidade é mais sutil e mais interessante."
+        "html": "<p>Passei os últimos 18 meses usando assistentes de IA (Claude, Copilot, Cursor) como parte central do meu workflow. A narrativa popular é 'escreve código mais rápido'. A realidade é mais sutil e mais interessante.</p>"
       },
       {
         "__resolveType": "blog/sections/blocks/Heading.tsx",
@@ -49,6 +59,7 @@
         "title": "A habilidade mais valiosa agora",
         "body": "Saber fazer a pergunta certa para a IA. Engenheiros que conseguem decompor problemas complexos em sub-problemas bem definidos e comunicar contexto de forma precisa amplificam muito mais seu trabalho com IA do que quem usa como autocomplete."
       }
-    ]
+    ],
+    "dateModified": "2026-07-31T13:36:47.046Z"
   }
 }

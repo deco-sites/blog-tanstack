@@ -8,8 +8,18 @@
     "excerpt": "Google ainda domina a busca. Mas ChatGPT, Perplexity e Gemini estão mudando como as pessoas descobrem conteúdo. Estratégia completa de SEO clássico + GEO para blogs técnicos.",
     "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1280&h=720&fit=crop&q=80&auto=format",
     "alt": "Diagrama de SEO e GEO com motores de busca e IA",
-    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
-    "categories": [{ "name": "Product", "slug": "product" }],
+    "authors": [
+      {
+        "name": "Carla Figueiredo",
+        "email": "carla@deco.cx"
+      }
+    ],
+    "categories": [
+      {
+        "name": "Product",
+        "slug": "product"
+      }
+    ],
     "seo": {
       "title": "SEO e GEO em 2025: como ser encontrado por humanos e IAs — Blog",
       "description": "Estratégia completa de SEO clássico + GEO para blogs técnicos: JSON-LD, speakable schema, e-e-a-t."
@@ -17,7 +27,7 @@
     "sections": [
       {
         "__resolveType": "blog/sections/blocks/Callout.tsx",
-        "variant": "definition",
+        "variant": "info",
         "title": "O que é GEO",
         "body": "GEO (Generative Engine Optimization) é o conjunto de práticas para fazer seu conteúdo aparecer em respostas geradas por IAs (ChatGPT, Perplexity, Gemini, Google SGE). Diferente do SEO clássico que otimiza para ranking em páginas de resultado, GEO otimiza para ser citado em respostas geradas."
       },
@@ -38,7 +48,7 @@
       },
       {
         "__resolveType": "blog/sections/blocks/Paragraph.tsx",
-        "html": "Google avalia E-E-A-T para conteúdo editorial. Para blogs técnicos: cada post deve ter um autor real com bio, foto e perfis externos verificáveis. A <code>Person</code> schema no JSON-LD deve incluir <code>sameAs</code> com LinkedIn, GitHub e Twitter do autor."
+        "html": "<p>Google avalia E-E-A-T para conteúdo editorial. Para blogs técnicos: cada post deve ter um autor real com bio, foto e perfis externos verificáveis. A <code>Person</code> schema no JSON-LD deve incluir <code>sameAs</code> com LinkedIn, GitHub e Twitter do autor.</p>"
       },
       {
         "__resolveType": "blog/sections/blocks/Heading.tsx",
@@ -56,10 +66,11 @@
       },
       {
         "__resolveType": "blog/sections/blocks/Callout.tsx",
-        "variant": "success",
+        "variant": "info",
         "title": "Dica prática",
         "body": "Escreva o título e o primeiro parágrafo assumindo que a IA vai ler apenas isso. Se o valor do artigo não estiver claro nesses 150 primeiros caracteres, reescreva."
       }
-    ]
+    ],
+    "dateModified": "2026-07-31T13:36:21.761Z"
   }
 }
