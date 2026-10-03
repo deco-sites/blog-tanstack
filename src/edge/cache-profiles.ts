@@ -3,7 +3,7 @@
  * (Cloudflare Cache API) and from the browser, picked per URL. Carried over
  * from @decocms/start 6.x with this site's overrides (formerly cache-config.ts).
  */
-export type CacheProfileName = "static" | "product" | "listing" | "search" | "private" | "none";
+export type CacheProfileName = "static" | "listing" | "search" | "private" | "none";
 
 /** Seconds: fresh = served as is; swr = served stale while revalidating; sie = served stale on origin errors. */
 interface Window {
@@ -27,13 +27,10 @@ export const PROFILES: Record<CacheProfileName, CacheProfile> = {
     browser: { fresh: 120, swr: 1_800, sie: 7_200 },
     isPublic: true,
   },
-  // Blog post pages (editorial content): very stable.
-  product: {
-    edge: { fresh: 1_800, swr: 86_400, sie: 172_800 },
-    browser: { fresh: 300, swr: 3_600, sie: 14_400 },
-    isPublic: true,
-  },
-  // Listing pages (posts, topics, authors) and everything not matched below.
+  // Everything not matched below: post pages, listings (topics, authors) and
+  // the page data of client-side navigations (GET /_serverFn/*), as on v6.
+  // (v6 also had a "product" profile for URLs ending in /p, which no blog URL
+  // does, so posts were always served with this one.)
   listing: {
     edge: { fresh: 600, swr: 7_200, sie: 86_400 },
     browser: { fresh: 60, swr: 600, sie: 3_600 },
@@ -58,7 +55,6 @@ export function detectCacheProfile(url: URL): CacheProfileName {
   if (PRIVATE_PREFIX_RE.test(p)) return "private";
   if (p.startsWith("/api/") || p.startsWith("/_build")) return "none";
   if (p === "/s" || p.startsWith("/s/") || sp.has("q")) return "search";
-  if (p.endsWith("/p")) return "product";
   if (p === "/" || p === "") return "static";
   return "listing";
 }

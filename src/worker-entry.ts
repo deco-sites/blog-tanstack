@@ -43,8 +43,15 @@ const SECURITY_HEADERS: Record<string, string> = {
 /** Query params that never change a page: left out of the cache key. */
 const TRACKING_PARAMS = /^(utm_\w+|gclid|gclsrc|dclid|fbclid|msclkid|mc_cid|mc_eid|_ga|_gl|yclid|igshid|ttclid|twclid|li_fat_id)$/i;
 
-/** Paths the page cache never serves: server functions, built assets and framework routes. */
-const BYPASS_PREFIXES = ["/_serverFn", "/_build", "/assets/", "/api/"];
+/**
+ * Paths the page cache never serves: built assets and framework routes.
+ * GET server functions (the page data a client-side navigation loads) are
+ * cached like pages, as on v6: listing profile, split by device. POST server
+ * functions are never cached (only GET is).
+ */
+const BYPASS_PREFIXES = ["/_build", "/assets/", "/api/"];
+
+const isServerFn = (url: URL) => url.pathname.startsWith("/_serverFn/");
 
 /** When the edge copy was stored, so its age can be compared with the profile. */
 const STORED_AT = "x-edge-stored-at";
@@ -108,7 +115,8 @@ async function pageCache(request: Request, env: Env, ctx: Ctx): Promise<Response
 
   if (!cacheable) {
     const resp = withPageStatus(await serverEntry.fetch(request));
-    if (url.pathname.startsWith("/_serverFn") || url.pathname.startsWith("/assets/")) return resp;
+    // POST server functions and built assets keep their own headers.
+    if (isServerFn(url) || url.pathname.startsWith("/assets/")) return resp;
     if (!profile.isPublic) {
       const out = new Response(resp.body, resp);
       out.headers.set("Cache-Control", cacheControl(profileName));
@@ -153,8 +161,16 @@ async function pageCache(request: Request, env: Env, ctx: Ctx): Promise<Response
   return withHeaders(resp, "MISS");
 }
 
+/** The health check v6 answered (uptime monitors and load balancers may poll it). */
+const LIVENESS_PATH = "/deco/_liveness";
+
 export default {
   async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
+    if (new URL(request.url).pathname === LIVENESS_PATH) {
+      return new Response("OK", {
+        headers: { "Content-Type": "text/plain", "Cache-Control": "no-store, no-cache, must-revalidate", "CDN-Cache-Control": "no-store" },
+      });
+    }
     return decorate(await pageCache(request, env, ctx));
   },
 };
