@@ -1,35 +1,26 @@
 import { useEffect, useRef } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import {
-  cmsRouteConfig,
-  deferredSectionLoader,
-  loadCmsPage,
-  withSiteGlobals,
-} from "@decocms/start/routes";
-import { DecoPageRenderer } from "@decocms/start/hooks";
-
-const baseConfig = cmsRouteConfig({
-  siteName: "Blog",
-  defaultTitle: "Blog",
-});
-
-const routeConfig = withSiteGlobals({
-  ...baseConfig,
-  loader: async (ctx: Parameters<typeof baseConfig.loader>[0]) => {
-    const page = await baseConfig.loader(ctx);
-    if (page) return page;
-    return loadCmsPage({ data: "/404" });
-  },
-});
+import { PageBlocks, pageHeaders, pageHref, pageLoaderDeps } from "../components/PageBlocks";
+import { loadPage } from "../page.functions";
+import { pageHead } from "../seo/head";
 
 export const Route = createFileRoute("/$")({
-  ...routeConfig,
+  // Keep every search param, so they reach loaderDeps (?q=, ?page=).
+  validateSearch: (search: Record<string, unknown>) => search as Record<string, string>,
+  loaderDeps: pageLoaderDeps,
+  loader: ({ params, deps }) => loadPage({ data: { href: pageHref(`/${params._splat ?? ""}`, deps.search) } }),
+  pendingMs: 200,
+  pendingMinMs: 300,
+  staleTime: 60_000,
+  gcTime: 300_000,
+  headers: pageHeaders,
+  head: ({ loaderData }) => pageHead(loaderData, "Blog", "Blog"),
   component: CmsPage,
   notFoundComponent: NotFoundFallback,
 });
 
 function CmsPage() {
-  const data = Route.useLoaderData() as Record<string, any> | null;
+  const page = Route.useLoaderData();
   const router = useRouter();
   const isPopNavigation = useRef(false);
 
@@ -52,18 +43,7 @@ function CmsPage() {
     };
   }, [router]);
 
-  if (!data) return <NotFoundFallback />;
-
-  return (
-    <DecoPageRenderer
-      sections={data.resolvedSections ?? []}
-      deferredSections={data.deferredSections ?? []}
-      deferredPromises={data.deferredPromises}
-      pagePath={data.pagePath}
-      pageUrl={data.pageUrl}
-      loadDeferredSectionFn={deferredSectionLoader}
-    />
-  );
+  return <PageBlocks blocks={page.blocks} />;
 }
 
 function NotFoundFallback() {

@@ -5,11 +5,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@tanstack/react-router";
-import {
-  LiveControls,
-  NavigationProgress,
-  StableOutlet,
-} from "@decocms/start/hooks";
+import { NavigationProgress } from "./NavigationProgress";
+import { StableOutlet } from "./StableOutlet";
 
 declare global {
   interface Window {
@@ -120,7 +117,6 @@ const HX_ON_POLYFILL = `
 export interface RootLayoutProps {
   lang?: string;
   dataTheme?: string;
-  siteName: string;
   bodyClassName?: string;
   decoReadyDelay?: number;
   children?: ReactNode;
@@ -129,7 +125,6 @@ export interface RootLayoutProps {
 export function RootLayout({
   lang = "pt-BR",
   dataTheme = "light",
-  siteName,
   bodyClassName = "bg-white text-[#1a1a18]",
   decoReadyDelay = 500,
   children,
@@ -161,7 +156,6 @@ export function RootLayout({
           <StableOutlet />
         </main>
         {children}
-        <LiveControls site={siteName} />
         <ScrollRestoration />
         <Scripts />
       </body>
