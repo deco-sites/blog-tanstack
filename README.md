@@ -76,16 +76,28 @@ Create `.deco/blocks/collections%2Fblog%2Fposts%2Fyour-post.json`:
     "image": "https://images.unsplash.com/photo-…?w=1280&h=720&fit=crop&q=80",
     "authors": [{ "name": "Author Name", "email": "author@example.com" }],
     "categories": [{ "name": "Engineering", "slug": "engineering" }],
-    "sections": []
+    "sections": [
+      { "__resolveType": "post-heading", "level": "h2", "text": "First steps" },
+      { "__resolveType": "post-paragraph", "html": "<p>…</p>" }
+    ]
   }
 }
 ```
+
+A post's `sections` are its body blocks, the `post-*` sections of `.deco/index.ts` (`post-heading`, `post-paragraph`, `post-steps`, …). Older posts store them under their v7 names (`blog/sections/blocks/Heading.tsx`); both render the same.
 
 Then run `npx @decocms/blocks content` (or restart the dev server) and `npx @decocms/blocks check`.
 
 ### Adding categories / authors
 
 Follow the same pattern with `collections%2Fblog%2Fcategories%2F<slug>.json` (`blog/loaders/Category.ts`) and `collections%2Fblog%2Fauthors%2F<slug>.json` (`blog/loaders/Author.ts`).
+
+## Notes on the v8 migration
+
+- **Dependencies.** `@decocms/blocks` `^8.0.0-next.0` isn't published yet (stack decocms/blocks#602…#615). Until it is, link a local checkout: `bun link` in its `packages/blocks`, then `bun link @decocms/blocks` here. The committed `bun.lock` still describes the v7 dependency set, so `bun install --frozen-lockfile` fails; regenerate and commit it once 8.0.0-next is published. Don't commit the lock a local link produces.
+- **Blocks are awaited before the page renders** (`src/open-page.server.ts`), a deliberate exception to the TanStack Start guide, which keeps block promises unawaited. This site's blocks only read the content in memory and settle at once, and rendering them all in the first HTML chunk keeps the hero image's preload in the head, as on v7. `test/pages.test.ts` covers it. A block that starts fetching upstream should stop being awaited there.
+- **Edge cache.** `src/worker-entry.ts` caches HTML pages and GET server functions (the page data of client-side navigations) in the Cloudflare Cache API, as v6 did, split by device and keyed by deployment. v6's `X-Cache-Version`, `X-Cache-Reason` and `X-Cache-Segment` headers, `POST /_cache/purge` and `?asJson` are gone; a deploy changes the cache key, so content changes never need a purge. `/deco/_liveness` still answers `OK`.
+- **Content.** `website/functions/requestToParam.ts` (v7's "the last path segment" function) was rewritten in content to the page's route `param` (`/:slug`, `/topics/:slug`, `/authors/:email`), a documented content migration that gives the same values.
 
 ## Deployment
 

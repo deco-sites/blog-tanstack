@@ -85,4 +85,16 @@ describe("openPage", () => {
     assert.equal(page.status, 404);
     assert.equal(page.name, "Blog Post");
   });
+
+  it("hands over every block already settled, so the first HTML chunk holds them all", async () => {
+    // A deliberate exception to the guide (see open-page.server.ts): the blocks
+    // only read content in memory, and rendering them in the first chunk keeps
+    // the hero image's preload in the head, as on v7.
+    const page = await openPage<BlockDescriptor>("/", new Request(ORIGIN + "/"));
+    for (const block of page.blocks) {
+      const settled = block.value as typeof block.value & { status?: string; value?: unknown };
+      assert.equal(settled.status, "fulfilled");
+      assert.deepEqual(settled.value, await block.value);
+    }
+  });
 });
