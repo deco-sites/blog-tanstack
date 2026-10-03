@@ -1,0 +1,597 @@
+{
+  "$comment": "Parity baseline manifest for blog-tanstack. See parity/README.md.",
+  "baseUrl": "http://localhost:4319",
+  "server": {
+    "$comment": "Started fresh by the harness before every page/flow (see README: layout-section cache). Requires a prior `bun run parity:build`. Override with --serve-cmd, or --no-serve to use an already running server.",
+    "command": "node node_modules/vite/bin/vite.js preview --port 4319 --strictPort",
+    "readyPath": "/robots.txt"
+  },
+  "clock": "2026-01-15T12:00:00.000Z",
+  "randomSeed": 1337,
+  "locale": "pt-BR",
+  "timezoneId": "America/Sao_Paulo",
+  "viewports": {
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "isMobile": true,
+      "hasTouch": true,
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+    },
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+    }
+  },
+  "block": [
+    "https://d.lilstts.com/**"
+  ],
+  "defaultViewports": [
+    "mobile",
+    "desktop"
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "note": "magazine home: cover story, duo grid, feed, page 1"
+    },
+    {
+      "id": "home-page-2",
+      "path": "/?page=2",
+      "note": "home pagination page 2"
+    },
+    {
+      "id": "home-page-99",
+      "path": "/?page=99",
+      "note": "out-of-range page clamps to last page"
+    },
+    {
+      "id": "topics",
+      "path": "/topics",
+      "note": "category index"
+    },
+    {
+      "id": "topic-culture",
+      "path": "/topics/culture",
+      "note": "category listing"
+    },
+    {
+      "id": "topic-design",
+      "path": "/topics/design",
+      "note": "category listing"
+    },
+    {
+      "id": "topic-engineering",
+      "path": "/topics/engineering",
+      "note": "category listing"
+    },
+    {
+      "id": "topic-performance",
+      "path": "/topics/performance",
+      "note": "category listing"
+    },
+    {
+      "id": "topic-product",
+      "path": "/topics/product",
+      "note": "category listing"
+    },
+    {
+      "id": "topic-unknown",
+      "path": "/topics/does-not-exist",
+      "note": "unknown category"
+    },
+    {
+      "id": "authors",
+      "path": "/authors",
+      "note": "author index"
+    },
+    {
+      "id": "author-ana",
+      "path": "/authors/ana@deco.cx",
+      "note": "author listing"
+    },
+    {
+      "id": "author-carla",
+      "path": "/authors/carla@deco.cx",
+      "note": "author listing"
+    },
+    {
+      "id": "author-lucas",
+      "path": "/authors/lucas@deco.cx",
+      "note": "author listing"
+    },
+    {
+      "id": "author-rafael",
+      "path": "/authors/rafael@deco.cx",
+      "note": "author listing"
+    },
+    {
+      "id": "author-unknown",
+      "path": "/authors/nobody@deco.cx",
+      "note": "unknown author"
+    },
+    {
+      "id": "search-empty",
+      "path": "/search",
+      "note": "search page without query"
+    },
+    {
+      "id": "search-react",
+      "path": "/search?q=react",
+      "note": "server-side search with highlighted matches"
+    },
+    {
+      "id": "search-no-results",
+      "path": "/search?q=zzzzqqq",
+      "note": "search with no results"
+    },
+    {
+      "id": "post-accessibility-web-checklist",
+      "path": "/accessibility-web-checklist",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-ai-assisted-development",
+      "path": "/ai-assisted-development",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-composable-architecture-2025",
+      "path": "/composable-architecture-2025",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-css-performance-tailwind-v4",
+      "path": "/css-performance-tailwind-v4",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-design-systems-at-scale",
+      "path": "/design-systems-at-scale",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-edge-computing-future",
+      "path": "/edge-computing-future",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-image-optimization-web-2025",
+      "path": "/image-optimization-web-2025",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-product-led-growth",
+      "path": "/product-led-growth",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-product-metrics-that-matter",
+      "path": "/product-metrics-that-matter",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-react-compiler-practical-guide",
+      "path": "/react-compiler-practical-guide",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-remote-first-culture",
+      "path": "/remote-first-culture",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-seo-geo-guide-2025",
+      "path": "/seo-geo-guide-2025",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-tanstack-start-guide",
+      "path": "/tanstack-start-guide",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-typography-in-product-design",
+      "path": "/typography-in-product-design",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "post-web-performance-guide-2025",
+      "path": "/web-performance-guide-2025",
+      "note": "blog post (reading progress, TOC, related posts, JSON-LD)"
+    },
+    {
+      "id": "not-found-slug",
+      "path": "/this-post-does-not-exist",
+      "note": "unknown post slug (today: HTTP 200 from the /:slug page)"
+    },
+    {
+      "id": "not-found-deep",
+      "path": "/a/b/c",
+      "note": "unknown multi-segment path"
+    }
+  ],
+  "flows": [
+    {
+      "id": "search-dialog",
+      "viewports": [
+        "desktop"
+      ],
+      "start": "/",
+      "note": "desktop: header search button opens the palette, type a query, Enter submits to /search",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "[data-open-search]:visible"
+        },
+        {
+          "action": "waitFor",
+          "selector": "dialog[open] input"
+        },
+        {
+          "action": "type",
+          "selector": "dialog[open] input",
+          "text": "react"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "screenshot",
+          "name": "open-with-results"
+        },
+        {
+          "action": "press",
+          "selector": "dialog[open] input",
+          "key": "Enter"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/search?q=react"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "after-submit"
+        },
+        {
+          "action": "screenshot",
+          "name": "results-page",
+          "fullPage": true
+        }
+      ]
+    },
+    {
+      "id": "search-dialog-mobile",
+      "viewports": [
+        "mobile"
+      ],
+      "start": "/",
+      "note": "mobile: open drawer, tap Buscar, type a query, Enter submits to /search",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "button[aria-label='Abrir menu']"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "[data-open-search]:visible"
+        },
+        {
+          "action": "waitFor",
+          "selector": "dialog[open] input"
+        },
+        {
+          "action": "type",
+          "selector": "dialog[open] input",
+          "text": "react"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "screenshot",
+          "name": "open-with-results"
+        },
+        {
+          "action": "press",
+          "selector": "dialog[open] input",
+          "key": "Enter"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/search?q=react"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "after-submit"
+        },
+        {
+          "action": "screenshot",
+          "name": "results-page",
+          "fullPage": true
+        }
+      ]
+    },
+    {
+      "id": "search-shortcut",
+      "viewports": [
+        "desktop"
+      ],
+      "start": "/topics",
+      "note": "Ctrl+K opens the search palette",
+      "steps": [
+        {
+          "action": "keyboard",
+          "key": "Control+k"
+        },
+        {
+          "action": "waitFor",
+          "selector": "dialog[open] input"
+        },
+        {
+          "action": "screenshot",
+          "name": "palette-open"
+        },
+        {
+          "action": "keyboard",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "screenshot",
+          "name": "palette-closed"
+        }
+      ]
+    },
+    {
+      "id": "mobile-drawer",
+      "viewports": [
+        "mobile"
+      ],
+      "start": "/",
+      "note": "open and close the mobile drawer menu, then navigate via it",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "button[aria-label='Abrir menu']"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "screenshot",
+          "name": "drawer-open"
+        },
+        {
+          "action": "click",
+          "selector": "button[aria-label='Fechar menu']"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "screenshot",
+          "name": "drawer-closed"
+        },
+        {
+          "action": "click",
+          "selector": "button[aria-label='Abrir menu']"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "[aria-label='Menu mobile'] a[href='/topics']"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/topics"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "after-nav"
+        },
+        {
+          "action": "screenshot",
+          "name": "topics",
+          "fullPage": true
+        }
+      ]
+    },
+    {
+      "id": "home-pagination",
+      "viewports": [
+        "desktop",
+        "mobile"
+      ],
+      "start": "/",
+      "note": "client-side pagination next/prev",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "a[href='/?page=2']"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/?page=2"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "page-2"
+        },
+        {
+          "action": "screenshot",
+          "name": "page-2",
+          "fullPage": true
+        },
+        {
+          "action": "click",
+          "selector": "a[href='/']:has-text('Anterior'), a[rel='prev']"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "back-to-1"
+        },
+        {
+          "action": "screenshot",
+          "name": "page-1",
+          "fullPage": true
+        }
+      ]
+    },
+    {
+      "id": "post-reading",
+      "viewports": [
+        "desktop",
+        "mobile"
+      ],
+      "start": "/web-performance-guide-2025",
+      "note": "hero header turns opaque on scroll, reading-progress bar, TOC active state",
+      "steps": [
+        {
+          "action": "scrollTo",
+          "fraction": 0
+        },
+        {
+          "action": "screenshot",
+          "name": "top"
+        },
+        {
+          "action": "scrollTo",
+          "fraction": 0.5
+        },
+        {
+          "action": "screenshot",
+          "name": "middle"
+        },
+        {
+          "action": "scrollTo",
+          "fraction": 1
+        },
+        {
+          "action": "screenshot",
+          "name": "bottom"
+        }
+      ]
+    },
+    {
+      "id": "client-nav",
+      "viewports": [
+        "desktop"
+      ],
+      "start": "/",
+      "note": "SPA navigation home -> first post -> category -> author via in-page links",
+      "steps": [
+        {
+          "action": "click",
+          "selector": "main a[href='/seo-geo-guide-2025']"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/seo-geo-guide-2025"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "post"
+        },
+        {
+          "action": "head",
+          "name": "post-head"
+        },
+        {
+          "action": "screenshot",
+          "name": "post",
+          "fullPage": true
+        },
+        {
+          "action": "click",
+          "selector": "header a[href='/topics']"
+        },
+        {
+          "action": "waitForURL",
+          "pattern": "**/topics"
+        },
+        {
+          "action": "settle"
+        },
+        {
+          "action": "url",
+          "name": "topics"
+        },
+        {
+          "action": "head",
+          "name": "topics-head"
+        },
+        {
+          "action": "screenshot",
+          "name": "topics",
+          "fullPage": true
+        }
+      ]
+    }
+  ],
+  "text": [
+    {
+      "id": "sitemap",
+      "path": "/sitemap.xml"
+    },
+    {
+      "id": "robots",
+      "path": "/robots.txt"
+    },
+    {
+      "id": "llms",
+      "path": "/llms.txt"
+    },
+    {
+      "id": "rss-probe",
+      "path": "/rss.xml",
+      "note": "no RSS feed today: falls through to the /:slug page; status/content-type recorded"
+    },
+    {
+      "id": "favicon",
+      "path": "/favicon.svg"
+    }
+  ]
+}

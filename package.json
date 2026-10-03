@@ -19,7 +19,11 @@
     "types": "wrangler types",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx}\""
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
+    "parity:build": "bun run build && git checkout -- src/server/admin/meta.gen.json",
+    "parity:serve": "bash parity/serve.sh",
+    "parity:record": "node parity/run.mjs record",
+    "parity:compare": "node parity/run.mjs compare"
   },
   "author": "deco.cx",
   "license": "MIT",
@@ -45,6 +49,9 @@
     "@vitejs/plugin-react": "^5.1.4",
     "babel-plugin-react-compiler": "^1.0.0",
     "daisyui": "^5.5.19",
+    "pixelmatch": "7.2.0",
+    "playwright": "1.63.0",
+    "pngjs": "7.0.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.2.1",
     "ts-morph": "^27.0.2",
