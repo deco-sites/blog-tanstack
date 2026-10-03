@@ -20,10 +20,9 @@ export function PageBlocks({ blocks }: { blocks: PageData["blocks"] }) {
   ));
 }
 
-/** Search params a page reload depends on, as the v7 route had them. */
+/** Search params a page reload depends on (?q=, ?page=): all of them. */
 export function pageLoaderDeps({ search }: { search: Record<string, string> }) {
-  const filtered = Object.fromEntries(Object.entries(search ?? {}).filter(([k]) => k !== "skuId"));
-  return { search: Object.keys(filtered).length ? filtered : undefined };
+  return { search: search && Object.keys(search).length ? search : undefined };
 }
 
 export function pageHref(path: string, search: Record<string, string> | undefined): string {
