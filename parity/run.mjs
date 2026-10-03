@@ -407,10 +407,26 @@ function firstDiffLines(a, b, max = 12) {
   return out;
 }
 
+/**
+ * `approvedDifferences` in pages.json: product-approved changes, applied to the
+ * baseline text of the files whose path contains one of `files` (an exact
+ * `from` -> `to` substring replacement) before comparing. Every applied
+ * approval is listed in the summary, so nothing is silently ignored.
+ */
+const approvedHits = [];
+function applyApprovals(rel, text) {
+  for (const ap of MANIFEST.approvedDifferences ?? []) {
+    if (!ap.files.some((f) => rel.includes(f)) || !text.includes(ap.from)) continue;
+    text = text.split(ap.from).join(ap.to);
+    approvedHits.push({ rel, from: ap.from, to: ap.to, note: ap.note });
+  }
+  return text;
+}
+
 function compareText(rel, actualFile) {
   const baseFile = path.join(BASELINE, rel);
   if (!fs.existsSync(baseFile)) return { rel, kind: "snapshot", ok: false, reason: "missing in baseline" };
-  const a = fs.readFileSync(baseFile, "utf8");
+  const a = applyApprovals(rel, canonBaseline(rel, fs.readFileSync(baseFile, "utf8")));
   const b = fs.readFileSync(actualFile, "utf8");
   return a === b ? { rel, kind: "snapshot", ok: true } : { rel, kind: "snapshot", ok: false, diff: firstDiffLines(a, b) };
 }
@@ -470,8 +486,10 @@ const ANALYTICS_STUB = `(() => {
   const rec = (e) => { try { window.__parityAnalytics(e); } catch {} };
   const sorted = (o) => o && typeof o === "object" ? Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]])) : o;
   window.stonks = {
-    view: (props) => rec({ type: "view", path: location.pathname + location.search, props: sorted(props) }),
-    event: (name, props) => rec({ type: "event", name, path: location.pathname + location.search, props: sorted(props) }),
+    // The real tracker (s.lilstts.com/deco.js) clears location.search before
+    // building the beacon URL, so the query string never reaches the collector.
+    view: (props) => rec({ type: "view", path: location.pathname, props: sorted(props) }),
+    event: (name, props) => rec({ type: "event", name, path: location.pathname, props: sorted(props) }),
   };
 })();`;
 /**
@@ -484,6 +502,46 @@ function analyticsSnapshot(calls) {
   const views = calls.filter((c) => c.type === "view").map((c) => ({ path: c.path, props: c.props }));
   const events = [...new Set(calls.filter((c) => c.type === "event").map((c) => JSON.stringify({ name: c.name, path: c.path, props: c.props })))].sort().map((s) => JSON.parse(s));
   return { views, events };
+}
+const sortKeys = (o) => (o && typeof o === "object" ? Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]])) : o);
+/**
+ * Collector requests in the One Dollar Stats wire format (`{ u, e: [{ t, p }] }`,
+ * sent as `GET ?data=<base64 JSON>`, `sendBeacon` or a JSON `POST`) become the
+ * same records the stub writes, so a site whose tracker talks to the collector
+ * directly (the v8 `analytics` block) is snapshotted like the stubbed SDK.
+ * The request itself is still aborted.
+ */
+function recordBeacon(req) {
+  try {
+    const data = new URL(req.url()).searchParams.get("data");
+    const payload = JSON.parse(data ? Buffer.from(data, "base64").toString("utf8") : (req.postData() ?? ""));
+    const p = new URL(payload.u).pathname || "/";
+    for (const e of payload.e ?? []) {
+      const props = sortKeys(e.p ?? {});
+      (analyticsLog[currentEntry] ??= []).push(
+        e.t === "PageView" ? { type: "view", path: p, props } : { type: "event", name: e.t, path: p, props },
+      );
+    }
+  } catch {}
+}
+/**
+ * Baselines recorded before the stub dropped the query string hold
+ * `pathname + search` paths; the real tracker never sent the query string, so
+ * strip it from the baseline side before comparing.
+ */
+function canonBaseline(rel, text) {
+  if (!rel.endsWith(".json")) return text;
+  let v;
+  try {
+    v = JSON.parse(text);
+  } catch {
+    return text;
+  }
+  const a = v && typeof v === "object" && !Array.isArray(v) ? (v.analytics ?? (rel.includes("/analytics.") ? v : null)) : null;
+  if (!a || !Array.isArray(a.views)) return text;
+  for (const x of [...a.views, ...(a.events ?? [])]) if (typeof x.path === "string") x.path = x.path.replace(/\?.*$/, "");
+  if (Array.isArray(a.events)) a.events = [...new Set(a.events.map((e) => JSON.stringify(e)))].sort().map((e) => JSON.parse(e));
+  return `${JSON.stringify(v, null, 2)}\n`;
 }
 const analyticsLog = {};
 const takeAnalytics = (id) => {
@@ -701,7 +759,10 @@ async function runPass() {
       );
     }
     // Registered last => matched first: analytics/beacons never leave the browser.
-    await context.route((u) => isBlocked(u.toString()), (r) => r.abort());
+    await context.route((u) => isBlocked(u.toString()), (r) => {
+      recordBeacon(r.request());
+      return r.abort();
+    });
     // The analytics SDK script is replaced by a recorder exposing the same
     // window.stonks.{view,event} API: pageviews (load + SPA navigations) and
     // forwarded DECO.events are snapshotted per entry, nothing is sent.
@@ -815,6 +876,7 @@ async function main() {
       failedExternalRequests: harMisses.length,
     },
     failed,
+    approved: approvedHits,
   };
   if (mode === "compare") {
     fs.writeFileSync(path.join(outDir, "summary.json"), `${JSON.stringify(summary, null, 2)}\n`);
@@ -829,6 +891,9 @@ async function main() {
         (f) =>
           `- **${f.rel}** (${f.kind}) ${f.reason ?? ""}${f.diffPixels != null ? ` diffPixels=${f.diffPixels} baseline=${f.baseline} actual=${f.actual}` : ""}${f.diff ? `\n\n\`\`\`\n${f.diff.join("\n")}\n\`\`\`` : ""}`,
       ),
+      ...(approvedHits.length
+        ? ["", `## Approved differences applied (${approvedHits.length})`, "", ...approvedHits.map((h) => `- ${h.rel}: \`${h.from}\` -> \`${h.to}\` (${h.note})`)]
+        : []),
       "",
     ].join("\n");
     fs.writeFileSync(path.join(outDir, "summary.md"), md);

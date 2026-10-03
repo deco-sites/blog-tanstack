@@ -35,6 +35,25 @@
     "$comment": "The lilstts SDK script is fulfilled with a recorder (ANALYTICS_STUB in parity/run.mjs) exposing window.stonks.{view,event}; every call lands in the page snapshot's `analytics` array / flows/<id>/analytics.<vp>.json. Collector beacons stay blocked.",
     "script": "https://s.lilstts.com/deco.js"
   },
+  "approvedDifferences": [
+    {
+      "files": [
+        "snapshots/not-found-slug.",
+        "snapshots/not-found-deep."
+      ],
+      "from": "\"status\": 200,",
+      "to": "\"status\": 404,",
+      "note": "approved: unknown post slugs and /404 now answer a real 404 instead of a soft 200, same pixels (/a/b/c renders the same /404 page)"
+    },
+    {
+      "files": [
+        "text/rss-probe.txt"
+      ],
+      "from": "# status: 200",
+      "to": "# status: 404",
+      "note": "approved: unknown post slugs and /404 now answer a real 404 instead of a soft 200, same pixels (/rss.xml is resolved as an unknown post slug)"
+    }
+  ],
   "defaultViewports": [
     "mobile",
     "desktop"
