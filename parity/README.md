@@ -8,7 +8,7 @@ A deterministic visual and snapshot baseline of this site as it is today, so a m
 
 ```sh
 bun install
-bun run parity:build            # production build (restores the regenerated meta.gen.json)
+bun run parity:build            # production build
 bun run parity:record           # records parity/baseline/ (HAR fixtures, PNGs, snapshots); starts the server itself
 bun run parity:compare          # compares a fresh build of this repo against parity/baseline/
 # migrated site: point at its URL and tell the harness how to (re)start it
@@ -21,7 +21,7 @@ Flags (both modes): `--target URL` (default `baseUrl` in `pages.json`, or `PARIT
 
 Run `parity:record` only as a full run. With `--only` or `--viewport` it keeps the other baseline files but rewrites the HAR for the viewports it touches, so the HAR then covers only that subset.
 
-`parity:serve` (`parity/serve.sh`) is only for browsing the build by hand. It builds and then runs `vite preview` on port 4319. Port 4173 is often taken by a sibling site. The script restarts preview when it exits, and `PARITY_SKIP_BUILD=1` serves the existing `dist/`. `record` and `compare` do not use this script: they manage their own server, as described below. After building, the script restores `src/server/admin/meta.gen.json`, because the build regenerates that file with a different key order.
+`parity:serve` (`parity/serve.sh`) is only for browsing the build by hand. It builds and then runs `vite preview` on port 4319. Port 4173 is often taken by a sibling site. The script restarts preview when it exits, and `PARITY_SKIP_BUILD=1` serves the existing `dist/`. `record` and `compare` do not use this script: they manage their own server, as described below.
 
 On robustness: navigation retries while the server is down. Each page or flow has a 180 s watchdog and is retried once from a fresh page if it hangs. This is needed because headless Chromium occasionally stops delivering animation frames.
 
