@@ -310,6 +310,10 @@ async function isUp() {
 }
 async function startServer() {
   await stopServer();
+  // The worker's edge cache (Cache API) persists in .wrangler/state across
+  // server restarts and builds: within s-maxage it would serve another run's
+  // (or another build's) HTML instead of a fresh render. Start empty every time.
+  fs.rmSync(path.join(HERE, "..", ".wrangler", "state"), { recursive: true, force: true });
   // wait for the port to be released
   for (let i = 0; i < 50 && (await isUp()); i++) await new Promise((r) => setTimeout(r, 200));
   server = spawn("/bin/sh", ["-c", serveCmd], {
@@ -461,8 +465,36 @@ const blockRes = (MANIFEST.block ?? []).map(
 );
 const isBlocked = (u) => blockRes.some((r) => r.test(u));
 
+/** Stand-in for the lilstts SDK (window.stonks): records calls instead of sending beacons. */
+const ANALYTICS_STUB = `(() => {
+  const rec = (e) => { try { window.__parityAnalytics(e); } catch {} };
+  const sorted = (o) => o && typeof o === "object" ? Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]])) : o;
+  window.stonks = {
+    view: (props) => rec({ type: "view", path: location.pathname + location.search, props: sorted(props) }),
+    event: (name, props) => rec({ type: "event", name, path: location.pathname + location.search, props: sorted(props) }),
+  };
+})();`;
+/**
+ * Analytics calls -> snapshot. Pageviews keep their order (one per load / SPA
+ * navigation). Events are compared as a sorted, de-duplicated set: view-type
+ * events fire from IntersectionObservers, so their count and order depend on
+ * scroll timing, while *which* events fire with *which* payloads is the contract.
+ */
+function analyticsSnapshot(calls) {
+  const views = calls.filter((c) => c.type === "view").map((c) => ({ path: c.path, props: c.props }));
+  const events = [...new Set(calls.filter((c) => c.type === "event").map((c) => JSON.stringify({ name: c.name, path: c.path, props: c.props })))].sort().map((s) => JSON.parse(s));
+  return { views, events };
+}
+const analyticsLog = {};
+const takeAnalytics = (id) => {
+  const a = analyticsLog[id] ?? [];
+  delete analyticsLog[id];
+  return analyticsSnapshot(a);
+};
+
 async function runPage(context, vp, entry) {
   currentEntry = entry.id;
+  delete analyticsLog[currentEntry];
   const page = await newPage(context, vp);
   try {
     const resp = await gotoRetry(page, target + entry.path);
@@ -483,6 +515,7 @@ async function runPage(context, vp, entry) {
       // upstream assets such as 404 images in record) are part of the baseline.
       externalFailures: entryFailures(vp, entry.id),
       ...snap,
+      ...(MANIFEST.analyticsStub?.script ? { analytics: takeAnalytics(entry.id) } : {}),
     });
   } finally {
     await closePage(page);
@@ -491,6 +524,7 @@ async function runPage(context, vp, entry) {
 
 async function runFlow(context, vp, flow) {
   currentEntry = `flow:${flow.id}`;
+  delete analyticsLog[currentEntry];
   const page = await newPage(context, vp);
   const root = outDir;
   try {
@@ -566,6 +600,7 @@ async function runFlow(context, vp, flow) {
       }
     }
     emitJson(path.join("flows", flow.id, `external-failures.${vp}.json`), entryFailures(vp, `flow:${flow.id}`));
+    if (MANIFEST.analyticsStub?.script) emitJson(path.join("flows", flow.id, `analytics.${vp}.json`), takeAnalytics(`flow:${flow.id}`));
   } finally {
     await closePage(page);
   }
@@ -667,6 +702,17 @@ async function runPass() {
     }
     // Registered last => matched first: analytics/beacons never leave the browser.
     await context.route((u) => isBlocked(u.toString()), (r) => r.abort());
+    // The analytics SDK script is replaced by a recorder exposing the same
+    // window.stonks.{view,event} API: pageviews (load + SPA navigations) and
+    // forwarded DECO.events are snapshotted per entry, nothing is sent.
+    if (MANIFEST.analyticsStub?.script) {
+      await context.exposeBinding("__parityAnalytics", (_src, e) => {
+        (analyticsLog[currentEntry] ??= []).push(e);
+      });
+      await context.route(MANIFEST.analyticsStub.script, (r) =>
+        r.fulfill({ status: 200, contentType: "application/javascript", body: ANALYTICS_STUB }),
+      );
+    }
     return context;
   }
 
