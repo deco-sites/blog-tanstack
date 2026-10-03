@@ -1,5 +1,6 @@
-import handlePosts from "@decocms/apps/blog/core/handlePosts";
-import { getRecordsByPath } from "@decocms/apps/blog";
+import handlePosts from "../vendor/blog/core/handlePosts";
+import { getRecordsByPath } from "../vendor/blog/core/records";
+import { requestState } from "../request-state.server";
 import type { BlogPost, SortBy } from "../vendor/blog/types";
 
 export interface Props {
@@ -23,19 +24,22 @@ export interface Props {
    * @description Slug da categoria ou email do autor, dependendo de filterBy
    */
   slug?: string;
+  /**
+   * @title Parâmetro da rota
+   * @description Sem slug, filtra pelo valor deste parâmetro da URL da página (ex.: "slug" em /topics/:slug, "email" em /authors/:email)
+   */
+  param?: string;
 }
 
 /**
  * @title BlogpostList
  * @description Retorna uma lista de posts do blog como array. Suporta filtro por categoria ou autor.
  */
-export default async function BlogpostList(
-  props: Props,
-  _req?: Request,
-): Promise<BlogPost[] | null> {
-  const { count = 50, sortBy = "date_desc", filterBy, slug } = props;
+export default async function BlogpostList(props: Props): Promise<BlogPost[] | null> {
+  const { count = 50, sortBy = "date_desc", filterBy, param } = props;
+  const slug = props.slug ?? (param ? requestState().params[param] : undefined);
 
-  const allPosts = getRecordsByPath<BlogPost>("collections/blog/posts", "post");
+  const allPosts = await getRecordsByPath<BlogPost>("blog/loaders/Blogpost.ts", "collections/blog/posts", "post");
 
   let filtered = allPosts;
 

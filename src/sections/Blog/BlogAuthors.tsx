@@ -17,21 +17,6 @@ export interface Props {
   description?: string;
 }
 
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<
-  Props & { origin: string; pathname: string; siteConfig: SiteConfig }
-> {
-  const url = new URL(req.url);
-  return {
-    ...props,
-    origin: url.origin,
-    pathname: url.pathname,
-    siteConfig: getSiteConfig(),
-  };
-}
-
 interface AuthorWithCount extends Author {
   postCount: number;
 }
@@ -226,5 +211,3 @@ export default function BlogAuthors({
   );
 }
 
-export const eager = true;
-export const sync = true;

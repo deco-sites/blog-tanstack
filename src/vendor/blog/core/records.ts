@@ -1,24 +1,20 @@
 // Vendored from @decocms/apps (blog/core/records.ts) by @decocms/blocks-migrate. It's your code now.
-import { loadBlocks } from "@decocms/start/cms";
+import { requestState } from "../../../request-state.server";
 
 /**
- * Retrieve records from CMS blocks by path prefix.
+ * Every saved block of `type` (the v7 collection loaders, such as
+ * "blog/loaders/Blogpost.ts"), as saved, with the nested value at `accessor`
+ * and an `id` taken from the entry's name after `path`.
  *
- * Scans the decofile blocks whose key starts with `path` and extracts the
- * nested value at `accessor` from each matching block.
- *
- * Equivalent to the Deno `getRecordsByPath(ctx, path, accessor)` but uses
- * `loadBlocks()` from `@decocms/start/cms` instead of `ctx.get(resolvables)`.
+ * v7 scanned the decofile by key prefix; here the request's client lists the
+ * type (aliases included), as saved: nothing inside runs.
  */
-export function getRecordsByPath<T>(path: string, accessor: string): T[] {
-	const blocks = loadBlocks() as Record<string, Record<string, unknown>>;
+export async function getRecordsByPath<T>(type: string, path: string, accessor: string): Promise<T[]> {
+	const [entries, error] = await requestState().client.list<Record<string, unknown>>(type);
+	if (error) throw error;
 	const results: T[] = [];
 
-	for (const [key, value] of Object.entries(blocks)) {
-		if (!key.startsWith(path) || !value || typeof value !== "object") {
-			continue;
-		}
-
+	for (const value of entries) {
 		const record = value[accessor] as T | undefined;
 		if (!record) continue;
 

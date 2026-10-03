@@ -5,6 +5,15 @@ import type { BlogPost } from "../types";
  * @title Blogpost
  * @description Defines a blog post.
  */
-const loader = ({ post }: { post: BlogPost }): BlogPost => post;
+export interface Props {
+	post: BlogPost;
+	/**
+	 * @title Name
+	 * @description The entry's name, as v7 saved it; the entry's id is taken from it.
+	 */
+	name?: string;
+}
+
+const loader = ({ post }: Props): BlogPost => post;
 
 export default loader;

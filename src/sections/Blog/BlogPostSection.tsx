@@ -27,13 +27,6 @@ export interface Props {
   relatedPosts?: BlogPost[] | null;
 }
 
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<Props & { siteConfig: SiteConfig }> {
-  return { ...props, siteConfig: getSiteConfig() };
-}
-
 type AnyComponent = (props: any) => ReactNode;
 
 const BLOCK_COMPONENTS: Record<string, AnyComponent> = {
@@ -794,5 +787,3 @@ export default function BlogPostSection(
   );
 }
 
-export const eager = true;
-export const sync = true;

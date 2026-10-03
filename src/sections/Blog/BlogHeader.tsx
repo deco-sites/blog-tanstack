@@ -1,6 +1,5 @@
 import { useId } from "react";
 import type { BlogPost } from "../../vendor/blog/types";
-import BlogpostList from "../../loaders/BlogpostList";
 
 /**
  * Blog header — sticky navigation with reading progress bar, hero mode,
@@ -329,12 +328,6 @@ function getHeaderScript(
 })();`;
 }
 
-export async function loader(props: Props, _req: Request): Promise<Props> {
-  if (props.posts != null) return props;
-  const posts = await BlogpostList({ count: 100, sortBy: "date_desc" });
-  return { ...props, posts: posts ?? [] };
-}
-
 export default function BlogHeader({
   logoUrl,
   logoAlt = "Blog",
@@ -642,6 +635,3 @@ export default function BlogHeader({
   );
 }
 
-export const eager = true;
-export const sync = true;
-export const layout = true;

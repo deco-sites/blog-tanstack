@@ -29,21 +29,6 @@ export interface Props {
   description?: string;
 }
 
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<
-  Props & { origin: string; pathname: string; siteConfig: SiteConfig }
-> {
-  const url = new URL(req.url);
-  return {
-    ...props,
-    origin: url.origin,
-    pathname: url.pathname,
-    siteConfig: getSiteConfig(),
-  };
-}
-
 function countPostsByCategory(posts: BlogPost[]): Record<string, number> {
   const counts: Record<string, number> = {};
   for (const post of posts) {
@@ -264,5 +249,3 @@ export default function BlogTopics({
   );
 }
 
-export const eager = true;
-export const sync = true;

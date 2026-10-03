@@ -14,10 +14,7 @@
         "sortBy": "date_desc",
         "count": 100,
         "filterBy": "category",
-        "slug": {
-          "__resolveType": "website/functions/requestToParam.ts",
-          "param": "slug"
-        }
+        "param": "slug"
       },
       "perPage": 10,
       "baseUrl": "/topics/"

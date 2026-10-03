@@ -16,6 +16,7 @@ export interface Author {
 export interface Category {
 	name: string;
 	slug: string;
+	description?: string;
 }
 
 export interface BlogPost {
@@ -54,7 +55,7 @@ export interface BlogPost {
 	 * @label hidden
 	 * @changeable true
 	 */
-	sections?: unknown[];
+	sections?: PostBodyBlock[];
 	/**
 	 * @title SEO
 	 */
@@ -68,6 +69,16 @@ export interface BlogPost {
 	 */
 	extraProps?: ExtraProps[];
 	id?: string;
+}
+
+/**
+ * A block of a post's body, as saved: its v7 type name and its props.
+ * BlogPostSection renders it by `__resolveType`.
+ */
+export interface PostBodyBlock {
+	__resolveType: string;
+	// biome-ignore lint/suspicious/noExplicitAny: saved props of any body block type
+	[prop: string]: any;
 }
 
 export interface ExtraProps {

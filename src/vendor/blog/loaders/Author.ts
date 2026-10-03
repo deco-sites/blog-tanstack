@@ -5,6 +5,15 @@ import type { Author } from "../types";
  * @title Author
  * @description Defines a blog post author.
  */
-const loader = ({ author }: { author: Author }): Author => author;
+export interface Props {
+	author: Author;
+	/**
+	 * @title Name
+	 * @description The entry's name, as v7 saved it; the entry's id is taken from it.
+	 */
+	name?: string;
+}
+
+const loader = ({ author }: Props): Author => author;
 
 export default loader;

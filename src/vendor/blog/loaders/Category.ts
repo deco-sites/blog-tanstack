@@ -5,6 +5,15 @@ import type { Category } from "../types";
  * @title Category
  * @description Defines a blog post category.
  */
-const loader = ({ category }: { category: Category }): Category => category;
+export interface Props {
+	category: Category;
+	/**
+	 * @title Name
+	 * @description The entry's name, as v7 saved it; the entry's id is taken from it.
+	 */
+	name?: string;
+}
+
+const loader = ({ category }: Props): Category => category;
 
 export default loader;
