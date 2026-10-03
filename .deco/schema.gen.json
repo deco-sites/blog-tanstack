@@ -53,80 +53,6 @@
         "site/sections/Blog/BlogPostSection.tsx": {
           "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
           "namespace": "site"
-        }
-      },
-      "loaders": {
-        "seo": {
-          "$ref": "#/definitions/c2Vv",
-          "namespace": "site"
-        },
-        "website/sections/Seo/SeoV2.tsx": {
-          "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4",
-          "namespace": "website"
-        },
-        "seo-blog-post": {
-          "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA==",
-          "namespace": "site"
-        },
-        "site/sections/Seo/SeoBlogPost.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
-          "namespace": "site"
-        },
-        "seo-blog-author": {
-          "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y",
-          "namespace": "site"
-        },
-        "site/sections/Seo/SeoBlogAuthor.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=",
-          "namespace": "site"
-        },
-        "seo-blog-category": {
-          "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk=",
-          "namespace": "site"
-        },
-        "site/sections/Seo/SeoBlogCategory.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==",
-          "namespace": "site"
-        },
-        "blog-post-list": {
-          "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q=",
-          "namespace": "site"
-        },
-        "blog/loaders/BlogpostList.ts": {
-          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==",
-          "namespace": "blog"
-        },
-        "blog-post-page": {
-          "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U=",
-          "namespace": "site"
-        },
-        "blog/loaders/BlogPostPage.ts": {
-          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw==",
-          "namespace": "blog"
-        },
-        "blog-post": {
-          "$ref": "#/definitions/YmxvZy1wb3N0",
-          "namespace": "site"
-        },
-        "blog/loaders/Blogpost.ts": {
-          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz",
-          "namespace": "blog"
-        },
-        "blog-author": {
-          "$ref": "#/definitions/YmxvZy1hdXRob3I=",
-          "namespace": "site"
-        },
-        "blog/loaders/Author.ts": {
-          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw==",
-          "namespace": "blog"
-        },
-        "blog-category": {
-          "$ref": "#/definitions/YmxvZy1jYXRlZ29yeQ==",
-          "namespace": "site"
-        },
-        "blog/loaders/Category.ts": {
-          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz",
-          "namespace": "blog"
         },
         "post-heading": {
           "$ref": "#/definitions/cG9zdC1oZWFkaW5n",
@@ -230,6 +156,80 @@
         },
         "blog/sections/blocks/Faq.tsx": {
           "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==",
+          "namespace": "blog"
+        }
+      },
+      "loaders": {
+        "seo": {
+          "$ref": "#/definitions/c2Vv",
+          "namespace": "site"
+        },
+        "website/sections/Seo/SeoV2.tsx": {
+          "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4",
+          "namespace": "website"
+        },
+        "seo-blog-post": {
+          "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA==",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogPost.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
+          "namespace": "site"
+        },
+        "seo-blog-author": {
+          "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogAuthor.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=",
+          "namespace": "site"
+        },
+        "seo-blog-category": {
+          "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk=",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogCategory.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==",
+          "namespace": "site"
+        },
+        "blog-post-list": {
+          "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q=",
+          "namespace": "site"
+        },
+        "blog/loaders/BlogpostList.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==",
+          "namespace": "blog"
+        },
+        "blog-post-page": {
+          "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U=",
+          "namespace": "site"
+        },
+        "blog/loaders/BlogPostPage.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw==",
+          "namespace": "blog"
+        },
+        "blog-post": {
+          "$ref": "#/definitions/YmxvZy1wb3N0",
+          "namespace": "site"
+        },
+        "blog/loaders/Blogpost.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz",
+          "namespace": "blog"
+        },
+        "blog-author": {
+          "$ref": "#/definitions/YmxvZy1hdXRob3I=",
+          "namespace": "site"
+        },
+        "blog/loaders/Author.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw==",
+          "namespace": "blog"
+        },
+        "blog-category": {
+          "$ref": "#/definitions/YmxvZy1jYXRlZ29yeQ==",
+          "namespace": "site"
+        },
+        "blog/loaders/Category.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz",
           "namespace": "blog"
         },
         "lazy": {
@@ -576,7 +576,7 @@
           "sections": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@PostBodyBlock"
+              "$ref": "#/definitions/__SECTION_REF__"
             },
             "nullable": true,
             "title": "Sections",
@@ -670,11 +670,6 @@
           "name",
           "slug"
         ]
-      },
-      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@PostBodyBlock": {
-        "type": "object",
-        "properties": {},
-        "description": "A block of a post's body, as saved: its v7 type name and its props.\nBlogPostSection renders it by `__resolveType`."
       },
       "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Seo": {
         "type": "object",
@@ -2361,12 +2356,47 @@
           }
         }
       },
+      "cG9zdC1oZWFkaW5n@Props": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "h2",
+              "h3",
+              "h4",
+              "2",
+              "3",
+              "4"
+            ],
+            "nullable": true,
+            "title": "Nível do título"
+          },
+          "text": {
+            "type": "string",
+            "title": "Texto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "description": "HTML id for TOC anchoring — injected by BlogPostSection",
+            "title": "Id"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
       "cG9zdC1oZWFkaW5n": {
         "title": "post-heading",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1oZWFkaW5n@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "text"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2375,7 +2405,12 @@
               "post-heading"
             ],
             "default": "post-heading"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props": {
+        "type": "object",
+        "properties": {
           "level": {
             "type": "string",
             "enum": [
@@ -2399,14 +2434,21 @@
             "description": "HTML id for TOC anchoring — injected by BlogPostSection",
             "title": "Id"
           }
-        }
+        },
+        "required": [
+          "text"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=": {
         "title": "blog/sections/blocks/Heading.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "text"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2415,35 +2457,32 @@
               "blog/sections/blocks/Heading.tsx"
             ],
             "default": "blog/sections/blocks/Heading.tsx"
-          },
-          "level": {
-            "type": "string",
-            "enum": [
-              "h2",
-              "h3",
-              "h4",
-              "2",
-              "3",
-              "4"
-            ],
-            "nullable": true,
-            "title": "Nível do título"
-          },
-          "text": {
-            "type": "string",
-            "title": "Texto"
-          },
-          "id": {
+          }
+        }
+      },
+      "cG9zdC1wYXJhZ3JhcGg=@Props": {
+        "type": "object",
+        "properties": {
+          "html": {
             "type": "string",
             "nullable": true,
-            "description": "HTML id for TOC anchoring — injected by BlogPostSection",
-            "title": "Id"
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
           }
         }
       },
       "cG9zdC1wYXJhZ3JhcGg=": {
         "title": "post-paragraph",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -2454,7 +2493,12 @@
               "post-paragraph"
             ],
             "default": "post-paragraph"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
           "html": {
             "type": "string",
             "nullable": true,
@@ -2470,6 +2514,11 @@
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==": {
         "title": "blog/sections/blocks/Paragraph.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -2480,22 +2529,42 @@
               "blog/sections/blocks/Paragraph.tsx"
             ],
             "default": "blog/sections/blocks/Paragraph.tsx"
-          },
-          "html": {
+          }
+        }
+      },
+      "cG9zdC1xdW90ZQ==@Props": {
+        "type": "object",
+        "properties": {
+          "quote": {
             "type": "string",
             "nullable": true,
-            "title": "Conteúdo HTML"
+            "title": "Citação"
           },
-          "content": {
+          "text": {
             "type": "string",
             "nullable": true,
-            "title": "Conteúdo HTML (alias)"
+            "title": "Citação (alias)"
+          },
+          "attribution": {
+            "type": "string",
+            "nullable": true,
+            "title": "Autor da citação"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da fonte"
           }
         }
       },
       "cG9zdC1xdW90ZQ==": {
         "title": "post-quote",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1xdW90ZQ==@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -2506,7 +2575,12 @@
               "post-quote"
             ],
             "default": "post-quote"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props": {
+        "type": "object",
+        "properties": {
           "quote": {
             "type": "string",
             "nullable": true,
@@ -2532,6 +2606,11 @@
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4": {
         "title": "blog/sections/blocks/Quote.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -2542,35 +2621,41 @@
               "blog/sections/blocks/Quote.tsx"
             ],
             "default": "blog/sections/blocks/Quote.tsx"
-          },
-          "quote": {
-            "type": "string",
-            "nullable": true,
-            "title": "Citação"
-          },
-          "text": {
-            "type": "string",
-            "nullable": true,
-            "title": "Citação (alias)"
-          },
-          "attribution": {
-            "type": "string",
-            "nullable": true,
-            "title": "Autor da citação"
-          },
-          "sourceUrl": {
-            "type": "string",
-            "nullable": true,
-            "title": "URL da fonte"
           }
         }
+      },
+      "cG9zdC1jb2Rl@Props": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Código"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true,
+            "title": "Linguagem (ex: typescript, bash, json)"
+          },
+          "filename": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / nome do arquivo"
+          }
+        },
+        "required": [
+          "code"
+        ]
       },
       "cG9zdC1jb2Rl": {
         "title": "post-code",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jb2Rl@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "code"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2579,7 +2664,12 @@
               "post-code"
             ],
             "default": "post-code"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props": {
+        "type": "object",
+        "properties": {
           "code": {
             "type": "string",
             "title": "Código"
@@ -2594,14 +2684,21 @@
             "nullable": true,
             "title": "Título / nome do arquivo"
           }
-        }
+        },
+        "required": [
+          "code"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=": {
         "title": "blog/sections/blocks/Code.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "code"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2610,29 +2707,74 @@
               "blog/sections/blocks/Code.tsx"
             ],
             "default": "blog/sections/blocks/Code.tsx"
-          },
-          "code": {
-            "type": "string",
-            "title": "Código"
-          },
-          "language": {
-            "type": "string",
-            "nullable": true,
-            "title": "Linguagem (ex: typescript, bash, json)"
-          },
-          "filename": {
-            "type": "string",
-            "nullable": true,
-            "title": "Título / nome do arquivo"
           }
         }
+      },
+      "cG9zdC1saXN0@Props": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Tipo de lista"
+          },
+          "style": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Estilo (alias para type)"
+          },
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "title": "Texto do item (HTML permitido)"
+                    },
+                    "children": {
+                      "type": "object",
+                      "nullable": true,
+                      "title": "Sub-items"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            ],
+            "title": "Itens",
+            "description": "Array de objetos OR string separada por \\n"
+          }
+        },
+        "required": [
+          "items"
+        ]
       },
       "cG9zdC1saXN0": {
         "title": "post-list",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1saXN0@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "items"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2641,7 +2783,12 @@
               "post-list"
             ],
             "default": "post-list"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props": {
+        "type": "object",
+        "properties": {
           "type": {
             "type": "string",
             "enum": [
@@ -2689,14 +2836,21 @@
             "title": "Itens",
             "description": "Array de objetos OR string separada por \\n"
           }
-        }
+        },
+        "required": [
+          "items"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=": {
         "title": "blog/sections/blocks/List.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "items"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2705,62 +2859,58 @@
               "blog/sections/blocks/List.tsx"
             ],
             "default": "blog/sections/blocks/List.tsx"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "unordered",
-              "ordered"
-            ],
-            "nullable": true,
-            "title": "Tipo de lista"
-          },
-          "style": {
-            "type": "string",
-            "enum": [
-              "unordered",
-              "ordered"
-            ],
-            "nullable": true,
-            "title": "Estilo (alias para type)"
-          },
-          "items": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "text": {
-                      "type": "string",
-                      "title": "Texto do item (HTML permitido)"
-                    },
-                    "children": {
-                      "type": "object",
-                      "nullable": true,
-                      "title": "Sub-items"
-                    }
-                  },
-                  "required": [
-                    "text"
-                  ]
-                }
-              }
-            ],
-            "title": "Itens",
-            "description": "Array de objetos OR string separada por \\n"
           }
         }
+      },
+      "cG9zdC1jaGVja2xpc3Q=@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da lista (usado no TOC)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Texto"
+                },
+                "checked": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "title": "Marcado como completo"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            },
+            "title": "Itens"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "items"
+        ]
       },
       "cG9zdC1jaGVja2xpc3Q=": {
         "title": "post-checklist",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "items"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2769,7 +2919,12 @@
               "post-checklist"
             ],
             "default": "post-checklist"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props": {
+        "type": "object",
+        "properties": {
           "title": {
             "type": "string",
             "nullable": true,
@@ -2801,14 +2956,21 @@
             "nullable": true,
             "title": "Id"
           }
-        }
+        },
+        "required": [
+          "items"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==": {
         "title": "blog/sections/blocks/Checklist.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "items"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2817,46 +2979,58 @@
               "blog/sections/blocks/Checklist.tsx"
             ],
             "default": "blog/sections/blocks/Checklist.tsx"
-          },
+          }
+        }
+      },
+      "cG9zdC1zdGVwcw==@Props": {
+        "type": "object",
+        "properties": {
           "title": {
             "type": "string",
             "nullable": true,
-            "title": "Título da lista (usado no TOC)"
+            "title": "Título (usado no TOC)"
           },
-          "items": {
+          "steps": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "text": {
+                "title": {
                   "type": "string",
-                  "title": "Texto"
+                  "title": "Título do passo"
                 },
-                "checked": {
-                  "type": "boolean",
-                  "nullable": true,
-                  "title": "Marcado como completo"
+                "content": {
+                  "type": "string",
+                  "title": "Conteúdo HTML"
                 }
               },
               "required": [
-                "text"
+                "title",
+                "content"
               ]
             },
-            "title": "Itens"
+            "title": "Passos"
           },
           "id": {
             "type": "string",
             "nullable": true,
             "title": "Id"
           }
-        }
+        },
+        "required": [
+          "steps"
+        ]
       },
       "cG9zdC1zdGVwcw==": {
         "title": "post-steps",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1zdGVwcw==@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "steps"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2865,7 +3039,12 @@
               "post-steps"
             ],
             "default": "post-steps"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props": {
+        "type": "object",
+        "properties": {
           "title": {
             "type": "string",
             "nullable": true,
@@ -2897,14 +3076,21 @@
             "nullable": true,
             "title": "Id"
           }
-        }
+        },
+        "required": [
+          "steps"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4": {
         "title": "blog/sections/blocks/Steps.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "steps"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -2913,43 +3099,49 @@
               "blog/sections/blocks/Steps.tsx"
             ],
             "default": "blog/sections/blocks/Steps.tsx"
+          }
+        }
+      },
+      "cG9zdC1jYWxsb3V0@Props": {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "success",
+              "summary",
+              "definition"
+            ],
+            "nullable": true,
+            "title": "Variante"
           },
           "title": {
             "type": "string",
             "nullable": true,
-            "title": "Título (usado no TOC)"
+            "title": "Título opcional"
           },
-          "steps": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "type": "string",
-                  "title": "Título do passo"
-                },
-                "content": {
-                  "type": "string",
-                  "title": "Conteúdo HTML"
-                }
-              },
-              "required": [
-                "title",
-                "content"
-              ]
-            },
-            "title": "Passos"
-          },
-          "id": {
+          "body": {
             "type": "string",
             "nullable": true,
-            "title": "Id"
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
           }
         }
       },
       "cG9zdC1jYWxsb3V0": {
         "title": "post-callout",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsb3V0@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -2960,7 +3152,12 @@
               "post-callout"
             ],
             "default": "post-callout"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props": {
+        "type": "object",
+        "properties": {
           "variant": {
             "type": "string",
             "enum": [
@@ -2993,6 +3190,11 @@
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=": {
         "title": "blog/sections/blocks/Callout.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -3003,42 +3205,57 @@
               "blog/sections/blocks/Callout.tsx"
             ],
             "default": "blog/sections/blocks/Callout.tsx"
-          },
-          "variant": {
-            "type": "string",
-            "enum": [
-              "info",
-              "warning",
-              "success",
-              "summary",
-              "definition"
-            ],
-            "nullable": true,
-            "title": "Variante"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true,
-            "title": "Título opcional"
-          },
-          "body": {
-            "type": "string",
-            "nullable": true,
-            "title": "Conteúdo HTML"
-          },
-          "content": {
-            "type": "string",
-            "nullable": true,
-            "title": "Conteúdo HTML (alias)"
           }
         }
+      },
+      "cG9zdC1pbWFnZQ==@Props": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem (alias)"
+          },
+          "alt": {
+            "type": "string",
+            "title": "Texto alternativo"
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true,
+            "title": "Legenda"
+          },
+          "maxWidth": {
+            "type": "string",
+            "enum": [
+              "small",
+              "full",
+              "large",
+              "medium"
+            ],
+            "nullable": true,
+            "title": "Largura máxima"
+          }
+        },
+        "required": [
+          "alt"
+        ]
       },
       "cG9zdC1pbWFnZQ==": {
         "title": "post-image",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1pbWFnZQ==@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "alt"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -3047,7 +3264,12 @@
               "post-image"
             ],
             "default": "post-image"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props": {
+        "type": "object",
+        "properties": {
           "src": {
             "type": "string",
             "nullable": true,
@@ -3070,22 +3292,29 @@
           "maxWidth": {
             "type": "string",
             "enum": [
+              "small",
               "full",
               "large",
-              "medium",
-              "small"
+              "medium"
             ],
             "nullable": true,
             "title": "Largura máxima"
           }
-        }
+        },
+        "required": [
+          "alt"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=": {
         "title": "blog/sections/blocks/BlockImage.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "alt"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -3094,45 +3323,46 @@
               "blog/sections/blocks/BlockImage.tsx"
             ],
             "default": "blog/sections/blocks/BlockImage.tsx"
-          },
-          "src": {
-            "type": "string",
-            "nullable": true,
-            "title": "URL da imagem"
-          },
-          "url": {
-            "type": "string",
-            "nullable": true,
-            "title": "URL da imagem (alias)"
-          },
-          "alt": {
-            "type": "string",
-            "title": "Texto alternativo"
-          },
-          "caption": {
-            "type": "string",
-            "nullable": true,
-            "title": "Legenda"
-          },
-          "maxWidth": {
-            "type": "string",
-            "enum": [
-              "full",
-              "large",
-              "medium",
-              "small"
-            ],
-            "nullable": true,
-            "title": "Largura máxima"
           }
         }
+      },
+      "cG9zdC12aWRlbw==@Props": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL do vídeo (YouTube, Vimeo ou arquivo direto)"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / legenda"
+          },
+          "aspectRatio": {
+            "type": "string",
+            "enum": [
+              "16:9",
+              "4:3",
+              "1:1"
+            ],
+            "nullable": true,
+            "title": "Aspect ratio"
+          }
+        },
+        "required": [
+          "url"
+        ]
       },
       "cG9zdC12aWRlbw==": {
         "title": "post-video",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC12aWRlbw==@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "url"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -3141,7 +3371,12 @@
               "post-video"
             ],
             "default": "post-video"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props": {
+        "type": "object",
+        "properties": {
           "url": {
             "type": "string",
             "title": "URL do vídeo (YouTube, Vimeo ou arquivo direto)"
@@ -3161,14 +3396,21 @@
             "nullable": true,
             "title": "Aspect ratio"
           }
-        }
+        },
+        "required": [
+          "url"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4": {
         "title": "blog/sections/blocks/Video.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "url"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -3177,31 +3419,32 @@
               "blog/sections/blocks/Video.tsx"
             ],
             "default": "blog/sections/blocks/Video.tsx"
-          },
-          "url": {
-            "type": "string",
-            "title": "URL do vídeo (YouTube, Vimeo ou arquivo direto)"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true,
-            "title": "Título / legenda"
-          },
-          "aspectRatio": {
+          }
+        }
+      },
+      "cG9zdC1kaXZpZGVy@Props": {
+        "type": "object",
+        "properties": {
+          "style": {
             "type": "string",
             "enum": [
-              "16:9",
-              "4:3",
-              "1:1"
+              "line",
+              "dots",
+              "ornament"
             ],
             "nullable": true,
-            "title": "Aspect ratio"
+            "title": "Estilo"
           }
         }
       },
       "cG9zdC1kaXZpZGVy": {
         "title": "post-divider",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1kaXZpZGVy@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -3212,7 +3455,12 @@
               "post-divider"
             ],
             "default": "post-divider"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props": {
+        "type": "object",
+        "properties": {
           "style": {
             "type": "string",
             "enum": [
@@ -3228,6 +3476,11 @@
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=": {
         "title": "blog/sections/blocks/Divider.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -3238,27 +3491,66 @@
               "blog/sections/blocks/Divider.tsx"
             ],
             "default": "blog/sections/blocks/Divider.tsx"
-          },
-          "style": {
-            "type": "string",
-            "enum": [
-              "line",
-              "dots",
-              "ornament"
-            ],
-            "nullable": true,
-            "title": "Estilo"
           }
         }
+      },
+      "cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Título"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Subtítulo / descrição"
+          },
+          "primaryLabel": {
+            "type": "string",
+            "title": "Texto do botão principal"
+          },
+          "primaryHref": {
+            "type": "string",
+            "title": "URL do botão principal"
+          },
+          "secondaryLabel": {
+            "type": "string",
+            "nullable": true,
+            "title": "Texto do botão secundário"
+          },
+          "secondaryHref": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do botão secundário"
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "default",
+              "minimal",
+              "highlight"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          }
+        },
+        "required": [
+          "title",
+          "primaryLabel",
+          "primaryHref"
+        ]
       },
       "cG9zdC1jYWxsLXRvLWFjdGlvbg==": {
         "title": "post-call-to-action",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "title",
-          "primaryLabel",
-          "primaryHref"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -3267,7 +3559,12 @@
               "post-call-to-action"
             ],
             "default": "post-call-to-action"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
           "title": {
             "type": "string",
             "title": "Título"
@@ -3305,16 +3602,23 @@
             "nullable": true,
             "title": "Variante"
           }
-        }
+        },
+        "required": [
+          "title",
+          "primaryLabel",
+          "primaryHref"
+        ]
       },
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==": {
         "title": "blog/sections/blocks/CallToAction.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props"
+          }
+        ],
         "required": [
-          "__resolveType",
-          "title",
-          "primaryLabel",
-          "primaryHref"
+          "__resolveType"
         ],
         "properties": {
           "__resolveType": {
@@ -3323,49 +3627,49 @@
               "blog/sections/blocks/CallToAction.tsx"
             ],
             "default": "blog/sections/blocks/CallToAction.tsx"
-          },
+          }
+        }
+      },
+      "cG9zdC1mYXE=@Props": {
+        "type": "object",
+        "properties": {
           "title": {
             "type": "string",
-            "title": "Título"
-          },
-          "description": {
-            "type": "string",
             "nullable": true,
-            "title": "Subtítulo / descrição"
+            "title": "Título da seção (opcional)"
           },
-          "primaryLabel": {
-            "type": "string",
-            "title": "Texto do botão principal"
-          },
-          "primaryHref": {
-            "type": "string",
-            "title": "URL do botão principal"
-          },
-          "secondaryLabel": {
-            "type": "string",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "title": "Pergunta"
+                },
+                "answer": {
+                  "type": "string",
+                  "title": "Resposta (HTML)"
+                }
+              },
+              "required": [
+                "question",
+                "answer"
+              ]
+            },
             "nullable": true,
-            "title": "Texto do botão secundário"
-          },
-          "secondaryHref": {
-            "type": "string",
-            "nullable": true,
-            "title": "URL do botão secundário"
-          },
-          "variant": {
-            "type": "string",
-            "enum": [
-              "default",
-              "minimal",
-              "highlight"
-            ],
-            "nullable": true,
-            "title": "Variante"
+            "title": "Itens de perguntas e respostas"
           }
         }
       },
       "cG9zdC1mYXE=": {
         "title": "post-faq",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1mYXE=@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -3376,7 +3680,12 @@
               "post-faq"
             ],
             "default": "post-faq"
-          },
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
           "title": {
             "type": "string",
             "nullable": true,
@@ -3409,6 +3718,11 @@
       "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==": {
         "title": "blog/sections/blocks/Faq.tsx",
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props"
+          }
+        ],
         "required": [
           "__resolveType"
         ],
@@ -3419,33 +3733,6 @@
               "blog/sections/blocks/Faq.tsx"
             ],
             "default": "blog/sections/blocks/Faq.tsx"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true,
-            "title": "Título da seção (opcional)"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "question": {
-                  "type": "string",
-                  "title": "Pergunta"
-                },
-                "answer": {
-                  "type": "string",
-                  "title": "Resposta (HTML)"
-                }
-              },
-              "required": [
-                "question",
-                "answer"
-              ]
-            },
-            "nullable": true,
-            "title": "Itens de perguntas e respostas"
           }
         }
       },
@@ -4122,6 +4409,110 @@
           {
             "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
             "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1oZWFkaW5n",
+            "inputSchema": "#/definitions/cG9zdC1oZWFkaW5n@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=",
+            "inputSchema": "#/definitions/cG9zdC1wYXJhZ3JhcGg=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1xdW90ZQ==",
+            "inputSchema": "#/definitions/cG9zdC1xdW90ZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jb2Rl",
+            "inputSchema": "#/definitions/cG9zdC1jb2Rl@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1saXN0",
+            "inputSchema": "#/definitions/cG9zdC1saXN0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=",
+            "inputSchema": "#/definitions/cG9zdC1jaGVja2xpc3Q=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1zdGVwcw==",
+            "inputSchema": "#/definitions/cG9zdC1zdGVwcw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsb3V0",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsb3V0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1pbWFnZQ==",
+            "inputSchema": "#/definitions/cG9zdC1pbWFnZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC12aWRlbw==",
+            "inputSchema": "#/definitions/cG9zdC12aWRlbw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1kaXZpZGVy",
+            "inputSchema": "#/definitions/cG9zdC1kaXZpZGVy@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1mYXE=",
+            "inputSchema": "#/definitions/cG9zdC1mYXE=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props"
           }
         ]
       }
@@ -4179,6 +4570,110 @@
           {
             "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
             "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1oZWFkaW5n",
+            "inputSchema": "#/definitions/cG9zdC1oZWFkaW5n@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=",
+            "inputSchema": "#/definitions/cG9zdC1wYXJhZ3JhcGg=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1xdW90ZQ==",
+            "inputSchema": "#/definitions/cG9zdC1xdW90ZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jb2Rl",
+            "inputSchema": "#/definitions/cG9zdC1jb2Rl@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1saXN0",
+            "inputSchema": "#/definitions/cG9zdC1saXN0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=",
+            "inputSchema": "#/definitions/cG9zdC1jaGVja2xpc3Q=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1zdGVwcw==",
+            "inputSchema": "#/definitions/cG9zdC1zdGVwcw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsb3V0",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsb3V0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1pbWFnZQ==",
+            "inputSchema": "#/definitions/cG9zdC1pbWFnZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC12aWRlbw==",
+            "inputSchema": "#/definitions/cG9zdC12aWRlbw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1kaXZpZGVy",
+            "inputSchema": "#/definitions/cG9zdC1kaXZpZGVy@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1mYXE=",
+            "inputSchema": "#/definitions/cG9zdC1mYXE=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props"
           }
         ]
       },
@@ -4240,84 +4735,6 @@
           },
           {
             "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz"
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1oZWFkaW5n"
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA=="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1xdW90ZQ=="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4"
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1jb2Rl"
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1saXN0"
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA=="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1zdGVwcw=="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4"
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1jYWxsb3V0"
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1pbWFnZQ=="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC12aWRlbw=="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4"
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1kaXZpZGVy"
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg=="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA=="
-          },
-          {
-            "$ref": "#/definitions/cG9zdC1mYXE="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA=="
           },
           {
             "$ref": "#/definitions/bGF6eQ=="

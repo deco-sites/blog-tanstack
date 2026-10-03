@@ -19,20 +19,8 @@ import {
 } from "../src/blocks.server";
 import type { BlockDescriptor, BlogPage } from "../src/model";
 import { seo, seoBlogAuthor, seoBlogCategory, seoBlogPost } from "../src/seo/blocks.server";
-import type { Props as BlockImageProps } from "../src/sections/Blog/blocks/BlockImage";
-import type { Props as CallToActionProps } from "../src/sections/Blog/blocks/CallToAction";
-import type { Props as CalloutProps } from "../src/sections/Blog/blocks/Callout";
-import type { Props as ChecklistProps } from "../src/sections/Blog/blocks/Checklist";
-import type { Props as CodeProps } from "../src/sections/Blog/blocks/Code";
-import type { Props as DividerProps } from "../src/sections/Blog/blocks/Divider";
-import type { Props as FaqProps } from "../src/sections/Blog/blocks/Faq";
-import type { Props as HeadingProps } from "../src/sections/Blog/blocks/Heading";
-import type { Props as ListProps } from "../src/sections/Blog/blocks/List";
-import type { Props as ParagraphProps } from "../src/sections/Blog/blocks/Paragraph";
-import type { Props as QuoteProps } from "../src/sections/Blog/blocks/Quote";
-import type { Props as StepsProps } from "../src/sections/Blog/blocks/Steps";
-import type { Props as VideoProps } from "../src/sections/Blog/blocks/Video";
 import type { SiteSettings } from "../src/utils/site-config";
+import type { PostBodyBlock } from "../src/vendor/blog/types";
 import blogAuthor from "../src/vendor/blog/loaders/Author";
 import blogBlogPostPage from "../src/vendor/blog/loaders/BlogPostPage";
 import blogBlogpost from "../src/vendor/blog/loaders/Blogpost";
@@ -65,27 +53,28 @@ const blogPostSection = async (props: BlogPostSectionProps): Promise<BlockDescri
 });
 
 /**
- * A block of a post's body. Posts are listed as saved, so their bodies reach
- * BlogPostSection as stored and it renders each by its v7 type name; these
- * entries give the types a schema and keep a resolved body in the same shape.
+ * The blocks of a post's body: sections, as on v7, so a post's section list
+ * (BlogPost.sections) offers them. Each returns its descriptor.
  */
+type PostBody<C extends PostBodyBlock["component"]> = Extract<PostBodyBlock, { component: C }>;
 const postBlock =
-  <P extends object>(type: string) =>
-  (props: P): P & { __resolveType: string } => ({ ...props, __resolveType: type });
+  <C extends PostBodyBlock["component"]>(component: C) =>
+  (props: PostBody<C>["props"]) =>
+    ({ component, props }) as PostBody<C>;
 
-const postHeading = postBlock<HeadingProps>("blog/sections/blocks/Heading.tsx");
-const postParagraph = postBlock<ParagraphProps>("blog/sections/blocks/Paragraph.tsx");
-const postQuote = postBlock<QuoteProps>("blog/sections/blocks/Quote.tsx");
-const postCode = postBlock<CodeProps>("blog/sections/blocks/Code.tsx");
-const postList = postBlock<ListProps>("blog/sections/blocks/List.tsx");
-const postChecklist = postBlock<ChecklistProps>("blog/sections/blocks/Checklist.tsx");
-const postSteps = postBlock<StepsProps>("blog/sections/blocks/Steps.tsx");
-const postCallout = postBlock<CalloutProps>("blog/sections/blocks/Callout.tsx");
-const postImage = postBlock<BlockImageProps>("blog/sections/blocks/BlockImage.tsx");
-const postVideo = postBlock<VideoProps>("blog/sections/blocks/Video.tsx");
-const postDivider = postBlock<DividerProps>("blog/sections/blocks/Divider.tsx");
-const postCallToAction = postBlock<CallToActionProps>("blog/sections/blocks/CallToAction.tsx");
-const postFaq = postBlock<FaqProps>("blog/sections/blocks/Faq.tsx");
+const postHeading = postBlock("post-heading");
+const postParagraph = postBlock("post-paragraph");
+const postQuote = postBlock("post-quote");
+const postCode = postBlock("post-code");
+const postList = postBlock("post-list");
+const postChecklist = postBlock("post-checklist");
+const postSteps = postBlock("post-steps");
+const postCallout = postBlock("post-callout");
+const postImage = postBlock("post-image");
+const postVideo = postBlock("post-video");
+const postDivider = postBlock("post-divider");
+const postCallToAction = postBlock("post-call-to-action");
+const postFaq = postBlock("post-faq");
 
 /** Site-wide settings (the saved `site` block). */
 const siteSettings = (props: SiteSettings) => props;

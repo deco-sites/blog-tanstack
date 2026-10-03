@@ -6,6 +6,7 @@ import BlogHome from "./sections/Blog/BlogHome";
 import BlogPostSection from "./sections/Blog/BlogPostSection";
 import BlogSearch from "./sections/Blog/BlogSearch";
 import BlogTopics from "./sections/Blog/BlogTopics";
+import { BODY_TYPES, PostBodyView } from "./sections/Blog/blocks/body";
 
 /**
  * Each section renders inside a <section> named after its v7 file, the markup
@@ -18,6 +19,9 @@ const SECTION_FILES: Record<BlockDescriptor["component"], string> = {
   "blog-topics": "site/sections/Blog/BlogTopics.tsx",
   "blog-search": "site/sections/Blog/BlogSearch.tsx",
   "blog-post-section": "site/sections/Blog/BlogPostSection.tsx",
+  ...(Object.fromEntries(
+    Object.entries(BODY_TYPES).map(([type, kind]) => [type, `site/sections/Blog/blocks/${kind}.tsx`]),
+  ) as Record<keyof typeof BODY_TYPES, string>),
 };
 
 function sectionId(file: string): string {
@@ -39,6 +43,8 @@ function SectionView({ block }: { block: BlockDescriptor }) {
       return <BlogSearch {...block.props} />;
     case "blog-post-section":
       return <BlogPostSection {...block.props} />;
+    default:
+      return <PostBodyView block={block} />;
   }
 }
 

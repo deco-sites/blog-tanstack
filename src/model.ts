@@ -9,6 +9,7 @@ import type {
 } from "./blocks.server";
 import type { PageSeo } from "./seo/types";
 import type { SiteConfig } from "./utils/site-config";
+import type { PostBodyBlock } from "./vendor/blog/types";
 
 type WithSite<P> = P & { siteConfig: SiteConfig };
 
@@ -25,7 +26,9 @@ export type BlockDescriptor =
   | { component: "blog-authors"; props: WithSite<BlogAuthorsProps & { origin: string; pathname: string }> }
   | { component: "blog-topics"; props: WithSite<BlogTopicsProps & { origin: string; pathname: string }> }
   | { component: "blog-search"; props: WithSite<BlogSearchProps & { query: string; origin: string }> }
-  | { component: "blog-post-section"; props: WithSite<BlogPostSectionProps> };
+  | { component: "blog-post-section"; props: WithSite<BlogPostSectionProps> }
+  // A post's body blocks are sections too, as on v7 (rendered alone if placed on a page).
+  | PostBodyBlock;
 
 /** A saved page, as client.list returns it (nothing run): seo and sections are still blocks. */
 export interface StoredPage extends Route {

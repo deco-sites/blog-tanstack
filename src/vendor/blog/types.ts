@@ -1,4 +1,17 @@
 // Vendored from @decocms/apps (blog/types.ts) by @decocms/blocks-migrate. It's your code now.
+import type { Props as BlockImageProps } from "../../sections/Blog/blocks/BlockImage";
+import type { Props as CallToActionProps } from "../../sections/Blog/blocks/CallToAction";
+import type { Props as CalloutProps } from "../../sections/Blog/blocks/Callout";
+import type { Props as ChecklistProps } from "../../sections/Blog/blocks/Checklist";
+import type { Props as CodeProps } from "../../sections/Blog/blocks/Code";
+import type { Props as DividerProps } from "../../sections/Blog/blocks/Divider";
+import type { Props as FaqProps } from "../../sections/Blog/blocks/Faq";
+import type { Props as HeadingProps } from "../../sections/Blog/blocks/Heading";
+import type { Props as ListProps } from "../../sections/Blog/blocks/List";
+import type { Props as ParagraphProps } from "../../sections/Blog/blocks/Paragraph";
+import type { Props as QuoteProps } from "../../sections/Blog/blocks/Quote";
+import type { Props as StepsProps } from "../../sections/Blog/blocks/Steps";
+import type { Props as VideoProps } from "../../sections/Blog/blocks/Video";
 import type { ImageWidget } from "../website/types";
 
 /**
@@ -72,14 +85,26 @@ export interface BlogPost {
 }
 
 /**
- * A block of a post's body, as saved: its v7 type name and its props.
- * BlogPostSection renders it by `__resolveType`.
+ * A block of a post's body, as the `post-*` sections of .deco/index.ts return
+ * it: a descriptor (/next/rendering). Typing `sections` with it makes the site
+ * editor offer the sections in a post, as v7 did. Posts are listed as saved,
+ * so a body usually arrives as stored instead (`{ __resolveType, ...props }`);
+ * sections/Blog/blocks/body.tsx reads both shapes.
  */
-export interface PostBodyBlock {
-	__resolveType: string;
-	// biome-ignore lint/suspicious/noExplicitAny: saved props of any body block type
-	[prop: string]: any;
-}
+export type PostBodyBlock =
+	| { component: "post-heading"; props: HeadingProps }
+	| { component: "post-paragraph"; props: ParagraphProps }
+	| { component: "post-quote"; props: QuoteProps }
+	| { component: "post-code"; props: CodeProps }
+	| { component: "post-list"; props: ListProps }
+	| { component: "post-checklist"; props: ChecklistProps }
+	| { component: "post-steps"; props: StepsProps }
+	| { component: "post-callout"; props: CalloutProps }
+	| { component: "post-image"; props: BlockImageProps }
+	| { component: "post-video"; props: VideoProps }
+	| { component: "post-divider"; props: DividerProps }
+	| { component: "post-call-to-action"; props: CallToActionProps }
+	| { component: "post-faq"; props: FaqProps };
 
 export interface ExtraProps {
 	key: string;
