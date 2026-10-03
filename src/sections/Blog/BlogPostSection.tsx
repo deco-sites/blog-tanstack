@@ -1,5 +1,5 @@
 import { type ReactNode, useId } from "react";
-import type { Author, BlogPost, BlogPostPage } from "@decocms/apps/blog/types";
+import type { Author, BlogPost, BlogPostPage } from "../../vendor/blog/types";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 // Block components

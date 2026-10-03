@@ -23,7 +23,9 @@
     "parity:build": "bun run build && git checkout -- src/server/admin/meta.gen.json",
     "parity:serve": "bash parity/serve.sh",
     "parity:record": "node parity/run.mjs record",
-    "parity:compare": "node parity/run.mjs compare"
+    "parity:compare": "node parity/run.mjs compare",
+    "predev": "deco schema && deco content",
+    "prebuild": "deco schema && deco content && deco check"
   },
   "author": "deco.cx",
   "license": "MIT",

@@ -1,4 +1,4 @@
-import type { Author, BlogPostPage } from "@decocms/apps/blog/types";
+import type { Author, BlogPostPage } from "../../vendor/blog/types";
 import SeoComponent from "@decocms/apps/website/components/Seo";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 

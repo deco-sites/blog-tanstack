@@ -1,4 +1,4 @@
-import type { BlogPost } from "@decocms/apps/blog/types";
+import type { BlogPost } from "../../vendor/blog/types";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 export interface Category {

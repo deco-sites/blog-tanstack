@@ -1,6 +1,6 @@
 import handlePosts from "@decocms/apps/blog/core/handlePosts";
 import { getRecordsByPath } from "@decocms/apps/blog";
-import type { BlogPost, SortBy } from "@decocms/apps/blog/types";
+import type { BlogPost, SortBy } from "../vendor/blog/types";
 
 export interface Props {
   /**

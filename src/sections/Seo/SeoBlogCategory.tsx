@@ -1,6 +1,6 @@
 import SeoComponent from "@decocms/apps/website/components/Seo";
 import { getRecordsByPath } from "@decocms/apps/blog";
-import type { Category } from "@decocms/apps/blog/types";
+import type { Category } from "../../vendor/blog/types";
 
 export interface Props {
   title?: string;

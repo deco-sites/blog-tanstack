@@ -1,5 +1,5 @@
 import { useId } from "react";
-import type { BlogPost } from "@decocms/apps/blog/types";
+import type { BlogPost } from "../../vendor/blog/types";
 import BlogpostList from "../../loaders/BlogpostList";
 
 /**
