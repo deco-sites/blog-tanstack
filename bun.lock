@@ -5,7 +5,7 @@
     "": {
       "name": "blog-tanstack",
       "dependencies": {
-        "@decocms/blocks": "^8.1.0-next.1",
+        "@decocms/blocks": "^8.1.0-next.3",
         "@tanstack/react-router": "1.166.7",
         "@tanstack/react-start": "1.166.8",
         "react": "^19.2.4",
@@ -95,7 +95,7 @@
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 
-    "@decocms/blocks": ["@decocms/blocks@8.1.0-next.1", "", { "dependencies": { "ajv": "^8.20.0", "tsx": "^4.22.5", "zod": "^4.4.3" }, "peerDependencies": { "react": "^19.0.0", "typescript": "^5.0.0" }, "bin": { "deco": "bin/deco.js" } }, "sha512-+noOFp7+43mkdM8A89snR3vySqu2eUEsG8Az55mHUxi4zXOKyV0Yhs1k9b7vXwUce7GG5yNVQxqMnakxwuHjBw=="],
+    "@decocms/blocks": ["@decocms/blocks@8.1.0-next.3", "", { "dependencies": { "ajv": "^8.20.0", "zod": "^4.4.3" }, "peerDependencies": { "react": "^19.0.0", "typescript": "^5.0.0" }, "bin": { "deco": "bin/deco.js" } }, "sha512-DEJvikUUlniQ0Sd0l1+jevobVQqTcOVrrKlaXkaBm8hVIYnS5B3gQKi1hdU/gNRiWWirWEqOpULLcUpexkw5HA=="],
 
     "@emnapi/runtime": ["@emnapi/runtime@1.11.1", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-vgj7R3y3Wgx24IQaGPA/R6YFXLHVMOZ0uVEyIQPaWs+rd1AzfEMXlAC22FYwO1XkKR6NPsq7mUandH8oIRdZFw=="],
 
@@ -684,8 +684,6 @@
     "zod": ["zod@4.6.5", "", {}, "sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q=="],
 
     "@babel/generator/@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
-
-    "@decocms/blocks/tsx": ["tsx@4.23.15", "", { "dependencies": { "esbuild": "~0.28.0" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "bin": { "tsx": "dist/cli.mjs" } }, "sha512-Yiex1Ovn8z2xPpOWckIiysV1SSyRMY9BkLF++q0yKiDxCqRhosKfMg3janKkiLBwZ5c/YryloKwGZcrEmtwxKw=="],
 
     "@jridgewell/gen-mapping/@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
