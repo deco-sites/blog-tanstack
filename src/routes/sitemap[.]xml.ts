@@ -14,7 +14,7 @@ function escapeXml(str: string): string {
 /** Every page with a fixed path (no :param or *), deepest paths first, the home page last. */
 async function sitemapXml(request: Request): Promise<string> {
   const origin = new URL(request.url).origin;
-  const [pages, error] = await client(request).list<StoredPage>("page");
+  const [pages, error] = await (await client(request)).list<StoredPage>("page");
   if (error) throw error;
   const today = new Date().toISOString().split("T")[0];
   const depth = (path: string) => path.split("/").filter(Boolean).length;

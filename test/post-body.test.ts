@@ -40,7 +40,7 @@ describe("post body blocks", () => {
   });
 
   it("renders the descriptor a resolved post-heading block returns", async () => {
-    const c = client(new Request("http://blog.test/"));
+    const c = await client(new Request("http://blog.test/"));
     const resolved = await Promise.all(
       headings("post-heading").map(async (block) => {
         const [value, error] = await c.resolve<PostBodyBlock>(block);

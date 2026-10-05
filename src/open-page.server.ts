@@ -10,7 +10,7 @@ import type { PageSeo } from "./seo/types";
 const NOT_FOUND_PATH = "/404";
 
 export async function openPage<T>(href: string, request: Request) {
-  const c = client(request);
+  const c = await client(request);
   const url = new URL(href, request.url);
   const [pages, pagesError] = await c.list<StoredPage>("page");
   if (pagesError) throw pagesError;
