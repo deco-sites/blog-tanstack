@@ -55,6 +55,8 @@ Viewports: mobile 390x844 (touch, iPhone UA) and desktop 1440x900, both at DPR 1
 
 `approvedDifferences` in `pages.json` lists product-approved changes. Each one is an exact `from` -> `to` substitution applied to the baseline text of the snapshot files whose path contains one of `files`, before comparing. Every substitution that was applied is listed under "Approved differences applied" in `summary.md` (and `approved` in `summary.json`), so an approval never hides a change silently. Today it holds one approval: unknown post slugs (`/this-post-does-not-exist`, `/rss.xml`) and the `/404` page (`/a/b/c`) answer a real 404 status instead of a soft 200, with the same pixels.
 
+`approvedPixelDifferences` lists product-approved pixel regions. Each rule names exact screenshot paths (`files`, matched in full) and `rects` (`[x, y, width, height]` in PNG px); the screenshot passes only when both images have the same size and every differing pixel lies inside a rect. The pixelmatch threshold stays 0. Applied rules are listed under "Approved differences applied" too. Today it holds one rule (BLOG-01, product owner, 2026-10-07): the 1 px column at x=280, rows 0-508, of `flows/mobile-drawer/03-drawer-open.mobile.png`, the drawer's right edge, whose antialiasing flips on some runs.
+
 ## Normalization (applied before writing any snapshot)
 
 - The target origin becomes `{ORIGIN}`, its URL-encoded form becomes `{ORIGIN_ENC}`, and `//host:port` becomes `//{HOST}`. This lets the baseline and a migrated build run on different ports.

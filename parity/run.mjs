@@ -380,7 +380,9 @@ function comparePng(rel, actualFile) {
   const diff = new PNG({ width: w, height: h });
   const n = pixelmatch(A.data, B.data, diff.data, w, h, { threshold: 0, includeAA: true });
   const sizeMismatch = a.width !== b.width || a.height !== b.height;
-  const ok = n === 0 && !sizeMismatch;
+  const approvedPx = n > 0 && !sizeMismatch ? pixelsInApprovedRects(rel, diff) : null;
+  const ok = (n === 0 || approvedPx?.outside === 0) && !sizeMismatch;
+  if (ok && approvedPx) for (const ap of approvedPx.used) approvedHits.push({ rel, pixels: n, rects: ap.rects, note: ap.note });
   if (!ok) {
     const df = path.join(outDir, "diff", rel);
     fs.mkdirSync(path.dirname(df), { recursive: true });
@@ -421,6 +423,32 @@ function applyApprovals(rel, text) {
     approvedHits.push({ rel, from: ap.from, to: ap.to, note: ap.note });
   }
   return text;
+}
+
+/**
+ * `approvedPixelDifferences` in pages.json: product-approved pixel regions of one
+ * screenshot. A rule names the exact screenshot paths (`files`, matched in full,
+ * not as a substring) and `rects` ([x, y, width, height] in PNG px). The
+ * screenshot passes only when both images have the same size and EVERY differing
+ * pixel lies inside one of the rects; any pixel outside still fails. pixelmatch
+ * paints differing pixels pure red in the diff image, which is what is counted.
+ * The threshold is unchanged (0). Every applied rule is listed in the summary.
+ */
+function pixelsInApprovedRects(rel, diff) {
+  const rules = (MANIFEST.approvedPixelDifferences ?? []).filter((r) => r.files.includes(rel));
+  if (!rules.length) return null;
+  let outside = 0;
+  const used = new Set();
+  const { width, height, data } = diff;
+  for (let y = 0; y < height; y++)
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+      if (!(data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 0)) continue;
+      const hit = rules.find((r) => r.rects.some(([rx, ry, rw, rh]) => x >= rx && x < rx + rw && y >= ry && y < ry + rh));
+      if (hit) used.add(hit);
+      else outside++;
+    }
+  return { outside, used: [...used] };
 }
 
 function compareText(rel, actualFile) {
@@ -892,7 +920,7 @@ async function main() {
           `- **${f.rel}** (${f.kind}) ${f.reason ?? ""}${f.diffPixels != null ? ` diffPixels=${f.diffPixels} baseline=${f.baseline} actual=${f.actual}` : ""}${f.diff ? `\n\n\`\`\`\n${f.diff.join("\n")}\n\`\`\`` : ""}`,
       ),
       ...(approvedHits.length
-        ? ["", `## Approved differences applied (${approvedHits.length})`, "", ...approvedHits.map((h) => `- ${h.rel}: \`${h.from}\` -> \`${h.to}\` (${h.note})`)]
+        ? ["", `## Approved differences applied (${approvedHits.length})`, "", ...approvedHits.map((h) => (h.rects ? `- ${h.rel}: ${h.pixels} px inside approved rects ${JSON.stringify(h.rects)} (${h.note})` : `- ${h.rel}: \`${h.from}\` -> \`${h.to}\` (${h.note})`))]
         : []),
       "",
     ].join("\n");

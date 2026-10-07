@@ -54,6 +54,22 @@
       "note": "approved: unknown post slugs and /404 now answer a real 404 instead of a soft 200, same pixels (/rss.xml is resolved as an unknown post slug)"
     }
   ],
+  "approvedPixelDifferences": [
+    {
+      "files": [
+        "flows/mobile-drawer/03-drawer-open.mobile.png"
+      ],
+      "rects": [
+        [
+          280,
+          0,
+          1,
+          509
+        ]
+      ],
+      "note": "product owner, 2026-10-07 (BLOG-01: known antialiasing flake at the drawer edge; narrow mask)"
+    }
+  ],
   "defaultViewports": [
     "mobile",
     "desktop"
