@@ -1,4 +1,4 @@
-import type { BlogPost } from "@decocms/apps/blog/types";
+import type { BlogPost } from "../../vendor/blog/types";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 export interface Props {
@@ -22,32 +22,6 @@ export interface Props {
    * @description Ex: "/topics/engineering". Padrão: raiz
    */
   baseUrl?: string;
-}
-
-export function loader(
-  props: Props,
-  req: Request,
-): Props & {
-  currentPage: number;
-  query: string;
-  origin: string;
-  siteConfig: SiteConfig;
-} {
-  const url = new URL(req.url);
-  const currentPage = Math.max(
-    1,
-    parseInt(url.searchParams.get("page") ?? "1") || 1,
-  );
-  const query = url.searchParams.get("q") ?? "";
-  const baseUrl = url.pathname;
-  return {
-    ...props,
-    baseUrl,
-    currentPage,
-    query,
-    origin: url.origin,
-    siteConfig: getSiteConfig(),
-  };
 }
 
 function formatDate(dateStr: string | undefined): string {
@@ -544,5 +518,3 @@ export default function BlogHome({
   );
 }
 
-export const eager = true;
-export const sync = true;

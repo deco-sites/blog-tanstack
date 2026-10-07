@@ -1,21 +1,8 @@
 import { type ReactNode, useId } from "react";
-import type { Author, BlogPost, BlogPostPage } from "@decocms/apps/blog/types";
+import type { Author, BlogPost, BlogPostPage } from "../../vendor/blog/types";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
-// Block components
-import Heading from "./blocks/Heading";
-import Paragraph from "./blocks/Paragraph";
-import Quote from "./blocks/Quote";
-import Code from "./blocks/Code";
-import List from "./blocks/List";
-import Checklist from "./blocks/Checklist";
-import Steps from "./blocks/Steps";
-import Callout from "./blocks/Callout";
-import BlockImage from "./blocks/BlockImage";
-import Video from "./blocks/Video";
-import Divider from "./blocks/Divider";
-import CallToAction from "./blocks/CallToAction";
-import Faq from "./blocks/Faq";
+import { BODY_COMPONENTS, readBody } from "./blocks/body";
 
 export interface Props {
   /** @description Página do post do blog */
@@ -26,45 +13,6 @@ export interface Props {
    */
   relatedPosts?: BlogPost[] | null;
 }
-
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<Props & { siteConfig: SiteConfig }> {
-  return { ...props, siteConfig: getSiteConfig() };
-}
-
-type AnyComponent = (props: any) => ReactNode;
-
-const BLOCK_COMPONENTS: Record<string, AnyComponent> = {
-  "blog/sections/blocks/Heading.tsx": Heading,
-  "blog/sections/blocks/Paragraph.tsx": Paragraph,
-  "blog/sections/blocks/Quote.tsx": Quote,
-  "blog/sections/blocks/Code.tsx": Code,
-  "blog/sections/blocks/List.tsx": List,
-  "blog/sections/blocks/Checklist.tsx": Checklist,
-  "blog/sections/blocks/Steps.tsx": Steps,
-  "blog/sections/blocks/Callout.tsx": Callout,
-  "blog/sections/blocks/BlockImage.tsx": BlockImage,
-  "blog/sections/blocks/Video.tsx": Video,
-  "blog/sections/blocks/Divider.tsx": Divider,
-  "blog/sections/blocks/CallToAction.tsx": CallToAction,
-  "blog/sections/blocks/Faq.tsx": Faq,
-  // Local section paths
-  "sections/Blog/blocks/Heading.tsx": Heading,
-  "sections/Blog/blocks/Paragraph.tsx": Paragraph,
-  "sections/Blog/blocks/Quote.tsx": Quote,
-  "sections/Blog/blocks/Code.tsx": Code,
-  "sections/Blog/blocks/List.tsx": List,
-  "sections/Blog/blocks/Checklist.tsx": Checklist,
-  "sections/Blog/blocks/Steps.tsx": Steps,
-  "sections/Blog/blocks/Callout.tsx": Callout,
-  "sections/Blog/blocks/BlockImage.tsx": BlockImage,
-  "sections/Blog/blocks/Video.tsx": Video,
-  "sections/Blog/blocks/Divider.tsx": Divider,
-  "sections/Blog/blocks/CallToAction.tsx": CallToAction,
-  "sections/Blog/blocks/Faq.tsx": Faq,
-};
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]+>/g, "");
@@ -89,10 +37,12 @@ interface TocItem {
 
 function extractToc(sections: any[]): TocItem[] {
   const items: TocItem[] = [];
-  for (const s of sections) {
-    const rt = (s?.__resolveType as string) ?? "";
+  for (const section of sections) {
+    const body = readBody(section);
+    if (!body) continue;
+    const { kind, props: s } = body;
     if (
-      rt.includes("Heading") &&
+      kind === "Heading" &&
       (s.level === "2" || s.level === "h2" || s.level === "3" ||
         s.level === "h3")
     ) {
@@ -101,28 +51,27 @@ function extractToc(sections: any[]): TocItem[] {
         text: stripHtml(s.text ?? ""),
         depth: (s.level === "3" || s.level === "h3") ? 3 : 2,
       });
-    } else if ((rt.includes("Steps") || rt.includes("Checklist")) && s.title) {
+    } else if ((kind === "Steps" || kind === "Checklist") && s.title) {
       items.push({ id: toAnchorId(s.title), text: s.title, depth: 3 });
     }
   }
   return items;
 }
 
-function renderBlock(section: any, idx: number): ReactNode {
-  const resolveType = section?.__resolveType as string | undefined;
-  if (!resolveType) return null;
-  const Component = BLOCK_COMPONENTS[resolveType];
-  if (!Component) return null;
-  const { __resolveType: _rt, ...props } = section;
+function renderBlock(section: unknown, idx: number): ReactNode {
+  const body = readBody(section);
+  if (!body) return null;
+  const { kind, props } = body;
+  const Component = BODY_COMPONENTS[kind];
   if (
-    resolveType.includes("Heading") &&
+    kind === "Heading" &&
     (props.level === "2" || props.level === "h2" || props.level === "3" ||
       props.level === "h3")
   ) {
     return <Component key={idx} {...props} id={toAnchorId(props.text ?? "")} />;
   }
   if (
-    (resolveType.includes("Steps") || resolveType.includes("Checklist")) &&
+    (kind === "Steps" || kind === "Checklist") &&
     props.title
   ) {
     return <Component key={idx} {...props} id={toAnchorId(props.title)} />;
@@ -794,5 +743,3 @@ export default function BlogPostSection(
   );
 }
 
-export const eager = true;
-export const sync = true;

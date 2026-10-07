@@ -1,5 +1,5 @@
-﻿import type { BlogPost } from "@decocms/apps/blog/types";
-import type { Author } from "@decocms/apps/blog/types";
+import type { BlogPost } from "../../vendor/blog/types";
+import type { Author } from "../../vendor/blog/types";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 export interface Props {
@@ -8,6 +8,11 @@ export interface Props {
    * @description Conecte ao blog/loaders/BlogpostList.ts com todos os posts
    */
   posts?: BlogPost[];
+  /**
+   * @title Placeholder
+   * @description Não usado: o campo de busca sempre mostra "Buscar artigos..."
+   */
+  placeholder?: string;
 }
 
 function highlight(text: string, query: string): string {
@@ -43,19 +48,6 @@ function formatDate(dateStr: string | undefined): string {
   } catch {
     return dateStr;
   }
-}
-
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<Props & { query: string; origin: string; siteConfig: SiteConfig }> {
-  const url = new URL(req.url);
-  return {
-    ...props,
-    query: url.searchParams.get("q") ?? "",
-    origin: url.origin,
-    siteConfig: getSiteConfig(),
-  };
 }
 
 interface BlogSearchProps extends Props {
@@ -334,5 +326,3 @@ export default function BlogSearch(
   );
 }
 
-export const eager = true;
-export const sync = true;

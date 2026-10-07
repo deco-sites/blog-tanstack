@@ -1,0 +1,4820 @@
+{
+  "major": 1,
+  "blocksMajor": 8,
+  "version": "8.1.0-next.7",
+  "namespace": "site",
+  "site": "blog-tanstack",
+  "manifest": {
+    "blocks": {
+      "sections": {
+        "blog-header": {
+          "$ref": "#/definitions/YmxvZy1oZWFkZXI=",
+          "namespace": "site"
+        },
+        "site/sections/Blog/BlogHeader.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4",
+          "namespace": "site"
+        },
+        "blog-home": {
+          "$ref": "#/definitions/YmxvZy1ob21l",
+          "namespace": "site"
+        },
+        "site/sections/Blog/BlogHome.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==",
+          "namespace": "site"
+        },
+        "blog-authors": {
+          "$ref": "#/definitions/YmxvZy1hdXRob3Jz",
+          "namespace": "site"
+        },
+        "site/sections/Blog/BlogAuthors.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==",
+          "namespace": "site"
+        },
+        "blog-topics": {
+          "$ref": "#/definitions/YmxvZy10b3BpY3M=",
+          "namespace": "site"
+        },
+        "site/sections/Blog/BlogTopics.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4",
+          "namespace": "site"
+        },
+        "blog-search": {
+          "$ref": "#/definitions/YmxvZy1zZWFyY2g=",
+          "namespace": "site"
+        },
+        "site/sections/Blog/BlogSearch.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4",
+          "namespace": "site"
+        },
+        "blog-post-section": {
+          "$ref": "#/definitions/YmxvZy1wb3N0LXNlY3Rpb24=",
+          "namespace": "site"
+        },
+        "site/sections/Blog/BlogPostSection.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
+          "namespace": "site"
+        },
+        "post-heading": {
+          "$ref": "#/definitions/cG9zdC1oZWFkaW5n",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Heading.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=",
+          "namespace": "blog"
+        },
+        "post-paragraph": {
+          "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Paragraph.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==",
+          "namespace": "blog"
+        },
+        "post-quote": {
+          "$ref": "#/definitions/cG9zdC1xdW90ZQ==",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Quote.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4",
+          "namespace": "blog"
+        },
+        "post-code": {
+          "$ref": "#/definitions/cG9zdC1jb2Rl",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Code.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=",
+          "namespace": "blog"
+        },
+        "post-list": {
+          "$ref": "#/definitions/cG9zdC1saXN0",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/List.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=",
+          "namespace": "blog"
+        },
+        "post-checklist": {
+          "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Checklist.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==",
+          "namespace": "blog"
+        },
+        "post-steps": {
+          "$ref": "#/definitions/cG9zdC1zdGVwcw==",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Steps.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4",
+          "namespace": "blog"
+        },
+        "post-callout": {
+          "$ref": "#/definitions/cG9zdC1jYWxsb3V0",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Callout.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=",
+          "namespace": "blog"
+        },
+        "post-image": {
+          "$ref": "#/definitions/cG9zdC1pbWFnZQ==",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/BlockImage.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=",
+          "namespace": "blog"
+        },
+        "post-video": {
+          "$ref": "#/definitions/cG9zdC12aWRlbw==",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Video.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4",
+          "namespace": "blog"
+        },
+        "post-divider": {
+          "$ref": "#/definitions/cG9zdC1kaXZpZGVy",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Divider.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=",
+          "namespace": "blog"
+        },
+        "post-call-to-action": {
+          "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/CallToAction.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==",
+          "namespace": "blog"
+        },
+        "post-faq": {
+          "$ref": "#/definitions/cG9zdC1mYXE=",
+          "namespace": "site"
+        },
+        "blog/sections/blocks/Faq.tsx": {
+          "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==",
+          "namespace": "blog"
+        }
+      },
+      "loaders": {
+        "seo": {
+          "$ref": "#/definitions/c2Vv",
+          "namespace": "site"
+        },
+        "website/sections/Seo/SeoV2.tsx": {
+          "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4",
+          "namespace": "website"
+        },
+        "seo-blog-post": {
+          "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA==",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogPost.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
+          "namespace": "site"
+        },
+        "seo-blog-author": {
+          "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogAuthor.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=",
+          "namespace": "site"
+        },
+        "seo-blog-category": {
+          "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk=",
+          "namespace": "site"
+        },
+        "site/sections/Seo/SeoBlogCategory.tsx": {
+          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==",
+          "namespace": "site"
+        },
+        "blog-post-list": {
+          "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q=",
+          "namespace": "site"
+        },
+        "blog/loaders/BlogpostList.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==",
+          "namespace": "blog"
+        },
+        "blog-post-page": {
+          "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U=",
+          "namespace": "site"
+        },
+        "blog/loaders/BlogPostPage.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw==",
+          "namespace": "blog"
+        },
+        "blog-post": {
+          "$ref": "#/definitions/YmxvZy1wb3N0",
+          "namespace": "site"
+        },
+        "blog/loaders/Blogpost.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz",
+          "namespace": "blog"
+        },
+        "blog-author": {
+          "$ref": "#/definitions/YmxvZy1hdXRob3I=",
+          "namespace": "site"
+        },
+        "blog/loaders/Author.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw==",
+          "namespace": "blog"
+        },
+        "blog-category": {
+          "$ref": "#/definitions/YmxvZy1jYXRlZ29yeQ==",
+          "namespace": "site"
+        },
+        "blog/loaders/Category.ts": {
+          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz",
+          "namespace": "blog"
+        },
+        "lazy": {
+          "$ref": "#/definitions/bGF6eQ==",
+          "namespace": "deco"
+        },
+        "multivariate": {
+          "$ref": "#/definitions/bXVsdGl2YXJpYXRl",
+          "namespace": "deco"
+        },
+        "secret": {
+          "$ref": "#/definitions/c2VjcmV0",
+          "namespace": "deco"
+        },
+        "website/flags/multivariate.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUudHM=",
+          "namespace": "website"
+        },
+        "website/flags/multivariate/section.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvc2VjdGlvbi50cw==",
+          "namespace": "website"
+        },
+        "website/loaders/secret.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw==",
+          "namespace": "website"
+        }
+      },
+      "matchers": {
+        "always": {
+          "$ref": "#/definitions/YWx3YXlz",
+          "namespace": "deco"
+        },
+        "never": {
+          "$ref": "#/definitions/bmV2ZXI=",
+          "namespace": "deco"
+        },
+        "date": {
+          "$ref": "#/definitions/ZGF0ZQ==",
+          "namespace": "deco"
+        },
+        "website/matchers/always.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9tYXRjaGVycy9hbHdheXMudHM=",
+          "namespace": "website"
+        },
+        "website/matchers/never.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9tYXRjaGVycy9uZXZlci50cw==",
+          "namespace": "website"
+        }
+      },
+      "pages": {
+        "page": {
+          "$ref": "#/definitions/cGFnZQ==",
+          "namespace": "site"
+        },
+        "website/pages/Page.tsx": {
+          "$ref": "#/definitions/d2Vic2l0ZS9wYWdlcy9QYWdlLnRzeA==",
+          "namespace": "website"
+        },
+        "$live/pages/LivePage.tsx": {
+          "$ref": "#/definitions/JGxpdmUvcGFnZXMvTGl2ZVBhZ2UudHN4",
+          "namespace": "website"
+        }
+      },
+      "redirects": {
+        "redirect": {
+          "$ref": "#/definitions/cmVkaXJlY3Q=",
+          "namespace": "deco"
+        },
+        "website/loaders/redirect.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3JlZGlyZWN0LnRz",
+          "namespace": "website"
+        }
+      },
+      "content": {
+        "site-settings": {
+          "$ref": "#/definitions/c2l0ZS1zZXR0aW5ncw==",
+          "namespace": "site"
+        },
+        "cms-settings": {
+          "$ref": "#/definitions/Y21zLXNldHRpbmdz",
+          "namespace": "deco"
+        }
+      }
+    }
+  },
+  "schema": {
+    "definitions": {
+      "Resolvable": {
+        "title": "Select from saved",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "__resolveType": {
+            "type": "string"
+          }
+        }
+      },
+      "UmVzb2x2YWJsZQ==": {
+        "title": "Select from saved",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "__resolveType": {
+            "type": "string"
+          }
+        }
+      },
+      "c3JjL3Nlby90eXBlcy50cw==@PageSeo": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          },
+          "canonical": {
+            "type": "string",
+            "nullable": true,
+            "title": "Canonical"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "title": "Image"
+          },
+          "noIndexing": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "NoIndexing"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "description": "Open Graph type, e.g. \"website\" or \"article\".",
+            "title": "Type"
+          }
+        },
+        "description": "A page's SEO, as the page's `seo` block returns it. Every field is optional:\nthe head falls back to the page name and the site defaults (see ./head.ts)."
+      },
+      "cGFnZQ==": {
+        "title": "page",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "sections",
+          "name",
+          "path"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "page"
+            ],
+            "default": "page"
+          },
+          "seo": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3Nlby90eXBlcy50cw==@PageSeo",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/c2Vv"
+              },
+              {
+                "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA=="
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y"
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g="
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk="
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA=="
+              }
+            ],
+            "nullable": true,
+            "title": "SEO"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/__SECTION_REF__"
+            },
+            "title": "Sections"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          }
+        }
+      },
+      "c2l0ZS1zZXR0aW5ncw==": {
+        "title": "site-settings",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site-settings"
+            ],
+            "default": "site-settings"
+          },
+          "seo": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "nullable": true,
+                "title": "Site title"
+              },
+              "description": {
+                "type": "string",
+                "nullable": true,
+                "title": "Site description"
+              },
+              "favicon": {
+                "type": "string",
+                "nullable": true,
+                "title": "Favicon / logo URL"
+              },
+              "noIndexing": {
+                "type": "boolean",
+                "nullable": true,
+                "title": "Disable indexing"
+              },
+              "titleTemplate": {
+                "type": "string",
+                "nullable": true,
+                "title": "Title template",
+                "description": "Kept from v7. Not applied to page titles: v7 never applied it either."
+              },
+              "descriptionTemplate": {
+                "type": "string",
+                "nullable": true,
+                "title": "Description template",
+                "description": "Kept from v7. Not applied to page descriptions: v7 never applied it either."
+              },
+              "type": {
+                "type": "string",
+                "nullable": true,
+                "title": "Open Graph type"
+              }
+            },
+            "description": "The site-wide SEO settings editors fill in.",
+            "nullable": true,
+            "title": "Seo"
+          }
+        }
+      },
+      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "excerpt": {
+            "type": "string",
+            "title": "Excerpt"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "format": "image-uri",
+            "title": "Main image"
+          },
+          "alt": {
+            "type": "string",
+            "nullable": true,
+            "title": "Alt text for the image"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Author"
+            },
+            "nullable": true,
+            "widget": "blog",
+            "collection": "authors",
+            "title": "Authors"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Category"
+            },
+            "nullable": true,
+            "widget": "blog",
+            "collection": "categories",
+            "title": "Categories"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Post Content",
+            "format": "rich-text"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/__SECTION_REF__"
+            },
+            "nullable": true,
+            "title": "Sections",
+            "label": "hidden",
+            "changeable": "true"
+          },
+          "seo": {
+            "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Seo",
+            "nullable": true,
+            "title": "SEO"
+          },
+          "readTime": {
+            "type": "number",
+            "nullable": true,
+            "title": "ReadTime in minutes"
+          },
+          "extraProps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@ExtraProps"
+            },
+            "nullable": true,
+            "title": "Extra Props"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "title",
+          "excerpt",
+          "date",
+          "slug"
+        ]
+      },
+      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Author": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true,
+            "format": "image-uri",
+            "title": "Avatar"
+          },
+          "jobTitle": {
+            "type": "string",
+            "nullable": true,
+            "title": "JobTitle"
+          },
+          "company": {
+            "type": "string",
+            "nullable": true,
+            "title": "Company"
+          }
+        },
+        "required": [
+          "name",
+          "email"
+        ],
+        "titleBy": "name",
+        "widget": "author"
+      },
+      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Category": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ]
+      },
+      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Seo": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "format": "image-uri",
+            "title": "Image"
+          },
+          "canonical": {
+            "type": "string",
+            "nullable": true,
+            "title": "Canonical"
+          },
+          "noIndexing": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "NoIndexing"
+          }
+        }
+      },
+      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@ExtraProps": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "YmxvZy1oZWFkZXI=@Props": {
+        "type": "object",
+        "properties": {
+          "logoUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do Logo"
+          },
+          "logoAlt": {
+            "type": "string",
+            "nullable": true,
+            "title": "Alt do Logo"
+          },
+          "showReadingProgress": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Barra de progresso de leitura"
+          },
+          "navLinks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "title": "Label"
+                },
+                "href": {
+                  "type": "string",
+                  "title": "Href"
+                }
+              },
+              "required": [
+                "label",
+                "href"
+              ]
+            },
+            "nullable": true,
+            "title": "Links de navegação"
+          },
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts para busca em tempo real",
+            "description": "Conecte ao loader blog/loaders/BlogpostList.ts (count >= 100) para habilitar busca instantânea no modal"
+          }
+        },
+        "description": "Blog header — sticky navigation with reading progress bar, hero mode,\nmobile drawer menu, and Cmd+K search command palette.\n\nHero mode: when a [data-blog-hero-image] is present on the page,\nthe header starts transparent (CSS :has() in app.css), then transitions\nto white/blurred on scroll — zero FOUC."
+      },
+      "YmxvZy1oZWFkZXI=": {
+        "title": "blog-header",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy1oZWFkZXI=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-header"
+            ],
+            "default": "blog-header"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "logoUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do Logo"
+          },
+          "logoAlt": {
+            "type": "string",
+            "nullable": true,
+            "title": "Alt do Logo"
+          },
+          "showReadingProgress": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Barra de progresso de leitura"
+          },
+          "navLinks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "title": "Label"
+                },
+                "href": {
+                  "type": "string",
+                  "title": "Href"
+                }
+              },
+              "required": [
+                "label",
+                "href"
+              ]
+            },
+            "nullable": true,
+            "title": "Links de navegação"
+          },
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts para busca em tempo real",
+            "description": "Conecte ao loader blog/loaders/BlogpostList.ts (count >= 100) para habilitar busca instantânea no modal"
+          }
+        },
+        "description": "Blog header — sticky navigation with reading progress bar, hero mode,\nmobile drawer menu, and Cmd+K search command palette.\n\nHero mode: when a [data-blog-hero-image] is present on the page,\nthe header starts transparent (CSS :has() in app.css), then transitions\nto white/blurred on scroll — zero FOUC."
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4": {
+        "title": "site/sections/Blog/BlogHeader.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Blog/BlogHeader.tsx"
+            ],
+            "default": "site/sections/Blog/BlogHeader.tsx"
+          }
+        }
+      },
+      "YmxvZy1ob21l@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts do Blog",
+            "description": "Conecte ao loader blog/loaders/BlogpostList.ts (count >= 50)"
+          },
+          "perPage": {
+            "type": "number",
+            "nullable": true,
+            "title": "Posts por página",
+            "default": 10
+          },
+          "sectionTitle": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da seção (ex: \"Engenharia\", \"Design\")",
+            "description": "Exibido quando filtrando por categoria/autor"
+          },
+          "baseUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL base para paginação",
+            "description": "Ex: \"/topics/engineering\". Padrão: raiz"
+          }
+        }
+      },
+      "YmxvZy1ob21l": {
+        "title": "blog-home",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy1ob21l@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-home"
+            ],
+            "default": "blog-home"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts do Blog",
+            "description": "Conecte ao loader blog/loaders/BlogpostList.ts (count >= 50)"
+          },
+          "perPage": {
+            "type": "number",
+            "nullable": true,
+            "title": "Posts por página",
+            "default": 10
+          },
+          "sectionTitle": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da seção (ex: \"Engenharia\", \"Design\")",
+            "description": "Exibido quando filtrando por categoria/autor"
+          },
+          "baseUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL base para paginação",
+            "description": "Ex: \"/topics/engineering\". Padrão: raiz"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==": {
+        "title": "site/sections/Blog/BlogHome.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Blog/BlogHome.tsx"
+            ],
+            "default": "site/sections/Blog/BlogHome.tsx"
+          }
+        }
+      },
+      "YmxvZy1hdXRob3Jz@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts do blog",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts para extrair os autores únicos"
+          },
+          "heading": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da página"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Descrição"
+          }
+        }
+      },
+      "YmxvZy1hdXRob3Jz": {
+        "title": "blog-authors",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy1hdXRob3Jz@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-authors"
+            ],
+            "default": "blog-authors"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts do blog",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts para extrair os autores únicos"
+          },
+          "heading": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da página"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Descrição"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==": {
+        "title": "site/sections/Blog/BlogAuthors.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Blog/BlogAuthors.tsx"
+            ],
+            "default": "site/sections/Blog/BlogAuthors.tsx"
+          }
+        }
+      },
+      "YmxvZy10b3BpY3M=@Props": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Description"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Image"
+                }
+              },
+              "required": [
+                "name",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Categorias / Tópicos",
+            "description": "Conecte ao loader blog/loaders/GetCategories.ts"
+          },
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts do blog",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts para exibir a contagem de posts por tópico"
+          },
+          "heading": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da página"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Descrição"
+          }
+        }
+      },
+      "YmxvZy10b3BpY3M=": {
+        "title": "blog-topics",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy10b3BpY3M=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-topics"
+            ],
+            "default": "blog-topics"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name"
+                },
+                "slug": {
+                  "type": "string",
+                  "title": "Slug"
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Description"
+                },
+                "image": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Image"
+                }
+              },
+              "required": [
+                "name",
+                "slug"
+              ]
+            },
+            "nullable": true,
+            "title": "Categorias / Tópicos",
+            "description": "Conecte ao loader blog/loaders/GetCategories.ts"
+          },
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts do blog",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts para exibir a contagem de posts por tópico"
+          },
+          "heading": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da página"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Descrição"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4": {
+        "title": "site/sections/Blog/BlogTopics.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Blog/BlogTopics.tsx"
+            ],
+            "default": "site/sections/Blog/BlogTopics.tsx"
+          }
+        }
+      },
+      "YmxvZy1zZWFyY2g=@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts para busca",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts com todos os posts"
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true,
+            "title": "Placeholder",
+            "description": "Não usado: o campo de busca sempre mostra \"Buscar artigos...\""
+          }
+        }
+      },
+      "YmxvZy1zZWFyY2g=": {
+        "title": "blog-search",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy1zZWFyY2g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-search"
+            ],
+            "default": "blog-search"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts para busca",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts com todos os posts"
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true,
+            "title": "Placeholder",
+            "description": "Não usado: o campo de busca sempre mostra \"Buscar artigos...\""
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4": {
+        "title": "site/sections/Blog/BlogSearch.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Blog/BlogSearch.tsx"
+            ],
+            "default": "site/sections/Blog/BlogSearch.tsx"
+          }
+        }
+      },
+      "c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPostPage": {
+        "type": "object",
+        "properties": {
+          "post": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz"
+              }
+            ],
+            "title": "Post"
+          },
+          "seo": {
+            "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Seo",
+            "nullable": true,
+            "title": "Seo"
+          }
+        },
+        "required": [
+          "post"
+        ]
+      },
+      "YmxvZy1wb3N0LXNlY3Rpb24=@Props": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPostPage",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw=="
+              }
+            ],
+            "nullable": true,
+            "description": "Página do post do blog",
+            "title": "Page"
+          },
+          "relatedPosts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts relacionados",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts"
+          }
+        }
+      },
+      "YmxvZy1wb3N0LXNlY3Rpb24=": {
+        "title": "blog-post-section",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy1wb3N0LXNlY3Rpb24=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-post-section"
+            ],
+            "default": "blog-post-section"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPostPage",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw=="
+              }
+            ],
+            "nullable": true,
+            "description": "Página do post do blog",
+            "title": "Page"
+          },
+          "relatedPosts": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
+                },
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+              }
+            ],
+            "nullable": true,
+            "title": "Posts relacionados",
+            "description": "Conecte ao blog/loaders/BlogpostList.ts"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=": {
+        "title": "site/sections/Blog/BlogPostSection.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Blog/BlogPostSection.tsx"
+            ],
+            "default": "site/sections/Blog/BlogPostSection.tsx"
+          }
+        }
+      },
+      "c2Vv": {
+        "title": "seo",
+        "description": "A page's SEO as typed in the form (\"website/sections/Seo/SeoV2.tsx\" in v7 content).",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "seo"
+            ],
+            "default": "seo"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title"
+          },
+          "titleTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title template",
+            "description": "Kept from v7. Not applied: the v7 site never applied it."
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          },
+          "descriptionTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description template",
+            "description": "Kept from v7. Not applied: the v7 site never applied it."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "website",
+              "article"
+            ],
+            "nullable": true,
+            "title": "Open Graph type"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "description": "Recommended: 1200 x 630 px",
+            "title": "Image"
+          },
+          "canonical": {
+            "type": "string",
+            "nullable": true,
+            "title": "Canonical URL"
+          },
+          "noIndexing": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Disable indexing"
+          },
+          "noIndex": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "No index (legacy field)",
+            "description": "Kept from v7, where it had no effect; use \"Disable indexing\"."
+          }
+        }
+      },
+      "d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4": {
+        "title": "website/sections/Seo/SeoV2.tsx",
+        "description": "A page's SEO as typed in the form (\"website/sections/Seo/SeoV2.tsx\" in v7 content).",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/sections/Seo/SeoV2.tsx"
+            ],
+            "default": "website/sections/Seo/SeoV2.tsx"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title"
+          },
+          "titleTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Title template",
+            "description": "Kept from v7. Not applied: the v7 site never applied it."
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description"
+          },
+          "descriptionTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description template",
+            "description": "Kept from v7. Not applied: the v7 site never applied it."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "website",
+              "article"
+            ],
+            "nullable": true,
+            "title": "Open Graph type"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "description": "Recommended: 1200 x 630 px",
+            "title": "Image"
+          },
+          "canonical": {
+            "type": "string",
+            "nullable": true,
+            "title": "Canonical URL"
+          },
+          "noIndexing": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Disable indexing"
+          },
+          "noIndex": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "No index (legacy field)",
+            "description": "Kept from v7, where it had no effect; use \"Disable indexing\"."
+          }
+        }
+      },
+      "c2VvLWJsb2ctcG9zdA==": {
+        "title": "seo-blog-post",
+        "description": "The post's own SEO fields, with the page URL as canonical when the post sets none.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "seo-blog-post"
+            ],
+            "default": "seo-blog-post"
+          },
+          "jsonLD": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPostPage",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw=="
+              }
+            ],
+            "nullable": true,
+            "description": "The post page, from the BlogPostPage loader",
+            "title": "JsonLD"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4": {
+        "title": "site/sections/Seo/SeoBlogPost.tsx",
+        "description": "The post's own SEO fields, with the page URL as canonical when the post sets none.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Seo/SeoBlogPost.tsx"
+            ],
+            "default": "site/sections/Seo/SeoBlogPost.tsx"
+          },
+          "jsonLD": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPostPage",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw=="
+              }
+            ],
+            "nullable": true,
+            "description": "The post page, from the BlogPostPage loader",
+            "title": "JsonLD"
+          }
+        }
+      },
+      "c2VvLWJsb2ctYXV0aG9y": {
+        "title": "seo-blog-author",
+        "description": "\"Posts de <author> — Blog\", for the author whose email ends the URL.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "seo-blog-author"
+            ],
+            "default": "seo-blog-author"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the title comes from the author in the URL",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the description comes from the author in the URL",
+            "title": "Description"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=": {
+        "title": "site/sections/Seo/SeoBlogAuthor.tsx",
+        "description": "\"Posts de <author> — Blog\", for the author whose email ends the URL.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Seo/SeoBlogAuthor.tsx"
+            ],
+            "default": "site/sections/Seo/SeoBlogAuthor.tsx"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the title comes from the author in the URL",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the description comes from the author in the URL",
+            "title": "Description"
+          }
+        }
+      },
+      "c2VvLWJsb2ctY2F0ZWdvcnk=": {
+        "title": "seo-blog-category",
+        "description": "\"<topic> — Blog\", for the topic whose slug ends the URL.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "seo-blog-category"
+            ],
+            "default": "seo-blog-category"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the title comes from the topic in the URL",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the description comes from the topic in the URL",
+            "title": "Description"
+          }
+        }
+      },
+      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA==": {
+        "title": "site/sections/Seo/SeoBlogCategory.tsx",
+        "description": "\"<topic> — Blog\", for the topic whose slug ends the URL.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "site/sections/Seo/SeoBlogCategory.tsx"
+            ],
+            "default": "site/sections/Seo/SeoBlogCategory.tsx"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the title comes from the topic in the URL",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "description": "Not used: the description comes from the topic in the URL",
+            "title": "Description"
+          }
+        }
+      },
+      "YmxvZy1wb3N0LWxpc3Q=": {
+        "title": "blog-post-list",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-post-list"
+            ],
+            "default": "blog-post-list"
+          },
+          "count": {
+            "type": "number",
+            "nullable": true,
+            "title": "Posts por página (ou total)",
+            "default": 50
+          },
+          "sortBy": {
+            "type": "string",
+            "enum": [
+              "date_desc",
+              "date_asc",
+              "title_asc",
+              "title_desc"
+            ],
+            "nullable": true,
+            "title": "Ordenação",
+            "default": "date_desc"
+          },
+          "filterBy": {
+            "type": "string",
+            "enum": [
+              "category",
+              "author"
+            ],
+            "nullable": true,
+            "title": "Filtrar por",
+            "description": "\"category\" filtra pelo slug da categoria; \"author\" filtra pelo email do autor"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "title": "Slug / Email para filtro",
+            "description": "Slug da categoria ou email do autor, dependendo de filterBy"
+          },
+          "param": {
+            "type": "string",
+            "nullable": true,
+            "title": "Parâmetro da rota",
+            "description": "Sem slug, filtra pelo valor deste parâmetro da URL da página (ex.: \"slug\" em /topics/:slug, \"email\" em /authors/:email)"
+          }
+        }
+      },
+      "YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==": {
+        "title": "blog/loaders/BlogpostList.ts",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/loaders/BlogpostList.ts"
+            ],
+            "default": "blog/loaders/BlogpostList.ts"
+          },
+          "count": {
+            "type": "number",
+            "nullable": true,
+            "title": "Posts por página (ou total)",
+            "default": 50
+          },
+          "sortBy": {
+            "type": "string",
+            "enum": [
+              "date_desc",
+              "date_asc",
+              "title_asc",
+              "title_desc"
+            ],
+            "nullable": true,
+            "title": "Ordenação",
+            "default": "date_desc"
+          },
+          "filterBy": {
+            "type": "string",
+            "enum": [
+              "category",
+              "author"
+            ],
+            "nullable": true,
+            "title": "Filtrar por",
+            "description": "\"category\" filtra pelo slug da categoria; \"author\" filtra pelo email do autor"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "title": "Slug / Email para filtro",
+            "description": "Slug da categoria ou email do autor, dependendo de filterBy"
+          },
+          "param": {
+            "type": "string",
+            "nullable": true,
+            "title": "Parâmetro da rota",
+            "description": "Sem slug, filtra pelo valor deste parâmetro da URL da página (ex.: \"slug\" em /topics/:slug, \"email\" em /authors/:email)"
+          }
+        }
+      },
+      "YmxvZy1wb3N0LXBhZ2U=": {
+        "title": "BlogPostPage",
+        "description": "Fetches a specific blog post page by its slug.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-post-page"
+            ],
+            "default": "blog-post-page"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "description": "The post's slug. Without it, the page's route parameter named by \"param\".",
+            "title": "Slug"
+          },
+          "param": {
+            "type": "string",
+            "nullable": true,
+            "title": "Route parameter",
+            "description": "Used when \"slug\" is empty: the route parameter that holds the slug, e.g. \"slug\" in /:slug",
+            "default": "slug"
+          }
+        }
+      },
+      "YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw==": {
+        "title": "BlogPostPage",
+        "description": "Fetches a specific blog post page by its slug.",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/loaders/BlogPostPage.ts"
+            ],
+            "default": "blog/loaders/BlogPostPage.ts"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "description": "The post's slug. Without it, the page's route parameter named by \"param\".",
+            "title": "Slug"
+          },
+          "param": {
+            "type": "string",
+            "nullable": true,
+            "title": "Route parameter",
+            "description": "Used when \"slug\" is empty: the route parameter that holds the slug, e.g. \"slug\" in /:slug",
+            "default": "slug"
+          }
+        }
+      },
+      "YmxvZy1wb3N0": {
+        "title": "blog-post",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "post"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-post"
+            ],
+            "default": "blog-post"
+          },
+          "post": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz"
+              }
+            ],
+            "title": "Post"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Name",
+            "description": "The entry's name, as v7 saved it; the entry's id is taken from it."
+          }
+        }
+      },
+      "YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz": {
+        "title": "blog/loaders/Blogpost.ts",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "post"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/loaders/Blogpost.ts"
+            ],
+            "default": "blog/loaders/Blogpost.ts"
+          },
+          "post": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1wb3N0"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz"
+              }
+            ],
+            "title": "Post"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Name",
+            "description": "The entry's name, as v7 saved it; the entry's id is taken from it."
+          }
+        }
+      },
+      "YmxvZy1hdXRob3I=": {
+        "title": "blog-author",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "author"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-author"
+            ],
+            "default": "blog-author"
+          },
+          "author": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Author",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1hdXRob3I="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw=="
+              }
+            ],
+            "title": "Author"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Name",
+            "description": "The entry's name, as v7 saved it; the entry's id is taken from it."
+          }
+        }
+      },
+      "YmxvZy9sb2FkZXJzL0F1dGhvci50cw==": {
+        "title": "blog/loaders/Author.ts",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "author"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/loaders/Author.ts"
+            ],
+            "default": "blog/loaders/Author.ts"
+          },
+          "author": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Author",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1hdXRob3I="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw=="
+              }
+            ],
+            "title": "Author"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Name",
+            "description": "The entry's name, as v7 saved it; the entry's id is taken from it."
+          }
+        }
+      },
+      "YmxvZy1jYXRlZ29yeQ==": {
+        "title": "blog-category",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "category"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog-category"
+            ],
+            "default": "blog-category"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Category",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1jYXRlZ29yeQ=="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz"
+              }
+            ],
+            "title": "Category"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Name",
+            "description": "The entry's name, as v7 saved it; the entry's id is taken from it."
+          }
+        }
+      },
+      "YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz": {
+        "title": "blog/loaders/Category.ts",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "category"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/loaders/Category.ts"
+            ],
+            "default": "blog/loaders/Category.ts"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Category",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/YmxvZy1jYXRlZ29yeQ=="
+              },
+              {
+                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz"
+              }
+            ],
+            "title": "Category"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Name",
+            "description": "The entry's name, as v7 saved it; the entry's id is taken from it."
+          }
+        }
+      },
+      "cG9zdC1oZWFkaW5n@Props": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "h2",
+              "h3",
+              "h4",
+              "2",
+              "3",
+              "4"
+            ],
+            "nullable": true,
+            "title": "Nível do título"
+          },
+          "text": {
+            "type": "string",
+            "title": "Texto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "description": "HTML id for TOC anchoring — injected by BlogPostSection",
+            "title": "Id"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "cG9zdC1oZWFkaW5n": {
+        "title": "post-heading",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1oZWFkaW5n@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-heading"
+            ],
+            "default": "post-heading"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "h2",
+              "h3",
+              "h4",
+              "2",
+              "3",
+              "4"
+            ],
+            "nullable": true,
+            "title": "Nível do título"
+          },
+          "text": {
+            "type": "string",
+            "title": "Texto"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "description": "HTML id for TOC anchoring — injected by BlogPostSection",
+            "title": "Id"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=": {
+        "title": "blog/sections/blocks/Heading.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Heading.tsx"
+            ],
+            "default": "blog/sections/blocks/Heading.tsx"
+          }
+        }
+      },
+      "cG9zdC1wYXJhZ3JhcGg=@Props": {
+        "type": "object",
+        "properties": {
+          "html": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
+          }
+        }
+      },
+      "cG9zdC1wYXJhZ3JhcGg=": {
+        "title": "post-paragraph",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-paragraph"
+            ],
+            "default": "post-paragraph"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "html": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==": {
+        "title": "blog/sections/blocks/Paragraph.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Paragraph.tsx"
+            ],
+            "default": "blog/sections/blocks/Paragraph.tsx"
+          }
+        }
+      },
+      "cG9zdC1xdW90ZQ==@Props": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "string",
+            "nullable": true,
+            "title": "Citação"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true,
+            "title": "Citação (alias)"
+          },
+          "attribution": {
+            "type": "string",
+            "nullable": true,
+            "title": "Autor da citação"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da fonte"
+          }
+        }
+      },
+      "cG9zdC1xdW90ZQ==": {
+        "title": "post-quote",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1xdW90ZQ==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-quote"
+            ],
+            "default": "post-quote"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "string",
+            "nullable": true,
+            "title": "Citação"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true,
+            "title": "Citação (alias)"
+          },
+          "attribution": {
+            "type": "string",
+            "nullable": true,
+            "title": "Autor da citação"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da fonte"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4": {
+        "title": "blog/sections/blocks/Quote.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Quote.tsx"
+            ],
+            "default": "blog/sections/blocks/Quote.tsx"
+          }
+        }
+      },
+      "cG9zdC1jb2Rl@Props": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Código"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true,
+            "title": "Linguagem (ex: typescript, bash, json)"
+          },
+          "filename": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / nome do arquivo"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "cG9zdC1jb2Rl": {
+        "title": "post-code",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jb2Rl@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-code"
+            ],
+            "default": "post-code"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Código"
+          },
+          "language": {
+            "type": "string",
+            "nullable": true,
+            "title": "Linguagem (ex: typescript, bash, json)"
+          },
+          "filename": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / nome do arquivo"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=": {
+        "title": "blog/sections/blocks/Code.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Code.tsx"
+            ],
+            "default": "blog/sections/blocks/Code.tsx"
+          }
+        }
+      },
+      "cG9zdC1saXN0@Props": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Tipo de lista"
+          },
+          "style": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Estilo (alias para type)"
+          },
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "title": "Texto do item (HTML permitido)"
+                    },
+                    "children": {
+                      "type": "object",
+                      "nullable": true,
+                      "title": "Sub-items"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            ],
+            "title": "Itens",
+            "description": "Array de objetos OR string separada por \\n"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "cG9zdC1saXN0": {
+        "title": "post-list",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1saXN0@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-list"
+            ],
+            "default": "post-list"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Tipo de lista"
+          },
+          "style": {
+            "type": "string",
+            "enum": [
+              "unordered",
+              "ordered"
+            ],
+            "nullable": true,
+            "title": "Estilo (alias para type)"
+          },
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "title": "Texto do item (HTML permitido)"
+                    },
+                    "children": {
+                      "type": "object",
+                      "nullable": true,
+                      "title": "Sub-items"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            ],
+            "title": "Itens",
+            "description": "Array de objetos OR string separada por \\n"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=": {
+        "title": "blog/sections/blocks/List.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/List.tsx"
+            ],
+            "default": "blog/sections/blocks/List.tsx"
+          }
+        }
+      },
+      "cG9zdC1jaGVja2xpc3Q=@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da lista (usado no TOC)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Texto"
+                },
+                "checked": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "title": "Marcado como completo"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            },
+            "title": "Itens"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "cG9zdC1jaGVja2xpc3Q=": {
+        "title": "post-checklist",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-checklist"
+            ],
+            "default": "post-checklist"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da lista (usado no TOC)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Texto"
+                },
+                "checked": {
+                  "type": "boolean",
+                  "nullable": true,
+                  "title": "Marcado como completo"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            },
+            "title": "Itens"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==": {
+        "title": "blog/sections/blocks/Checklist.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Checklist.tsx"
+            ],
+            "default": "blog/sections/blocks/Checklist.tsx"
+          }
+        }
+      },
+      "cG9zdC1zdGVwcw==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título (usado no TOC)"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Título do passo"
+                },
+                "content": {
+                  "type": "string",
+                  "title": "Conteúdo HTML"
+                }
+              },
+              "required": [
+                "title",
+                "content"
+              ]
+            },
+            "title": "Passos"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "steps"
+        ]
+      },
+      "cG9zdC1zdGVwcw==": {
+        "title": "post-steps",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1zdGVwcw==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-steps"
+            ],
+            "default": "post-steps"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título (usado no TOC)"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Título do passo"
+                },
+                "content": {
+                  "type": "string",
+                  "title": "Conteúdo HTML"
+                }
+              },
+              "required": [
+                "title",
+                "content"
+              ]
+            },
+            "title": "Passos"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Id"
+          }
+        },
+        "required": [
+          "steps"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4": {
+        "title": "blog/sections/blocks/Steps.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Steps.tsx"
+            ],
+            "default": "blog/sections/blocks/Steps.tsx"
+          }
+        }
+      },
+      "cG9zdC1jYWxsb3V0@Props": {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "success",
+              "summary",
+              "definition"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título opcional"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
+          }
+        }
+      },
+      "cG9zdC1jYWxsb3V0": {
+        "title": "post-callout",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsb3V0@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-callout"
+            ],
+            "default": "post-callout"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "variant": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "success",
+              "summary",
+              "definition"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título opcional"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true,
+            "title": "Conteúdo HTML (alias)"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=": {
+        "title": "blog/sections/blocks/Callout.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Callout.tsx"
+            ],
+            "default": "blog/sections/blocks/Callout.tsx"
+          }
+        }
+      },
+      "cG9zdC1pbWFnZQ==@Props": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem (alias)"
+          },
+          "alt": {
+            "type": "string",
+            "title": "Texto alternativo"
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true,
+            "title": "Legenda"
+          },
+          "maxWidth": {
+            "type": "string",
+            "enum": [
+              "full",
+              "large",
+              "medium",
+              "small"
+            ],
+            "nullable": true,
+            "title": "Largura máxima"
+          }
+        },
+        "required": [
+          "alt"
+        ]
+      },
+      "cG9zdC1pbWFnZQ==": {
+        "title": "post-image",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1pbWFnZQ==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-image"
+            ],
+            "default": "post-image"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL da imagem (alias)"
+          },
+          "alt": {
+            "type": "string",
+            "title": "Texto alternativo"
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true,
+            "title": "Legenda"
+          },
+          "maxWidth": {
+            "type": "string",
+            "enum": [
+              "full",
+              "large",
+              "medium",
+              "small"
+            ],
+            "nullable": true,
+            "title": "Largura máxima"
+          }
+        },
+        "required": [
+          "alt"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=": {
+        "title": "blog/sections/blocks/BlockImage.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/BlockImage.tsx"
+            ],
+            "default": "blog/sections/blocks/BlockImage.tsx"
+          }
+        }
+      },
+      "cG9zdC12aWRlbw==@Props": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL do vídeo (YouTube, Vimeo ou arquivo direto)"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / legenda"
+          },
+          "aspectRatio": {
+            "type": "string",
+            "enum": [
+              "16:9",
+              "4:3",
+              "1:1"
+            ],
+            "nullable": true,
+            "title": "Aspect ratio"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "cG9zdC12aWRlbw==": {
+        "title": "post-video",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC12aWRlbw==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-video"
+            ],
+            "default": "post-video"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL do vídeo (YouTube, Vimeo ou arquivo direto)"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título / legenda"
+          },
+          "aspectRatio": {
+            "type": "string",
+            "enum": [
+              "16:9",
+              "4:3",
+              "1:1"
+            ],
+            "nullable": true,
+            "title": "Aspect ratio"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4": {
+        "title": "blog/sections/blocks/Video.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Video.tsx"
+            ],
+            "default": "blog/sections/blocks/Video.tsx"
+          }
+        }
+      },
+      "cG9zdC1kaXZpZGVy@Props": {
+        "type": "object",
+        "properties": {
+          "style": {
+            "type": "string",
+            "enum": [
+              "line",
+              "dots",
+              "ornament"
+            ],
+            "nullable": true,
+            "title": "Estilo"
+          }
+        }
+      },
+      "cG9zdC1kaXZpZGVy": {
+        "title": "post-divider",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1kaXZpZGVy@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-divider"
+            ],
+            "default": "post-divider"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props": {
+        "type": "object",
+        "properties": {
+          "style": {
+            "type": "string",
+            "enum": [
+              "line",
+              "dots",
+              "ornament"
+            ],
+            "nullable": true,
+            "title": "Estilo"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=": {
+        "title": "blog/sections/blocks/Divider.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Divider.tsx"
+            ],
+            "default": "blog/sections/blocks/Divider.tsx"
+          }
+        }
+      },
+      "cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Título"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Subtítulo / descrição"
+          },
+          "primaryLabel": {
+            "type": "string",
+            "title": "Texto do botão principal"
+          },
+          "primaryHref": {
+            "type": "string",
+            "title": "URL do botão principal"
+          },
+          "secondaryLabel": {
+            "type": "string",
+            "nullable": true,
+            "title": "Texto do botão secundário"
+          },
+          "secondaryHref": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do botão secundário"
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "default",
+              "minimal",
+              "highlight"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          }
+        },
+        "required": [
+          "title",
+          "primaryLabel",
+          "primaryHref"
+        ]
+      },
+      "cG9zdC1jYWxsLXRvLWFjdGlvbg==": {
+        "title": "post-call-to-action",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-call-to-action"
+            ],
+            "default": "post-call-to-action"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Título"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Subtítulo / descrição"
+          },
+          "primaryLabel": {
+            "type": "string",
+            "title": "Texto do botão principal"
+          },
+          "primaryHref": {
+            "type": "string",
+            "title": "URL do botão principal"
+          },
+          "secondaryLabel": {
+            "type": "string",
+            "nullable": true,
+            "title": "Texto do botão secundário"
+          },
+          "secondaryHref": {
+            "type": "string",
+            "nullable": true,
+            "title": "URL do botão secundário"
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "default",
+              "minimal",
+              "highlight"
+            ],
+            "nullable": true,
+            "title": "Variante"
+          }
+        },
+        "required": [
+          "title",
+          "primaryLabel",
+          "primaryHref"
+        ]
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==": {
+        "title": "blog/sections/blocks/CallToAction.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/CallToAction.tsx"
+            ],
+            "default": "blog/sections/blocks/CallToAction.tsx"
+          }
+        }
+      },
+      "cG9zdC1mYXE=@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da seção (opcional)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "title": "Pergunta"
+                },
+                "answer": {
+                  "type": "string",
+                  "title": "Resposta (HTML)"
+                }
+              },
+              "required": [
+                "question",
+                "answer"
+              ]
+            },
+            "nullable": true,
+            "title": "Itens de perguntas e respostas"
+          }
+        }
+      },
+      "cG9zdC1mYXE=": {
+        "title": "post-faq",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/cG9zdC1mYXE=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "post-faq"
+            ],
+            "default": "post-faq"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            "title": "Título da seção (opcional)"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "title": "Pergunta"
+                },
+                "answer": {
+                  "type": "string",
+                  "title": "Resposta (HTML)"
+                }
+              },
+              "required": [
+                "question",
+                "answer"
+              ]
+            },
+            "nullable": true,
+            "title": "Itens de perguntas e respostas"
+          }
+        }
+      },
+      "YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==": {
+        "title": "blog/sections/blocks/Faq.tsx",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "blog/sections/blocks/Faq.tsx"
+            ],
+            "default": "blog/sections/blocks/Faq.tsx"
+          }
+        }
+      },
+      "bGF6eQ==": {
+        "title": "lazy",
+        "description": "Resolves its value only when the function calls it",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "value"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "lazy"
+            ],
+            "default": "lazy"
+          },
+          "value": {
+            "title": "Value"
+          }
+        }
+      },
+      "bXVsdGl2YXJpYXRl": {
+        "title": "multivariate",
+        "description": "Picks the first variant whose rule is true",
+        "icon": "arrow-split",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "variants"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "multivariate"
+            ],
+            "default": "multivariate"
+          },
+          "variants": {
+            "type": "array",
+            "title": "Variants",
+            "items": {
+              "type": "object",
+              "required": [
+                "rule",
+                "value"
+              ],
+              "properties": {
+                "rule": {
+                  "title": "Rule",
+                  "$ref": "#/root/matchers"
+                },
+                "value": {
+                  "type": "object",
+                  "required": [
+                    "__resolveType",
+                    "value"
+                  ],
+                  "properties": {
+                    "__resolveType": {
+                      "type": "string",
+                      "enum": [
+                        "lazy"
+                      ],
+                      "default": "lazy"
+                    },
+                    "value": {
+                      "title": "Value"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "experiment": {
+            "type": "string",
+            "title": "Experiment",
+            "description": "The stable ID of an A/B test"
+          }
+        }
+      },
+      "YWx3YXlz": {
+        "title": "always",
+        "description": "Always true: the fallback variant",
+        "icon": "eye",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "always"
+            ],
+            "default": "always"
+          }
+        }
+      },
+      "bmV2ZXI=": {
+        "title": "never",
+        "description": "Always false: hides a block",
+        "icon": "eye-off",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "never"
+            ],
+            "default": "never"
+          }
+        }
+      },
+      "ZGF0ZQ==": {
+        "title": "date",
+        "description": "True from start until end",
+        "icon": "calendar-event",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "date"
+            ],
+            "default": "date"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "title": "End"
+          }
+        }
+      },
+      "cmVkaXJlY3Q=": {
+        "title": "redirect",
+        "description": "Sends one URL to another",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "from",
+          "to",
+          "permanent"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "redirect"
+            ],
+            "default": "redirect"
+          },
+          "from": {
+            "type": "string",
+            "title": "From"
+          },
+          "to": {
+            "type": "string",
+            "title": "To"
+          },
+          "permanent": {
+            "type": "boolean",
+            "title": "Permanent",
+            "description": "301 when true, 302 otherwise"
+          },
+          "status": {
+            "type": "number",
+            "enum": [
+              301,
+              302,
+              307,
+              308
+            ],
+            "title": "Status"
+          },
+          "discardQueryParameters": {
+            "type": "boolean",
+            "title": "Discard query parameters"
+          }
+        }
+      },
+      "Y21zLXNldHRpbmdz": {
+        "title": "cms-settings",
+        "description": "Preview hosts, telemetry and analytics: the saved block named CMS",
+        "icon": "settings",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "cms-settings"
+            ],
+            "default": "cms-settings"
+          },
+          "preview": {
+            "type": "object",
+            "title": "Preview",
+            "properties": {
+              "hosts": {
+                "type": "array",
+                "title": "Hosts",
+                "description": "Host patterns drafts may be previewed on, such as staging.example.com or *.example.com; empty turns previews off. Without it, every host (or the hosts code allows).",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "telemetry": {
+            "type": "object",
+            "title": "Telemetry",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "title": "Enabled",
+                "default": true
+              },
+              "metrics": {
+                "type": "boolean",
+                "title": "Metrics",
+                "default": true
+              },
+              "errorSampleRate": {
+                "type": "number",
+                "title": "Error sample rate",
+                "minimum": 0,
+                "maximum": 1,
+                "default": 0.05
+              },
+              "traceSampleRate": {
+                "type": "number",
+                "title": "Trace sample rate",
+                "minimum": 0,
+                "maximum": 1,
+                "default": 0
+              }
+            }
+          },
+          "analytics": {
+            "type": "object",
+            "title": "Analytics",
+            "properties": {
+              "collector": {
+                "type": "string",
+                "title": "Collector"
+              },
+              "enabled": {
+                "type": "boolean",
+                "title": "Enabled",
+                "default": true
+              }
+            }
+          }
+        }
+      },
+      "c2VjcmV0": {
+        "title": "secret",
+        "description": "An encrypted value, decrypted on the server",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "ciphertext"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "secret"
+            ],
+            "default": "secret"
+          },
+          "ciphertext": {
+            "type": "string",
+            "title": "Ciphertext",
+            "writeOnly": true
+          }
+        }
+      },
+      "d2Vic2l0ZS9wYWdlcy9QYWdlLnRzeA==": {
+        "title": "website/pages/Page.tsx",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "sections",
+          "name",
+          "path"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/pages/Page.tsx"
+            ],
+            "default": "website/pages/Page.tsx"
+          },
+          "seo": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3Nlby90eXBlcy50cw==@PageSeo",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/c2Vv"
+              },
+              {
+                "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA=="
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y"
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g="
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk="
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA=="
+              }
+            ],
+            "nullable": true,
+            "title": "SEO"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/__SECTION_REF__"
+            },
+            "title": "Sections"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          }
+        }
+      },
+      "JGxpdmUvcGFnZXMvTGl2ZVBhZ2UudHN4": {
+        "title": "$live/pages/LivePage.tsx",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "sections",
+          "name",
+          "path"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "$live/pages/LivePage.tsx"
+            ],
+            "default": "$live/pages/LivePage.tsx"
+          },
+          "seo": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Resolvable"
+              },
+              {
+                "$ref": "#/definitions/c3JjL3Nlby90eXBlcy50cw==@PageSeo",
+                "title": "Inline data"
+              },
+              {
+                "$ref": "#/definitions/c2Vv"
+              },
+              {
+                "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA=="
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y"
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g="
+              },
+              {
+                "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk="
+              },
+              {
+                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA=="
+              }
+            ],
+            "nullable": true,
+            "title": "SEO"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/__SECTION_REF__"
+            },
+            "title": "Sections"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path"
+          }
+        }
+      },
+      "d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUudHM=": {
+        "title": "website/flags/multivariate.ts",
+        "description": "Picks the first variant whose rule is true",
+        "icon": "arrow-split",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "variants"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/flags/multivariate.ts"
+            ],
+            "default": "website/flags/multivariate.ts"
+          },
+          "variants": {
+            "type": "array",
+            "title": "Variants",
+            "items": {
+              "type": "object",
+              "required": [
+                "rule",
+                "value"
+              ],
+              "properties": {
+                "rule": {
+                  "title": "Rule",
+                  "$ref": "#/root/matchers"
+                },
+                "value": {
+                  "title": "Value"
+                }
+              }
+            }
+          },
+          "experiment": {
+            "type": "string",
+            "title": "Experiment",
+            "description": "The stable ID of an A/B test"
+          }
+        }
+      },
+      "d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvc2VjdGlvbi50cw==": {
+        "title": "website/flags/multivariate/section.ts",
+        "description": "Picks the first variant whose rule is true",
+        "icon": "arrow-split",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "variants"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/flags/multivariate/section.ts"
+            ],
+            "default": "website/flags/multivariate/section.ts"
+          },
+          "variants": {
+            "type": "array",
+            "title": "Variants",
+            "items": {
+              "type": "object",
+              "required": [
+                "rule",
+                "value"
+              ],
+              "properties": {
+                "rule": {
+                  "title": "Rule",
+                  "$ref": "#/root/matchers"
+                },
+                "value": {
+                  "$ref": "#/definitions/__SECTION_REF__",
+                  "title": "Section"
+                }
+              }
+            }
+          },
+          "experiment": {
+            "type": "string",
+            "title": "Experiment",
+            "description": "The stable ID of an A/B test"
+          }
+        }
+      },
+      "d2Vic2l0ZS9tYXRjaGVycy9hbHdheXMudHM=": {
+        "title": "website/matchers/always.ts",
+        "description": "Always true: the fallback variant",
+        "icon": "eye",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/matchers/always.ts"
+            ],
+            "default": "website/matchers/always.ts"
+          }
+        }
+      },
+      "d2Vic2l0ZS9tYXRjaGVycy9uZXZlci50cw==": {
+        "title": "website/matchers/never.ts",
+        "description": "Always false: hides a block",
+        "icon": "eye-off",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/matchers/never.ts"
+            ],
+            "default": "website/matchers/never.ts"
+          }
+        }
+      },
+      "d2Vic2l0ZS9sb2FkZXJzL3JlZGlyZWN0LnRz": {
+        "title": "website/loaders/redirect.ts",
+        "description": "Sends one URL to another",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "redirect"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/loaders/redirect.ts"
+            ],
+            "default": "website/loaders/redirect.ts"
+          },
+          "redirect": {
+            "type": "object",
+            "title": "Redirect",
+            "required": [
+              "from",
+              "to"
+            ],
+            "properties": {
+              "from": {
+                "type": "string",
+                "title": "From"
+              },
+              "to": {
+                "type": "string",
+                "title": "To"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "permanent",
+                  "temporary"
+                ],
+                "title": "Type"
+              },
+              "discardQueryParameters": {
+                "type": "boolean",
+                "title": "Discard query parameters"
+              }
+            }
+          }
+        }
+      },
+      "d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw==": {
+        "title": "website/loaders/secret.ts",
+        "description": "An encrypted value, decrypted on the server",
+        "type": "object",
+        "required": [
+          "__resolveType",
+          "ciphertext"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/loaders/secret.ts"
+            ],
+            "default": "website/loaders/secret.ts"
+          },
+          "ciphertext": {
+            "type": "string",
+            "title": "Ciphertext",
+            "writeOnly": true
+          }
+        }
+      },
+      "__SECTION_REF__": {
+        "title": "Section",
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1oZWFkZXI=",
+            "inputSchema": "#/definitions/YmxvZy1oZWFkZXI=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1ob21l",
+            "inputSchema": "#/definitions/YmxvZy1ob21l@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1hdXRob3Jz",
+            "inputSchema": "#/definitions/YmxvZy1hdXRob3Jz@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy10b3BpY3M=",
+            "inputSchema": "#/definitions/YmxvZy10b3BpY3M=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1zZWFyY2g=",
+            "inputSchema": "#/definitions/YmxvZy1zZWFyY2g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1wb3N0LXNlY3Rpb24=",
+            "inputSchema": "#/definitions/YmxvZy1wb3N0LXNlY3Rpb24=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1oZWFkaW5n",
+            "inputSchema": "#/definitions/cG9zdC1oZWFkaW5n@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=",
+            "inputSchema": "#/definitions/cG9zdC1wYXJhZ3JhcGg=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1xdW90ZQ==",
+            "inputSchema": "#/definitions/cG9zdC1xdW90ZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jb2Rl",
+            "inputSchema": "#/definitions/cG9zdC1jb2Rl@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1saXN0",
+            "inputSchema": "#/definitions/cG9zdC1saXN0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=",
+            "inputSchema": "#/definitions/cG9zdC1jaGVja2xpc3Q=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1zdGVwcw==",
+            "inputSchema": "#/definitions/cG9zdC1zdGVwcw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsb3V0",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsb3V0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1pbWFnZQ==",
+            "inputSchema": "#/definitions/cG9zdC1pbWFnZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC12aWRlbw==",
+            "inputSchema": "#/definitions/cG9zdC12aWRlbw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1kaXZpZGVy",
+            "inputSchema": "#/definitions/cG9zdC1kaXZpZGVy@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1mYXE=",
+            "inputSchema": "#/definitions/cG9zdC1mYXE=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props"
+          }
+        ]
+      }
+    },
+    "root": {
+      "sections": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1oZWFkZXI=",
+            "inputSchema": "#/definitions/YmxvZy1oZWFkZXI=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIZWFkZXIudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1ob21l",
+            "inputSchema": "#/definitions/YmxvZy1ob21l@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dIb21lLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1hdXRob3Jz",
+            "inputSchema": "#/definitions/YmxvZy1hdXRob3Jz@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dBdXRob3JzLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy10b3BpY3M=",
+            "inputSchema": "#/definitions/YmxvZy10b3BpY3M=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dUb3BpY3MudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1zZWFyY2g=",
+            "inputSchema": "#/definitions/YmxvZy1zZWFyY2g=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dTZWFyY2gudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1wb3N0LXNlY3Rpb24=",
+            "inputSchema": "#/definitions/YmxvZy1wb3N0LXNlY3Rpb24=@Props"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=",
+            "inputSchema": "#/definitions/c2l0ZS9zZWN0aW9ucy9CbG9nL0Jsb2dQb3N0U2VjdGlvbi50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1oZWFkaW5n",
+            "inputSchema": "#/definitions/cG9zdC1oZWFkaW5n@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvSGVhZGluZy50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1wYXJhZ3JhcGg=",
+            "inputSchema": "#/definitions/cG9zdC1wYXJhZ3JhcGg=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUGFyYWdyYXBoLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1xdW90ZQ==",
+            "inputSchema": "#/definitions/cG9zdC1xdW90ZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvUXVvdGUudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jb2Rl",
+            "inputSchema": "#/definitions/cG9zdC1jb2Rl@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ29kZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1saXN0",
+            "inputSchema": "#/definitions/cG9zdC1saXN0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvTGlzdC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jaGVja2xpc3Q=",
+            "inputSchema": "#/definitions/cG9zdC1jaGVja2xpc3Q=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2hlY2tsaXN0LnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1zdGVwcw==",
+            "inputSchema": "#/definitions/cG9zdC1zdGVwcw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvU3RlcHMudHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsb3V0",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsb3V0@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbG91dC50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1pbWFnZQ==",
+            "inputSchema": "#/definitions/cG9zdC1pbWFnZQ==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQmxvY2tJbWFnZS50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC12aWRlbw==",
+            "inputSchema": "#/definitions/cG9zdC12aWRlbw==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvVmlkZW8udHN4@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1kaXZpZGVy",
+            "inputSchema": "#/definitions/cG9zdC1kaXZpZGVy@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRGl2aWRlci50c3g=@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==",
+            "inputSchema": "#/definitions/cG9zdC1jYWxsLXRvLWFjdGlvbg==@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvQ2FsbFRvQWN0aW9uLnRzeA==@Props"
+          },
+          {
+            "$ref": "#/definitions/cG9zdC1mYXE=",
+            "inputSchema": "#/definitions/cG9zdC1mYXE=@Props"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==",
+            "inputSchema": "#/definitions/YmxvZy9zZWN0aW9ucy9ibG9ja3MvRmFxLnRzeA==@Props"
+          }
+        ]
+      },
+      "loaders": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/c2Vv"
+          },
+          {
+            "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
+          },
+          {
+            "$ref": "#/definitions/c2VvLWJsb2ctcG9zdA=="
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
+          },
+          {
+            "$ref": "#/definitions/c2VvLWJsb2ctYXV0aG9y"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g="
+          },
+          {
+            "$ref": "#/definitions/c2VvLWJsb2ctY2F0ZWdvcnk="
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0NhdGVnb3J5LnRzeA=="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1wb3N0LWxpc3Q="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1wb3N0LXBhZ2U="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw=="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1wb3N0"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0LnRz"
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1hdXRob3I="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw=="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy1jYXRlZ29yeQ=="
+          },
+          {
+            "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz"
+          },
+          {
+            "$ref": "#/definitions/bGF6eQ=="
+          },
+          {
+            "$ref": "#/definitions/bXVsdGl2YXJpYXRl"
+          },
+          {
+            "$ref": "#/definitions/c2VjcmV0"
+          }
+        ]
+      },
+      "matchers": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/YWx3YXlz"
+          },
+          {
+            "$ref": "#/definitions/bmV2ZXI="
+          },
+          {
+            "$ref": "#/definitions/ZGF0ZQ=="
+          }
+        ]
+      },
+      "pages": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/cGFnZQ=="
+          }
+        ]
+      },
+      "redirects": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/cmVkaXJlY3Q="
+          }
+        ]
+      },
+      "content": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/c2l0ZS1zZXR0aW5ncw=="
+          },
+          {
+            "$ref": "#/definitions/Y21zLXNldHRpbmdz"
+          }
+        ]
+      }
+    }
+  },
+  "format": "deco-meta@1",
+  "framework": "deco-cli",
+  "aliases": {
+    "website/pages/Page.tsx": "page",
+    "$live/pages/LivePage.tsx": "page",
+    "website/flags/multivariate.ts": "multivariate",
+    "website/flags/multivariate/section.ts": "multivariate",
+    "website/matchers/always.ts": "always",
+    "website/matchers/never.ts": "never",
+    "website/loaders/redirect.ts": "redirect",
+    "website/loaders/secret.ts": "secret"
+  }
+}

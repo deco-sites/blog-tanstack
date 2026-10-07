@@ -1,4 +1,4 @@
-import type { BlogPost } from "@decocms/apps/blog/types";
+import type { BlogPost } from "../../vendor/blog/types";
 import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
 
 export interface Category {
@@ -27,21 +27,6 @@ export interface Props {
    * @title Descrição
    */
   description?: string;
-}
-
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<
-  Props & { origin: string; pathname: string; siteConfig: SiteConfig }
-> {
-  const url = new URL(req.url);
-  return {
-    ...props,
-    origin: url.origin,
-    pathname: url.pathname,
-    siteConfig: getSiteConfig(),
-  };
 }
 
 function countPostsByCategory(posts: BlogPost[]): Record<string, number> {
@@ -264,5 +249,3 @@ export default function BlogTopics({
   );
 }
 
-export const eager = true;
-export const sync = true;
