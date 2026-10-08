@@ -85,15 +85,34 @@ registerSections({
   "blog/sections/Seo/SeoBlogPostListing.tsx": () =>
     import("@decocms/apps-blog/sections/Seo/SeoBlogPostListing"),
 });
-// The framework calls section loaders as `loader(props, req, ctx)`, but the
-// blog SEO loaders read their 3rd argument as the site SEO defaults — `ctx`
-// would shadow the blog app's `seo` config (titleTemplate…). Drop it so they
-// fall back to `getBlogConfig().seo`.
+// Adapts the blog SEO loaders to the `page.seo` pipeline:
+//  - The framework calls section loaders as `loader(props, req, ctx)`, but they
+//    read their 3rd argument as the site SEO defaults — `ctx` would shadow the
+//    blog app's `seo` config (titleTemplate…). Drop it so they fall back to
+//    `getBlogConfig().seo`.
+//  - Their JSON-LD nodes omit "@context" (the Seo component adds it when
+//    rendered), but cmsRoute serializes `jsonLDs` straight into <head> without
+//    rendering it — without "@context" no validator recognizes the types.
+function blogSeoLoader(
+  loader: (props: any, req?: Request) => { jsonLDs?: object[] },
+) {
+  return (props: Record<string, unknown>, req: Request) => {
+    const seo = loader(props, req);
+    return {
+      ...seo,
+      jsonLDs: seo.jsonLDs?.map((node) => ({
+        "@context": "https://schema.org",
+        ...node,
+      })),
+    };
+  };
+}
+
 registerSectionLoaders({
-  "blog/sections/Seo/SeoBlogPost.tsx": (props, req) =>
-    blogPostSeoLoader(props as any, req),
-  "blog/sections/Seo/SeoBlogPostListing.tsx": (props, req) =>
-    blogPostListingSeoLoader(props as any, req),
+  "blog/sections/Seo/SeoBlogPost.tsx": blogSeoLoader(blogPostSeoLoader),
+  "blog/sections/Seo/SeoBlogPostListing.tsx": blogSeoLoader(
+    blogPostListingSeoLoader,
+  ),
 });
 
 // Site loaders (`site/loaders/*`) — e.g. site/loaders/BlogpostList.ts, which
