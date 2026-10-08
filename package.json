@@ -20,15 +20,15 @@
   "license": "MIT",
   "packageManager": "bun@1.3.5",
   "overrides": {
-    "@decocms/blocks": "7.77.2",
-    "@decocms/blocks-admin": "7.77.2"
+    "@decocms/blocks": "7.77.3",
+    "@decocms/blocks-admin": "7.77.3"
   },
   "dependencies": {
-    "@decocms/apps-blog": "7.77.2",
-    "@decocms/apps-website": "7.77.2",
-    "@decocms/blocks": "7.77.2",
-    "@decocms/blocks-admin": "7.77.2",
-    "@decocms/tanstack": "7.77.2",
+    "@decocms/apps-blog": "7.77.3",
+    "@decocms/apps-website": "7.77.3",
+    "@decocms/blocks": "7.77.3",
+    "@decocms/blocks-admin": "7.77.3",
+    "@decocms/tanstack": "7.77.3",
     "@tanstack/react-query": "5.90.21",
     "@tanstack/react-router": "1.166.7",
     "@tanstack/react-start": "1.166.8",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.27.0",
-    "@decocms/blocks-cli": "7.77.2",
+    "@decocms/blocks-cli": "7.77.3",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/router-cli": "1.166.7",
     "@types/node": "^26.0.0",
