@@ -1,6 +1,7 @@
-import SeoComponent from "@decocms/apps/website/components/Seo";
-import { getRecordsByPath } from "@decocms/apps/blog";
-import type { Category } from "@decocms/apps/blog/types";
+import SeoComponent from "@decocms/apps-website/components/Seo";
+import { getRecordsByPath } from "@decocms/apps-blog/core/records";
+import type { Category } from "@decocms/apps-blog/types";
+import { lastPathSegment } from "../../sdk/blog/loader";
 
 export interface Props {
   title?: string;
@@ -8,7 +9,7 @@ export interface Props {
 }
 
 export async function loader(_props: Props, req: Request): Promise<Props> {
-  const slug = new URL(req.url).pathname.split("/").filter(Boolean).pop() ?? "";
+  const slug = lastPathSegment(req);
   const categories = getRecordsByPath<Category>("collections/blog/categories", "category");
   const category = categories.find((c) => c.slug === slug);
   const name = category?.name ?? slug;

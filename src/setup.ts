@@ -4,39 +4,34 @@ import {
   applySectionConventions,
   registerCommerceLoaders,
   registerSectionLoaders,
-  setBlocks,
-} from "@decocms/start/cms";
-import { createBlogLoaders } from "@decocms/apps/blog";
-import BlogpostList from "./loaders/BlogpostList";
-import { autoconfigApps } from "@decocms/start/apps/autoconfig";
-import { createSiteSetup } from "@decocms/start/setup";
-import { setInvokeLoaders } from "@decocms/start/admin";
-import { APP_REGISTRY } from "@decocms/apps/registry";
-import { blocks as generatedBlocks } from "./server/cms/blocks.gen";
-import { siteGlobalsBlocks } from "./server/cms/site-globals.gen";
+  registerSections,
+} from "@decocms/blocks/cms";
+import { createSiteSetup } from "@decocms/blocks/setup";
+import { setInvokeLoaders } from "@decocms/blocks-admin";
+import { createAdminSetup } from "@decocms/blocks-admin/setup";
+import { autoconfigApps } from "@decocms/blocks-admin/apps/autoconfig";
+import { PreviewProviders, setupTanstackFastDeploy } from "@decocms/tanstack";
+import { blocks as generatedBlocks } from "../.deco/blocks.gen";
 import {
   loadingFallbacks,
   sectionMeta,
   syncComponents,
-} from "./server/cms/sections.gen";
-import { siteLoaders } from "./server/cms/loaders.gen";
-import { PreviewProviders } from "@decocms/start/hooks";
+} from "../.deco/sections.gen";
+import { siteLoaders } from "../.deco/loaders.gen";
 // @ts-ignore Vite ?url import
 import appCss from "./styles/app.css?url";
 
+const sectionGlob = import.meta.glob("./sections/**/*.tsx") as Record<
+  string,
+  () => Promise<any>
+>;
+
+// `productionOrigins` is intentionally omitted: it rewrites every absolute URL
+// on the production host to a relative path, including `seo.canonical` and the
+// JSON-LD URLs built from `canonicalBaseUrl`.
 createSiteSetup({
-  sections: import.meta.glob("./sections/**/*.tsx") as Record<
-    string,
-    () => Promise<any>
-  >,
+  sections: sectionGlob,
   blocks: generatedBlocks,
-  meta: () => import("./server/admin/meta.gen.json").then((m) => m.default),
-  css: appCss,
-  fonts: [],
-  productionOrigins: [
-    "https://blog-tanstack.deco.site",
-  ],
-  previewWrapper: PreviewProviders,
   onResolveError: (error, resolveType, context) => {
     console.error(`[CMS] ${context} "${resolveType}" failed:`, error);
   },
@@ -46,54 +41,55 @@ createSiteSetup({
   },
 });
 
-autoconfigApps(generatedBlocks, APP_REGISTRY);
-
-if (typeof window !== "undefined") {
-  setBlocks(siteGlobalsBlocks);
-}
+createAdminSetup({
+  meta: () => import("../.deco/meta.gen.json").then((m) => m.default),
+  css: appCss,
+  fonts: [],
+  previewWrapper: PreviewProviders,
+});
 
 applySectionConventions({
   meta: sectionMeta,
   syncComponents,
   loadingFallbacks,
-  sectionGlob: import.meta.glob("./sections/**/*.tsx") as Record<
-    string,
-    () => Promise<any>
-  >,
+  sectionGlob,
 });
 
-// Extracts the last non-empty path segment from the request URL.
-// Used by "website/functions/requestToParam.ts" blocks in blocks.gen.json
-// (e.g. /topics/:slug → slug, /authors/:email → email).
-const requestToParam = async (
-  props: { param?: string },
-  req?: Request,
-): Promise<string | null> => {
-  if (!req) return null;
-  const segments = new URL(req.url).pathname.split("/").filter(Boolean);
-  return segments[segments.length - 1] ?? null;
-};
+// Registers each app's loaders, actions and sections. Must run before the
+// site loaders below: setupApps resets the invoke handlers it owns.
+await autoconfigApps(generatedBlocks, [
+  {
+    blockKey: "site",
+    module: () => import("@decocms/apps-website/mod"),
+    displayName: "Website",
+    category: "site",
+  },
+  {
+    blockKey: "deco-blog",
+    module: () => import("@decocms/apps-blog/mod"),
+    displayName: "Blog",
+    category: "content",
+  },
+]);
 
-const BLOG_LOADERS = {
-  ...createBlogLoaders(),
-  ...siteLoaders,
-  // Override: returns BlogPost[] (not BlogPostListingPage) and supports filterBy: "author"
-  "blog/loaders/BlogpostList.ts": BlogpostList,
-  "blog/loaders/BlogpostList": BlogpostList,
-  // website/functions/requestToParam.ts — not in @decocms/apps, implemented here
-  "website/functions/requestToParam.ts": requestToParam,
-  "website/functions/requestToParam": requestToParam,
-};
-registerCommerceLoaders(BLOG_LOADERS);
-setInvokeLoaders(() => BLOG_LOADERS);
+registerSections({
+  "website/sections/Seo/SeoV2.tsx": () =>
+    import("@decocms/apps-website/sections/Seo/SeoV2"),
+});
 
-// Register section loaders — each section's exported `loader` function enriches
-// CMS-resolved props server-side (e.g. currentPage, query, siteConfig from the
-// request URL). Without this, loader exports in section files are never called.
+// Site loaders (`site/loaders/*`) — e.g. site/loaders/BlogpostList.ts, which
+// returns BlogPost[] and supports filtering by category or author.
+registerCommerceLoaders(siteLoaders);
+setInvokeLoaders(() => siteLoaders);
+
+// Each section's exported `loader` enriches CMS-resolved props server-side
+// (siteConfig, origin, pathname, query…).
 registerSectionLoaders(
   Object.fromEntries(
-    Object.entries(syncComponents).filter(([, mod]) =>
-      typeof (mod as any).loader === "function"
-    ).map(([key, mod]) => [key, (mod as any).loader]),
+    Object.entries(syncComponents)
+      .filter(([, mod]) => typeof (mod as any).loader === "function")
+      .map(([key, mod]) => [key, (mod as any).loader]),
   ) as Record<string, (props: any, req: Request) => any>,
 );
+
+setupTanstackFastDeploy();

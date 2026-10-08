@@ -1,4 +1,4 @@
-import { registerCachePattern, setCacheProfile } from "@decocms/start/sdk/cacheHeaders";
+import { registerCachePattern, setCacheProfile } from "@decocms/blocks/sdk/cacheHeaders";
 
 // Sitemap doesn't change on every post — cache aggressively
 registerCachePattern({

@@ -1,3 +1,15 @@
 {
-  "__resolveType": "site/apps/deco/blog.ts"
+  "__resolveType": "site/apps/deco/blog.ts",
+  "pageSlug": "/:slug",
+  "categorySlug": "/topics/:category",
+  "canonicalBaseUrl": "https://blog-tanstack.deco.site",
+  "publisher": {
+    "name": "Blog",
+    "logo": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/5018/71c97b9c-b94a-4cf5-8120-4bb7b99b21bb",
+    "url": "https://blog-tanstack.deco.site"
+  },
+  "seo": {
+    "titleTemplate": "%s",
+    "descriptionTemplate": "%s"
+  }
 }

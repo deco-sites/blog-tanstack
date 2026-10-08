@@ -11,7 +11,7 @@
       "__resolveType": "site/sections/Blog/BlogAuthors.tsx",
       "heading": "Autores",
       "posts": {
-        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "__resolveType": "site/loaders/BlogpostList.ts",
         "sortBy": "date_desc",
         "count": 100
       }

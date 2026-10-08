@@ -1,14 +1,14 @@
 import "./setup";
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
-import { createDecoWorkerEntry } from "@decocms/start/sdk/workerEntry";
-import { detectDevice } from "@decocms/start/sdk/useDevice";
+import { createDecoWorkerEntry } from "@decocms/tanstack";
+import { detectDevice } from "@decocms/blocks/sdk/useDevice";
 import {
   handleMeta,
   handleDecofileRead,
   handleDecofileReload,
   handleRender,
   corsHeaders,
-} from "@decocms/start/admin";
+} from "@decocms/blocks-admin";
 
 const serverEntry = createServerEntry({ fetch: handler.fetch });
 

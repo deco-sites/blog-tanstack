@@ -2,25 +2,24 @@ import { useEffect, useRef } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import {
   cmsRouteConfig,
-  deferredSectionLoader,
+  DecoPageRenderer,
   loadCmsPage,
-  withSiteGlobals,
-} from "@decocms/start/routes";
-import { DecoPageRenderer } from "@decocms/start/hooks";
+} from "@decocms/tanstack";
+import { deferredSectionLoader } from "@decocms/tanstack/sdk/deferredSectionLoader";
 
 const baseConfig = cmsRouteConfig({
   siteName: "Blog",
   defaultTitle: "Blog",
 });
 
-const routeConfig = withSiteGlobals({
+const routeConfig = {
   ...baseConfig,
   loader: async (ctx: Parameters<typeof baseConfig.loader>[0]) => {
     const page = await baseConfig.loader(ctx);
     if (page) return page;
     return loadCmsPage({ data: "/404" });
   },
-});
+};
 
 export const Route = createFileRoute("/$")({
   ...routeConfig,
@@ -56,6 +55,7 @@ function CmsPage() {
 
   return (
     <DecoPageRenderer
+      device={data.device}
       sections={data.resolvedSections ?? []}
       deferredSections={data.deferredSections ?? []}
       deferredPromises={data.deferredPromises}

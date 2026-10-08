@@ -1,6 +1,6 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import { decoVitePlugin } from "@decocms/start/vite";
+import { decoVitePlugin } from "@decocms/tanstack/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
@@ -57,8 +57,12 @@ export default defineConfig({
   },
   resolve: {
     dedupe: [
-      "@decocms/start",
-      "@decocms/apps",
+      "@decocms/blocks",
+      "@decocms/blocks-admin",
+      "@decocms/tanstack",
+      "@decocms/apps-commerce",
+      "@decocms/apps-website",
+      "@decocms/apps-blog",
       "@tanstack/react-start",
       "@tanstack/react-router",
       "@tanstack/react-start-server",

@@ -1,10 +1,19 @@
-import type { Author, BlogPost } from "@decocms/apps/blog/types";
-import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
+import type { Author, BlogPost } from "@decocms/apps-blog/types";
+import AuthorAvatar from "../../components/blog/AuthorAvatar";
+import { pluralize } from "../../sdk/blog/format";
+import {
+  collectionPageJsonLd,
+  homeCrumb,
+  personJsonLd,
+  serializeJsonLd,
+} from "../../sdk/blog/jsonLd";
+import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import { revealScript } from "../../sdk/blog/scripts";
 
 export interface Props {
   /**
    * @title Posts do blog
-   * @description Conecte ao blog/loaders/BlogpostList.ts para extrair os autores únicos
+   * @description Conecte ao site/loaders/BlogpostList.ts para extrair os autores únicos
    */
   posts?: BlogPost[] | null;
   /**
@@ -17,19 +26,8 @@ export interface Props {
   description?: string;
 }
 
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<
-  Props & { origin: string; pathname: string; siteConfig: SiteConfig }
-> {
-  const url = new URL(req.url);
-  return {
-    ...props,
-    origin: url.origin,
-    pathname: url.pathname,
-    siteConfig: getSiteConfig(),
-  };
+export function loader(props: Props, req: Request): Props & SiteContext {
+  return { ...props, ...getSiteContext(req) };
 }
 
 interface AuthorWithCount extends Author {
@@ -51,46 +49,14 @@ function getUniqueAuthors(posts: BlogPost[]): AuthorWithCount[] {
   return Array.from(map.values()).sort((a, b) => b.postCount - a.postCount);
 }
 
-function AuthorInitials({ name }: { name: string }) {
-  const initials = name
-    .split(" ")
-    .slice(0, 2)
-    .map((w) => w[0]?.toUpperCase() ?? "")
-    .join("");
-  return (
-    <div
-      className="w-16 h-16 rounded-full bg-[#ff6011] text-white flex items-center justify-center text-xl font-bold select-none flex-shrink-0"
-      aria-hidden="true"
-    >
-      {initials || "?"}
-    </div>
-  );
-}
-
-function getScrollRevealScript(containerId: string) {
-  return `(function(){
-  var c=document.getElementById(${JSON.stringify(containerId)});
-  if(!c)return;
-  var o=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){e.target.classList.add('is-visible');o.unobserve(e.target);}
-    });
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-  c.querySelectorAll('.blog-reveal').forEach(function(el){o.observe(el);});
-})();`;
-}
-
 export default function BlogAuthors({
   posts,
   heading = "Autores",
   description,
-  // @ts-ignore injected by loader
-  origin = "",
-  // @ts-ignore injected by loader
-  pathname = "/authors",
-  // @ts-ignore injected by loader
-  siteConfig = getSiteConfig(),
-}: Props & { origin?: string; pathname?: string; siteConfig?: SiteConfig }) {
+  origin,
+  pathname,
+  siteConfig,
+}: Props & SiteContext) {
   const authors = getUniqueAuthors(posts ?? []);
   if (authors.length === 0) return null;
 
@@ -98,45 +64,18 @@ export default function BlogAuthors({
   const pageUrl = `${origin}${pathname}`;
   const siteName = siteConfig.name;
 
-  const jsonLd = JSON.stringify([
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "@id": pageUrl,
-      "url": pageUrl,
-      "name": heading,
-      "description": description ?? `Conheça os autores do ${siteName}.`,
-      "inLanguage": "pt-BR",
-      "isPartOf": { "@id": origin ? `${origin}/#website` : "/" },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": siteName,
-            "item": origin ? `${origin}/` : "/",
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": heading,
-            "item": pageUrl,
-          },
-        ],
-      },
-    },
-    ...authors.map((a) => ({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": a.name,
-      "url": `${origin}/authors/${a.email}`,
-      "image": a.avatar ?? undefined,
-      "jobTitle": a.jobTitle ?? undefined,
-      "worksFor": a.company
-        ? { "@type": "Organization", "name": a.company }
-        : undefined,
-    })),
+  const jsonLd = serializeJsonLd([
+    collectionPageJsonLd({
+      url: pageUrl,
+      name: heading,
+      description: description ?? `Conheça os autores do ${siteName}.`,
+      origin,
+      breadcrumb: [
+        homeCrumb(siteConfig, origin),
+        { name: heading, url: pageUrl },
+      ],
+    }),
+    ...authors.map((a) => personJsonLd(a, origin)),
   ]);
 
   return (
@@ -181,16 +120,7 @@ export default function BlogAuthors({
               }}
             >
               <div className="flex items-center gap-4 mb-4">
-                {author.avatar
-                  ? (
-                    <img
-                      src={author.avatar}
-                      alt={author.name}
-                      loading="lazy"
-                      className="w-16 h-16 rounded-full object-cover flex-shrink-0"
-                    />
-                  )
-                  : <AuthorInitials name={author.name} />}
+                <AuthorAvatar author={author} size="lg" />
 
                 <div className="flex flex-col gap-0.5 min-w-0">
                   <span className="font-semibold text-[#1a1a18] leading-snug group-hover:text-[#ff6011] transition-colors duration-150 truncate">
@@ -203,7 +133,7 @@ export default function BlogAuthors({
                   )}
                   <span className="text-xs text-[#a0a09a] mt-0.5">
                     {author.postCount}{" "}
-                    {author.postCount === 1 ? "artigo" : "artigos"}
+                    {pluralize(author.postCount, "artigo", "artigos")}
                   </span>
                 </div>
               </div>
@@ -220,7 +150,7 @@ export default function BlogAuthors({
       />
       <script
         defer
-        dangerouslySetInnerHTML={{ __html: getScrollRevealScript(containerId) }}
+        dangerouslySetInnerHTML={{ __html: revealScript(containerId) }}
       />
     </div>
   );

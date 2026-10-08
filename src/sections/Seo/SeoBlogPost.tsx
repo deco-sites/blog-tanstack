@@ -1,6 +1,11 @@
-import type { Author, BlogPostPage } from "@decocms/apps/blog/types";
-import SeoComponent from "@decocms/apps/website/components/Seo";
-import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
+import type { Author, BlogPostPage } from "@decocms/apps-blog/types";
+import SeoComponent from "@decocms/apps-website/components/Seo";
+import { toIsoDate } from "../../sdk/blog/format";
+import {
+  getSiteConfig,
+  type SiteConfig,
+  toCanonicalUrl,
+} from "../../sdk/blog/siteConfig";
 
 export interface Props {
   /** @description Blog post page data from blog/loaders/BlogPostPage.ts */
@@ -21,9 +26,17 @@ export async function loader(
   }
 > {
   const siteConfig = getSiteConfig();
-  const seo = props.jsonLD?.seo;
+  const { jsonLD } = props;
+  // BlogPostPage builds the canonical from the request host — rebase it on the
+  // blog app's canonicalBaseUrl (same rule as the app's own SEO section).
+  const seo = jsonLD?.seo && {
+    ...jsonLD.seo,
+    canonical: jsonLD.seo.canonical &&
+      toCanonicalUrl(jsonLD.seo.canonical, siteConfig),
+  };
   return {
     ...props,
+    jsonLD: jsonLD && seo ? { ...jsonLD, seo } : jsonLD,
     siteConfig,
     title: seo?.title,
     description: seo?.description,
@@ -34,10 +47,7 @@ export async function loader(
 }
 
 export default function SeoBlogPost(
-  { jsonLD, siteConfig = getSiteConfig() }: Props & {
-    // @ts-ignore injected by loader
-    siteConfig?: SiteConfig;
-  },
+  { jsonLD, siteConfig }: Props & { siteConfig: SiteConfig },
 ) {
   if (!jsonLD?.seo) return null;
 
@@ -65,13 +75,13 @@ export default function SeoBlogPost(
       {post?.date && (
         <meta
           property="article:published_time"
-          content={`${post.date}T00:00:00+00:00`}
+          content={toIsoDate(post.date)}
         />
       )}
       {post?.date && (
         <meta
           property="article:modified_time"
-          content={`${post.date}T00:00:00+00:00`}
+          content={toIsoDate(post.date)}
         />
       )}
       {post?.categories?.[0] && (

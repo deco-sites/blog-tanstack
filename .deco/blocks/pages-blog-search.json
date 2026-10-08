@@ -10,7 +10,7 @@
     {
       "__resolveType": "site/sections/Blog/BlogSearch.tsx",
       "posts": {
-        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "__resolveType": "site/loaders/BlogpostList.ts",
         "sortBy": "date_desc",
         "count": 100
       },

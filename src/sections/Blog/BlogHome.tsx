@@ -1,10 +1,18 @@
-import type { BlogPost } from "@decocms/apps/blog/types";
-import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
+import type { BlogPost } from "@decocms/apps-blog/types";
+import { formatDate } from "../../sdk/blog/format";
+import {
+  collectionPageJsonLd,
+  homeCrumb,
+  homeJsonLd,
+  serializeJsonLd,
+} from "../../sdk/blog/jsonLd";
+import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import { revealScript } from "../../sdk/blog/scripts";
 
 export interface Props {
   /**
    * @title Posts do Blog
-   * @description Conecte ao loader blog/loaders/BlogpostList.ts (count >= 50)
+   * @description Conecte ao loader site/loaders/BlogpostList.ts (count >= 50)
    */
   posts?: BlogPost[] | null;
   /**
@@ -27,40 +35,16 @@ export interface Props {
 export function loader(
   props: Props,
   req: Request,
-): Props & {
-  currentPage: number;
-  query: string;
-  origin: string;
-  siteConfig: SiteConfig;
-} {
-  const url = new URL(req.url);
-  const currentPage = Math.max(
-    1,
-    parseInt(url.searchParams.get("page") ?? "1") || 1,
-  );
-  const query = url.searchParams.get("q") ?? "";
-  const baseUrl = url.pathname;
+): Props & SiteContext & { currentPage: number; query: string } {
+  const context = getSiteContext(req);
+  const { searchParams } = new URL(req.url);
   return {
     ...props,
-    baseUrl,
-    currentPage,
-    query,
-    origin: url.origin,
-    siteConfig: getSiteConfig(),
+    ...context,
+    baseUrl: context.pathname,
+    currentPage: Math.max(1, parseInt(searchParams.get("page") ?? "1") || 1),
+    query: searchParams.get("q") ?? "",
   };
-}
-
-function formatDate(dateStr: string | undefined): string {
-  if (!dateStr) return "";
-  try {
-    return new Date(`${dateStr}T00:00:00`).toLocaleDateString("pt-BR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  } catch {
-    return dateStr;
-  }
 }
 
 const REVEAL_CSS = `
@@ -75,137 +59,38 @@ const REVEAL_CSS = `
   .blog-reveal.is-visible { opacity: 1; transform: translateY(0); }
 `;
 
-function getRevealScript(id: string) {
-  return `(function(){
-  var el=document.getElementById(${JSON.stringify(id)});
-  var header=document.querySelector('[data-blog-header]');
-  if(el&&header)el.style.paddingTop=header.offsetHeight+'px';
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);}
-    });
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-  (el||document).querySelectorAll('.blog-reveal').forEach(function(el){obs.observe(el);});
-})();`;
-}
-
-function buildBlogJsonLd(
+function buildJsonLd(
   posts: BlogPost[],
   origin: string,
   baseUrl: string,
   page: number,
-  _totalPages: number,
-  siteConfig: SiteConfig,
+  siteConfig: SiteContext["siteConfig"],
   sectionTitle?: string,
 ): string {
   const siteName = siteConfig.name;
-  const siteDescription = sectionTitle
-    ? `Artigos sobre ${sectionTitle}`
-    : siteConfig.description;
   const pageUrl = `${origin}${baseUrl}`;
   const fullUrl = page === 1 ? pageUrl : `${pageUrl}?page=${page}`;
 
-  // CollectionPage for all pages
-  const collectionPage = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": fullUrl,
-    "url": fullUrl,
-    "name": sectionTitle ??
+  const collectionPage = collectionPageJsonLd({
+    url: fullUrl,
+    name: sectionTitle ??
       (page === 1 ? siteName : `${siteName} — Página ${page}`),
-    "inLanguage": "pt-BR",
-    "description": siteDescription,
-    "isPartOf": { "@id": `${origin}/` },
-    ...(page > 1
-      ? {
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": siteName,
-              "item": `${origin}/`,
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": `Página ${page}`,
-              "item": fullUrl,
-            },
-          ],
-        },
-      }
-      : {}),
-  };
+    description: sectionTitle
+      ? `Artigos sobre ${sectionTitle}`
+      : siteConfig.description,
+    origin,
+    breadcrumb: page > 1
+      ? [homeCrumb(siteConfig, origin), { name: `Página ${page}`, url: fullUrl }]
+      : undefined,
+  });
 
-  const jsonLds: object[] = [collectionPage];
-
-  // WebSite + SearchAction only on homepage page 1
-  if (page === 1 && !sectionTitle) {
-    jsonLds.unshift(
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": `${origin}/#website`,
-        "url": `${origin}/`,
-        "name": siteName,
-        "description": siteConfig.description,
-        "inLanguage": "pt-BR",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": `${origin}/search?q={search_term_string}`,
-          },
-          "query-input": "required name=search_term_string",
-        },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": `${origin}/#organization`,
-        "name": siteName,
-        "url": `${origin}/`,
-        "logo": siteConfig.favicon
-          ? { "@type": "ImageObject", "url": siteConfig.favicon }
-          : { "@type": "ImageObject", "url": `${origin}/favicon.svg` },
-      },
-    );
-
-    // Blog entity with blogPost ItemList
-    const blogPosting = posts.slice(0, 10).map((p, i) => ({
-      "@type": "BlogPosting",
-      "@id": `${origin}/${p.slug}`,
-      "position": i + 1,
-      "url": `${origin}/${p.slug}`,
-      "headline": p.title,
-      "description": p.excerpt ?? "",
-      "datePublished": p.date ?? undefined,
-      "image": p.image ?? undefined,
-      "inLanguage": "pt-BR",
-      "author": ((p.authors as Array<{ name: string }> | undefined) ?? []).map((
-        a,
-      ) => ({
-        "@type": "Person",
-        "name": a.name,
-      })),
-    }));
-
-    jsonLds.push({
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "@id": `${origin}/#blog`,
-      "url": `${origin}/`,
-      "name": siteName,
-      "description": siteConfig.description,
-      "inLanguage": "pt-BR",
-      "publisher": { "@id": `${origin}/#organization` },
-      "blogPost": blogPosting,
-    });
-  }
-
-  return JSON.stringify(jsonLds);
+  // WebSite + Organization + Blog only on the home, page 1
+  const isHome = page === 1 && !sectionTitle;
+  return serializeJsonLd(
+    isHome
+      ? [...homeJsonLd(posts, origin, siteConfig), collectionPage]
+      : [collectionPage],
+  );
 }
 
 export default function BlogHome({
@@ -213,20 +98,11 @@ export default function BlogHome({
   perPage = 10,
   sectionTitle,
   baseUrl,
-  // @ts-ignore injected by loader
   currentPage = 1,
-  // @ts-ignore injected by loader
   query = "",
-  // @ts-ignore injected by loader
-  origin = "",
-  // @ts-ignore injected by loader
-  siteConfig = getSiteConfig(),
-}: Props & {
-  currentPage?: number;
-  query?: string;
-  origin?: string;
-  siteConfig?: SiteConfig;
-}) {
+  origin,
+  siteConfig,
+}: Props & SiteContext & { currentPage?: number; query?: string }) {
   const all = posts ?? [];
   const totalPages = Math.max(1, Math.ceil(all.length / perPage));
   const page = Math.min(currentPage, totalPages);
@@ -248,12 +124,11 @@ export default function BlogHome({
     : `${paginationBase}?page=${page - 1}`;
   const nextHref = `${paginationBase}?page=${page + 1}`;
 
-  const jsonLd = buildBlogJsonLd(
+  const jsonLd = buildJsonLd(
     all,
     origin,
     paginationBase || "/",
     page,
-    totalPages,
     siteConfig,
     sectionTitle,
   );
@@ -538,7 +413,7 @@ export default function BlogHome({
 
       <script
         defer
-        dangerouslySetInnerHTML={{ __html: getRevealScript(containerId) }}
+        dangerouslySetInnerHTML={{ __html: revealScript(containerId, { offsetHeader: true }) }}
       />
     </div>
   );

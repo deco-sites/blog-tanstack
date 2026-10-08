@@ -1,4 +1,4 @@
-import type { WebsiteProps } from "@decocms/apps/website/mod";
+import type { WebsiteProps } from "@decocms/apps-website/mod";
 
 export type Platform = "custom";
 export const _platform: Platform = "custom";

@@ -6,14 +6,9 @@
   "scripts": {
     "dev": "vite dev",
     "dev:clean": "rm -rf node_modules/.vite .wrangler/state .tanstack && vite dev",
-    "generate:blocks": "tsx node_modules/@decocms/start/scripts/generate-blocks.ts",
+    "generate": "tsx node_modules/@decocms/blocks-cli/scripts/generate.ts --site blog-tanstack",
     "generate:routes": "tsr generate",
-    "generate:schema": "tsx node_modules/@decocms/start/scripts/generate-schema.ts --site blog-tanstack",
-    "generate:invoke": "tsx node_modules/@decocms/start/scripts/generate-invoke.ts",
-    "generate:sections": "tsx node_modules/@decocms/start/scripts/generate-sections.ts",
-    "generate:loaders": "tsx node_modules/@decocms/start/scripts/generate-loaders.ts",
-    "generate:site-globals": "tsx scripts/generate-site-globals.ts",
-    "build": "npm run generate:blocks && npm run generate:site-globals && npm run generate:schema && npm run generate:sections && npm run generate:loaders && tsr generate && vite build",
+    "build": "npm run generate && tsr generate && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",
     "types": "wrangler types",
@@ -24,9 +19,16 @@
   "author": "deco.cx",
   "license": "MIT",
   "packageManager": "bun@1.3.5",
+  "overrides": {
+    "@decocms/blocks": "7.64.3",
+    "@decocms/blocks-admin": "7.64.3"
+  },
   "dependencies": {
-    "@decocms/apps": "5.2.0",
-    "@decocms/start": "6.12.1",
+    "@decocms/apps-blog": "7.64.3",
+    "@decocms/apps-website": "7.64.3",
+    "@decocms/blocks": "7.64.3",
+    "@decocms/blocks-admin": "7.64.3",
+    "@decocms/tanstack": "7.64.3",
     "@tanstack/react-query": "5.90.21",
     "@tanstack/react-router": "1.166.7",
     "@tanstack/react-start": "1.166.8",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.27.0",
+    "@decocms/blocks-cli": "7.64.3",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/router-cli": "1.166.7",
     "@types/node": "^26.0.0",

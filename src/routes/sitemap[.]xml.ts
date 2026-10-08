@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { generateSitemapXml, getCMSSitemapEntries } from "@decocms/start/sdk/sitemap";
+import { generateSitemapXml, getCMSSitemapEntries } from "@decocms/blocks/sdk/sitemap";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {

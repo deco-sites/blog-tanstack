@@ -1,12 +1,12 @@
-import type { BlogPost } from "@decocms/apps/blog/types";
-import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
-
-export interface Category {
-  name: string;
-  slug: string;
-  description?: string;
-  image?: string;
-}
+import type { BlogPost, Category } from "@decocms/apps-blog/types";
+import { pluralize } from "../../sdk/blog/format";
+import {
+  collectionPageJsonLd,
+  homeCrumb,
+  serializeJsonLd,
+} from "../../sdk/blog/jsonLd";
+import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import { revealScript } from "../../sdk/blog/scripts";
 
 export interface Props {
   /**
@@ -16,7 +16,7 @@ export interface Props {
   categories?: Category[] | null;
   /**
    * @title Posts do blog
-   * @description Conecte ao blog/loaders/BlogpostList.ts para exibir a contagem de posts por tópico
+   * @description Conecte ao site/loaders/BlogpostList.ts para exibir a contagem de posts por tópico
    */
   posts?: BlogPost[] | null;
   /**
@@ -29,19 +29,8 @@ export interface Props {
   description?: string;
 }
 
-export async function loader(
-  props: Props,
-  req: Request,
-): Promise<
-  Props & { origin: string; pathname: string; siteConfig: SiteConfig }
-> {
-  const url = new URL(req.url);
-  return {
-    ...props,
-    origin: url.origin,
-    pathname: url.pathname,
-    siteConfig: getSiteConfig(),
-  };
+export function loader(props: Props, req: Request): Props & SiteContext {
+  return { ...props, ...getSiteContext(req) };
 }
 
 function countPostsByCategory(posts: BlogPost[]): Record<string, number> {
@@ -54,71 +43,38 @@ function countPostsByCategory(posts: BlogPost[]): Record<string, number> {
   return counts;
 }
 
-function getScrollRevealScript(containerId: string) {
-  return `(function(){
-  var c=document.getElementById(${JSON.stringify(containerId)});
-  if(!c)return;
-  var o=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){e.target.classList.add('is-visible');o.unobserve(e.target);}
-    });
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-  c.querySelectorAll('.blog-reveal').forEach(function(el){o.observe(el);});
-})();`;
-}
-
 export default function BlogTopics({
   categories,
   posts,
   heading = "Tópicos",
   description,
-  // @ts-ignore injected by loader
-  origin = "",
-  // @ts-ignore injected by loader
-  pathname = "/topics",
-  // @ts-ignore injected by loader
-  siteConfig = getSiteConfig(),
-}: Props & { origin?: string; pathname?: string; siteConfig?: SiteConfig }) {
+  origin,
+  pathname,
+  siteConfig,
+}: Props & SiteContext) {
   const cats = categories ?? [];
   const containerId = "blog-topics";
   const pageUrl = `${origin}${pathname}`;
   const siteName = siteConfig.name;
 
-  const jsonLd = JSON.stringify([
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "@id": pageUrl,
-      "url": pageUrl,
-      "name": heading,
-      "description": description ??
+  const jsonLd = serializeJsonLd([
+    collectionPageJsonLd({
+      url: pageUrl,
+      name: heading,
+      description: description ??
         `Explore todos os tópicos e categorias do ${siteName}.`,
-      "inLanguage": "pt-BR",
-      "isPartOf": { "@id": origin ? `${origin}/#website` : "/" },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": siteName,
-            "item": origin ? `${origin}/` : "/",
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": heading,
-            "item": pageUrl,
-          },
-        ],
-      },
-      "hasPart": cats.map((c) => ({
+      origin,
+      breadcrumb: [
+        homeCrumb(siteConfig, origin),
+        { name: heading, url: pageUrl },
+      ],
+      hasPart: cats.map((c) => ({
         "@type": "ItemList",
-        "name": c.name,
-        "url": `${origin}/topics/${c.slug}`,
-        "description": c.description ?? `Artigos sobre ${c.name}`,
+        name: c.name,
+        url: `${origin}/topics/${c.slug}`,
+        description: c.description ?? `Artigos sobre ${c.name}`,
       })),
-    },
+    }),
   ]);
 
   if (cats.length === 0) {
@@ -225,7 +181,7 @@ export default function BlogTopics({
                   </span>
                   {count > 0 && (
                     <span className="text-xs text-[#a0a09a]">
-                      {count} {count === 1 ? "artigo" : "artigos"}
+                      {count} {pluralize(count, "artigo", "artigos")}
                     </span>
                   )}
                 </div>
@@ -258,7 +214,7 @@ export default function BlogTopics({
       />
       <script
         defer
-        dangerouslySetInnerHTML={{ __html: getScrollRevealScript(containerId) }}
+        dangerouslySetInnerHTML={{ __html: revealScript(containerId) }}
       />
     </div>
   );

@@ -1,6 +1,6 @@
-import handlePosts from "@decocms/apps/blog/core/handlePosts";
-import { getRecordsByPath } from "@decocms/apps/blog";
-import type { BlogPost, SortBy } from "@decocms/apps/blog/types";
+import handlePosts from "@decocms/apps-blog/core/handlePosts";
+import { getRecordsByPath } from "@decocms/apps-blog/core/records";
+import type { BlogPost, SortBy } from "@decocms/apps-blog/types";
 
 export interface Props {
   /**
@@ -51,7 +51,7 @@ export default async function BlogpostList(
     );
   }
 
-  const handled = handlePosts(filtered, sortBy);
+  const handled = await handlePosts(filtered, sortBy);
   if (!handled || handled.length === 0) return null;
 
   return handled.slice(0, count);

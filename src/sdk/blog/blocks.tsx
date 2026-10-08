@@ -1,0 +1,170 @@
+/**
+ * Post content blocks — maps each `__resolveType` in `post.sections` to the
+ * component that renders it.
+ *
+ * Two families coexist, with distinct resolveTypes:
+ *
+ *   default  `blog/sections/blocks/<Name>.tsx`
+ *            Shipped by @decocms/apps-blog. Rendered with the app's own
+ *            component, never a local copy.
+ *
+ *   custom   `site/sections/Blog/blocks/<Name>.tsx`
+ *            This template's blocks (src/sections/Blog/blocks/*), styled with
+ *            the blog's design system. Add a file there and register it below.
+ *
+ * Blocks are imported statically (instead of going through the section
+ * registry) so they render synchronously during SSR, and so we can inject the
+ * TOC anchor id.
+ */
+import type { ComponentType, ReactNode } from "react";
+
+import DefaultBlockImage from "@decocms/apps-blog/sections/blocks/BlockImage";
+import DefaultCallout from "@decocms/apps-blog/sections/blocks/Callout";
+import DefaultCardGroup from "@decocms/apps-blog/sections/blocks/CardGroup";
+import DefaultChecklist from "@decocms/apps-blog/sections/blocks/Checklist";
+import DefaultCode from "@decocms/apps-blog/sections/blocks/Code";
+import DefaultComparison from "@decocms/apps-blog/sections/blocks/Comparison";
+import DefaultCta from "@decocms/apps-blog/sections/blocks/Cta";
+import DefaultDivider from "@decocms/apps-blog/sections/blocks/Divider";
+import DefaultHeading from "@decocms/apps-blog/sections/blocks/Heading";
+import DefaultList from "@decocms/apps-blog/sections/blocks/List";
+import DefaultParagraph from "@decocms/apps-blog/sections/blocks/Paragraph";
+import DefaultQuote from "@decocms/apps-blog/sections/blocks/Quote";
+import DefaultStat from "@decocms/apps-blog/sections/blocks/Stat";
+import DefaultStatGroup from "@decocms/apps-blog/sections/blocks/StatGroup";
+import DefaultSteps from "@decocms/apps-blog/sections/blocks/Steps";
+import DefaultTable from "@decocms/apps-blog/sections/blocks/Table";
+import DefaultVideo from "@decocms/apps-blog/sections/blocks/Video";
+
+import BlockImage from "../../sections/Blog/blocks/BlockImage";
+import CallToAction from "../../sections/Blog/blocks/CallToAction";
+import Callout from "../../sections/Blog/blocks/Callout";
+import Checklist from "../../sections/Blog/blocks/Checklist";
+import Code from "../../sections/Blog/blocks/Code";
+import Divider from "../../sections/Blog/blocks/Divider";
+import Faq from "../../sections/Blog/blocks/Faq";
+import Heading from "../../sections/Blog/blocks/Heading";
+import List from "../../sections/Blog/blocks/List";
+import Paragraph from "../../sections/Blog/blocks/Paragraph";
+import Quote from "../../sections/Blog/blocks/Quote";
+import Steps from "../../sections/Blog/blocks/Steps";
+import Video from "../../sections/Blog/blocks/Video";
+
+import { tocAnchorFor } from "./toc";
+
+type BlockComponent = ComponentType<any>;
+
+export const DEFAULT_BLOCK_PREFIX = "blog/sections/blocks/";
+export const CUSTOM_BLOCK_PREFIX = "site/sections/Blog/blocks/";
+
+/** Blocks shipped by @decocms/apps-blog, keyed by name. */
+export const DEFAULT_BLOCKS: Record<string, BlockComponent> = {
+  BlockImage: DefaultBlockImage,
+  Callout: DefaultCallout,
+  CardGroup: DefaultCardGroup,
+  Checklist: DefaultChecklist,
+  Code: DefaultCode,
+  Comparison: DefaultComparison,
+  Cta: DefaultCta,
+  Divider: DefaultDivider,
+  Heading: DefaultHeading,
+  List: DefaultList,
+  Paragraph: DefaultParagraph,
+  Quote: DefaultQuote,
+  Stat: DefaultStat,
+  StatGroup: DefaultStatGroup,
+  Steps: DefaultSteps,
+  Table: DefaultTable,
+  Video: DefaultVideo,
+};
+
+/** This template's blocks (src/sections/Blog/blocks), keyed by name. */
+export const CUSTOM_BLOCKS: Record<string, BlockComponent> = {
+  BlockImage,
+  CallToAction,
+  Callout,
+  Checklist,
+  Code,
+  Divider,
+  Faq,
+  Heading,
+  List,
+  Paragraph,
+  Quote,
+  Steps,
+  Video,
+};
+
+export type BlockKind = "default" | "custom";
+
+/** A content block, independent of the shape the CMS resolver produced. */
+export interface ContentBlock {
+  /** Block name, e.g. "Heading". */
+  name: string;
+  kind: BlockKind;
+  props: Record<string, any>;
+}
+
+/**
+ * Reads a raw `post.sections` entry. The resolver delivers blocks either as
+ * `{ __resolveType, ...props }` (types not in the section registry) or, for
+ * registered sections, as `{ Component: "<resolveType>", props }`.
+ */
+export function toContentBlock(raw: unknown): ContentBlock | null {
+  if (!raw || typeof raw !== "object") return null;
+  const node = raw as Record<string, unknown>;
+
+  let resolveType: string | undefined;
+  let props: Record<string, unknown>;
+  if (typeof node.Component === "string") {
+    resolveType = node.Component;
+    props = (node.props as Record<string, unknown>) ?? {};
+  } else {
+    const { __resolveType, ...rest } = node;
+    resolveType = __resolveType as string | undefined;
+    props = rest;
+  }
+  if (!resolveType) return null;
+
+  const key = resolveType.replace(/\.tsx?$/, "");
+  if (key.startsWith(CUSTOM_BLOCK_PREFIX)) {
+    return { name: key.slice(CUSTOM_BLOCK_PREFIX.length), kind: "custom", props };
+  }
+  if (key.startsWith(DEFAULT_BLOCK_PREFIX)) {
+    return { name: key.slice(DEFAULT_BLOCK_PREFIX.length), kind: "default", props };
+  }
+  return null;
+}
+
+export function getBlockComponent(block: ContentBlock): BlockComponent | null {
+  const registry = block.kind === "custom" ? CUSTOM_BLOCKS : DEFAULT_BLOCKS;
+  return registry[block.name] ?? null;
+}
+
+/**
+ * Renders a content block, attaching the TOC anchor when the block is a TOC
+ * entry. Custom blocks receive it as their `id` prop; default blocks don't
+ * accept one, so they get an anchored wrapper.
+ */
+export function renderBlock(block: ContentBlock, key: number): ReactNode {
+  const Component = getBlockComponent(block);
+  if (!Component) return null;
+
+  const anchor = tocAnchorFor(block);
+  if (!anchor) return <Component key={key} {...block.props} />;
+  if (block.kind === "custom") {
+    return <Component key={key} {...block.props} id={anchor} />;
+  }
+  return (
+    <div key={key} id={anchor} className="scroll-mt-24">
+      <Component {...block.props} />
+    </div>
+  );
+}
+
+/** Normalizes `post.sections` into renderable content blocks. */
+export function getContentBlocks(sections: unknown[] | undefined): ContentBlock[] {
+  return (sections ?? [])
+    .map(toContentBlock)
+    .filter((b): b is ContentBlock => b !== null);
+}
