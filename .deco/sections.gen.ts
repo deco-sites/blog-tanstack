@@ -31,6 +31,7 @@ export interface SectionMetaEntry {
   clientOnly?: boolean;
   seo?: boolean;
   hasLoadingFallback?: boolean;
+  fallbackProps?: string[];
   renderJson?: false;
   hasRenderJson?: boolean;
 }
