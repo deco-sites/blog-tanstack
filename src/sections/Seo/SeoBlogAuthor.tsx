@@ -1,6 +1,7 @@
-import SeoComponent from "@decocms/apps/website/components/Seo";
-import { getRecordsByPath } from "@decocms/apps/blog";
-import type { Author } from "@decocms/apps/blog/types";
+import SeoComponent from "@decocms/apps-website/components/Seo";
+import { getRecordsByPath } from "@decocms/apps-blog/core/records";
+import type { Author } from "@decocms/apps-blog/types";
+import { lastPathSegment } from "../../sdk/blog/loader";
 
 export interface Props {
   title?: string;
@@ -8,7 +9,7 @@ export interface Props {
 }
 
 export async function loader(_props: Props, req: Request): Promise<Props> {
-  const email = new URL(req.url).pathname.split("/").filter(Boolean).pop() ?? "";
+  const email = lastPathSegment(req);
   const authors = getRecordsByPath<Author>("collections/blog/authors", "author");
   const author = authors.find((a) => a.email === email);
   const name = author?.name ?? email;

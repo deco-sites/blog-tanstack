@@ -10,7 +10,7 @@
     {
       "__resolveType": "site/sections/Blog/BlogHome.tsx",
       "posts": {
-        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "__resolveType": "site/loaders/BlogpostList.ts",
         "sortBy": "date_desc",
         "count": 100,
         "filterBy": "category",
@@ -20,11 +20,20 @@
         }
       },
       "perPage": 10,
-      "baseUrl": "/topics/"
+      "baseUrl": "/topics/",
+      "structuredData": false
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
   "seo": {
-    "__resolveType": "site/sections/Seo/SeoBlogCategory.tsx"
+    "__resolveType": "blog/sections/Seo/SeoBlogPostListing.tsx",
+    "jsonLD": {
+      "__resolveType": "blog/loaders/BlogpostListing.ts",
+      "slug": {
+        "__resolveType": "website/functions/requestToParam.ts",
+        "param": "slug"
+      },
+      "count": 10
+    }
   }
 }

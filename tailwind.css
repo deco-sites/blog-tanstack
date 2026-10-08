@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* Default post blocks shipped by @decocms/apps-blog (blog/sections/blocks/*).
+   Tailwind skips node_modules, so their classes must be scanned explicitly. */
+@source "./node_modules/@decocms/apps-blog/src/sections/blocks";
+
+/* Brand colors used by the app's default blocks (text-accent, border-primary…).
+   daisyUI owns primary/secondary/accent per theme, so they're set here. */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #ff6011;
+  --color-accent: #ff6011;
+  --color-secondary: #4a4a46;
+}
+
 /* ── Blog Design System ─────────────────────────────────── */
 
 /* Ubuntu font — non-blocking via __root.tsx media="print" swap */
@@ -22,6 +36,29 @@
   /* Accent (secondary) */
   --color-blog-accent: #00AAB0;
   --color-blog-success: #61b938;
+
+  /* Design tokens expected by the @decocms/apps-blog default blocks,
+     mapped onto the blog palette above */
+  --font-display: "Ubuntu", "Helvetica Neue", Arial, sans-serif;
+  --tracking-snug: -0.01em;
+  --tracking-display: -0.02em;
+  --tracking-caps: 0.14em;
+  --radius-brand: 8px;
+  --radius-brand-sm: 4px;
+  --shadow-brand: 0 1px 24px rgba(26, 26, 24, 0.08);
+  --color-muted: #7a7a74;
+  --color-tertiary: #a0a09a;
+  --color-line: #e4e3df;
+  --color-line-subtle: #f0efeb;
+  --color-alt: #f3f2ee;
+  --color-inset: #f7f6f3;
+  --color-inverted: #ffffff;
+}
+
+/* `bg-base` as a utility, not a `--color-base` token: that would collide with
+   the `text-base` font size. */
+@utility bg-base {
+  background-color: var(--color-blog-bg);
 }
 
 /* ── Scroll reveal animation ──────────────────────────────── */

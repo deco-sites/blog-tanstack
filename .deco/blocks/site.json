@@ -6,7 +6,7 @@
     }
   ],
   "seo": {
-    "titleTemplate": "%s | Blog",
+    "titleTemplate": "%s",
     "descriptionTemplate": "%s",
     "type": "website",
     "title": "Blog — Engenharia, Performance, Design e Produto",

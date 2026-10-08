@@ -1,11 +1,16 @@
-﻿import type { BlogPost } from "@decocms/apps/blog/types";
-import type { Author } from "@decocms/apps/blog/types";
-import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
+import type { Author, BlogPost } from "@decocms/apps-blog/types";
+import { formatDate, pluralize } from "../../sdk/blog/format";
+import {
+  collectionPageJsonLd,
+  homeCrumb,
+  serializeJsonLd,
+} from "../../sdk/blog/jsonLd";
+import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
 
 export interface Props {
   /**
    * @title Posts para busca
-   * @description Conecte ao blog/loaders/BlogpostList.ts com todos os posts
+   * @description Conecte ao site/loaders/BlogpostList.ts com todos os posts
    */
   posts?: BlogPost[];
 }
@@ -32,42 +37,21 @@ function matchesQuery(post: BlogPost, q: string): boolean {
   return false;
 }
 
-function formatDate(dateStr: string | undefined): string {
-  if (!dateStr) return "";
-  try {
-    return new Date(`${dateStr}T00:00:00`).toLocaleDateString("pt-BR", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  } catch {
-    return dateStr;
-  }
-}
-
-export async function loader(
+export function loader(
   props: Props,
   req: Request,
-): Promise<Props & { query: string; origin: string; siteConfig: SiteConfig }> {
-  const url = new URL(req.url);
+): Props & SiteContext & { query: string } {
   return {
     ...props,
-    query: url.searchParams.get("q") ?? "",
-    origin: url.origin,
-    siteConfig: getSiteConfig(),
+    ...getSiteContext(req),
+    query: new URL(req.url).searchParams.get("q") ?? "",
   };
 }
 
-interface BlogSearchProps extends Props {
-  query?: string;
-  origin?: string;
-  // @ts-ignore injected by loader
-  siteConfig?: SiteConfig;
-}
-
 export default function BlogSearch(
-  { posts, query = "", origin = "", siteConfig = getSiteConfig() }:
-    BlogSearchProps,
+  { posts, query = "", origin, siteConfig }: Props & SiteContext & {
+    query?: string;
+  },
 ) {
   const safePosts = posts ?? [];
   const filtered = query.trim()
@@ -79,36 +63,23 @@ export default function BlogSearch(
     query ? `?q=${encodeURIComponent(query)}` : ""
   }`;
 
-  const jsonLd = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "SearchResultsPage",
-    "url": searchUrl,
-    "name": query ? `Busca: ${query} â€” ${siteName}` : `Busca â€” ${siteName}`,
-    "description": query
-      ? `${filtered.length} resultado${
-        filtered.length !== 1 ? "s" : ""
-      } para "${query}" no ${siteName}.`
-      : `Busque artigos no ${siteName}.`,
-    "inLanguage": "pt-BR",
-    "isPartOf": { "@id": origin ? `${origin}/#website` : "/" },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": siteName,
-          "item": origin ? `${origin}/` : "/",
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Busca",
-          "item": searchUrl,
-        },
+  const jsonLd = serializeJsonLd(
+    collectionPageJsonLd({
+      type: "SearchResultsPage",
+      url: searchUrl,
+      name: query ? `Busca: ${query} — ${siteName}` : `Busca — ${siteName}`,
+      description: query
+        ? `${filtered.length} ${
+          pluralize(filtered.length, "resultado", "resultados")
+        } para "${query}" no ${siteName}.`
+        : `Busque artigos no ${siteName}.`,
+      origin,
+      breadcrumb: [
+        homeCrumb(siteConfig, origin),
+        { name: "Busca", url: searchUrl },
       ],
-    },
-  });
+    }),
+  );
 
   return (
     <div className="min-h-screen bg-white" data-blog-index="">
@@ -117,7 +88,7 @@ export default function BlogSearch(
         dangerouslySetInnerHTML={{ __html: jsonLd }}
       />
 
-      {/* â”€â”€ Page header â”€â”€ */}
+      {/* ── Page header ── */}
       <div className="border-b border-[#e4e3df]">
         <div className="max-w-[1200px] mx-auto px-[clamp(1rem,3vw,2rem)] pt-12 pb-8">
           {/* Breadcrumb */}
@@ -131,11 +102,11 @@ export default function BlogSearch(
             >
               {siteName}
             </a>
-            <span aria-hidden="true">â€º</span>
+            <span aria-hidden="true">›</span>
             <span>Busca</span>
           </nav>
 
-          {/* Search-as-heading â€” the query IS the page title */}
+          {/* Search-as-heading — the query IS the page title */}
           <form
             action="/search"
             method="get"
@@ -191,7 +162,7 @@ export default function BlogSearch(
         </div>
       </div>
 
-      {/* â”€â”€ Results / States â”€â”€ */}
+      {/* ── Results / States ── */}
       <div className="max-w-[1200px] mx-auto px-[clamp(1rem,3vw,2rem)] py-8">
         {/* Empty / initial state */}
         {!query && (
@@ -309,7 +280,7 @@ export default function BlogSearch(
                               className="text-[#e4e3df] text-xs"
                               aria-hidden="true"
                             >
-                              Â·
+                              ·
                             </span>
                           )}
                           {post.date && (
@@ -317,7 +288,7 @@ export default function BlogSearch(
                               className="text-xs text-[#a0a09a]"
                               dateTime={post.date}
                             >
-                              {formatDate(post.date)}
+                              {formatDate(post.date, "short")}
                             </time>
                           )}
                         </div>

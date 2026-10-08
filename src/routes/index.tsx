@@ -1,17 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  cmsHomeRouteConfig,
-  withSiteGlobals,
-  deferredSectionLoader,
-} from "@decocms/start/routes";
-import { DecoPageRenderer } from "@decocms/start/hooks";
+import { cmsHomeRouteConfig, DecoPageRenderer } from "@decocms/tanstack";
+import { deferredSectionLoader } from "@decocms/tanstack/sdk/deferredSectionLoader";
 
-const baseConfig = cmsHomeRouteConfig({
+const routeConfig = cmsHomeRouteConfig({
   siteName: "Blog",
   defaultTitle: "Blog",
 });
-
-const routeConfig = withSiteGlobals(baseConfig);
 
 export const Route = createFileRoute("/")({
   ...routeConfig,
@@ -34,6 +28,7 @@ function HomePage() {
 
   return (
     <DecoPageRenderer
+      device={data.device}
       sections={data.resolvedSections ?? []}
       deferredSections={data.deferredSections ?? []}
       deferredPromises={data.deferredPromises}

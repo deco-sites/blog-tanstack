@@ -5,11 +5,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@tanstack/react-router";
-import {
-  LiveControls,
-  NavigationProgress,
-  StableOutlet,
-} from "@decocms/start/hooks";
+import { NavigationProgress, StableOutlet } from "@decocms/tanstack";
+import { LiveControls } from "@decocms/blocks/hooks";
 
 declare global {
   interface Window {

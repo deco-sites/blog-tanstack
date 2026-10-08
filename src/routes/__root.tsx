@@ -1,6 +1,6 @@
 import { createRootRoute } from "@tanstack/react-router";
 import { RootLayout } from "~/components/RootLayout";
-import OneDollarStats from "@decocms/apps/website/components/OneDollarStats";
+import OneDollarStats from "@decocms/apps-website/components/OneDollarStats";
 // @ts-ignore Vite ?url import
 import appCss from "../styles/app.css?url";
 

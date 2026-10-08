@@ -18,7 +18,7 @@
         { "name": "Culture", "slug": "culture", "description": "Time, remote work, cultura de produto e vida na empresa." }
       ],
       "posts": {
-        "__resolveType": "blog/loaders/BlogpostList.ts",
+        "__resolveType": "site/loaders/BlogpostList.ts",
         "sortBy": "date_desc",
         "count": 100
       }
