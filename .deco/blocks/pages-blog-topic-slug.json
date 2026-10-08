@@ -20,7 +20,8 @@
         }
       },
       "perPage": 10,
-      "baseUrl": "/topics/"
+      "baseUrl": "/topics/",
+      "structuredData": false
     }
   ],
   "__resolveType": "website/pages/Page.tsx",

@@ -30,6 +30,12 @@ export interface Props {
    * @description Ex: "/topics/engineering". Padrão: raiz
    */
   baseUrl?: string;
+  /**
+   * @title Emitir JSON-LD
+   * @description Desative quando o SEO da página já emite os dados estruturados (ex.: blog/sections/Seo/SeoBlogPostListing), para não duplicar entidades.
+   * @default true
+   */
+  structuredData?: boolean;
 }
 
 export function loader(
@@ -98,6 +104,7 @@ export default function BlogHome({
   perPage = 10,
   sectionTitle,
   baseUrl,
+  structuredData = true,
   currentPage = 1,
   query = "",
   origin,
@@ -124,21 +131,25 @@ export default function BlogHome({
     : `${paginationBase}?page=${page - 1}`;
   const nextHref = `${paginationBase}?page=${page + 1}`;
 
-  const jsonLd = buildJsonLd(
-    all,
-    origin,
-    paginationBase || "/",
-    page,
-    siteConfig,
-    sectionTitle,
-  );
+  const jsonLd = structuredData
+    ? buildJsonLd(
+      all,
+      origin,
+      paginationBase || "/",
+      page,
+      siteConfig,
+      sectionTitle,
+    )
+    : null;
 
   return (
     <div className="bg-white min-h-screen" id={containerId} data-blog-index="">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLd }}
-      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd }}
+        />
+      )}
       <style dangerouslySetInnerHTML={{ __html: REVEAL_CSS }} />
 
       {/* Page title for category/author views */}

@@ -1,15 +1,16 @@
 /**
- * schema.org JSON-LD builders for the blog pages (SEO + GEO/AEO).
+ * schema.org JSON-LD for the listing pages that have no structured data from
+ * their SEO block (home, topics index, authors, search).
  *
- * Built on top of @decocms/apps-blog's `toBlogPosting` / `toOrganization`,
- * extended with the fields this template emits (speakable, isPartOf, author
- * pages…). Publisher data comes from `SiteConfig` — resolved by the section
- * loader from the blog app config — so server and client render the same.
+ * Post and topic pages get theirs from the @decocms/apps-blog SEO sections
+ * (blog/sections/Seo/*) — don't emit JSON-LD for them here.
+ *
+ * Publisher data comes from `SiteConfig` — resolved by the section loader from
+ * the blog app config — so server and client render the same.
  */
-import { toBlogPosting, toOrganization } from "@decocms/apps-blog/utils/jsonLD";
+import { toOrganization } from "@decocms/apps-blog/utils/jsonLD";
 import type { Author, BlogPost, Publisher } from "@decocms/apps-blog/types";
 import type { SiteConfig } from "./siteConfig";
-import { toIsoDate } from "./format";
 
 const LANGUAGE = "pt-BR";
 const CONTEXT = "https://schema.org";
@@ -47,76 +48,6 @@ export function breadcrumbList(entries: BreadcrumbEntry[]) {
 /** Root breadcrumb entry (the blog home). */
 export function homeCrumb(siteConfig: SiteConfig, origin: string): BreadcrumbEntry {
   return { name: siteConfig.name, url: origin ? `${origin}/` : "/" };
-}
-
-/** BlogPosting + BreadcrumbList (Blog › Topic › Post) for a post page. */
-export function postJsonLd(
-  post: BlogPost & { sections?: unknown[] },
-  canonicalUrl: string,
-  siteConfig: SiteConfig,
-): object[] {
-  const origin = URL.canParse(canonicalUrl) ? new URL(canonicalUrl).origin : "";
-  const publisher = toPublisher(siteConfig, origin);
-  const authors = (post.authors as Author[] | undefined) ?? [];
-  const categories = post.categories?.map((c) => c.name).join(", ") || undefined;
-  const firstCategory = post.categories?.[0];
-
-  const blogPosting = {
-    "@context": CONTEXT,
-    ...toBlogPosting(post, canonicalUrl, publisher),
-    "@id": canonicalUrl,
-    image: post.image
-      ? { "@type": "ImageObject", url: post.image, description: post.alt ?? post.title }
-      : undefined,
-    datePublished: post.date ? toIsoDate(post.date) : undefined,
-    dateModified: post.dateModified
-      ? toIsoDate(post.dateModified)
-      : post.date
-      ? toIsoDate(post.date)
-      : undefined,
-    abstract: post.excerpt || undefined,
-    inLanguage: LANGUAGE,
-    articleSection: categories,
-    keywords: categories,
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: [
-        ".post-excerpt",
-        "[data-post-content] h2",
-        "[data-post-content] p:first-of-type",
-      ],
-    },
-    author: authors.map((a) => ({
-      "@type": "Person",
-      name: a.name,
-      jobTitle: a.jobTitle ?? undefined,
-      image: a.avatar ?? undefined,
-      url: a.email ? `${origin}/authors/${a.email}` : undefined,
-    })),
-    publisher: {
-      ...toOrganization(publisher),
-      "@id": origin ? `${origin}/#organization` : undefined,
-    },
-    isPartOf: {
-      "@type": "Blog",
-      "@id": origin ? `${origin}/#blog` : undefined,
-      url: origin ? `${origin}/` : "/",
-      name: siteConfig.name,
-    },
-  };
-
-  const breadcrumb = {
-    "@context": CONTEXT,
-    ...breadcrumbList([
-      homeCrumb(siteConfig, origin),
-      ...(firstCategory
-        ? [{ name: firstCategory.name, url: `${origin}/topics/${firstCategory.slug}` }]
-        : []),
-      { name: post.title, url: canonicalUrl },
-    ]),
-  };
-
-  return [blogPosting, breadcrumb];
 }
 
 /** CollectionPage for listing pages (topics, authors, search…). */

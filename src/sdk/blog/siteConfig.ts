@@ -10,7 +10,6 @@
  */
 import { getSiteSeo } from "@decocms/blocks/cms";
 import { getBlogConfig } from "@decocms/apps-blog/client";
-import { withCanonicalBase } from "@decocms/apps-blog/utils/jsonLD";
 
 export interface SiteConfig {
   /** Site title, e.g. "Blog — Engenharia, Performance, Design e Produto". */
@@ -45,10 +44,3 @@ export function getSiteConfig(): SiteConfig {
   };
 }
 
-/**
- * Canonical form of a page URL: query/hash stripped and the origin replaced by
- * the blog app's `canonicalBaseUrl` when configured.
- */
-export function toCanonicalUrl(url: string, siteConfig: SiteConfig): string {
-  return withCanonicalBase(url, siteConfig.canonicalBaseUrl);
-}

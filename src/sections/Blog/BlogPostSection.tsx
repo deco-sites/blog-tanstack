@@ -2,9 +2,6 @@ import type { Author, BlogPost, BlogPostPage } from "@decocms/apps-blog/types";
 import AuthorAvatar from "../../components/blog/AuthorAvatar";
 import { getContentBlocks, renderBlock } from "../../sdk/blog/blocks";
 import { formatDate, toIsoDate } from "../../sdk/blog/format";
-import { postJsonLd, serializeJsonLd } from "../../sdk/blog/jsonLd";
-import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
-import { toCanonicalUrl } from "../../sdk/blog/siteConfig";
 import { tocScript } from "../../sdk/blog/scripts";
 import { extractToc } from "../../sdk/blog/toc";
 import { useDomId } from "../../sdk/useDomId";
@@ -17,10 +14,6 @@ export interface Props {
    * @description Conecte ao site/loaders/BlogpostList.ts
    */
   relatedPosts?: BlogPost[] | null;
-}
-
-export function loader(props: Props, req: Request): Props & SiteContext {
-  return { ...props, ...getSiteContext(req) };
 }
 
 function AnimatedTitle({ text }: { text: string }) {
@@ -60,7 +53,7 @@ function AnimatedTitle({ text }: { text: string }) {
 }
 
 export default function BlogPostSection(
-  { page, relatedPosts, origin, siteConfig }: Props & SiteContext,
+  { page, relatedPosts }: Props,
 ) {
   const tocNavId = useDomId();
   if (!page?.post) return null;
@@ -90,30 +83,10 @@ export default function BlogPostSection(
     2,
   );
 
-  // JSON-LD for SEO/GEO — the BlogPostPage canonical, rebased on the blog
-  // app's canonicalBaseUrl.
-  const canonicalUrl = page.seo?.canonical
-    ? toCanonicalUrl(page.seo.canonical, siteConfig)
-    : `${origin}/${slug}`;
-  const [blogPostingJsonLd, breadcrumbJsonLd] = postJsonLd(
-    post,
-    canonicalUrl,
-    siteConfig,
-  ).map(serializeJsonLd);
-
   return (
     <div className="bg-white min-h-screen" data-blog-post-section="">
-      {/* JSON-LD structured data — BlogPosting */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: blogPostingJsonLd }}
-      />
-      {/* JSON-LD — BreadcrumbList */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
-      />
-
+      {/* Structured data (BlogPosting, BreadcrumbList) comes from the page's
+          SEO block — blog/sections/Seo/SeoBlogPost — not from this section. */}
       {/* Hero image */}
       {image && (
         <figure
@@ -224,12 +197,7 @@ export default function BlogPostSection(
 
       <div className="max-w-[1200px] mx-auto px-[clamp(1rem,3vw,2rem)] pt-8 pb-20 box-border">
         <div className={hasToc ? "flex gap-16 xl:gap-24" : ""}>
-          {/* Article — itemscope for microdata-based structured data (AEO supplement) */}
-          <article
-            className="flex-1 min-w-0 max-w-[720px]"
-            itemScope
-            itemType="https://schema.org/BlogPosting"
-          >
+          <article className="flex-1 min-w-0 max-w-[720px]">
             {/* Breadcrumb */}
             <nav
               className="post-anim-1 flex items-center gap-2 text-[10px] tracking-[0.12em] uppercase mb-6 text-[#a0a09a] flex-wrap"
@@ -271,7 +239,6 @@ export default function BlogPostSection(
             {/* Title with letter-by-letter animation */}
             <h1
               className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-[#1a1a18] break-words [text-wrap:balance] mb-4"
-              itemProp="headline"
             >
               <span className="sr-only">{title}</span>
               <AnimatedTitle text={title} />
@@ -281,7 +248,6 @@ export default function BlogPostSection(
             {excerpt && (
               <p
                 className="post-excerpt post-anim-4 text-[#4a4a46] text-lg leading-relaxed mb-6 [text-wrap:pretty]"
-                itemProp="description"
               >
                 {excerpt}
               </p>
@@ -306,7 +272,6 @@ export default function BlogPostSection(
                 <time
                   className="text-sm text-[#7a7a74] ml-auto"
                   dateTime={toIsoDate(date)}
-                  itemProp="datePublished"
                 >
                   {formatDate(date)}
                 </time>
