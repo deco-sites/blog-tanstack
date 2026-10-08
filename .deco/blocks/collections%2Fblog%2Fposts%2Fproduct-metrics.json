@@ -11,7 +11,7 @@
     "authors": [{ "name": "Rafael Melo", "email": "rafael@deco.cx" }],
     "categories": [{ "name": "Product", "slug": "product" }],
     "seo": {
-      "title": "As métricas de produto que realmente importam — Blog",
+      "title": "As métricas de produto que realmente importam",
       "description": "Vanity metrics não mudam nada. Como identificar as métricas que predizem crescimento real."
     },
     "sections": [

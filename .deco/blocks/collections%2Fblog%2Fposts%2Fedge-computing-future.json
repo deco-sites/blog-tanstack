@@ -11,7 +11,7 @@
     "authors": [{ "name": "Rafael Melo", "email": "rafael@deco.cx" }],
     "categories": [{ "name": "Product", "slug": "product" }],
     "seo": {
-      "title": "O futuro da computação na borda — Blog",
+      "title": "O futuro da computação na borda",
       "description": "Edge computing não é tendência — é a arquitetura padrão para aplicações web de alta performance."
     },
     "sections": [

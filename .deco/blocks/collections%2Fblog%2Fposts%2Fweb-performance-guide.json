@@ -11,7 +11,7 @@
     "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
     "categories": [{ "name": "Performance", "slug": "performance" }],
     "seo": {
-      "title": "O guia definitivo de performance web em 2025 — Blog",
+      "title": "O guia definitivo de performance web em 2025",
       "description": "Core Web Vitals, LCP, INP, CLS — como alcançar PageSpeed 99+ com TanStack Start e Cloudflare Workers."
     },
     "sections": [

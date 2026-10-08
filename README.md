@@ -40,7 +40,7 @@ bun run start
 src/
   sections/Blog/        # Blog UI sections (BlogHome, BlogHeader, BlogSearch, …) — markup only
   sections/Blog/blocks/ # Custom post content blocks (site/sections/Blog/blocks/*)
-  sections/Seo/         # SEO sections (SeoBlogPost, SeoBlogCategory, SeoBlogAuthor)
+  sections/Seo/         # SeoBlogAuthor (post / topic SEO use the app defaults: blog/sections/Seo/*)
   sdk/blog/             # Rendering logic shared by the sections:
                         #   blocks.tsx    content block registry (default × custom) + renderer
                         #   toc.ts        table of contents / heading anchors

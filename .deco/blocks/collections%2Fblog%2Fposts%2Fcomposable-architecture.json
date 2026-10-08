@@ -11,7 +11,7 @@
     "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
     "categories": [{ "name": "Engineering", "slug": "engineering" }],
     "seo": {
-      "title": "Por que arquitetura composable importa em 2025 — Blog",
+      "title": "Por que arquitetura composable importa em 2025",
       "description": "Composabilidade deixou de ser buzzword: é a diferença entre times que entregam rápido e times presos em acoplamento."
     },
     "sections": [

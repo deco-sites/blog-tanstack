@@ -11,7 +11,7 @@
     "authors": [{ "name": "Ana Luiza Costa", "email": "ana@deco.cx" }],
     "categories": [{ "name": "Performance", "slug": "performance" }],
     "seo": {
-      "title": "CSS moderno e performance com Tailwind v4 — Blog",
+      "title": "CSS moderno e performance com Tailwind v4",
       "description": "Tailwind v4 com Oxide é 10x mais rápido. Como o browser parse CSS e estratégias para CLS zero."
     },
     "sections": [

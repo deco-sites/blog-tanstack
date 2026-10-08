@@ -11,6 +11,8 @@ import { setInvokeLoaders } from "@decocms/blocks-admin";
 import { createAdminSetup } from "@decocms/blocks-admin/setup";
 import { autoconfigApps } from "@decocms/blocks-admin/apps/autoconfig";
 import { PreviewProviders, setupTanstackFastDeploy } from "@decocms/tanstack";
+import { loader as blogPostSeoLoader } from "@decocms/apps-blog/sections/Seo/SeoBlogPost";
+import { loader as blogPostListingSeoLoader } from "@decocms/apps-blog/sections/Seo/SeoBlogPostListing";
 import { blocks as generatedBlocks } from "../.deco/blocks.gen";
 import {
   loadingFallbacks,
@@ -72,9 +74,26 @@ await autoconfigApps(generatedBlocks, [
   },
 ]);
 
+// Page-level SEO sections (`page.seo`). setupApps registers app sections
+// lazily and without the `.tsx` key the decofile uses, and doesn't register
+// their loaders — which is what turns `{ jsonLD }` into title/canonical/JSON-LD.
 registerSections({
   "website/sections/Seo/SeoV2.tsx": () =>
     import("@decocms/apps-website/sections/Seo/SeoV2"),
+  "blog/sections/Seo/SeoBlogPost.tsx": () =>
+    import("@decocms/apps-blog/sections/Seo/SeoBlogPost"),
+  "blog/sections/Seo/SeoBlogPostListing.tsx": () =>
+    import("@decocms/apps-blog/sections/Seo/SeoBlogPostListing"),
+});
+// The framework calls section loaders as `loader(props, req, ctx)`, but the
+// blog SEO loaders read their 3rd argument as the site SEO defaults — `ctx`
+// would shadow the blog app's `seo` config (titleTemplate…). Drop it so they
+// fall back to `getBlogConfig().seo`.
+registerSectionLoaders({
+  "blog/sections/Seo/SeoBlogPost.tsx": (props, req) =>
+    blogPostSeoLoader(props as any, req),
+  "blog/sections/Seo/SeoBlogPostListing.tsx": (props, req) =>
+    blogPostListingSeoLoader(props as any, req),
 });
 
 // Site loaders (`site/loaders/*`) — e.g. site/loaders/BlogpostList.ts, which

@@ -9,7 +9,7 @@
     "url": "https://blog-tanstack.deco.site"
   },
   "seo": {
-    "titleTemplate": "%s",
+    "titleTemplate": "%s — Blog",
     "descriptionTemplate": "%s"
   }
 }

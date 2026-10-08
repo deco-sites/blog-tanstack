@@ -11,7 +11,7 @@
     "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
     "categories": [{ "name": "Engineering", "slug": "engineering" }],
     "seo": {
-      "title": "Acessibilidade web: o checklist que todo dev deveria ter — Blog",
+      "title": "Acessibilidade web: o checklist que todo dev deveria ter",
       "description": "1 bilhão de pessoas tem alguma deficiência. Checklist completo de acessibilidade para desenvolvedores."
     },
     "sections": [

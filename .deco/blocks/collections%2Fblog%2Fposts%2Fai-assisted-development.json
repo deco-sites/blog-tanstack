@@ -11,7 +11,7 @@
     "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
     "categories": [{ "name": "Culture", "slug": "culture" }],
     "seo": {
-      "title": "Desenvolvimento assistido por IA: o que mudou no fluxo real — Blog",
+      "title": "Desenvolvimento assistido por IA: o que mudou no fluxo real",
       "description": "O impacto real de LLMs no desenvolvimento não é velocidade de escrita — é exploração de espaços de solução."
     },
     "sections": [

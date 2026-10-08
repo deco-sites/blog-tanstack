@@ -11,7 +11,7 @@
     "authors": [{ "name": "Lucas Bastos", "email": "lucas@deco.cx" }],
     "categories": [{ "name": "Engineering", "slug": "engineering" }],
     "seo": {
-      "title": "React Compiler: o que muda na prática — Blog",
+      "title": "React Compiler: o que muda na prática",
       "description": "O React Compiler elimina useMemo e useCallback manuais. Quando ajuda, quando não ajuda, como habilitar."
     },
     "sections": [

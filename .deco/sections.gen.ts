@@ -20,8 +20,6 @@ import * as _sync3 from "../src/sections/Blog/BlogPostSection";
 import * as _sync4 from "../src/sections/Blog/BlogSearch";
 import * as _sync5 from "../src/sections/Blog/BlogTopics";
 import * as _sync6 from "../src/sections/Seo/SeoBlogAuthor";
-import * as _sync7 from "../src/sections/Seo/SeoBlogCategory";
-import * as _sync8 from "../src/sections/Seo/SeoBlogPost";
 
 export interface SectionMetaEntry {
   eager?: boolean;
@@ -45,8 +43,6 @@ export const sectionMeta: Record<string, SectionMetaEntry> = {
   "site/sections/Blog/BlogSearch.tsx": { eager: true, sync: true },
   "site/sections/Blog/BlogTopics.tsx": { eager: true, sync: true },
   "site/sections/Seo/SeoBlogAuthor.tsx": { seo: true, sync: true },
-  "site/sections/Seo/SeoBlogCategory.tsx": { seo: true, sync: true },
-  "site/sections/Seo/SeoBlogPost.tsx": { seo: true, sync: true },
 };
 
 export const syncComponents: Record<string, any> = {
@@ -57,8 +53,6 @@ export const syncComponents: Record<string, any> = {
   "site/sections/Blog/BlogSearch.tsx": _sync4,
   "site/sections/Blog/BlogTopics.tsx": _sync5,
   "site/sections/Seo/SeoBlogAuthor.tsx": _sync6,
-  "site/sections/Seo/SeoBlogCategory.tsx": _sync7,
-  "site/sections/Seo/SeoBlogPost.tsx": _sync8,
 };
 
 export const loadingFallbacks: Record<string, React.ComponentType<any>> = {};

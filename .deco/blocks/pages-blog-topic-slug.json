@@ -25,6 +25,14 @@
   ],
   "__resolveType": "website/pages/Page.tsx",
   "seo": {
-    "__resolveType": "site/sections/Seo/SeoBlogCategory.tsx"
+    "__resolveType": "blog/sections/Seo/SeoBlogPostListing.tsx",
+    "jsonLD": {
+      "__resolveType": "blog/loaders/BlogpostListing.ts",
+      "slug": {
+        "__resolveType": "website/functions/requestToParam.ts",
+        "param": "slug"
+      },
+      "count": 10
+    }
   }
 }
