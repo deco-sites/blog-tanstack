@@ -5,6 +5,7 @@
     "name": "Software",
     "slug": "software",
     "description": "",
-    "sections": []
+    "sections": [],
+    "parentSlug": "engineering"
   }
 }
