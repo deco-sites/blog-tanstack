@@ -16,65 +16,65 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/blocks/Callout.tsx",
+        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
         "variant": "summary",
         "title": "TL;DR",
         "body": "LCP: imagem hero com loading=eager e fetchpriority=high. INP: evite JS pesado no main thread. CLS: defina width e height em imagens. Edge cache: SWR 24h para conteúdo editorial."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "Por que performance importa mais do que nunca",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "Google usa Core Web Vitals como sinal de ranking desde 2021. Em 2025, a janela de tolerância ficou ainda menor: sites lentos perdem tráfego orgânico diretamente para concorrentes mais rápidos. Mas performance não é só SEO — é conversão, retenção e experiência real do usuário."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "LCP — Largest Contentful Paint",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "LCP mede quando o maior elemento visível termina de carregar. Para blogs, esse elemento quase sempre é a imagem hero. A receita é simples:"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/List.tsx",
+        "__resolveType": "site/sections/Blog/Post/List.tsx",
         "style": "unordered",
         "items": "Use <code>loading=\"eager\"</code> na imagem hero — nunca lazy\nAdicione <code>fetchpriority=\"high\"</code> para que o browser a priorize no HTTP/2 scheduling\nDefina <code>width</code> e <code>height</code> para evitar reflow\nSirva via CDN com headers <code>Cache-Control: public, max-age=31536000, immutable</code>"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "INP — Interaction to Next Paint",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "INP substituiu o FID em 2024. Mede a latência de todas as interações do usuário, não só a primeira. O principal culpado são scripts pesados que bloqueiam o main thread."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Callout.tsx",
+        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
         "variant": "warning",
         "title": "Cuidado com analytics",
         "body": "Scripts de analytics, chat e marketing são os maiores ofensores de INP. Carregue-os com <code>defer</code> ou via Web Worker para não bloquear a thread principal."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "CLS — Cumulative Layout Shift",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "CLS penaliza elementos que se movem na página durante o carregamento. As causas mais comuns: imagens sem dimensões, fontes com fallback diferente (FOIT/FOUT), e conteúdo injetado acima do fold por JS."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "Edge cache com SWR",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "Cloudflare Workers + stale-while-revalidate é a combinação mais poderosa para blogs editoriais. A estratégia: 30 minutos de cache fresh, 24 horas de SWR. Isso significa que 99% dos visitantes recebem HTML pré-gerado do edge — latência de <10ms globalmente."
       }
     ]

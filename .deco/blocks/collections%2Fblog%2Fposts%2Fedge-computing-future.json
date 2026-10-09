@@ -16,46 +16,46 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "Em 2020, 'edge computing' soava como jargão de vendedor. Em 2025, é a arquitetura padrão para qualquer aplicação séria. O que mudou não foi a tecnologia — foi o custo e a simplicidade de deployment."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "A física não mente",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx",
+        "__resolveType": "site/sections/Blog/Post/Paragraph.tsx",
         "html": "A velocidade da luz no fibra ótica é ~200.000 km/s. Um servidor em São Paulo respondendo para um usuário em Tokyo leva ~110ms só de ida — 220ms de round trip. Isso é antes de qualquer processamento. Com edge, você coloca o compute a 20-30ms de qualquer usuário no mundo."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "O que roda bem no edge",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/List.tsx",
+        "__resolveType": "site/sections/Blog/Post/List.tsx",
         "style": "unordered",
         "items": "SSR de páginas estáticas com personalização leve\nA/B testing sem round trip para o servidor de origem\nAutenticação e autorização (JWT validation)\nRewrites e redirects — sem latência adicional\nCache inteligente com SWR"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Heading.tsx",
+        "__resolveType": "site/sections/Blog/Post/Heading.tsx",
         "text": "O que não roda bem no edge",
         "level": "2"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/List.tsx",
+        "__resolveType": "site/sections/Blog/Post/List.tsx",
         "style": "unordered",
         "items": "Queries pesadas em banco de dados relacional\nProcessamento de arquivos grandes\nLLM inference (ainda — isso está mudando)\nOperações que precisam de estado global consistente"
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Callout.tsx",
+        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
         "variant": "definition",
         "title": "Stale-While-Revalidate",
         "body": "SWR é uma estratégia de cache onde o servidor retorna a resposta em cache imediatamente (evitando latência) e revalida em segundo plano. Para blogs editoriais, é a estratégia perfeita: conteúdo serve em &lt;10ms e atualiza silenciosamente quando muda."
       },
       {
-        "__resolveType": "site/sections/Blog/blocks/Quote.tsx",
+        "__resolveType": "site/sections/Blog/Post/Quote.tsx",
         "quote": "O edge não é sobre onde você roda seu código. É sobre não fazer seus usuários pagar pela sua geografia.",
         "attribution": "Rafael Melo, PM"
       }

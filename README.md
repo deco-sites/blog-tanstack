@@ -39,7 +39,7 @@ bun run start
 ```
 src/
   sections/Blog/        # Blog UI sections (BlogHome, BlogHeader, BlogSearch, …) — markup only
-  sections/Blog/blocks/ # Custom post content blocks (site/sections/Blog/blocks/*)
+  sections/Blog/Post/ # Custom post content blocks (site/sections/Blog/Post/*)
   sections/Seo/         # SeoBlogAuthor (post / topic SEO use the app defaults: blog/sections/Seo/*)
   sdk/blog/             # Rendering logic shared by the sections:
                         #   blocks.tsx    content block registry (default × custom) + renderer
@@ -71,10 +71,10 @@ Its configuration lives in `.deco/blocks/deco-blog.json`: `pageSlug`,
 | Family  | `__resolveType`                          | Rendered by                                  |
 | ------- | ---------------------------------------- | -------------------------------------------- |
 | default | `blog/sections/blocks/<Name>.tsx`        | the app's component (`@decocms/apps-blog`)   |
-| custom  | `site/sections/Blog/blocks/<Name>.tsx`   | this template (`src/sections/Blog/blocks/`)  |
+| custom  | `site/sections/Blog/Post/<Name>.tsx`   | this template (`src/sections/Blog/Post/`)  |
 
 The mapping lives in `src/sdk/blog/blocks.tsx`. To add a custom block, create it in
-`src/sections/Blog/blocks/` and register it in `CUSTOM_BLOCKS`.
+`src/sections/Blog/Post/` and register it in `CUSTOM_BLOCKS`.
 
 ## Content management
 
@@ -95,8 +95,8 @@ Create a file in `.deco/blocks/collections%2Fblog%2Fposts/your-post.json`:
     "authors": [{ "name": "Author Name", "email": "author@example.com" }],
     "categories": [{ "name": "Engineering", "slug": "engineering" }],
     "sections": [
-      { "__resolveType": "site/sections/Blog/blocks/Heading.tsx", "level": "2", "text": "Intro" },
-      { "__resolveType": "site/sections/Blog/blocks/Paragraph.tsx", "html": "<p>…</p>" }
+      { "__resolveType": "site/sections/Blog/Post/Heading.tsx", "level": "2", "text": "Intro" },
+      { "__resolveType": "site/sections/Blog/Post/Paragraph.tsx", "html": "<p>…</p>" }
     ]
   }
 }
