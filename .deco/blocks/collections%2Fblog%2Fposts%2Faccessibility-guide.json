@@ -8,8 +8,18 @@
     "excerpt": "1 bilhão de pessoas no mundo tem alguma deficiência. Se seu site não é acessível, você está excluindo 15% da população global — e provavelmente violando leis em vários países.",
     "image": "https://images.unsplash.com/photo-1516116216624-53ad39fcc843?w=1280&h=720&fit=crop&q=80&auto=format",
     "alt": "Pessoa usando leitor de tela em computador",
-    "authors": [{ "name": "Carla Figueiredo", "email": "carla@deco.cx" }],
-    "categories": [{ "name": "Engineering", "slug": "engineering" }],
+    "authors": [
+      {
+        "name": "Carla Figueiredo",
+        "email": "carla@deco.cx"
+      }
+    ],
+    "categories": [
+      {
+        "name": "Engineering",
+        "slug": "engineering"
+      }
+    ],
     "seo": {
       "title": "Acessibilidade web: o checklist que todo dev deveria ter",
       "description": "1 bilhão de pessoas tem alguma deficiência. Checklist completo de acessibilidade para desenvolvedores."
@@ -49,7 +59,11 @@
         "__resolveType": "site/sections/Blog/Post/List.tsx",
         "style": "ordered",
         "items": "Navegue apenas com teclado — consiga usar tudo?\nAtivar VoiceOver (Mac) ou NVDA (Windows) e navegar pela página\nRodar axe DevTools no Chrome — score zero é o mínimo\nTestar com zoom 200% — layout ainda funciona?\nVerificar em modo high contrast do Windows"
+      },
+      {
+        "__resolveType": "site/sections/Blog/Post/CustomBlock.tsx"
       }
-    ]
+    ],
+    "dateModified": "2026-10-09T17:06:15.596Z"
   }
 }
