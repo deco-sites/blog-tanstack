@@ -41,6 +41,7 @@ import CallToAction from "../../sections/Blog/Post/CallToAction";
 import Callout from "../../sections/Blog/Post/Callout";
 import Checklist from "../../sections/Blog/Post/Checklist";
 import Code from "../../sections/Blog/Post/Code";
+import CustomBlock from "../../sections/Blog/Post/CustomBlock";
 import Divider from "../../sections/Blog/Post/Divider";
 import Faq from "../../sections/Blog/Post/Faq";
 import Heading from "../../sections/Blog/Post/Heading";
@@ -85,6 +86,7 @@ export const CUSTOM_BLOCKS: Record<string, BlockComponent> = {
   Callout,
   Checklist,
   Code,
+  CustomBlock,
   Divider,
   Faq,
   Heading,
