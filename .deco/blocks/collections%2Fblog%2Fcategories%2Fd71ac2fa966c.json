@@ -2,10 +2,9 @@
   "name": "collections/blog/categories/d71ac2fa966c",
   "__resolveType": "blog/loaders/Category.ts",
   "category": {
-    "name": "New category",
+    "name": "Software",
     "slug": "software",
     "description": "",
-    "sections": [],
-    "parentSlug": "engineering"
+    "sections": []
   }
 }
