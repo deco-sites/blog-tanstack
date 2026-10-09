@@ -3,7 +3,7 @@
   "__resolveType": "blog/loaders/Category.ts",
   "category": {
     "name": "New category",
-    "slug": "category-0e625d52",
+    "slug": "software",
     "description": "",
     "sections": []
   }
