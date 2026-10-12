@@ -1,7 +1,7 @@
 {
   "major": 1,
   "blocksMajor": 8,
-  "version": "8.1.0-next.7",
+  "version": "8.1.0",
   "namespace": "site",
   "site": "blog-tanstack",
   "manifest": {
@@ -3603,6 +3603,26 @@
           }
         }
       },
+      "c3JjL3NlY3Rpb25zL0Jsb2cvUG9zdC9MaXN0LnRzeA==@ListItem": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Texto do item (HTML permitido)"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/c3JjL3NlY3Rpb25zL0Jsb2cvUG9zdC9MaXN0LnRzeA==@ListItem"
+            },
+            "nullable": true,
+            "title": "Sub-items"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
       "cG9zdC1saXN0@Props": {
         "type": "object",
         "properties": {
@@ -3639,7 +3659,10 @@
                       "title": "Texto do item (HTML permitido)"
                     },
                     "children": {
-                      "type": "object",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/c3JjL3NlY3Rpb25zL0Jsb2cvUG9zdC9MaXN0LnRzeA==@ListItem"
+                      },
                       "nullable": true,
                       "title": "Sub-items"
                     }
@@ -3715,7 +3738,10 @@
                       "title": "Texto do item (HTML permitido)"
                     },
                     "children": {
-                      "type": "object",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/c3JjL3NlY3Rpb25zL0Jsb2cvUG9zdC9MaXN0LnRzeA==@ListItem"
+                      },
                       "nullable": true,
                       "title": "Sub-items"
                     }
