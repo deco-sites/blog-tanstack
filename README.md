@@ -49,12 +49,35 @@ src/
   page.functions.ts    # the server function the routes call
   routes/              # __root (layout, analytics), / and /$ (CMS pages), sitemap.xml
   views.tsx            # descriptor -> section component
-  blocks.server.ts     # server-side props for sections (URL, site settings, search index)
-  seo/                 # the page `seo` blocks and the head tags they produce
-  blog/, vendor/blog/  # blog loaders (vendored from @decocms/apps by @decocms/blocks-migrate)
-  sections/Blog/       # the blog UI sections
+  blocks.server.ts     # server-side props for sections (URL, site and blog settings, search index)
+  seo/                 # the page `seo` blocks (post and topic SEO with their JSON-LD) and the head tags they produce
+  sdk/blog/            # rendering shared by the sections: blocks.tsx (post block registry, default x custom),
+                       # toc.ts, jsonLd.ts (schema.org for the listing pages), format.ts, scripts.ts
+  components/blog/     # shared UI pieces (AuthorAvatar)
+  utils/site-config.ts # site and blog settings -> SiteConfig (publisher, canonical origin)
+  blog/, vendor/blog/  # blog loaders and the blog app's default post blocks (vendored from @decocms/apps-blog)
+  sections/Blog/       # the blog UI sections, markup only
+  sections/Blog/Post/  # this template's post blocks (site/sections/Blog/Post/*)
   edge/, worker-entry.ts  # page cache profiles, device split, security headers (Cloudflare Worker)
 ```
+
+## Blog settings
+
+The blog's settings live in `.deco/blocks/deco-blog.json` (a `blog-settings` block): `pageSlug`,
+`categorySlug`, `canonicalBaseUrl` (origin used for canonicals and JSON-LD),
+`publisher` and `seo` (the title and description templates of the post and topic pages).
+
+### Post content blocks
+
+`post.sections` accepts two families of blocks, distinguished by `__resolveType`:
+
+| Family  | Block map name     | v7 name (saved content)              | Rendered by                                                  |
+| ------- | ------------------ | ------------------------------------ | ------------------------------------------------------------ |
+| default | `post-default-*`   | `blog/sections/blocks/<Name>.tsx`    | the blog app's component (vendored in `src/vendor/blog/sections/blocks/`) |
+| custom  | `post-*`           | `site/sections/Blog/Post/<Name>.tsx` | this template (`src/sections/Blog/Post/`)                    |
+
+The mapping lives in `src/sdk/blog/blocks.tsx`. To add a custom block, create it in
+`src/sections/Blog/Post/`, register it in `CUSTOM_BLOCKS`/`CUSTOM_TYPES` and add it to `.deco/index.ts`.
 
 ## Content management
 
@@ -84,7 +107,7 @@ Create `.deco/blocks/collections%2Fblog%2Fposts%2Fyour-post.json`:
 }
 ```
 
-A post's `sections` are its body blocks, the `post-*` sections of `.deco/index.ts` (`post-heading`, `post-paragraph`, `post-steps`, …). Older posts store them under their v7 names (`blog/sections/blocks/Heading.tsx`); both render the same.
+A post's `sections` are its body blocks, the `post-*` sections of `.deco/index.ts`. Older posts store them under their v7 names (`site/sections/Blog/Post/Heading.tsx`); both render the same.
 
 Then run `npx @decocms/blocks content` (or restart the dev server) and `npx @decocms/blocks check`.
 

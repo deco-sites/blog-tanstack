@@ -36,7 +36,22 @@ describe("post body blocks", () => {
   });
 
   it("renders the same headings saved under their v7 name", () => {
-    assert.equal(render(headings("blog/sections/blocks/Heading.tsx")), render(headings("post-heading")));
+    assert.equal(render(headings("site/sections/Blog/Post/Heading.tsx")), render(headings("post-heading")));
+    assert.equal(render(headings("sections/Blog/blocks/Heading.tsx")), render(headings("post-heading")));
+  });
+
+  it("renders the blog app's default blocks with the app's components, anchored for the table of contents", () => {
+    const html = render(headings("blog/sections/blocks/Heading.tsx"));
+    assert.equal(html, render(headings("post-default-heading")));
+    assert.match(html, /<div id="primeiros-passos" class="scroll-mt-24"><h2 class="font-display[^"]*">Primeiros passos<\/h2><\/div>/);
+    assert.match(html, /data-anchor="instalacao"/);
+    assert.match(render([{ __resolveType: "blog/sections/blocks/Table.tsx", headers: ["A"], rows: [["1"]] }]), /<table/);
+  });
+
+  it("renders the template's CustomBlock", () => {
+    const html = render([{ __resolveType: "site/sections/Blog/Post/CustomBlock.tsx", text: "Bloco de teste" }]);
+    assert.equal(html, render([{ __resolveType: "post-custom-block", text: "Bloco de teste" }]));
+    assert.match(html, /Bloco de teste/);
   });
 
   it("renders the descriptor a resolved post-heading block returns", async () => {
@@ -69,7 +84,7 @@ describe("post body blocks", () => {
     const html = renderToStaticMarkup(
       createElement(View, { block: { component: "post-heading", props: { level: "h2", text: "Olá" } } }),
     );
-    assert.match(html, /^<section id="Blog-blocks-Heading" data-manifest-key="site\/sections\/Blog\/blocks\/Heading.tsx">/);
+    assert.match(html, /^<section id="Blog-Post-Heading" data-manifest-key="site\/sections\/Blog\/Post\/Heading.tsx">/);
     assert.match(html, /<h2[^>]*>Olá<\/h2>/);
   });
 });

@@ -7,7 +7,7 @@ interface PageHeadData {
 
 /**
  * The route's head tags for a page: title, description, robots, Open Graph,
- * Twitter card and canonical. Without a title, the page's name with
+ * Twitter card, canonical and the page's JSON-LD. Without a title, the page's name with
  * the site name, else the default title.
  */
 export function pageHead(page: PageHeadData | undefined, siteName: string, defaultTitle: string) {
@@ -40,5 +40,11 @@ export function pageHead(page: PageHeadData | undefined, siteName: string, defau
 
   const links: Record<string, string>[] = canonical ? [{ rel: "canonical", href: canonical }] : [];
 
-  return { meta, links };
+  // Structured data, one <script type="application/ld+json"> per node, as v7's head did.
+  const scripts = (seo?.jsonLDs ?? []).map((node) => ({
+    type: "application/ld+json",
+    children: JSON.stringify(node),
+  }));
+
+  return { meta, links, scripts };
 }

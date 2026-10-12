@@ -10,6 +10,8 @@ export interface PageSeo {
   noIndexing?: boolean;
   /** Open Graph type, e.g. "website" or "article". */
   type?: string;
+  /** schema.org nodes, each rendered as a <script type="application/ld+json"> in the head. */
+  jsonLDs?: object[];
 }
 
 /** Keeps only the SEO fields a block's output sets, the way v7 read them. */

@@ -1,5 +1,5 @@
-import { useId } from "react";
 import type { BlogPost } from "../../vendor/blog/types";
+import { useDomId } from "../../sdk/useDomId";
 
 /**
  * Blog header — sticky navigation with reading progress bar, hero mode,
@@ -28,7 +28,7 @@ export interface Props {
   navLinks?: Array<{ label: string; href: string }>;
   /**
    * @title Posts para busca em tempo real
-   * @description Conecte ao loader blog/loaders/BlogpostList.ts (count >= 100) para habilitar busca instantânea no modal
+   * @description Conecte ao loader site/loaders/BlogpostList.ts (count >= 100) para habilitar busca instantânea no modal
    */
   posts?: BlogPost[] | null;
 }
@@ -328,6 +328,7 @@ function getHeaderScript(
 })();`;
 }
 
+
 export default function BlogHeader({
   logoUrl,
   logoAlt = "Blog",
@@ -335,16 +336,15 @@ export default function BlogHeader({
   navLinks = DEFAULT_NAV,
   posts,
 }: Props) {
-  const toId = (s: string) => s.replace(/:/g, "-");
-  const headerId = toId(useId());
-  const btnId = toId(useId());
-  const menuId = toId(useId());
-  const overlayId = toId(useId());
-  const progressId = toId(useId());
-  const dialogId = toId(useId());
-  const searchInputId = toId(useId());
-  const resultsId = toId(useId());
-  const postsDataId = toId(useId());
+  const headerId = useDomId();
+  const btnId = useDomId();
+  const menuId = useDomId();
+  const overlayId = useDomId();
+  const progressId = useDomId();
+  const dialogId = useDomId();
+  const searchInputId = useDomId();
+  const resultsId = useDomId();
+  const postsDataId = useDomId();
 
   // Slim down posts to just what the client-side search needs
   const searchData = (posts ?? []).slice(0, 100).map((p) => ({
@@ -634,4 +634,3 @@ export default function BlogHeader({
     </>
   );
 }
-

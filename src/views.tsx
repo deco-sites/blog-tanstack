@@ -6,23 +6,27 @@ import BlogHome from "./sections/Blog/BlogHome";
 import BlogPostSection from "./sections/Blog/BlogPostSection";
 import BlogSearch from "./sections/Blog/BlogSearch";
 import BlogTopics from "./sections/Blog/BlogTopics";
-import { BODY_TYPES, PostBodyView } from "./sections/Blog/blocks/body";
+import { blockFile, PostBodyView, toContentBlock } from "./sdk/blog/blocks";
 
 /**
  * Each section renders inside a <section> named after its v7 file, the markup
  * the v7 renderer produced: id (anchor links) and data-manifest-key stay stable.
  */
-const SECTION_FILES: Record<BlockDescriptor["component"], string> = {
+const SECTION_FILES: Record<string, string> = {
   "blog-header": "site/sections/Blog/BlogHeader.tsx",
   "blog-home": "site/sections/Blog/BlogHome.tsx",
   "blog-authors": "site/sections/Blog/BlogAuthors.tsx",
   "blog-topics": "site/sections/Blog/BlogTopics.tsx",
   "blog-search": "site/sections/Blog/BlogSearch.tsx",
   "blog-post-section": "site/sections/Blog/BlogPostSection.tsx",
-  ...(Object.fromEntries(
-    Object.entries(BODY_TYPES).map(([type, kind]) => [type, `site/sections/Blog/blocks/${kind}.tsx`]),
-  ) as Record<keyof typeof BODY_TYPES, string>),
 };
+
+/** A page section's v7 file; a post body block's is its block file (sdk/blog/blocks). */
+function sectionFile(block: BlockDescriptor): string | undefined {
+  if (block.component in SECTION_FILES) return SECTION_FILES[block.component];
+  const content = toContentBlock(block);
+  return content ? blockFile(content) : undefined;
+}
 
 function sectionId(file: string): string {
   return file.replace(/\//g, "-").replace(/\.tsx$/, "").replace(/^site-sections-/, "");
@@ -64,7 +68,7 @@ class SectionBoundary extends Component<{ name: string; children: ReactNode }, {
 
 export function View({ block }: { block: BlockDescriptor | BlockDescriptor[] }): ReactNode {
   if (Array.isArray(block)) return block.map((item, index) => <View key={index} block={item} />); // the chosen variant of the whole list
-  const file = SECTION_FILES[block.component];
+  const file = sectionFile(block);
   if (!file) return null;
   return (
     <section id={sectionId(file)} data-manifest-key={file}>

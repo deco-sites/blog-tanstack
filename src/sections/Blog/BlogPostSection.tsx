@@ -1,118 +1,19 @@
-import { type ReactNode, useId } from "react";
 import type { Author, BlogPost, BlogPostPage } from "../../vendor/blog/types";
-import { getSiteConfig, type SiteConfig } from "../../utils/site-config";
-
-import { BODY_COMPONENTS, readBody } from "./blocks/body";
+import AuthorAvatar from "../../components/blog/AuthorAvatar";
+import { getContentBlocks, renderBlock } from "../../sdk/blog/blocks";
+import { formatDate, toIsoDate } from "../../sdk/blog/format";
+import { tocScript } from "../../sdk/blog/scripts";
+import { extractToc } from "../../sdk/blog/toc";
+import { useDomId } from "../../sdk/useDomId";
 
 export interface Props {
   /** @description Página do post do blog */
   page?: BlogPostPage | null;
   /**
    * @title Posts relacionados
-   * @description Conecte ao blog/loaders/BlogpostList.ts
+   * @description Conecte ao site/loaders/BlogpostList.ts
    */
   relatedPosts?: BlogPost[] | null;
-}
-
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]+>/g, "");
-}
-
-function toAnchorId(text: string): string {
-  return stripHtml(text)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/[^\w\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-}
-
-interface TocItem {
-  id: string;
-  text: string;
-  depth: 2 | 3;
-}
-
-function extractToc(sections: any[]): TocItem[] {
-  const items: TocItem[] = [];
-  for (const section of sections) {
-    const body = readBody(section);
-    if (!body) continue;
-    const { kind, props: s } = body;
-    if (
-      kind === "Heading" &&
-      (s.level === "2" || s.level === "h2" || s.level === "3" ||
-        s.level === "h3")
-    ) {
-      items.push({
-        id: toAnchorId(s.text ?? ""),
-        text: stripHtml(s.text ?? ""),
-        depth: (s.level === "3" || s.level === "h3") ? 3 : 2,
-      });
-    } else if ((kind === "Steps" || kind === "Checklist") && s.title) {
-      items.push({ id: toAnchorId(s.title), text: s.title, depth: 3 });
-    }
-  }
-  return items;
-}
-
-function renderBlock(section: unknown, idx: number): ReactNode {
-  const body = readBody(section);
-  if (!body) return null;
-  const { kind, props } = body;
-  const Component = BODY_COMPONENTS[kind];
-  if (
-    kind === "Heading" &&
-    (props.level === "2" || props.level === "h2" || props.level === "3" ||
-      props.level === "h3")
-  ) {
-    return <Component key={idx} {...props} id={toAnchorId(props.text ?? "")} />;
-  }
-  if (
-    (kind === "Steps" || kind === "Checklist") &&
-    props.title
-  ) {
-    return <Component key={idx} {...props} id={toAnchorId(props.title)} />;
-  }
-  return <Component key={idx} {...props} />;
-}
-
-function formatDate(dateStr: string | undefined): string {
-  if (!dateStr) return "";
-  try {
-    return new Date(`${dateStr}T00:00:00`).toLocaleDateString("pt-BR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  } catch {
-    return dateStr;
-  }
-}
-
-function getTocScript(navId: string) {
-  return `(function(){
-  var nav = document.getElementById(${JSON.stringify(navId)});
-  if (!nav) return;
-  var links = Array.from(nav.querySelectorAll('a[data-anchor]'));
-  var activate = function(id) {
-    links.forEach(function(l) {
-      var on = l.dataset.anchor === id;
-      l.style.color = on ? '#ff6011' : '';
-      l.style.borderLeftColor = on ? '#ff6011' : '';
-      l.style.fontWeight = on ? '600' : '';
-    });
-  };
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if (e.isIntersecting) activate(e.target.id); });
-  }, { rootMargin: '-8% 0% -82% 0%', threshold: 0 });
-  links.forEach(function(l) {
-    var h = l.dataset.anchor ? document.getElementById(l.dataset.anchor) : null;
-    if (h) io.observe(h);
-  });
-})();`;
 }
 
 function AnimatedTitle({ text }: { text: string }) {
@@ -151,130 +52,13 @@ function AnimatedTitle({ text }: { text: string }) {
   );
 }
 
-function AuthorInitial({ name }: { name: string }) {
-  const initials = name.split(" ").slice(0, 2).map((w) =>
-    w[0]?.toUpperCase() ?? ""
-  ).join("");
-  return (
-    <div
-      className="w-10 h-10 rounded-full bg-[#ff6011] text-white flex items-center justify-center flex-shrink-0 text-sm font-bold select-none"
-      aria-hidden="true"
-    >
-      {initials || "?"}
-    </div>
-  );
-}
-
-function buildJsonLd(
-  post: BlogPost & { sections?: any[] },
-  canonicalUrl: string,
-  siteConfig: SiteConfig,
-): string[] {
-  const authors: Author[] = (post.authors as Author[] | undefined) ?? [];
-  const origin = canonicalUrl.startsWith("http")
-    ? new URL(canonicalUrl).origin
-    : "";
-  const siteName = siteConfig.name;
-  const siteLogo = siteConfig.favicon ||
-    (origin ? `${origin}/favicon.svg` : "");
-
-  const blogPosting = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": canonicalUrl,
-    "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
-    "headline": post.title,
-    "description": post.excerpt ?? "",
-    "abstract": post.excerpt ?? undefined,
-    "image": post.image
-      ? {
-        "@type": "ImageObject",
-        "url": post.image,
-        "description": (post as any).alt ?? post.title,
-      }
-      : undefined,
-    "datePublished": post.date ? `${post.date}T00:00:00+00:00` : undefined,
-    "dateModified": post.date ? `${post.date}T00:00:00+00:00` : undefined,
-    "url": canonicalUrl,
-    "inLanguage": "pt-BR",
-    "articleSection": post.categories?.map((c) => c.name).join(", ") ??
-      undefined,
-    "keywords": post.categories?.map((c) => c.name).join(", ") ?? undefined,
-    "wordCount": post.sections ? post.sections.length * 80 : undefined,
-    "timeRequired": post.readTime ? `PT${post.readTime}M` : undefined,
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "cssSelector": [
-        ".post-excerpt",
-        "[data-post-content] h2",
-        "[data-post-content] p:first-of-type",
-      ],
-    },
-    "author": authors.map((a) => ({
-      "@type": "Person",
-      "name": a.name,
-      "jobTitle": a.jobTitle ?? undefined,
-      "image": a.avatar ?? undefined,
-      "url": a.email ? `${origin}/authors/${a.email}` : undefined,
-    })),
-    "publisher": {
-      "@type": "Organization",
-      "@id": origin ? `${origin}/#organization` : undefined,
-      "name": siteName,
-      "url": origin || undefined,
-      "logo": siteLogo
-        ? { "@type": "ImageObject", "url": siteLogo }
-        : undefined,
-    },
-    "isPartOf": {
-      "@type": "Blog",
-      "@id": origin ? `${origin}/#blog` : undefined,
-      "url": origin ? `${origin}/` : "/",
-      "name": siteName,
-    },
-  };
-
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": siteName,
-        "item": origin ? `${origin}/` : "/",
-      },
-      ...(post.categories?.[0]
-        ? [{
-          "@type": "ListItem",
-          "position": 2,
-          "name": post.categories[0].name,
-          "item": origin
-            ? `${origin}/topics/${post.categories[0].slug}`
-            : `/topics/${post.categories[0].slug}`,
-        }]
-        : []),
-      {
-        "@type": "ListItem",
-        "position": post.categories?.[0] ? 3 : 2,
-        "name": post.title,
-        "item": canonicalUrl,
-      },
-    ],
-  };
-
-  return [JSON.stringify(blogPosting), JSON.stringify(breadcrumb)];
-}
-
 export default function BlogPostSection(
-  { page, relatedPosts, siteConfig = getSiteConfig() }: Props & {
-    // @ts-ignore injected by loader
-    siteConfig?: SiteConfig;
-  },
+  { page, relatedPosts }: Props,
 ) {
+  const tocNavId = useDomId();
   if (!page?.post) return null;
 
-  const post = page.post as BlogPost & { sections?: any[] };
+  const post = page.post as BlogPost & { sections?: unknown[] };
   const {
     title,
     image,
@@ -286,43 +70,23 @@ export default function BlogPostSection(
     categories,
     slug,
   } = post;
-  const alt = (post as any).alt;
+  const alt = post.alt;
 
   const authorsArray: Author[] = (authors as Author[] | undefined) ?? [];
   const firstCategory = categories?.[0];
-  const toc: TocItem[] = sections ? extractToc(sections) : [];
+  const blocks = getContentBlocks(sections);
+  const toc = extractToc(blocks);
   const hasToc = toc.length > 1;
-  const tocNavId = useId().replace(/:/g, "-");
 
   const related = (relatedPosts ?? []).filter((p) => p.slug !== slug).slice(
     0,
     2,
   );
 
-  // JSON-LD for SEO/GEO — prefer the canonical URL set by the BlogPostPage loader
-  // (absolute URL like https://domain.com/slug), fall back to window.location on client
-  const canonicalUrl = page?.seo?.canonical ??
-    (typeof window !== "undefined" ? window.location.href : `/${slug}`);
-
-  const [blogPostingJsonLd, breadcrumbJsonLd] = buildJsonLd(
-    post,
-    canonicalUrl,
-    siteConfig,
-  );
-
   return (
     <div className="bg-white min-h-screen" data-blog-post-section="">
-      {/* JSON-LD structured data — BlogPosting */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: blogPostingJsonLd }}
-      />
-      {/* JSON-LD — BreadcrumbList */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
-      />
-
+      {/* Structured data (BlogPosting, BreadcrumbList) comes from the page's
+          SEO block — blog/sections/Seo/SeoBlogPost — not from this section. */}
       {/* Hero image */}
       {image && (
         <figure
@@ -433,12 +197,7 @@ export default function BlogPostSection(
 
       <div className="max-w-[1200px] mx-auto px-[clamp(1rem,3vw,2rem)] pt-8 pb-20 box-border">
         <div className={hasToc ? "flex gap-16 xl:gap-24" : ""}>
-          {/* Article — itemscope for microdata-based structured data (AEO supplement) */}
-          <article
-            className="flex-1 min-w-0 max-w-[720px]"
-            itemScope
-            itemType="https://schema.org/BlogPosting"
-          >
+          <article className="flex-1 min-w-0 max-w-[720px]">
             {/* Breadcrumb */}
             <nav
               className="post-anim-1 flex items-center gap-2 text-[10px] tracking-[0.12em] uppercase mb-6 text-[#a0a09a] flex-wrap"
@@ -480,7 +239,6 @@ export default function BlogPostSection(
             {/* Title with letter-by-letter animation */}
             <h1
               className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-[#1a1a18] break-words [text-wrap:balance] mb-4"
-              itemProp="headline"
             >
               <span className="sr-only">{title}</span>
               <AnimatedTitle text={title} />
@@ -490,7 +248,6 @@ export default function BlogPostSection(
             {excerpt && (
               <p
                 className="post-excerpt post-anim-4 text-[#4a4a46] text-lg leading-relaxed mb-6 [text-wrap:pretty]"
-                itemProp="description"
               >
                 {excerpt}
               </p>
@@ -500,17 +257,7 @@ export default function BlogPostSection(
             <div className="post-anim-5 flex flex-wrap items-center gap-x-4 gap-y-2 py-5 border-y border-[#e4e3df] mb-8">
               {authorsArray.map((author) => (
                 <div key={author.email} className="flex items-center gap-2.5">
-                  {author.avatar
-                    ? (
-                      <img
-                        src={author.avatar}
-                        alt={author.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-8 h-8 rounded-full object-cover block flex-shrink-0"
-                      />
-                    )
-                    : <AuthorInitial name={author.name} />}
+                  <AuthorAvatar author={author} size="sm" />
                   <span className="text-sm font-semibold text-[#1a1a18]">
                     {author.name}
                   </span>
@@ -524,8 +271,7 @@ export default function BlogPostSection(
               {date && (
                 <time
                   className="text-sm text-[#7a7a74] ml-auto"
-                  dateTime={`${date}T00:00:00+00:00`}
-                  itemProp="datePublished"
+                  dateTime={toIsoDate(date)}
                 >
                   {formatDate(date)}
                 </time>
@@ -591,10 +337,10 @@ export default function BlogPostSection(
             )}
 
             {/* Content blocks or raw HTML */}
-            {sections && sections.length > 0
+            {blocks.length > 0
               ? (
                 <div className="flex flex-col" data-post-content="">
-                  {sections.map(renderBlock)}
+                  {blocks.map(renderBlock)}
                 </div>
               )
               : content && (
@@ -616,23 +362,7 @@ export default function BlogPostSection(
                     key={author.email}
                     className="flex items-start gap-4 mb-6 last:mb-0"
                   >
-                    {author.avatar
-                      ? (
-                        <img
-                          src={author.avatar}
-                          alt={author.name}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-14 h-14 rounded-full object-cover block flex-shrink-0"
-                        />
-                      )
-                      : (
-                        <div className="w-14 h-14 rounded-full bg-[#ff6011] text-white flex items-center justify-center flex-shrink-0 text-xl font-bold select-none">
-                          {author.name.split(" ").slice(0, 2).map((w) =>
-                            w[0]?.toUpperCase() ?? ""
-                          ).join("")}
-                        </div>
-                      )}
+                    <AuthorAvatar author={author} size="md" />
                     <div className="flex flex-col gap-0.5 pt-1">
                       <span className="font-semibold text-[#1a1a18]">
                         {author.name}
@@ -689,7 +419,7 @@ export default function BlogPostSection(
                 </nav>
                 <script
                   defer
-                  dangerouslySetInnerHTML={{ __html: getTocScript(tocNavId) }}
+                  dangerouslySetInnerHTML={{ __html: tocScript(tocNavId) }}
                 />
               </div>
             </aside>
@@ -713,7 +443,7 @@ export default function BlogPostSection(
                     <div className="overflow-hidden aspect-[16/9] bg-[#f0efeb] mb-4">
                       <img
                         src={rp.image}
-                        alt={(rp as any).alt || rp.title}
+                        alt={rp.alt || rp.title}
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -742,4 +472,3 @@ export default function BlogPostSection(
     </div>
   );
 }
-

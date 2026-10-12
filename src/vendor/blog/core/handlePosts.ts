@@ -1,12 +1,13 @@
-// Vendored from @decocms/apps (blog/core/handlePosts.ts). It's your code now.
-import type { BlogPost, SortBy } from "../types";
+// Vendored from @decocms/apps (blog/core/handlePosts.ts), then brought up to @decocms/apps-blog
+// 7.77.3: posts that aren't live (status/scheduling) or have no slug are dropped, dates sort in
+// UTC, and a list of category slugs matches any of them. View sorting is left out (no views
+// backend here): `view_*` sorts by date. It's your code now.
+import { isLivePost, type BlogPost, type SortBy } from "../types";
+import { dateToTime } from "../utils/date";
 
 const VALID_SORT_ORDERS = ["asc", "desc"];
 
-/**
- * Sort posts by the given criteria.
- * Skips view-based sorting (no Drizzle in this port).
- */
+/** Sorts posts by the given criteria (`view_*` falls back to the date). */
 export const sortPosts = (blogPosts: BlogPost[], sortBy: SortBy): BlogPost[] => {
 	const parts = sortBy.split("_");
 	const sortMethod = (parts[0] in blogPosts[0] ? parts[0] : "date") as keyof BlogPost;
@@ -17,18 +18,25 @@ export const sortPosts = (blogPosts: BlogPost[], sortBy: SortBy): BlogPost[] => 
 		if (!a[sortMethod]) return 1;
 		if (!b[sortMethod]) return -1;
 
+		// Non-date keys read inverted (`title_asc` yields Z-A): upstream's behaviour, kept.
 		const comparison =
 			sortMethod === "date"
-				? new Date(`${b.date}T00:00:00`).getTime() - new Date(`${a.date}T00:00:00`).getTime()
+				? dateToTime(b.date) - dateToTime(a.date)
 				: (a[sortMethod]?.toString().localeCompare(b[sortMethod]?.toString() ?? "") ?? 0);
 
 		return sortOrder === "desc" ? comparison : -comparison;
 	});
 };
 
-/** Filter posts by a single category slug. */
-export const filterPostsByCategory = (posts: BlogPost[], slug?: string): BlogPost[] =>
-	slug ? posts.filter(({ categories }) => categories?.find((c) => c.slug === slug)) : posts;
+/**
+ * Filters posts by a category slug, or a list of slugs a post may belong to
+ * any of. An omitted slug keeps every post; an empty list matches none.
+ */
+export const filterPostsByCategory = (posts: BlogPost[], slug?: string | string[]): BlogPost[] => {
+	if (slug === undefined || slug === "") return posts;
+	const slugs = new Set(Array.isArray(slug) ? slug : [slug]);
+	return posts.filter(({ categories }) => categories?.some((c) => slugs.has(c?.slug)));
+};
 
 /** Filter posts whose slug is in the given list. */
 export const filterPostsBySlugs = (posts: BlogPost[], postSlugs: string[]): BlogPost[] =>
@@ -42,7 +50,7 @@ export const filterPostsByTerm = (posts: BlogPost[], term: string): BlogPost[] =
 
 /** Filter posts whose categories overlap with the given slug array. */
 export const filterRelatedPosts = (posts: BlogPost[], slugs: string[]): BlogPost[] =>
-	posts.filter(({ categories }) => categories?.find((c) => slugs.includes(c.slug)));
+	filterPostsByCategory(posts, slugs);
 
 /** Slice posts for pagination. */
 export const slicePosts = (
@@ -53,6 +61,10 @@ export const slicePosts = (
 	const startIndex = (pageNumber - 1) * postsPerPage;
 	return posts.slice(startIndex, startIndex + postsPerPage);
 };
+
+/** Posts a listing can link to: a slug, and live (published, or scheduled and due). */
+export const filterRoutablePosts = (posts: BlogPost[]): BlogPost[] =>
+	posts.filter((post) => typeof post.slug === "string" && post.slug.trim() && isLivePost(post));
 
 /**
  * Combined filter & sort pipeline (no slice).
@@ -65,25 +77,16 @@ export default function handlePosts(
 	term?: string,
 	excludePostSlug?: string,
 ): BlogPost[] | null {
-	let filtered: BlogPost[];
+	const routable = filterRoutablePosts(posts);
+	const byCategory =
+		postSlugs && postSlugs.length > 0
+			? filterPostsBySlugs(routable, postSlugs)
+			: filterPostsByCategory(routable, slug);
+	const filtered = (term ? filterPostsByTerm(byCategory, term) : byCategory).filter(
+		({ slug: s }) => s !== excludePostSlug,
+	);
 
-	if (typeof slug === "string") {
-		filtered =
-			postSlugs && postSlugs.length > 0
-				? filterPostsBySlugs(posts, postSlugs)
-				: filterPostsByCategory(posts, slug);
-		if (term) filtered = filterPostsByTerm(filtered, term);
-	} else if (Array.isArray(slug)) {
-		filtered = filterRelatedPosts(posts, slug);
-	} else {
-		filtered = term ? filterPostsByTerm(posts, term) : posts;
-	}
-
-	if (excludePostSlug) {
-		filtered = filtered.filter(({ slug: s }) => s !== excludePostSlug);
-	}
-
-	if (!filtered || filtered.length === 0) return null;
+	if (filtered.length === 0) return null;
 
 	return sortPosts(filtered, sortBy);
 }

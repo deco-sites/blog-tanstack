@@ -4,8 +4,11 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { BlockDescriptor } from "../src/model";
 import { openPage } from "../src/open-page.server";
+import { pageHead } from "../src/seo/head";
 
 const ORIGIN = "http://blog.test";
+/** The blog settings' canonical origin (.deco/blocks/deco-blog.json): canonicals and absolute URLs use it. */
+const CANONICAL = "https://blog-tanstack.deco.site";
 
 async function open(href: string) {
   const page = await openPage<BlockDescriptor>(href, new Request(ORIGIN + href));
@@ -32,7 +35,8 @@ describe("openPage", () => {
     assert.deepEqual(page.sections.map((s) => s.component), ["blog-header", "blog-home"]);
     const home = section(page.sections, "blog-home").props;
     assert.equal(home.currentPage, 1);
-    assert.equal(home.origin, ORIGIN);
+    assert.equal(home.origin, CANONICAL);
+    assert.equal(home.structuredData, undefined); // the home's own JSON-LD stays on
     assert.equal(home.siteConfig.name, "Blog");
     assert.equal(home.posts?.length, 15);
     assert.equal(home.posts?.[0].slug, "seo-geo-guide-2025"); // newest first
@@ -53,7 +57,19 @@ describe("openPage", () => {
     const page = await open("/tanstack-start-guide");
     assert.equal(page.status, 200);
     assert.equal(page.seo?.title, "Construindo com TanStack Start: guia prático — Blog");
-    assert.equal(page.seo?.canonical, `${ORIGIN}/tanstack-start-guide`);
+    assert.equal(page.seo?.canonical, `${CANONICAL}/tanstack-start-guide`);
+    // BlogPosting + BreadcrumbList, from the page's SEO block (not the post section).
+    const [posting, breadcrumb] = (page.seo?.jsonLDs ?? []) as Record<string, any>[];
+    assert.equal(posting["@context"], "https://schema.org");
+    assert.equal(posting["@type"], "BlogPosting");
+    assert.equal(posting.url, `${CANONICAL}/tanstack-start-guide`);
+    assert.equal(posting.publisher?.name, "Blog");
+    assert.equal(breadcrumb["@type"], "BreadcrumbList");
+    assert.equal(breadcrumb.itemListElement.at(-1).name, posting.headline);
+    // The head carries each node as its own ld+json script.
+    const { scripts } = pageHead(page, "Blog", "Blog");
+    assert.deepEqual(scripts.map((s) => s.type), ["application/ld+json", "application/ld+json"]);
+    assert.equal(JSON.parse(scripts[0].children)["@type"], "BlogPosting");
     const post = section(page.sections, "blog-post-section").props;
     assert.equal(post.page?.post.slug, "tanstack-start-guide");
     assert.equal(post.relatedPosts?.length, 4);
@@ -68,6 +84,13 @@ describe("openPage", () => {
 
     const topic = await open("/topics/design");
     assert.equal(topic.seo?.title, "Design — Blog");
+    assert.equal(topic.seo?.canonical, `${CANONICAL}/topics/design`);
+    // The topic's Blog entity comes from its SEO block; the listing section emits none.
+    assert.deepEqual(
+      (topic.seo?.jsonLDs as Record<string, unknown>[]).map((node) => node["@type"]),
+      ["Blog", "BreadcrumbList"],
+    );
+    assert.equal(section(topic.sections, "blog-home").props.structuredData, false);
     const byTopic = section(topic.sections, "blog-home").props.posts ?? [];
     assert.ok(byTopic.length > 0);
     assert.ok(byTopic.every((p) => p.categories?.some((c) => c.slug === "design")));

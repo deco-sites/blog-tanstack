@@ -8,10 +8,10 @@ import type {
   BlogTopicsProps,
 } from "./blocks.server";
 import type { PageSeo } from "./seo/types";
-import type { SiteConfig } from "./utils/site-config";
+import type { SiteContext } from "./utils/site-config";
 import type { PostBodyBlock } from "./vendor/blog/types";
 
-type WithSite<P> = P & { siteConfig: SiteConfig };
+type WithSite<P> = P & SiteContext;
 
 /**
  * What a page section returns: the view to render and its props, computed on
@@ -21,12 +21,12 @@ export type BlockDescriptor =
   | { component: "blog-header"; props: BlogHeaderProps }
   | {
       component: "blog-home";
-      props: WithSite<BlogHomeProps & { currentPage: number; query: string; origin: string }>;
+      props: WithSite<BlogHomeProps & { currentPage: number; query: string }>;
     }
-  | { component: "blog-authors"; props: WithSite<BlogAuthorsProps & { origin: string; pathname: string }> }
-  | { component: "blog-topics"; props: WithSite<BlogTopicsProps & { origin: string; pathname: string }> }
-  | { component: "blog-search"; props: WithSite<BlogSearchProps & { query: string; origin: string }> }
-  | { component: "blog-post-section"; props: WithSite<BlogPostSectionProps> }
+  | { component: "blog-authors"; props: WithSite<BlogAuthorsProps> }
+  | { component: "blog-topics"; props: WithSite<BlogTopicsProps> }
+  | { component: "blog-search"; props: WithSite<BlogSearchProps & { query: string }> }
+  | { component: "blog-post-section"; props: BlogPostSectionProps }
   // A post's body blocks are sections too, as on v7 (rendered alone if placed on a page).
   | PostBodyBlock;
 

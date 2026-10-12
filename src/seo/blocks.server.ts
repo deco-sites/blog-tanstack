@@ -3,8 +3,10 @@
  * catch-all route turns it into head tags (./head.ts).
  */
 import { requestState } from "../request-state.server";
+import type { BlogSettings } from "../utils/site-config";
 import { getRecordsByPath } from "../vendor/blog/core/records";
-import type { Author, BlogPostPage, Category } from "../vendor/blog/types";
+import type { Author, BlogPostListingPage, BlogPostPage } from "../vendor/blog/types";
+import { toBlogPosting, toBreadcrumbList, toOrganization, withCanonicalBase } from "../vendor/blog/utils/jsonLD";
 import { type PageSeo, pickSeo } from "./types";
 
 /** @title SEO */
@@ -43,20 +45,126 @@ export function seo(props: SeoProps): PageSeo {
 
 /** @title Blog post SEO */
 export interface SeoBlogPostProps {
-  /** @description The post page, from the BlogPostPage loader */
+  /** @title Data Source */
   jsonLD?: BlogPostPage | null;
+  /** @title Title Override */
+  title?: string;
+  /** @title Description Override */
+  description?: string;
 }
 
-/** The post's own SEO fields, with the page URL as canonical when the post sets none. */
-export function seoBlogPost({ jsonLD }: SeoBlogPostProps): PageSeo {
-  const seo = jsonLD?.seo;
-  return pickSeo({
-    title: seo?.title,
-    description: seo?.description,
-    canonical: seo?.canonical,
-    image: seo?.image,
-    noIndexing: seo?.noIndexing,
-  });
+/**
+ * The post's SEO, as @decocms/apps-blog's SeoBlogPost gives it: the blog's
+ * title and description templates applied, the canonical on the blog's
+ * canonical origin, and BlogPosting + BreadcrumbList structured data.
+ */
+export async function seoBlogPost({ jsonLD, title: titleProp, description: descriptionProp }: SeoBlogPostProps): Promise<PageSeo> {
+  const blog = await blogSettings();
+  const { title, description } = applyBlogTemplates(blog, titleProp || jsonLD?.seo?.title, descriptionProp || jsonLD?.seo?.description);
+  const image = jsonLD?.post?.seo?.image || jsonLD?.seo?.image || jsonLD?.post?.image;
+  const { canonicalBaseUrl, publisher } = blog;
+  const requestUrl = requestState().url.href;
+  // Configured canonicals may be relative; resolve against the request URL.
+  const canonical = jsonLD?.seo?.canonical
+    ? withCanonicalBase(new URL(jsonLD.seo.canonical, requestUrl).href, canonicalBaseUrl)
+    : undefined;
+
+  const pageUrl = canonical ?? withCanonicalBase(requestUrl, canonicalBaseUrl);
+  const jsonLDs = jsonLD?.post
+    ? [
+        toBlogPosting(jsonLD.post, pageUrl, publisher),
+        toBreadcrumbList(pageUrl, {
+          currentName: jsonLD.post.title,
+          categories: jsonLD.categories ?? jsonLD.post.categories,
+        }),
+      ]
+    : [];
+
+  return {
+    ...pickSeo({ title, description, image, canonical }),
+    noIndexing: !jsonLD || !!jsonLD.seo?.noIndexing,
+    jsonLDs: withContext(jsonLDs),
+  };
+}
+
+/** @title Topic page SEO */
+export interface SeoBlogPostListingProps {
+  /** @title Data Source */
+  jsonLD?: BlogPostListingPage | null;
+  /** @title Title Override */
+  title?: string;
+  /** @title Description Override */
+  description?: string;
+}
+
+/**
+ * A topic page's SEO, as @decocms/apps-blog's SeoBlogPostListing gives it:
+ * the topic's name through the blog's templates, its canonical, and Blog +
+ * BreadcrumbList structured data.
+ */
+export async function seoBlogPostListing({
+  jsonLD,
+  title: titleProp,
+  description: descriptionProp,
+}: SeoBlogPostListingProps): Promise<PageSeo> {
+  const blog = await blogSettings();
+  const { title, description } = applyBlogTemplates(blog, titleProp || jsonLD?.seo?.title, descriptionProp || jsonLD?.seo?.description);
+  const { canonicalBaseUrl, publisher } = blog;
+  const requestUrl = requestState().url.href;
+  const canonical = jsonLD?.seo?.canonical
+    ? withCanonicalBase(new URL(jsonLD.seo.canonical, requestUrl).href, canonicalBaseUrl)
+    : undefined;
+
+  const url = canonical ?? withCanonicalBase(requestUrl, canonicalBaseUrl);
+  const jsonLDs = jsonLD
+    ? [
+        {
+          "@type": "Blog" as const,
+          ...(title ? { name: title } : {}),
+          ...(description ? { description } : {}),
+          url,
+          mainEntityOfPage: { "@type": "WebPage" as const, "@id": url },
+          ...(publisher?.name ? { publisher: toOrganization(publisher) } : {}),
+          blogPost: jsonLD.posts?.map((post) => toBlogPosting(post)) ?? [],
+        },
+        toBreadcrumbList(url, {
+          currentName: jsonLD.category?.name || title || undefined,
+          categories: jsonLD.categories ?? undefined,
+        }),
+      ]
+    : [];
+
+  return {
+    ...pickSeo({ title, description, canonical }),
+    noIndexing: !jsonLD || !!jsonLD.seo?.noIndexing,
+    jsonLDs: withContext(jsonLDs),
+  };
+}
+
+/** The saved `deco-blog` block's settings. */
+async function blogSettings(): Promise<BlogSettings> {
+  const [settings, error] = await requestState().client.resolve<BlogSettings>("deco-blog");
+  if (error) throw error;
+  return settings ?? {};
+}
+
+/** `%s` in the blog's templates replaced by the title and description (v7's renderTemplateString). */
+function applyBlogTemplates(blog: BlogSettings, title = "", description = "") {
+  const render = (template: string | undefined, value: string) =>
+    (typeof template === "string" ? template : "%s").replace("%s", value);
+  return {
+    title: render(blog.seo?.titleTemplate, title),
+    description: render(blog.seo?.descriptionTemplate, description),
+  };
+}
+
+/**
+ * Stamps "@context" on each node. The app's builders leave it to the Seo
+ * component that renders them, but the head serializes the nodes as they are;
+ * without it no validator recognizes the types (the v7 site did the same).
+ */
+function withContext(nodes: object[]): object[] {
+  return nodes.map((node) => ({ "@context": "https://schema.org", ...node }));
 }
 
 /** @title Author page SEO */
@@ -79,30 +187,8 @@ export async function seoBlogAuthor(_props: SeoBlogAuthorProps): Promise<PageSeo
   };
 }
 
-/** @title Topic page SEO */
-export interface SeoBlogCategoryProps {
-  /** @description Not used: the title comes from the topic in the URL */
-  title?: string;
-  /** @description Not used: the description comes from the topic in the URL */
-  description?: string;
-}
-
-/** "<topic> — Blog", for the topic whose slug ends the URL. */
-export async function seoBlogCategory(_props: SeoBlogCategoryProps): Promise<PageSeo> {
-  const slug = lastSegment();
-  const categories = await getRecordsByPath<Category>(
-    "blog/loaders/Category.ts",
-    "collections/blog/categories",
-    "category",
-  );
-  const category = categories.find((c) => c.slug === slug);
-  const name = category?.name ?? slug;
-  return {
-    title: `${name} — Blog`,
-    description: `Artigos sobre ${name} no Blog.`,
-  };
-}
-
+/** The URL's last segment, decoded (/authors/a%40b.com is a@b.com). */
 function lastSegment(): string {
-  return requestState().url.pathname.split("/").filter(Boolean).pop() ?? "";
+  const segment = requestState().url.pathname.split("/").filter(Boolean).pop();
+  return segment ? decodeURIComponent(segment) : "";
 }
