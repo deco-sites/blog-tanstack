@@ -6,7 +6,8 @@
  *
  * A draft preview (a valid `?__draft=` pointer or the draft cookie, on a host
  * allowed to preview) skips the page cache and is sent with v7's no-store /
- * noindex headers.
+ * noindex headers. `vite dev` skips the page cache too, so a content edit
+ * shows on the next load.
  */
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 import { draftPointer } from "./cms";
@@ -86,6 +87,7 @@ async function pageCache(request: Request, env: Env, ctx: Ctx): Promise<Response
   const cacheable =
     request.method === "GET" &&
     profile.isPublic &&
+    !import.meta.env.DEV &&
     !BYPASS_PREFIXES.some((prefix) => url.pathname.startsWith(prefix)) &&
     typeof caches !== "undefined";
 
@@ -94,7 +96,8 @@ async function pageCache(request: Request, env: Env, ctx: Ctx): Promise<Response
     out.headers.delete(STORED_AT);
     // A 404 page is content too: it gets the same cache headers (only 200s are stored, below).
     if ((out.ok || out.status === 404) && !out.headers.has("set-cookie")) {
-      out.headers.set("Cache-Control", cacheControl(profileName));
+      // `vite dev` tells the browser to revalidate too, so a content edit shows on the next visit.
+      out.headers.set("Cache-Control", import.meta.env.DEV ? "no-cache" : cacheControl(profileName));
       out.headers.set("Vary", "Accept-Encoding");
       out.headers.set("CDN-Cache-Control", "no-store");
     }
