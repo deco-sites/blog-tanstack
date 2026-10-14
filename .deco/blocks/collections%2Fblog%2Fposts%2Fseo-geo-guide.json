@@ -69,8 +69,11 @@
         "variant": "success",
         "title": "Dica prática",
         "body": "Escreva o título e o primeiro parágrafo assumindo que a IA vai ler apenas isso. Se o valor do artigo não estiver claro nesses 150 primeiros caracteres, reescreva."
+      },
+      {
+        "__resolveType": "site/sections/Blog/Post/CustomBlock.tsx"
       }
     ],
-    "dateModified": "2026-10-14T17:17:30.765Z"
+    "dateModified": "2026-10-14T19:33:24.373Z"
   }
 }
