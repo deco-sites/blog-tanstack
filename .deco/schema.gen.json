@@ -571,6 +571,17 @@
             "nullable": true,
             "description": "schema.org nodes, each rendered as a <script type=\"application/ld+json\"> in the head.",
             "title": "Json L Ds"
+          },
+          "titleTemplate": {
+            "type": "string",
+            "nullable": true,
+            "description": "The page form's own templates (`%s` is the title or description); they win over the site's.",
+            "title": "Title Template"
+          },
+          "descriptionTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description Template"
           }
         },
         "description": "A page's SEO, as the page's `seo` block returns it. Every field is optional:\nthe head falls back to the page name and the site defaults (see ./head.ts)."
@@ -690,13 +701,13 @@
                 "type": "string",
                 "nullable": true,
                 "title": "Title template",
-                "description": "Kept from v7. Not applied to page titles: v7 never applied it either."
+                "description": "`%s` is the page title. A page's own title template wins, as on v7."
               },
               "descriptionTemplate": {
                 "type": "string",
                 "nullable": true,
                 "title": "Description template",
-                "description": "Kept from v7. Not applied to page descriptions: v7 never applied it either."
+                "description": "`%s` is the page description. A page's own description template wins, as on v7."
               },
               "type": {
                 "type": "string",

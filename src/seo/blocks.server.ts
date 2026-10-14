@@ -49,7 +49,10 @@ export interface SeoProps {
 
 /** A page's SEO as typed in the form ("website/sections/Seo/SeoV2.tsx" in v7 content). */
 export function seo(props: SeoProps): PageSeo {
-  return pickSeo(props as Record<string, unknown>);
+  const pageSeo = pickSeo(props as Record<string, unknown>);
+  if (props.titleTemplate) pageSeo.titleTemplate = props.titleTemplate;
+  if (props.descriptionTemplate) pageSeo.descriptionTemplate = props.descriptionTemplate;
+  return pageSeo;
 }
 
 /** @title Blog post SEO */

@@ -22,12 +22,12 @@ export interface SiteSeoSettings {
   noIndexing?: boolean;
   /**
    * @title Title template
-   * @description Kept from v7. Not applied to page titles: v7 never applied it either.
+   * @description `%s` is the page title. A page's own title template wins, as on v7.
    */
   titleTemplate?: string;
   /**
    * @title Description template
-   * @description Kept from v7. Not applied to page descriptions: v7 never applied it either.
+   * @description `%s` is the page description. A page's own description template wins, as on v7.
    */
   descriptionTemplate?: string;
   /** @title Open Graph type */
