@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { cacheControl, detectCacheProfile } from "../src/edge/cache-profiles";
 import { detectDevice } from "../src/edge/device";
+import { securityHeaders } from "../src/edge/headers";
 import { pageHead } from "../src/seo/head";
 
 describe("cache profiles", () => {
@@ -49,5 +50,17 @@ describe("pageHead", () => {
     assert.ok(head.meta.some((m) => m.property === "og:image" && m.content === "https://i/x.jpg"));
     assert.ok(head.meta.some((m) => m.name === "twitter:card" && m.content === "summary_large_image"));
     assert.deepEqual(head.links, [{ rel: "canonical", href: "https://b/x" }]);
+  });
+});
+
+describe("security headers", () => {
+  it("let deco Studio frame the site, and no other origin", () => {
+    const headers = securityHeaders(false);
+    assert.equal(headers["X-Frame-Options"], undefined);
+    assert.equal(
+      headers["Content-Security-Policy"],
+      "frame-ancestors 'self' https://studio.decocms.com https://*.deco.studio",
+    );
+    assert.match(securityHeaders(true)["Content-Security-Policy"], /http:\/\/localhost:\*/);
   });
 });
