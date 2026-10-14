@@ -2,15 +2,15 @@
  * schema.org JSON-LD for the listing pages that have no structured data from
  * their SEO block (home, topics index, authors, search).
  *
- * Post and topic pages get theirs from the @decocms/apps-blog SEO sections
- * (blog/sections/Seo/*) — don't emit JSON-LD for them here.
+ * Post and topic pages get theirs from their page's SEO block (seoBlogPost,
+ * seoBlogPostListing in src/seo/blocks.server.ts) — don't emit JSON-LD for them here.
  *
- * Publisher data comes from `SiteConfig` — resolved by the section loader from
- * the blog app config — so server and client render the same.
+ * Publisher data comes from `SiteConfig`, resolved on the server from the blog
+ * settings, so server and client render the same.
  */
-import { toOrganization } from "@decocms/apps-blog/utils/jsonLD";
-import type { Author, BlogPost, Publisher } from "@decocms/apps-blog/types";
-import type { SiteConfig } from "./siteConfig";
+import { toOrganization } from "../../vendor/blog/utils/jsonLD";
+import type { Author, BlogPost, Publisher } from "../../vendor/blog/types";
+import type { SiteConfig } from "../../utils/site-config";
 
 const LANGUAGE = "pt-BR";
 const CONTEXT = "https://schema.org";

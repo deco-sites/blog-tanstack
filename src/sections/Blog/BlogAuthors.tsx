@@ -1,4 +1,4 @@
-import type { Author, BlogPost } from "@decocms/apps-blog/types";
+import type { Author, BlogPost } from "../../vendor/blog/types";
 import AuthorAvatar from "../../components/blog/AuthorAvatar";
 import { pluralize } from "../../sdk/blog/format";
 import {
@@ -7,7 +7,7 @@ import {
   personJsonLd,
   serializeJsonLd,
 } from "../../sdk/blog/jsonLd";
-import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import type { SiteContext } from "../../utils/site-config";
 import { revealScript } from "../../sdk/blog/scripts";
 
 export interface Props {
@@ -26,9 +26,6 @@ export interface Props {
   description?: string;
 }
 
-export function loader(props: Props, req: Request): Props & SiteContext {
-  return { ...props, ...getSiteContext(req) };
-}
 
 interface AuthorWithCount extends Author {
   postCount: number;
@@ -155,6 +152,3 @@ export default function BlogAuthors({
     </div>
   );
 }
-
-export const eager = true;
-export const sync = true;

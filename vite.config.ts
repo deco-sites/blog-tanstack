@@ -1,6 +1,6 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { decoContent } from "@decocms/blocks/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import { decoVitePlugin } from "@decocms/tanstack/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
@@ -29,7 +29,9 @@ export default defineConfig({
       },
     }),
     tailwindcss(),
-    decoVitePlugin(),
+    // `vite dev`: a block saved in the site editor (`deco serve`) goes into the CMS src/cms.ts
+    // created, and open pages reload once the server has it.
+    decoContent(),
   ],
   build: {
     sourcemap: "hidden",
@@ -57,12 +59,6 @@ export default defineConfig({
   },
   resolve: {
     dedupe: [
-      "@decocms/blocks",
-      "@decocms/blocks-admin",
-      "@decocms/tanstack",
-      "@decocms/apps-commerce",
-      "@decocms/apps-website",
-      "@decocms/apps-blog",
       "@tanstack/react-start",
       "@tanstack/react-router",
       "@tanstack/react-start-server",

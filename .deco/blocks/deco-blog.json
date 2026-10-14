@@ -1,5 +1,5 @@
 {
-  "__resolveType": "site/apps/deco/blog.ts",
+  "__resolveType": "blog-settings",
   "pageSlug": "/:slug",
   "categorySlug": "/topics/:category",
   "canonicalBaseUrl": "https://blog-tanstack.deco.site",

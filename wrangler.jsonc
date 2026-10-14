@@ -2,37 +2,24 @@
   "name": "blog-tanstack",
   "account_id": "c95fc4cec7fc52453228d9db170c372c",
   "compatibility_date": "2026-02-14",
+  // nodejs_compat: AsyncLocalStorage and the Node APIs Start relies on.
+  // no_handle_cross_request_promise_resolution: the CMS shares one content load across requests.
   "compatibility_flags": ["nodejs_compat", "no_handle_cross_request_promise_resolution"],
   "main": "./src/worker-entry.ts",
   "workers_dev": true,
   "preview_urls": true,
-  // Strategy B tail worker — 100% capture of producer errors that the
-  // framework's direct-POST channel can't see (uncaught throws, exceededCpu,
-  // exceededMemory, raw console.error). Invoked by CF on every request to
-  // this worker; filters and forwards to deco-otel-ingest via in-account
-  // service binding.
+  // Tail worker — captures uncaught throws, exceededCpu/exceededMemory and raw
+  // console.error from this worker and forwards them to deco-otel-ingest.
   "tail_consumers": [
     { "service": "deco-otel-tail" }
   ],
-  // Worker version (build SHA / deployment id) — surfaced as
-  // `service.version` on every span / log line by `instrumentWorker`.
+  // Worker version (build SHA / deployment id): part of the edge page cache key,
+  // so a deploy never serves pages rendered by the previous build.
   "version_metadata": {
     "binding": "CF_VERSION_METADATA"
   },
-  // Cloudflare Analytics Engine dataset for high-cardinality counters
-  // (per-route request counts, cache hit/miss, request duration).
-  "analytics_engine_datasets": [
-    {
-      "binding": "DECO_METRICS",
-      "dataset": "deco_metrics_blog_tanstack"
-    }
-  ],
   "vars": {
     "DECO_SITE_NAME": "blog-tanstack",
-    "DECO_ENV_NAME": "production",
-    "DECO_OTEL_METRICS_ENDPOINT": "https://otel-worker.deco.cx/v1/metrics",
-    "DECO_OTEL_LOGS_ENDPOINT": "https://otel-worker.deco.cx/v1/logs",
-    "DECO_OTEL_TRACES_ENDPOINT": "https://otel-worker.deco.cx/v1/traces",
-    "DECO_OTEL_TRACES_SAMPLING_RATE": "0.01"
+    "DECO_ENV_NAME": "production"
   }
 }
