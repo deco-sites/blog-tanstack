@@ -8,6 +8,7 @@ import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 import { PAGE_STATUS_HEADER } from "./page-status";
 import { cacheControl, detectCacheProfile, PROFILES } from "./edge/cache-profiles";
 import { detectDevice } from "./edge/device";
+import { securityHeaders } from "./edge/headers";
 // @ts-ignore Vite ?url import
 import appCss from "./styles/app.css?url";
 
@@ -21,24 +22,8 @@ interface Ctx {
 
 const serverEntry = createServerEntry({ fetch: handler.fetch });
 
-const CSP_DIRECTIVES = [
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com",
-  "img-src 'self' data: https: blob:",
-  "connect-src 'self'",
-  "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
-  "font-src 'self' fonts.gstatic.com data:",
-];
-
-const SECURITY_HEADERS: Record<string, string> = {
-  "X-Content-Type-Options": "nosniff",
-  "X-Frame-Options": "SAMEORIGIN",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-  "X-XSS-Protection": "1; mode=block",
-  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
-  "Content-Security-Policy-Report-Only": CSP_DIRECTIVES.join("; "),
-};
+/** Every HTML response's security headers, with Studio allowed to frame the site (src/edge/headers.ts). */
+const SECURITY_HEADERS = securityHeaders(import.meta.env.DEV);
 
 /** Query params that never change a page: left out of the cache key. */
 const TRACKING_PARAMS = /^(utm_\w+|gclid|gclsrc|dclid|fbclid|msclkid|mc_cid|mc_eid|_ga|_gl|yclid|igshid|ttclid|twclid|li_fat_id)$/i;
