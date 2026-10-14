@@ -62,7 +62,7 @@ function Root() {
   const analytics = Route.useLoaderData();
   const collector = analytics.enabled !== false ? analytics.collector : undefined;
   return (
-    <RootLayout lang="pt-BR">
+    <RootLayout lang="pt-BR" siteName="blog-tanstack">
       {/* Warm up the page-view collector; React hoists these into the head. */}
       {collector && <link rel="dns-prefetch" href={collector} />}
       {collector && <link rel="preconnect" href={collector} crossOrigin="anonymous" />}
