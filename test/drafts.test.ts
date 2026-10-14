@@ -2,7 +2,7 @@
 // cookie picks the draft, a junk pointer is no draft, and a draft's response is never stored or indexed.
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { cms, draftPointer } from "../src/cms";
+import { client, cms, draftPointer } from "../src/cms";
 import { withDraftHeaders } from "../src/edge/headers";
 
 const POINTER = "blog.test/@abc123";
@@ -32,6 +32,15 @@ describe("draft pointer", () => {
     assert.match(set ?? "", /SameSite=None/);
     assert.match((await cms.draftCookie(new Request("http://blog.test/?__draft=off"))) ?? "", /Max-Age=0/);
     assert.equal(await cms.draftCookie(new Request("http://blog.test/?__draft=junk")), null);
+  });
+});
+
+describe("draft client", () => {
+  it("gets the release when the draft can't be read, as on v7 (no 500 while the cookie lasts)", async () => {
+    // Port 9 (discard) on loopback: a draft host the CMS admits, with nothing listening.
+    const unreadable = encodeURIComponent("127.0.0.1:9/drafts/gone@v1");
+    const c = await client(new Request(`http://blog.test/?__draft=${unreadable}`));
+    assert.equal(await c.revision(), await cms.forRelease().revision());
   });
 });
 

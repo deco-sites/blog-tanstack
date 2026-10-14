@@ -15,7 +15,17 @@ export const cms = createCMS({ blocks, content });
  */
 export const client = async (request: Request) => {
   const pointer = await draftPointer(request);
-  return pointer ? cms.forDraft(pointer) : cms.forRelease();
+  if (!pointer) return cms.forRelease();
+  // A draft that can't be read (its branch is gone, Studio is unreachable, a host no draft host
+  // admits) gets the release, as on v7, instead of a 500 on every page while the cookie lasts.
+  const draft = cms.forDraft(pointer);
+  try {
+    await draft.revision();
+    return draft;
+  } catch (error) {
+    console.warn("draft preview: serving the release, the draft could not be read", error);
+    return cms.forRelease();
+  }
 };
 
 /**
