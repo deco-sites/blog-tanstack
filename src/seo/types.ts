@@ -12,6 +12,42 @@ export interface PageSeo {
   type?: string;
   /** schema.org nodes, each rendered as a <script type="application/ld+json"> in the head. */
   jsonLDs?: object[];
+  /** The page form's own templates (`%s` is the title or description); they win over the site's. */
+  titleTemplate?: string;
+  descriptionTemplate?: string;
+}
+
+/** The site-wide SEO saved in the `site` block, as far as a page's SEO falls back to it. */
+export interface SiteSeoDefaults {
+  title?: string;
+  description?: string;
+  image?: string;
+  titleTemplate?: string;
+  descriptionTemplate?: string;
+}
+
+/** A template that changes something: not empty, not just "%s". */
+function effectiveTemplate(template: string | undefined) {
+  if (!template || template.trim() === "" || template.trim() === "%s") return undefined;
+  return template;
+}
+
+/**
+ * The page's SEO with the site's defaults, the way v7 assembled it
+ * (@decocms/tanstack 7.77.3, cmsRoute.ts buildPageSeo): a title, description
+ * or image the page's SEO block leaves empty comes from the site's SEO, then
+ * the page's title and description templates apply, else the site's.
+ */
+export function withSiteSeo(seo: PageSeo | undefined, site: SiteSeoDefaults | undefined): PageSeo {
+  const { titleTemplate: pageTitleTemplate, descriptionTemplate: pageDescriptionTemplate, ...merged } = seo ?? {};
+  if (!merged.title && site?.title) merged.title = site.title;
+  if (!merged.description && site?.description) merged.description = site.description;
+  if (!merged.image && site?.image) merged.image = site.image;
+  const titleTemplate = effectiveTemplate(pageTitleTemplate) ?? effectiveTemplate(site?.titleTemplate);
+  const descriptionTemplate = effectiveTemplate(pageDescriptionTemplate) ?? effectiveTemplate(site?.descriptionTemplate);
+  if (titleTemplate && merged.title) merged.title = titleTemplate.replace("%s", merged.title);
+  if (descriptionTemplate && merged.description) merged.description = descriptionTemplate.replace("%s", merged.description);
+  return merged;
 }
 
 /** Keeps only the SEO fields a block's output sets, the way v7 read them. */

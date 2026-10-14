@@ -4,7 +4,8 @@ import { client } from "./cms";
 import type { StoredPage } from "./model";
 import { namesNothing } from "./not-found.server";
 import { runWithRequestState } from "./request-state.server";
-import type { PageSeo } from "./seo/types";
+import { type PageSeo, withSiteSeo } from "./seo/types";
+import type { SiteSettings } from "./utils/site-config";
 
 /** Where an unknown URL lands: the page saved for "/404" (here the post page, which shows "not found"). */
 const NOT_FOUND_PATH = "/404";
@@ -43,8 +44,12 @@ export async function openPage<T>(href: string, request: Request) {
   }));
 
   // Every block has started before SEO is awaited.
-  const [seo, seoError] = await runWithRequestState(state, () => c.resolve<PageSeo | undefined>(page.seo));
+  const [[seo, seoError], [site, siteError]] = await Promise.all([
+    runWithRequestState(state, () => c.resolve<PageSeo | undefined>(page.seo)),
+    c.resolve<SiteSettings>("site"),
+  ]);
   if (seoError) throw seoError;
+  if (siteError) throw siteError;
 
   // The guide streams each block as it resolves. This site's blocks only read
   // the content in memory, so they settle within the same tick: waiting for
@@ -55,5 +60,6 @@ export async function openPage<T>(href: string, request: Request) {
   // way React's use() reads a settled promise lets <Await> render them inline.
   const settled = await Promise.all(blocks.map((block) => block.value));
   blocks.forEach((block, index) => Object.assign(block.value, { status: "fulfilled", value: settled[index] }));
-  return { name: page.name, seo: seo ?? undefined, status, blocks };
+  // As on v7, what the page's SEO leaves empty comes from the site's SEO.
+  return { name: page.name, seo: withSiteSeo(seo ?? undefined, site?.seo), status, blocks };
 }
