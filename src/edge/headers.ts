@@ -1,6 +1,6 @@
 /**
  * The headers the worker entry (src/worker-entry.ts) adds to responses: the security headers every
- * HTML page carries. Kept apart from the worker so tests can
+ * HTML page carries, and the ones a draft preview needs. Kept apart from the worker so tests can
  * read them without TanStack Start's server entry.
  */
 
@@ -42,4 +42,23 @@ export function securityHeaders(dev: boolean): Record<string, string> {
     "Content-Security-Policy": `frame-ancestors ${frameAncestors(dev).join(" ")}`,
     "Content-Security-Policy-Report-Only": CSP_DIRECTIVES.join("; "),
   };
+}
+
+/**
+ * A draft preview's response: never stored, never indexed (v7's `applyDraftCookieAndHeaders`,
+ * @decocms/tanstack 7.x src/sdk/draft.ts). With the pointer in a cookie, a draft and the published
+ * page share one URL, so `no-store` is what stops a browser or CDN from keeping unpublished content
+ * under the public URL; `Vary: Cookie` keeps any intermediary that honours it from mixing the two;
+ * `X-Robots-Tag` keeps a leaked draft link out of search results.
+ */
+export function withDraftHeaders(resp: Response): Response {
+  const out = new Response(resp.body, resp);
+  out.headers.set("Cache-Control", "no-store, private");
+  out.headers.set("CDN-Cache-Control", "no-store");
+  const vary = out.headers.get("Vary");
+  if (!vary) out.headers.set("Vary", "Cookie");
+  else if (!/\bcookie\b/i.test(vary)) out.headers.set("Vary", `${vary}, Cookie`);
+  out.headers.set("X-Robots-Tag", "noindex, nofollow");
+  out.headers.set("X-Cache", "BYPASS");
+  return out;
 }
