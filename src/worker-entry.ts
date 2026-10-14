@@ -3,12 +3,17 @@
  * adds around every response (formerly createDecoWorkerEntry from
  * @decocms/start 6.x): security headers, the CSS preload hint, cache headers
  * per URL, and an edge page cache in the Cloudflare Cache API, split by device.
+ *
+ * A draft preview (a valid `?__draft=` pointer or the draft cookie, on a host
+ * allowed to preview) skips the page cache and is sent with v7's no-store /
+ * noindex headers.
  */
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
+import { draftPointer } from "./cms";
 import { PAGE_STATUS_HEADER } from "./page-status";
 import { cacheControl, detectCacheProfile, PROFILES } from "./edge/cache-profiles";
 import { detectDevice } from "./edge/device";
-import { securityHeaders } from "./edge/headers";
+import { securityHeaders, withDraftHeaders } from "./edge/headers";
 // @ts-ignore Vite ?url import
 import appCss from "./styles/app.css?url";
 
@@ -155,6 +160,10 @@ export default {
       return new Response("OK", {
         headers: { "Content-Type": "text/plain", "Cache-Control": "no-store, no-cache, must-revalidate", "CDN-Cache-Control": "no-store" },
       });
+    }
+    // Only a pointer the CMS accepts counts, so `?__draft=x` can't push requests past the page cache.
+    if ((await draftPointer(request)) !== null) {
+      return decorate(withDraftHeaders(withPageStatus(await serverEntry.fetch(request))));
     }
     return decorate(await pageCache(request, env, ctx));
   },
