@@ -1,7 +1,7 @@
 {
   "major": 1,
   "blocksMajor": 8,
-  "version": "8.1.1",
+  "version": "8.2.3",
   "namespace": "site",
   "site": "blog-tanstack",
   "manifest": {
@@ -538,7 +538,7 @@
           "noIndexing": {
             "type": "boolean",
             "nullable": true,
-            "title": "NoIndexing"
+            "title": "No Indexing"
           },
           "type": {
             "type": "string",
@@ -570,7 +570,7 @@
             ],
             "nullable": true,
             "description": "schema.org nodes, each rendered as a <script type=\"application/ld+json\"> in the head.",
-            "title": "JsonLDs"
+            "title": "Json L Ds"
           }
         },
         "description": "A page's SEO, as the page's `seo` block returns it. Every field is optional:\nthe head falls back to the page name and the site defaults (see ./head.ts)."
@@ -1063,7 +1063,7 @@
           "jobTitle": {
             "type": "string",
             "nullable": true,
-            "title": "JobTitle"
+            "title": "Job Title"
           },
           "company": {
             "type": "string",
@@ -1138,7 +1138,7 @@
           "noIndexing": {
             "type": "boolean",
             "nullable": true,
-            "title": "NoIndexing"
+            "title": "No Indexing"
           }
         }
       },
@@ -2452,7 +2452,7 @@
           },
           "pageInfo": {
             "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@PageInfo",
-            "title": "PageInfo"
+            "title": "Page Info"
           },
           "seo": {
             "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Seo",
@@ -2471,16 +2471,16 @@
           "nextPage": {
             "type": "string",
             "nullable": true,
-            "title": "NextPage"
+            "title": "Next Page"
           },
           "previousPage": {
             "type": "string",
             "nullable": true,
-            "title": "PreviousPage"
+            "title": "Previous Page"
           },
           "currentPage": {
             "type": "number",
-            "title": "CurrentPage"
+            "title": "Current Page"
           },
           "records": {
             "type": "number",
@@ -2490,7 +2490,7 @@
           "recordPerPage": {
             "type": "number",
             "nullable": true,
-            "title": "RecordPerPage"
+            "title": "Record Per Page"
           }
         },
         "required": [
@@ -4844,7 +4844,7 @@
             "type": "string",
             "nullable": true,
             "description": "Optional mobile-optimized image. Served below 768px.",
-            "title": "MobileUrl"
+            "title": "Mobile Url"
           },
           "alt": {
             "type": "string",
@@ -4869,7 +4869,7 @@
             "type": "boolean",
             "nullable": true,
             "description": "Loads eagerly with high fetch priority. Use for above-the-fold images.",
-            "title": "HighPriority"
+            "title": "High Priority"
           }
         },
         "required": [
@@ -4908,7 +4908,7 @@
             "type": "string",
             "nullable": true,
             "description": "Optional mobile-optimized image. Served below 768px.",
-            "title": "MobileUrl"
+            "title": "Mobile Url"
           },
           "alt": {
             "type": "string",
@@ -4933,7 +4933,7 @@
             "type": "boolean",
             "nullable": true,
             "description": "Loads eagerly with high fetch priority. Use for above-the-fold images.",
-            "title": "HighPriority"
+            "title": "High Priority"
           }
         },
         "required": [
