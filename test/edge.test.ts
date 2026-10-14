@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import { cacheControl, detectCacheProfile } from "../src/edge/cache-profiles";
 import { detectDevice } from "../src/edge/device";
 import { securityHeaders } from "../src/edge/headers";
+import { parseSearch, stringifySearch } from "../src/search-params";
 import { pageHead } from "../src/seo/head";
 
 describe("cache profiles", () => {
@@ -50,6 +51,15 @@ describe("pageHead", () => {
     assert.ok(head.meta.some((m) => m.property === "og:image" && m.content === "https://i/x.jpg"));
     assert.ok(head.meta.some((m) => m.name === "twitter:card" && m.content === "summary_large_image"));
     assert.deepEqual(head.links, [{ rel: "canonical", href: "https://b/x" }]);
+  });
+});
+
+describe("search params", () => {
+  it("give back the query string they read, empty values included (no 307 for ?utm_source=)", () => {
+    for (const search of ["?utm_source=", "?q=react&page=", "?a=&b=", "?tag=a&tag=b", "?q=caf%C3%A9"]) {
+      assert.equal(stringifySearch(parseSearch(search)), search);
+    }
+    assert.equal(stringifySearch({ q: undefined, page: null, s: "" }), "?s=");
   });
 });
 
