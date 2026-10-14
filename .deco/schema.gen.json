@@ -2129,53 +2129,62 @@
             "nullable": true,
             "title": "Title"
           },
-          "titleTemplate": {
-            "type": "string",
-            "nullable": true,
-            "title": "Title template",
-            "description": "Kept from v7. Not applied: the v7 site never applied it."
-          },
           "description": {
             "type": "string",
             "nullable": true,
             "title": "Description"
-          },
-          "descriptionTemplate": {
-            "type": "string",
-            "nullable": true,
-            "title": "Description template",
-            "description": "Kept from v7. Not applied: the v7 site never applied it."
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "website",
-              "article"
-            ],
-            "nullable": true,
-            "title": "Open Graph type"
-          },
-          "image": {
-            "type": "string",
-            "nullable": true,
-            "description": "Recommended: 1200 x 630 px",
-            "title": "Image"
           },
           "canonical": {
             "type": "string",
             "nullable": true,
             "title": "Canonical URL"
           },
+          "favicon": {
+            "type": "string",
+            "nullable": true,
+            "title": "Favicon",
+            "format": "image-uri"
+          },
           "noIndexing": {
             "type": "boolean",
             "nullable": true,
-            "title": "Disable indexing"
+            "title": "No Indexing"
           },
-          "noIndex": {
-            "type": "boolean",
+          "titleTemplate": {
+            "type": "string",
             "nullable": true,
-            "title": "No index (legacy field)",
-            "description": "Kept from v7, where it had no effect; use \"Disable indexing\"."
+            "title": "Title Template"
+          },
+          "descriptionTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description Template"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "title": "Page Type"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "title": "OG Image",
+            "format": "image-uri"
+          },
+          "themeColor": {
+            "type": "string",
+            "nullable": true,
+            "title": "Theme Color",
+            "format": "color"
+          },
+          "jsonLDs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "nullable": true,
+            "title": "JSON-LD Structured Data"
           }
         }
       },
@@ -2199,53 +2208,62 @@
             "nullable": true,
             "title": "Title"
           },
-          "titleTemplate": {
-            "type": "string",
-            "nullable": true,
-            "title": "Title template",
-            "description": "Kept from v7. Not applied: the v7 site never applied it."
-          },
           "description": {
             "type": "string",
             "nullable": true,
             "title": "Description"
-          },
-          "descriptionTemplate": {
-            "type": "string",
-            "nullable": true,
-            "title": "Description template",
-            "description": "Kept from v7. Not applied: the v7 site never applied it."
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "website",
-              "article"
-            ],
-            "nullable": true,
-            "title": "Open Graph type"
-          },
-          "image": {
-            "type": "string",
-            "nullable": true,
-            "description": "Recommended: 1200 x 630 px",
-            "title": "Image"
           },
           "canonical": {
             "type": "string",
             "nullable": true,
             "title": "Canonical URL"
           },
+          "favicon": {
+            "type": "string",
+            "nullable": true,
+            "title": "Favicon",
+            "format": "image-uri"
+          },
           "noIndexing": {
             "type": "boolean",
             "nullable": true,
-            "title": "Disable indexing"
+            "title": "No Indexing"
           },
-          "noIndex": {
-            "type": "boolean",
+          "titleTemplate": {
+            "type": "string",
             "nullable": true,
-            "title": "No index (legacy field)",
-            "description": "Kept from v7, where it had no effect; use \"Disable indexing\"."
+            "title": "Title Template"
+          },
+          "descriptionTemplate": {
+            "type": "string",
+            "nullable": true,
+            "title": "Description Template"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "title": "Page Type"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true,
+            "title": "OG Image",
+            "format": "image-uri"
+          },
+          "themeColor": {
+            "type": "string",
+            "nullable": true,
+            "title": "Theme Color",
+            "format": "color"
+          },
+          "jsonLDs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "nullable": true,
+            "title": "JSON-LD Structured Data"
           }
         }
       },

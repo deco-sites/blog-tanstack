@@ -9,33 +9,42 @@ import type { Author, BlogPostListingPage, BlogPostPage } from "../vendor/blog/t
 import { toBlogPosting, toBreadcrumbList, toOrganization, withCanonicalBase } from "../vendor/blog/utils/jsonLD";
 import { type PageSeo, pickSeo } from "./types";
 
+// The fields, titles and formats are v7's `website/sections/Seo/SeoV2.tsx` form
+// (@decocms/blocks 7.77.3, src/cms/schema.ts), so editors keep the form they know.
+// The head applies title, description, canonical, image, noIndexing and type.
 /** @title SEO */
 export interface SeoProps {
+  /** @title Title */
   title?: string;
-  /**
-   * @title Title template
-   * @description Kept from v7. Not applied: the v7 site never applied it.
-   */
-  titleTemplate?: string;
+  /** @title Description */
   description?: string;
-  /**
-   * @title Description template
-   * @description Kept from v7. Not applied: the v7 site never applied it.
-   */
-  descriptionTemplate?: string;
-  /** @title Open Graph type */
-  type?: "website" | "article";
-  /** @description Recommended: 1200 x 630 px */
-  image?: string;
   /** @title Canonical URL */
   canonical?: string;
-  /** @title Disable indexing */
-  noIndexing?: boolean;
   /**
-   * @title No index (legacy field)
-   * @description Kept from v7, where it had no effect; use "Disable indexing".
+   * @title Favicon
+   * @format image-uri
    */
-  noIndex?: boolean;
+  favicon?: string;
+  /** @title No Indexing */
+  noIndexing?: boolean;
+  /** @title Title Template */
+  titleTemplate?: string;
+  /** @title Description Template */
+  descriptionTemplate?: string;
+  /** @title Page Type */
+  type?: string;
+  /**
+   * @title OG Image
+   * @format image-uri
+   */
+  image?: string;
+  /**
+   * @title Theme Color
+   * @format color
+   */
+  themeColor?: string;
+  /** @title JSON-LD Structured Data */
+  jsonLDs?: Record<string, unknown>[];
 }
 
 /** A page's SEO as typed in the form ("website/sections/Seo/SeoV2.tsx" in v7 content). */
