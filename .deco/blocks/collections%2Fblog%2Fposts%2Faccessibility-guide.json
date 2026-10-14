@@ -59,11 +59,8 @@
         "__resolveType": "site/sections/Blog/Post/List.tsx",
         "style": "ordered",
         "items": "Navegue apenas com teclado — consiga usar tudo?\nAtivar VoiceOver (Mac) ou NVDA (Windows) e navegar pela página\nRodar axe DevTools no Chrome — score zero é o mínimo\nTestar com zoom 200% — layout ainda funciona?\nVerificar em modo high contrast do Windows"
-      },
-      {
-        "__resolveType": "site/sections/Blog/Post/CustomBlock.tsx"
       }
     ],
-    "dateModified": "2026-10-14T17:12:36.858Z"
+    "dateModified": "2026-10-14T17:13:30.764Z"
   }
 }
