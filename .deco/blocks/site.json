@@ -18,5 +18,6 @@
   "caching": {
     "directives": []
   },
-  "firstByteThresholdMS": false
+  "firstByteThresholdMS": false,
+  "platform": "custom"
 }
