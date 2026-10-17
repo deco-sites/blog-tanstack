@@ -2161,6 +2161,13 @@
             "nullable": true,
             "title": "No Indexing"
           },
+          "noIndex": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "v7's legacy field, kept in saved content (the search page sets it). v7\nignored it; v8 honors it as \"No Indexing\". Hidden, as v7's form never offered it.",
+            "hide": "true",
+            "title": "No Index"
+          },
           "titleTemplate": {
             "type": "string",
             "nullable": true,
@@ -2239,6 +2246,13 @@
             "type": "boolean",
             "nullable": true,
             "title": "No Indexing"
+          },
+          "noIndex": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "v7's legacy field, kept in saved content (the search page sets it). v7\nignored it; v8 honors it as \"No Indexing\". Hidden, as v7's form never offered it.",
+            "hide": "true",
+            "title": "No Index"
           },
           "titleTemplate": {
             "type": "string",

@@ -20,6 +20,7 @@
   "__resolveType": "website/pages/Page.tsx",
   "seo": {
     "__resolveType": "website/sections/Seo/SeoV2.tsx",
-    "title": "Busca — Blog"
+    "title": "Busca — Blog",
+    "noIndex": true
   }
 }
