@@ -52,6 +52,14 @@
       "from": "# status: 200",
       "to": "# status: 404",
       "note": "approved: unknown post slugs and /404 now answer a real 404 instead of a soft 200, same pixels (/rss.xml is resolved as an unknown post slug)"
+    },
+    {
+      "files": [
+        "snapshots/search-"
+      ],
+      "from": "\"content\": \"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\"",
+      "to": "\"content\": \"noindex, nofollow\"",
+      "note": "product owner, 2026-10-17: \"Restore it and honor it\". The search page's saved SEO keeps noIndex: true (main's content) and v8 honors it, so /search carries robots noindex, nofollow; prod ignored the field. Approved head difference."
     }
   ],
   "approvedPixelDifferences": [

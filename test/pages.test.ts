@@ -96,6 +96,15 @@ describe("openPage", () => {
     assert.ok(byTopic.every((p) => p.categories?.some((c) => c.slug === "design")));
   });
 
+  it("keeps the search page out of search engines (its SEO's legacy noIndex)", async () => {
+    const page = await open("/search?q=react");
+    assert.equal(page.seo?.noIndexing, true);
+    const robots = pageHead(page, "Blog", "Blog").meta.find((m) => m.name === "robots");
+    assert.equal(robots?.content, "noindex, nofollow");
+    const home = await open("/");
+    assert.notEqual(home.seo?.noIndexing, true);
+  });
+
   it("answers an unknown post slug with the post page and a 404", async () => {
     const page = await open("/this-post-does-not-exist");
     assert.equal(page.status, 404);

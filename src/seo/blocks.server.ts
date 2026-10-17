@@ -11,7 +11,8 @@ import { type PageSeo, pickSeo } from "./types";
 
 // The fields, titles and formats are v7's `website/sections/Seo/SeoV2.tsx` form
 // (@decocms/blocks 7.77.3, src/cms/schema.ts), so editors keep the form they know.
-// The head applies title, description, canonical, image, noIndexing and type.
+// The head applies title, description, canonical, image, noIndexing (or the legacy
+// noIndex) and type.
 /** @title SEO */
 export interface SeoProps {
   /** @title Title */
@@ -27,6 +28,12 @@ export interface SeoProps {
   favicon?: string;
   /** @title No Indexing */
   noIndexing?: boolean;
+  /**
+   * v7's legacy field, kept in saved content (the search page sets it). v7
+   * ignored it; v8 honors it as "No Indexing". Hidden, as v7's form never offered it.
+   * @hide
+   */
+  noIndex?: boolean;
   /** @title Title Template */
   titleTemplate?: string;
   /** @title Description Template */
@@ -50,6 +57,7 @@ export interface SeoProps {
 /** A page's SEO as typed in the form ("website/sections/Seo/SeoV2.tsx" in v7 content). */
 export function seo(props: SeoProps): PageSeo {
   const pageSeo = pickSeo(props as Record<string, unknown>);
+  if (props.noIndex) pageSeo.noIndexing = true;
   if (props.titleTemplate) pageSeo.titleTemplate = props.titleTemplate;
   if (props.descriptionTemplate) pageSeo.descriptionTemplate = props.descriptionTemplate;
   return pageSeo;
