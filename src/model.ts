@@ -7,7 +7,6 @@ import type {
   BlogSearchProps,
   BlogTopicsProps,
 } from "./blocks.server";
-import type { PageSeo } from "./seo/types";
 import type { SiteContext } from "./utils/site-config";
 import type { PostBodyBlock } from "./vendor/blog/types";
 
@@ -34,15 +33,4 @@ export type BlockDescriptor =
 export interface StoredPage extends Route {
   seo?: Block;
   sections: Block[] | Block;
-}
-
-/**
- * @title Page
- * @description A page at a URL: its SEO and its sections, in order.
- */
-export interface BlogPage extends Route {
-  /** @title SEO */
-  seo?: PageSeo;
-  /** @title Sections */
-  sections: BlockDescriptor[];
 }
