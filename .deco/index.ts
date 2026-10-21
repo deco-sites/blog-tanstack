@@ -17,7 +17,7 @@ import {
   blogSearchProps,
   blogTopicsProps,
 } from "../src/blocks.server";
-import type { BlockDescriptor, BlogPage } from "../src/model";
+import type { BlockDescriptor } from "../src/model";
 import { seo, seoBlogAuthor, seoBlogPost, seoBlogPostListing } from "../src/seo/blocks.server";
 import type { BlogSettings, SiteSettings } from "../src/utils/site-config";
 import type { PostBodyBlock } from "../src/vendor/blog/types";
@@ -106,9 +106,6 @@ const blogSettings = (props: BlogSettings) => props;
 const blogpostList = (props: BlogpostListProps) => BlogpostList(props);
 
 export default {
-  // The built-in page, with its sections typed as descriptors (/next/built-in-blocks#change-a-built-in).
-  page: (input: BlogPage) => input,
-
   "site-settings": siteSettings,
   "blog-settings": blogSettings,
   "site/apps/deco/blog.ts": blogSettings,
