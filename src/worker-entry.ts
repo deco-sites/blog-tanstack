@@ -8,9 +8,17 @@
  * allowed to preview) skips the page cache and is sent with v7's no-store /
  * noindex headers. `vite dev` skips the page cache too, so a content edit
  * shows on the next load.
+ *
+ * A/B tests and campaigns are decided once here, for the visitor, and handed
+ * to the page (src/edge/assignments.ts); the cache key carries that decision
+ * (`assignmentsKey`), never the visitor's id, so visitors on the same side of
+ * every test share an entry. The visitor's first-visit cookie is added after
+ * the cache answered, so a stored copy never carries it, and never on a
+ * preview.
  */
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 import { cms } from "./cms";
+import { decideAssignments, withoutAssignments } from "./edge/assignments";
 import { PAGE_STATUS_HEADER } from "./page-status";
 import { cacheControl, detectCacheProfile, PROFILES } from "./edge/cache-profiles";
 import { detectDevice } from "./edge/device";
@@ -69,7 +77,7 @@ function decorate(resp: Response): Response {
   return out;
 }
 
-function cacheKey(request: Request, env: Env): Request {
+function cacheKey(request: Request, env: Env, assigned: string): Request {
   const url = new URL(request.url);
   for (const name of [...url.searchParams.keys()]) {
     if (TRACKING_PARAMS.test(name)) url.searchParams.delete(name);
@@ -77,10 +85,12 @@ function cacheKey(request: Request, env: Env): Request {
   const version = env.CF_VERSION_METADATA?.id;
   if (version) url.searchParams.set("__v", version);
   url.searchParams.set("__device", detectDevice(request.headers.get("user-agent") ?? ""));
+  // The request's tests and campaigns (`assignmentsKey`), never the visitor: "" without any.
+  if (assigned) url.searchParams.set("__a", assigned);
   return new Request(url.toString(), { method: "GET" });
 }
 
-async function pageCache(request: Request, env: Env, ctx: Ctx): Promise<Response> {
+async function pageCache(request: Request, env: Env, ctx: Ctx, assigned: string): Promise<Response> {
   const url = new URL(request.url);
   const profileName = detectCacheProfile(url);
   const profile = PROFILES[profileName];
@@ -120,7 +130,7 @@ async function pageCache(request: Request, env: Env, ctx: Ctx): Promise<Response
   }
 
   const cache = (caches as unknown as { default: Cache }).default;
-  const key = cacheKey(request, env);
+  const key = cacheKey(request, env, assigned);
 
   const revalidate = async () => {
     const fresh = withPageStatus(await serverEntry.fetch(request.clone()));
@@ -164,10 +174,21 @@ export default {
         headers: { "Content-Type": "text/plain", "Cache-Control": "no-store, no-cache, must-revalidate", "CDN-Cache-Control": "no-store" },
       });
     }
-    // Only a version the CMS accepts counts, so `?__draft=x` can't push requests past the page cache.
-    if ((await cms.readVersion(request)) !== null) {
-      return decorate(withDraftHeaders(withPageStatus(await serverEntry.fetch(request))));
+    const url = new URL(request.url);
+    // Built assets and framework routes render no page: no tests, no visitor cookie.
+    if (BYPASS_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))) {
+      return decorate(await pageCache(withoutAssignments(request), env, ctx, ""));
     }
-    return decorate(await pageCache(request, env, ctx));
+    // Only a version the CMS accepts counts, so `?__draft=x` can't push requests past the page cache.
+    const version = await cms.readVersion(request);
+    const decision = await decideAssignments(cms, request, version);
+    if (version !== null) {
+      return decorate(withDraftHeaders(withPageStatus(await serverEntry.fetch(decision.request))));
+    }
+    const resp = decorate(await pageCache(decision.request, env, ctx, decision.key));
+    // After the cache answered: a stored copy never carries a visitor's cookie, and a new visitor
+    // served from the cache still gets theirs.
+    if (decision.cookie) resp.headers.append("Set-Cookie", decision.cookie);
+    return resp;
   },
 };
