@@ -26,8 +26,8 @@
   "license": "MIT",
   "packageManager": "bun@1.3.5",
   "dependencies": {
-    "@decocms/blocks": "^8.2.3",
-    "@decocms/tanstack": "^8.5.2",
+    "@decocms/blocks": "^8.6.0",
+    "@decocms/tanstack": "^8.6.0",
     "@tanstack/react-router": "1.166.7",
     "@tanstack/react-start": "1.166.8",
     "react": "^19.2.4",
