@@ -1,20 +1,14 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createDecoRouter } from "@decocms/tanstack";
+import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
-import "./setup";
-
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 60_000 } },
-});
+import { parseSearch, stringifySearch } from "./search-params";
 
 export function getRouter() {
-  return createDecoRouter({
+  return createRouter({
     routeTree,
-    context: { queryClient },
+    scrollRestoration: true,
     defaultPreload: "intent",
-    Wrap: ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    ),
+    parseSearch,
+    stringifySearch,
   });
 }
 
