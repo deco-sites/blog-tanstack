@@ -10,7 +10,7 @@
  * shows on the next load.
  */
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
-import { draftPointer } from "./cms";
+import { cms } from "./cms";
 import { PAGE_STATUS_HEADER } from "./page-status";
 import { cacheControl, detectCacheProfile, PROFILES } from "./edge/cache-profiles";
 import { detectDevice } from "./edge/device";
@@ -164,8 +164,8 @@ export default {
         headers: { "Content-Type": "text/plain", "Cache-Control": "no-store, no-cache, must-revalidate", "CDN-Cache-Control": "no-store" },
       });
     }
-    // Only a pointer the CMS accepts counts, so `?__draft=x` can't push requests past the page cache.
-    if ((await draftPointer(request)) !== null) {
+    // Only a version the CMS accepts counts, so `?__draft=x` can't push requests past the page cache.
+    if ((await cms.readVersion(request)) !== null) {
       return decorate(withDraftHeaders(withPageStatus(await serverEntry.fetch(request))));
     }
     return decorate(await pageCache(request, env, ctx));
