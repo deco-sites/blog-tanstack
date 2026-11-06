@@ -31,6 +31,9 @@
       "perPage": 11,
       "baseUrl": "/",
       "structuredData": false
+    },
+    {
+      "__resolveType": "site/sections/Blog/BlogHome.tsx"
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
