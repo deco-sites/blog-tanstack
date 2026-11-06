@@ -7,9 +7,18 @@
       "logoAlt": "Blog",
       "showReadingProgress": false,
       "navLinks": [
-        { "label": "Blog", "href": "/" },
-        { "label": "Categorias", "href": "/topics" },
-        { "label": "Autores", "href": "/authors" }
+        {
+          "label": "Blog",
+          "href": "/"
+        },
+        {
+          "label": "Categorias",
+          "href": "/topics"
+        },
+        {
+          "label": "Autores",
+          "href": "/authors"
+        }
       ]
     },
     {
@@ -19,8 +28,9 @@
         "sortBy": "date_desc",
         "count": 20
       },
-      "perPage": 10,
-      "baseUrl": "/"
+      "perPage": 11,
+      "baseUrl": "/",
+      "structuredData": true
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
