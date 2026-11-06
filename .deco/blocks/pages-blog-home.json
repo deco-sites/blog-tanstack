@@ -4,12 +4,21 @@
   "sections": [
     {
       "__resolveType": "site/sections/Blog/BlogHeader.tsx",
-      "logoAlt": "Blog",
+      "logoAlt": "Blogg",
       "showReadingProgress": false,
       "navLinks": [
-        { "label": "Blog", "href": "/" },
-        { "label": "Categorias", "href": "/topics" },
-        { "label": "Autores", "href": "/authors" }
+        {
+          "label": "Blog",
+          "href": "/"
+        },
+        {
+          "label": "Categorias",
+          "href": "/topics"
+        },
+        {
+          "label": "Autores",
+          "href": "/authors"
+        }
       ]
     },
     {
