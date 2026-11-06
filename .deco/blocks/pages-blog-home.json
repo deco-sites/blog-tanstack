@@ -32,7 +32,9 @@
       "baseUrl": "/"
     },
     {
-      "__resolveType": "site/sections/Blog/BlogHome.tsx"
+      "__resolveType": "site/sections/Blog/BlogHome.tsx",
+      "perPage": 10,
+      "structuredData": true
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
