@@ -29,7 +29,8 @@
         "count": 20
       },
       "perPage": 10,
-      "baseUrl": "/"
+      "baseUrl": "/",
+      "sectionTitle": "nigus"
     },
     {
       "__resolveType": "site/sections/Blog/BlogHome.tsx",
