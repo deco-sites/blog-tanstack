@@ -7,9 +7,18 @@
       "logoAlt": "Blog",
       "showReadingProgress": false,
       "navLinks": [
-        { "label": "Blog", "href": "/" },
-        { "label": "Categorias", "href": "/topics" },
-        { "label": "Autores", "href": "/authors" }
+        {
+          "label": "Blog",
+          "href": "/"
+        },
+        {
+          "label": "Categorias",
+          "href": "/topics"
+        },
+        {
+          "label": "Autores",
+          "href": "/authors"
+        }
       ]
     },
     {
@@ -20,7 +29,8 @@
         "count": 20
       },
       "perPage": 10,
-      "baseUrl": "/"
+      "baseUrl": "/",
+      "sectionTitle": "teste"
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
