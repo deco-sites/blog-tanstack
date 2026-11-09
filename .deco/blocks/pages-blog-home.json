@@ -30,7 +30,8 @@
       },
       "perPage": 10,
       "baseUrl": "/",
-      "sectionTitle": "nigus"
+      "sectionTitle": "nigus",
+      "structuredData": true
     },
     {
       "__resolveType": "site/sections/Blog/BlogHome.tsx",
