@@ -30,7 +30,8 @@
       },
       "perPage": 10,
       "baseUrl": "/",
-      "structuredData": true
+      "structuredData": true,
+      "sectionTitle": "teste"
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
