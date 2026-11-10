@@ -1,4 +1,4 @@
-import type { BlogPost } from "@decocms/apps-blog/types";
+import type { BlogPost } from "../../vendor/blog/types";
 import { formatDate } from "../../sdk/blog/format";
 import {
   collectionPageJsonLd,
@@ -6,7 +6,7 @@ import {
   homeJsonLd,
   serializeJsonLd,
 } from "../../sdk/blog/jsonLd";
-import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import type { SiteContext } from "../../utils/site-config";
 import { revealScript } from "../../sdk/blog/scripts";
 
 export interface Props {
@@ -38,20 +38,6 @@ export interface Props {
   structuredData?: boolean;
 }
 
-export function loader(
-  props: Props,
-  req: Request,
-): Props & SiteContext & { currentPage: number; query: string } {
-  const context = getSiteContext(req);
-  const { searchParams } = new URL(req.url);
-  return {
-    ...props,
-    ...context,
-    baseUrl: context.pathname,
-    currentPage: Math.max(1, parseInt(searchParams.get("page") ?? "1") || 1),
-    query: searchParams.get("q") ?? "",
-  };
-}
 
 const REVEAL_CSS = `
   [data-blog-index] { padding-top: 72px; }
@@ -429,6 +415,3 @@ export default function BlogHome({
     </div>
   );
 }
-
-export const eager = true;
-export const sync = true;

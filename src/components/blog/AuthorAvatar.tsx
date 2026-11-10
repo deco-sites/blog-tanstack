@@ -1,4 +1,4 @@
-import type { Author } from "@decocms/apps-blog/types";
+import type { Author } from "../../vendor/blog/types";
 import { initials } from "../../sdk/blog/format";
 
 const SIZES = {

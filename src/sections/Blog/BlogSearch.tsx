@@ -1,11 +1,11 @@
-import type { Author, BlogPost } from "@decocms/apps-blog/types";
+import type { Author, BlogPost } from "../../vendor/blog/types";
 import { formatDate, pluralize } from "../../sdk/blog/format";
 import {
   collectionPageJsonLd,
   homeCrumb,
   serializeJsonLd,
 } from "../../sdk/blog/jsonLd";
-import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import type { SiteContext } from "../../utils/site-config";
 
 export interface Props {
   /**
@@ -13,6 +13,11 @@ export interface Props {
    * @description Conecte ao site/loaders/BlogpostList.ts com todos os posts
    */
   posts?: BlogPost[];
+  /**
+   * @title Placeholder
+   * @description Não usado: o campo de busca sempre mostra "Buscar artigos..."
+   */
+  placeholder?: string;
 }
 
 function highlight(text: string, query: string): string {
@@ -37,16 +42,6 @@ function matchesQuery(post: BlogPost, q: string): boolean {
   return false;
 }
 
-export function loader(
-  props: Props,
-  req: Request,
-): Props & SiteContext & { query: string } {
-  return {
-    ...props,
-    ...getSiteContext(req),
-    query: new URL(req.url).searchParams.get("q") ?? "",
-  };
-}
 
 export default function BlogSearch(
   { posts, query = "", origin, siteConfig }: Props & SiteContext & {
@@ -304,6 +299,3 @@ export default function BlogSearch(
     </div>
   );
 }
-
-export const eager = true;
-export const sync = true;

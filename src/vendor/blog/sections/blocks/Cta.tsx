@@ -1,0 +1,23 @@
+// Vendored from @decocms/apps-blog 7.77.3 (sections/blocks/Cta.tsx): the app's default post block. It's your code now.
+import { sanitizeHref } from "../../utils/sanitizeHtml";
+
+export type Props = {
+  text: string;
+  href?: string;
+};
+
+export default function Cta({ text, href }: Props) {
+  const safeHref = sanitizeHref(href);
+  const isExternal = /^https?:\/\//i.test(safeHref);
+  return (
+    <div className="my-8 text-center">
+      <a
+        href={safeHref}
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className="inline-block py-[0.75em] px-[2em] rounded-full bg-accent text-inverted font-semibold text-sm tracking-[0.02em] no-underline transition-opacity hover:opacity-85"
+      >
+        {text}
+      </a>
+    </div>
+  );
+}
