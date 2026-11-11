@@ -11,7 +11,7 @@
  * index with `client.entries(type)` and one `resolve(name)` per document (src/vendor/blog/core/records.ts).
  * Block bodies are content-addressed and kept per isolate by hash, so a warm request fetches nothing.
  *
- * Drafts: `createDecoWorker` (src/worker-entry.ts) decides the version once per request and hands it
+ * Drafts: `createDecoWorker` (src/edge/worker.ts) decides the version once per request and hands it
  * to the app; `contentClient` builds the client from what it decided (/next/hosted-drafts).
  */
 import { createCMS } from "@decocms/blocks";

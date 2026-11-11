@@ -1,5 +1,5 @@
 /**
- * The site's Content-Security-Policy, as `createDecoWorker` (src/worker-entry.ts) takes it. The
+ * The site's Content-Security-Policy, as `createDecoWorker` (src/edge/worker.ts) takes it. The
  * worker adds the security headers, Studio's origins (production and staging) to `frame-ancestors`
  * and `script-src`, and a draft's no-store / noindex headers itself.
  */

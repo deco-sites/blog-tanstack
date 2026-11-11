@@ -5,10 +5,11 @@
  * built the way Studio builds one (`indexEntry` from `@decocms/blocks/protocol`). The parity build
  * (parity/vite.config.ts) points the worker's SDK at it; production reads delivery.decocms.com.
  *
- *   node parity/delivery.mjs [--port 4329] [--log <file>]
+ *   node parity/delivery.mjs [--port 4329] [--log <file>] [--fail <name>[,<name>...]]
  *
  * Every request is appended to the log (one `<path>` per line), so a run can count what a cold
- * start and a first render fetch from the CDN.
+ * start and a first render fetch from the CDN. `--fail` answers the bodies of the named blocks with
+ * a 503, to see a page whose content fails to load (`x-deco-degraded`).
  */
 import { appendFileSync, readdirSync, readFileSync } from "node:fs";
 import { createServer } from "node:http";
@@ -23,6 +24,7 @@ const arg = (name, fallback) => {
 };
 const port = Number(arg("port", process.env.PARITY_DELIVERY_PORT ?? "4329"));
 const log = arg("log", process.env.PARITY_DELIVERY_LOG);
+const failing = new Set((arg("fail", "") ?? "").split(",").filter(Boolean));
 const site = "blog-tanstack";
 
 const dir = join(root, ".deco", "blocks");
@@ -54,6 +56,10 @@ createServer((req, res) => {
   const rest = path.startsWith(prefix) ? path.slice(prefix.length) : null;
   const hash = rest && /^blocks\/([^/]+)\.json$/.exec(rest)?.[1];
   if (log) appendFileSync(log, `${rest ?? path}${hash ? ` ${nameOf.get(hash) ?? "?"}` : ""}\n`);
+  if (hash && failing.has(nameOf.get(hash))) {
+    res.writeHead(503).end("unavailable");
+    return;
+  }
   let body;
   if (rest === "latest.json") body = index;
   else if (hash && bodies.has(hash)) body = bodies.get(hash);

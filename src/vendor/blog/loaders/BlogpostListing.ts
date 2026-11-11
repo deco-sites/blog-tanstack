@@ -3,7 +3,7 @@
 import { ancestorsOf, descendantSlugs, indexCategories, withCategoryPath } from "../core/categoryTree";
 import handlePosts, { slicePosts } from "../core/handlePosts";
 import { getRecordsByPath } from "../core/records";
-import { requestState } from "../../../request-state.server";
+import { markDegraded, requestState } from "../../../request-state.server";
 import type { BlogPost, BlogPostListingPage, Category, PageInfo, SortBy } from "../types";
 
 const COLLECTION_PATH = "collections/blog/posts";
@@ -73,6 +73,7 @@ export default async function BlogPostListing(props: Props): Promise<BlogPostLis
 			categories = await loadCategories();
 		} catch (error) {
 			console.error("[blog/BlogpostListing] categories", error);
+			markDegraded();
 		}
 
 		// The slug carries the whole category path ("pai/filho") when the site
@@ -117,6 +118,7 @@ export default async function BlogPostListing(props: Props): Promise<BlogPostLis
 		};
 	} catch (error) {
 		console.error("[blog/BlogpostListing]", error);
+		markDegraded();
 		return null;
 	}
 }

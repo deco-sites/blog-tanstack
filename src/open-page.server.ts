@@ -11,7 +11,7 @@ import { matchRoute, type Route } from "@decocms/blocks";
 import { client } from "./cms";
 import type { StoredPage } from "./model";
 import { namesNothing } from "./not-found.server";
-import { runWithRequestState } from "./request-state.server";
+import { type RequestState, runWithRequestState } from "./request-state.server";
 import { type PageSeo, withSiteSeo } from "./seo/types";
 import type { SiteSettings } from "./utils/site-config";
 
@@ -48,7 +48,7 @@ export async function openPage<T>(href: string, request: Request) {
     c.prefetch(match.entry.name);
   }
 
-  const state = { url, params: match.params, client: c };
+  const state: RequestState = { url, params: match.params, client: c };
   if (status === 200 && (await runWithRequestState(state, () => namesNothing(match)))) status = 404;
 
   // The saved page, its saved blocks expanded, nothing run.
@@ -74,13 +74,17 @@ export async function openPage<T>(href: string, request: Request) {
     };
   });
 
-  // Every block has started before SEO is awaited. `site` is a config block named in code.
+  // Every block has started before SEO is awaited. `site` is a config block named in code. Either
+  // failing leaves its part to the defaults and marks the page degraded, as a failed block does.
   const [[seo, seoError], [site, siteError]] = await Promise.all([
     runWithRequestState(state, () => c.resolve<PageSeo | undefined>(page.seo)),
     c.resolve<SiteSettings>("site"),
   ]);
-  if (seoError) throw seoError;
-  if (siteError) throw siteError;
+  for (const error of [seoError, siteError]) {
+    if (error === null) continue;
+    console.error(error);
+    state.degraded = true;
+  }
 
   // The guide streams each block as it resolves. This site's blocks only read
   // CMS content, so they settle together: waiting for them renders every
@@ -96,6 +100,9 @@ export async function openPage<T>(href: string, request: Request) {
     // As on v7, what the page's SEO leaves empty comes from the site's SEO.
     seo: withSiteSeo(seo ?? undefined, site?.seo),
     status,
+    // Some content failed to load (a block, the SEO, the site settings, or a read a block caught):
+    // the page renders, but no cache keeps it (`pageHeaders`).
+    degraded: state.degraded === true || settled.some((block) => block.failed),
     blocks,
     // The page's path template and name: Studio's "." shortcut opens this page in the editor (DecoPreview).
     pathTemplate: match.entry.path,

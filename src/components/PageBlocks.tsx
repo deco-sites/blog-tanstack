@@ -33,7 +33,19 @@ export function pageHref(path: string, search: Record<string, string> | undefine
   return path + (search ? `?${new URLSearchParams(search).toString()}` : "");
 }
 
-/** The page's status: the worker (`createDecoWorker`) turns `x-page-status` into the response status. */
+/**
+ * `DEGRADED_HEADER` of @decocms/tanstack/worker (and /server, which a client module can't import):
+ * a response with it set to "true" is never stored by the page cache (src/edge/page-cache.ts).
+ */
+export const DEGRADED_HEADER = "x-deco-degraded";
+
+/**
+ * The page's response headers: its status (the worker, `createDecoWorker`, turns `x-page-status`
+ * into the response status) and, when some of its content failed to load, `DEGRADED_HEADER`.
+ */
 export function pageHeaders({ loaderData }: { loaderData?: PageData }): Record<string, string> {
-  return loaderData && loaderData.status !== 200 ? { [PAGE_STATUS_HEADER]: String(loaderData.status) } : {};
+  const headers: Record<string, string> = {};
+  if (loaderData && loaderData.status !== 200) headers[PAGE_STATUS_HEADER] = String(loaderData.status);
+  if (loaderData?.degraded) headers[DEGRADED_HEADER] = "true";
+  return headers;
 }

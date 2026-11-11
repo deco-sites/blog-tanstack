@@ -3,7 +3,7 @@
 // a post that isn't live is never indexed. It's your code now.
 import { ancestorsOf, indexCategories, withCategoryPath } from "../core/categoryTree";
 import { getRecordsByPath } from "../core/records";
-import { requestState } from "../../../request-state.server";
+import { markDegraded, requestState } from "../../../request-state.server";
 import { type BlogPost, type BlogPostPage, type Category, isLivePost } from "../types";
 
 const COLLECTION_PATH = "collections/blog/posts";
@@ -42,6 +42,7 @@ export default async function BlogPostPageLoader(props: Props): Promise<BlogPost
 		categories = await getRecordsByPath<Category>("blog/loaders/Category.ts", CATEGORIES_PATH, CATEGORY_ACCESSOR);
 	} catch (error) {
 		console.error("[blog/BlogPostPage] categories", error);
+		markDegraded();
 	}
 
 	const primarySlug = post.categories?.[0]?.slug;

@@ -58,7 +58,7 @@ src/
   blog/, vendor/blog/  # blog loaders and the blog app's default post blocks (vendored from @decocms/apps-blog)
   sections/Blog/       # the blog UI sections, markup only
   sections/Blog/Post/  # this template's post blocks (site/sections/Blog/Post/*)
-  edge/, worker-entry.ts  # createDecoWorker (drafts, redirects, Studio CSP, security headers) and the page cache
+  edge/, worker-entry.ts  # createDecoWorker (drafts, redirects, Studio CSP, security headers; edge/worker.ts) and the page cache (edge/page-cache.ts)
 ```
 
 ## Blog settings
@@ -121,7 +121,7 @@ Follow the same pattern with `collections%2Fblog%2Fcategories%2F<slug>.json` (`b
 - **Hosted content, nothing bundled.** A request reads the index (`latest.json`, one read per isolate, re-checked every minute), the page `client.routes()` matched, the blocks it references, the config blocks named in code (`site`, `deco-blog`; `CMS` is inline in the index) and the blog collections the page shows. Bodies are content-addressed and kept per isolate, so a warm request makes no CDN request. `test/fetch-budget.test.ts` pins the budget.
 - **Studio.** `DecoPreview` (in `src/components/RootLayout.tsx`) is the v8 Studio bridge; every section renders in a `<section data-manifest-key>` wrapper (`src/views.tsx`), header included, which Studio's editor selects. `createDecoWorker` lets Studio (production and staging) frame the site.
 - **Blocks are awaited before the page renders** (`src/open-page.server.ts`), a deliberate exception to the TanStack Start guide, which keeps block promises unawaited. This site's blocks only read CMS content and settle together, and rendering them all in the first HTML chunk keeps the hero image's preload in the head, as on v7. `test/pages.test.ts` covers it. A block that starts fetching upstream should stop being awaited there.
-- **Edge cache.** `src/worker-entry.ts` caches HTML pages and GET server functions (the page data of client-side navigations) in the Cloudflare Cache API, as v7's worker entry did, split by device and keyed by `<build>.<content revision>` (`cacheVersion`), so a deploy or a publish changes every key and nothing needs a purge. `/deco/_liveness` answers `OK` (`createDecoWorker`).
+- **Edge cache.** `src/edge/page-cache.ts` caches HTML pages and GET server functions (the page data of client-side navigations) in the Cloudflare Cache API, as v7's worker entry did, split by device and keyed by `<build>.<content revision>` (`cacheVersion`), so a deploy or a publish changes every key and nothing needs a purge. `/deco/_liveness` answers `OK` (`createDecoWorker`).
 - **Content.** `website/functions/requestToParam.ts` (v7's "the last path segment" function) was rewritten in content to the page's route `param` (`/:slug`, `/topics/:slug`, `/authors/:email`), a documented content migration that gives the same values. The v7 app blocks `site` and `deco-blog` keep their types (`site/apps/site.ts`, `site/apps/deco/blog.ts`) as settings blocks; `site` lost v7's app runtime fields (`routes`, `global`, `caching`, `firstByteThresholdMS`), which v8 doesn't read. v7 content no longer passes `deco check`, so publish only from these files.
 
 ## Deployment

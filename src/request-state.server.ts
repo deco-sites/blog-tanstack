@@ -14,12 +14,23 @@ export interface RequestState {
   params: Record<string, string>;
   /** The request's client, so a block lists content from the same revision as the page. */
   client: Client;
+  /** Set by `markDegraded`: some content the page needs failed to load. */
+  degraded?: boolean;
 }
 
 const storage = new AsyncLocalStorage<RequestState>();
 
 export function runWithRequestState<T>(state: RequestState, fn: () => T): T {
   return storage.run(state, fn);
+}
+
+/**
+ * Says the page renders without some content it needs (a read that failed and was caught, so the
+ * page still renders): the page cache never stores it (`DEGRADED_HEADER`, src/edge/page-cache.ts).
+ */
+export function markDegraded(): void {
+  const state = storage.getStore();
+  if (state) state.degraded = true;
 }
 
 export function requestState(): RequestState {

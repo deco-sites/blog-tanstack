@@ -26,6 +26,9 @@ export function committedBlocks(): Record<string, unknown> {
   return blocks;
 }
 
+/** Saved blocks whose body the CDN answers with a 503 (a failed read), by name. */
+export const failingBlocks = new Set<string>();
+
 /** Every delivery path fetched since the last `resetDeliveryLog`, in order. */
 export const deliveryLog: string[] = [];
 export const resetDeliveryLog = () => void (deliveryLog.length = 0);
@@ -70,6 +73,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
   const { index, bodies } = await release;
   if (path === "latest.json") return json(index);
   const hash = /^blocks\/([^/]+)\.json$/.exec(path)?.[1];
+  if (hash && failingBlocks.has(nameOfHash.get(hash) ?? "")) return new Response("unavailable", { status: 503 });
   if (hash && bodies.has(hash)) return json(bodies.get(hash));
   return new Response("not found", { status: 404 });
 }) as typeof fetch;
