@@ -402,6 +402,7 @@ export default function BlogPostSection(
                 </p>
                 <nav
                   id={tocNavId}
+                  data-blog-toc=""
                   className="flex flex-col gap-0 max-h-[calc(100vh-140px)] overflow-y-auto"
                 >
                   {toc.map((item) => (
