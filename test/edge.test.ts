@@ -1,10 +1,10 @@
+import { request } from "./worker";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { cacheControl, detectCacheProfile } from "../src/edge/cache-profiles";
 import { decoParseSearch, decoStringifySearch } from "@decocms/tanstack/router";
-import { createCMS } from "@decocms/blocks";
-import { createDecoWorker } from "@decocms/tanstack/worker";
-import { CSP_REPORT_ONLY } from "../src/edge/headers";
+import { liveAssignmentKeys } from "@decocms/tanstack/worker";
+import { cms } from "../src/cms";
 import { pageHead } from "../src/seo/head";
 
 describe("cache profiles", () => {
@@ -56,43 +56,48 @@ describe("search params", () => {
   });
 });
 
-describe("the worker (createDecoWorker, as src/worker-entry.ts configures it)", () => {
-  const cms = createCMS({ blocks: {}, content: { revision: "r1", blocks: {} }, telemetry: false, preview: { hosts: ["blog.test"] } });
-  let cached = 0;
-  const worker = createDecoWorker({
-    serverEntry: { fetch: async () => new Response("<html></html>", { headers: { "content-type": "text/html; charset=utf-8" } }) },
-    cms,
-    csp: { reportOnly: CSP_REPORT_ONLY },
-    pageCache: async (page) => {
-      cached++;
-      return page.render();
-    },
-  });
-  const get = async (url: string, headers?: HeadersInit) => {
-    cached = 0;
-    return worker.fetch(new Request(url, { headers }), {}, { waitUntil() {} });
-  };
-
+describe("the worker (src/edge/worker.ts)", () => {
   it("lets Studio (production and staging) and v7's *.deco.studio frame the site, and keeps v7's report-only list", async () => {
-    const res = await get("https://blog.test/");
+    const { res } = await request("/");
     const ancestors = res.headers.get("content-security-policy") ?? "";
     for (const origin of ["'self'", "https://studio.decocms.com", "https://studio-stg.decocms.com", "https://*.deco.studio"]) {
       assert.ok(ancestors.startsWith("frame-ancestors ") && ancestors.includes(` ${origin}`), `${origin} in ${ancestors}`);
     }
     const reportOnly = res.headers.get("content-security-policy-report-only") ?? "";
     assert.ok(reportOnly.includes("img-src 'self' data: https: blob:"));
-    assert.ok(cached === 1, "a live page goes through the page cache");
+    assert.ok(res.headers.has("x-cache"), "a live page goes through the page cache");
   });
 
   it("never puts a draft in the page cache, and sends it uncached and noindex", async () => {
-    for (const [url, headers] of [
-      ["https://blog.test/?__draft=" + encodeURIComponent("blog.test/drafts/gone/index.json@v1"), undefined],
-      ["https://blog.test/", { cookie: "__deco_draft=junk" }],
+    // Port 9 (discard) on loopback: a draft host the CMS admits, with nothing listening.
+    for (const [href, headers] of [
+      ["/?__draft=" + encodeURIComponent("127.0.0.1:9/drafts/gone@v1"), undefined],
+      ["/", { cookie: "__deco_draft=junk" }],
     ] as const) {
-      const res = await get(url, headers);
-      assert.equal(cached, 0, url);
+      const { res } = await request(href, { headers });
+      assert.equal(res.headers.get("x-cache"), null, href);
       assert.match(res.headers.get("cache-control") ?? "", /no-cache/);
       assert.equal(res.headers.get("x-robots-tag"), "noindex, nofollow");
     }
+  });
+
+  it("answers HEAD with GET's headers and no body", async () => {
+    for (const href of ["/topics", "/"]) {
+      const get = await request(href);
+      const head = await request(href, { method: "HEAD" });
+      assert.equal(head.res.status, get.res.status);
+      assert.equal(head.body, "");
+      for (const name of ["cache-control", "vary", "content-type", "content-security-policy"]) {
+        assert.equal(head.res.headers.get(name), get.res.headers.get(name), `${href} ${name}`);
+      }
+      assert.match(head.res.headers.get("cache-control") ?? "", /^public, /);
+    }
+  });
+
+  it("sends a first-time visitor no cookie while the release saves no test (as v7)", async () => {
+    assert.deepEqual(await liveAssignmentKeys(cms), [""]);
+    const { res } = await request("/authors");
+    assert.equal(res.status, 200);
+    assert.deepEqual(res.headers.getSetCookie(), []);
   });
 });

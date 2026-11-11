@@ -13,7 +13,10 @@ version). Bun is the package manager (`bun.lock`).
   blocks named in code (`site`, `deco-blog`; `CMS` is inline in the index) and the blog collections
   through `src/vendor/blog/core/records.ts` (`client.entries(type)` + one `resolve(name)` per
   document, kept per revision). Sitemaps and enumerations read `entries()`, never bodies.
-  `test/fetch-budget.test.ts` pins the CDN requests a cold and a warm request make; keep it green.
+  `test/fetch-budget*.test.ts` and `test/sitemap.test.ts` pin the CDN requests through the whole
+  worker (cold `/` 19, cold post 24, `/sitemap.xml` 2, warm 0); keep them green. The collections
+  cost one body per document on a cold isolate (15 posts today): past ~100 documents, read a
+  derived summary block instead.
 - **Never rename a saved type.** Content stores v7 names (`site/sections/Blog/*.tsx`,
   `blog/loaders/*.ts`, `website/sections/Seo/SeoV2.tsx`, ...): `.deco/index.ts` registers each under
   the one name content uses, and one function under one key only (a second key is listed twice in
@@ -28,7 +31,9 @@ version). Bun is the package manager (`bun.lock`).
 - **Studio**: `DecoPreview` in `src/components/RootLayout.tsx` is the only bridge (v8; no v7 editor
   script). Every section renders in `<section data-manifest-key>` (`src/views.tsx`), header included.
   `createDecoWorker` owns drafts, CMS redirects, Studio's CSP (`frame-ancestors`, `script-src`) and
-  the security headers: don't hand-roll any of them.
+  the security headers: don't hand-roll any of them. `src/edge/worker.ts` adds only the page cache
+  (a page with `x-deco-degraded` is never stored), HEAD as GET, and drops the `deco_segment` visitor
+  cookie while the release saves no test.
 - `DECO_SITE` is deliberately not in `wrangler.jsonc`/`.env`: `deco check` then checks the committed
   `.deco/blocks`. Jobs that talk to Studio set it in their own env (`deco-schema-push.yml`).
 - Same-site links and redirect targets are relative paths.

@@ -1,19 +1,19 @@
-// The sitemap's CDN budget, in a cold process (node:test runs each file in its own): it lists the
-// pages from the content index (`entries("page")`) and reads no block body.
+// The sitemap's CDN budget, through the worker (test/worker.ts), in a cold process (node:test runs
+// each file in its own): the route lists the pages from the content index (`entries("page")`) and
+// reads no block body. The worker's redirect lookup matches "/sitemap.xml" to the post page
+// ("/:slug") and prefetches it, as it does for every one-segment path: 2 requests.
+import { request } from "./worker";
 import { blockNamesRead, deliveryLog, resetDeliveryLog } from "./fake-delivery";
 import assert from "node:assert/strict";
 import { it } from "node:test";
-import { Route } from "../src/routes/sitemap[.]xml";
 
-type Handler = (ctx: { request: Request }) => Promise<Response>;
-
-it("the sitemap reads the content index only, never a page body", async () => {
+it("the sitemap reads the content index and no body of its own", async () => {
   resetDeliveryLog();
-  const { GET } = (Route.options as unknown as { server: { handlers: { GET: Handler } } }).server.handlers;
-  const res = await GET({ request: new Request("http://blog.test/sitemap.xml") });
-  const xml = await res.text();
-  assert.match(xml, /<loc>http:\/\/blog\.test\/topics<\/loc>/);
-  assert.doesNotMatch(xml, /:slug|:email/);
-  assert.deepEqual(deliveryLog, ["latest.json"]);
-  assert.deepEqual(blockNamesRead(), []);
+  const { res, body } = await request("/sitemap.xml");
+  assert.equal(res.status, 200);
+  assert.match(body, /<loc>http:\/\/blog\.test\/topics<\/loc>/);
+  assert.doesNotMatch(body, /:slug|:email/);
+  assert.equal(deliveryLog[0], "latest.json");
+  assert.deepEqual(blockNamesRead(), ["pages-blog-post"]); // the worker's prefetch, not the route's
+  assert.equal(deliveryLog.length, 2);
 });

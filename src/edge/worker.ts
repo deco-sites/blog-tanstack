@@ -4,9 +4,14 @@
  * link or the draft cookie, on a host the CMS allows), the CMS redirects, the visitor and its tests
  * and campaigns, Studio framing (CSP `frame-ancestors` and `script-src`), the security headers,
  * `x-page-status`, `/deco/_liveness` and the request metric. What stays the site's is the page
- * cache (./page-cache.ts).
+ * cache (./page-cache.ts), HEAD, and the visitor cookie while no test needs it (below).
  */
-import { createDecoWorker, type ExecutionContextLike, type ServerEntry } from "@decocms/tanstack/worker";
+import {
+  createDecoWorker,
+  type ExecutionContextLike,
+  liveAssignmentKeys,
+  type ServerEntry,
+} from "@decocms/tanstack/worker";
 import { cms } from "../cms";
 import { CSP_REPORT_ONLY } from "./headers";
 import { createPageCache } from "./page-cache";
@@ -21,6 +26,26 @@ export interface BlogWorkerOptions {
   styles?: readonly string[];
 }
 
+/** The visitor cookie `createDecoWorker` sends a first-time visitor (@decocms/blocks/experiments). */
+const VISITOR_COOKIE = "deco_segment=";
+
+/**
+ * `createDecoWorker` gives every first-time visitor a year-long `deco_segment` cookie (a random id
+ * an A/B test splits visitors by). v7 sent none, and while the release saves no test and runs no
+ * campaign (`liveAssignmentKeys` is `[""]`) nothing reads it, so it is dropped; a test saved in
+ * Studio brings it back, without a deploy.
+ */
+async function withoutIdleVisitorCookie(response: Response): Promise<Response> {
+  const cookies = response.headers.getSetCookie();
+  if (!cookies.some((cookie) => cookie.startsWith(VISITOR_COOKIE))) return response;
+  const keys = await liveAssignmentKeys(cms).catch(() => null);
+  if (keys === null || keys.length !== 1 || keys[0] !== "") return response;
+  const out = new Response(response.body, response);
+  out.headers.delete("Set-Cookie");
+  for (const cookie of cookies) if (!cookie.startsWith(VISITOR_COOKIE)) out.headers.append("Set-Cookie", cookie);
+  return out;
+}
+
 export function blogWorker({ serverEntry, buildHash, dev = false, styles = [] }: BlogWorkerOptions) {
   const worker = createDecoWorker({
     serverEntry,
@@ -32,8 +57,17 @@ export function blogWorker({ serverEntry, buildHash, dev = false, styles = [] }:
     preload: { styles },
     pageCache: createPageCache(buildHash),
   });
+  const serve = async (request: Request, env: unknown, ctx: ExecutionContextLike) =>
+    withoutIdleVisitorCookie(await worker.fetch(request, env, ctx));
+
   return {
-    fetch: (request: Request, env: unknown, ctx: ExecutionContextLike): Promise<Response> =>
-      worker.fetch(request, env, ctx),
+    async fetch(request: Request, env: unknown, ctx: ExecutionContextLike): Promise<Response> {
+      if (request.method !== "HEAD") return serve(request, env, ctx);
+      // HEAD answers what GET does, without the body: the worker hands only GETs to the page cache,
+      // which sets the page's Cache-Control and Vary (and may answer from the edge copy).
+      const response = await serve(new Request(request, { method: "GET" }), env, ctx);
+      await response.body?.cancel();
+      return new Response(null, response);
+    },
   };
 }
