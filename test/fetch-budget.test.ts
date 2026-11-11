@@ -16,7 +16,8 @@ const ORIGIN = "http://blog.test";
 
 async function open(href: string) {
   const page = await openPage<BlockDescriptor>(href, new Request(ORIGIN + href));
-  await Promise.all(page.blocks.map((block) => block.value));
+  // A section that threw (client.list() throws) must not pass for one that read less.
+  for (const { failed } of await Promise.all(page.blocks.map((block) => block.value))) assert.equal(failed, false);
   return page;
 }
 
