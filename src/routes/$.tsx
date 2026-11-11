@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { PageBlocks, pageHeaders, pageHref, pageLoaderDeps, splatPath } from "../components/PageBlocks";
+import { PageBlocks, pageHeaders, pageHref, pageLoaderDeps } from "../components/PageBlocks";
 import { loadPage } from "../page.functions";
 import { pageHead } from "../seo/head";
 
@@ -8,7 +8,10 @@ export const Route = createFileRoute("/$")({
   // Keep every search param, so they reach loaderDeps (?q=, ?page=).
   validateSearch: (search: Record<string, unknown>) => search as Record<string, string>,
   loaderDeps: pageLoaderDeps,
-  loader: ({ params, deps }) => loadPage({ data: { href: pageHref(splatPath(params._splat), deps.search) } }),
+  // The path as the router parsed it, not the decoded splat: `%2F`, `%3F`, `%23` and `%5C` stay
+  // encoded, so `/%2Fx` or `/x%2F..%2F%2F` can't become `//x` (another origin) or `//`, and name no
+  // page (a 404, as any unknown URL). matchRoute decodes each segment (`%40` in an author's email).
+  loader: ({ location, deps }) => loadPage({ data: { href: pageHref(location.pathname, deps.search) } }),
   pendingMs: 200,
   pendingMinMs: 300,
   staleTime: 60_000,

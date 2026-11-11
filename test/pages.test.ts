@@ -4,7 +4,6 @@
 import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { splatPath } from "../src/components/PageBlocks";
 import type { BlockDescriptor } from "../src/model";
 import { openPage } from "../src/open-page.server";
 import { pageHead } from "../src/seo/head";
@@ -109,7 +108,7 @@ describe("openPage", () => {
     assert.ok(byTopic.every((p) => p.categories?.some((c) => c.slug === "design")));
   });
 
-  it("keeps the search page out of search engines (its SEO's legacy noIndex)", async () => {
+  it("keeps the search page out of search engines (its SEO's noIndexing, and v7's legacy noIndex)", async () => {
     const page = await open("/search?q=react");
     assert.equal(page.seo?.noIndexing, true);
     const robots = pageHead(page, "Blog", "Blog").meta.find((m) => m.name === "robots");
@@ -131,18 +130,16 @@ describe("openPage", () => {
     assert.equal(page.name, "Blog Post");
   });
 
-  it("answers a path whose first segment starts with an encoded / or \\ with the /404 page and a 404, not a 500", async () => {
-    // TanStack decodes the splat: "/%2Fx" is "/x", which made the protocol-relative "//x" the
-    // server function refuses.
-    assert.equal(splatPath("/x"), "/%2Fx");
-    assert.equal(splatPath("\\x"), "/%5Cx");
-    assert.equal(splatPath("//evil.com"), "/%2F/evil.com");
-    assert.equal(splatPath("topics/engineering"), "/topics/engineering");
-    assert.equal(splatPath(undefined), "/");
-    for (const splat of ["/tanstack-start-guide", "/x", "\\x", "//evil.com", "/topics/engineering"]) {
-      const page = await open(splatPath(splat));
-      assert.equal(page.status, 404, splat);
+  it("answers a path with an encoded /, \\, ? or # with the /404 page and a 404, not a 500", async () => {
+    // The catch-all passes the router's location.pathname, which keeps these encoded (TanStack's
+    // decodePath); the decoded splat made "//x", which the server function refuses (a 500), and
+    // "x/..//" the protocol-relative "//".
+    for (const path of ["/%2Fx", "/%5Cx", "/%2F%2Fevil.com", "/%2Ftanstack-start-guide", "/x%2F..%2F%2F", "/x%2F..%2F%2Ftopics", "/%23x", "/tanstack-start-guide%3Fa"]) {
+      const page = await open(path);
+      assert.equal(page.status, 404, path);
     }
+    // An encoded character the route reads still names its page: matchRoute decodes each segment.
+    assert.equal((await open("/authors/ana%40deco.cx")).status, 200);
   });
 
   it("hands over every block already settled, so the first HTML chunk holds them all", async () => {
