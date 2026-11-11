@@ -1,6 +1,7 @@
 // A post's body blocks render by type: stored under the short name the block
 // map gives them (what the site editor saves for a new block) or the v7 name
 // older content uses, and as the descriptor a resolved body block returns.
+import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { createElement } from "react";

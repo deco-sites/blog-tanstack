@@ -1,9 +1,8 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { cacheControl, detectCacheProfile } from "../src/edge/cache-profiles";
-import { detectDevice } from "../src/edge/device";
-import { securityHeaders } from "../src/edge/headers";
-import { parseSearch, stringifySearch } from "../src/search-params";
+import { decoParseSearch, decoStringifySearch } from "@decocms/tanstack/router";
+import { CSP_REPORT_ONLY, LEGACY_FRAME_ANCESTORS } from "../src/edge/headers";
 import { pageHead } from "../src/seo/head";
 
 describe("cache profiles", () => {
@@ -24,14 +23,6 @@ describe("cache profiles", () => {
     assert.equal(cacheControl("listing"), "public, max-age=60, s-maxage=600, stale-while-revalidate=600, stale-if-error=3600");
     assert.equal(cacheControl("search"), "public, max-age=30, s-maxage=300, stale-while-revalidate=180, stale-if-error=900");
     assert.equal(cacheControl("private"), "private, no-cache, no-store, must-revalidate");
-  });
-});
-
-describe("detectDevice", () => {
-  it("tells phones, tablets and desktops apart", () => {
-    assert.equal(detectDevice("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"), "mobile");
-    assert.equal(detectDevice("Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X)"), "tablet");
-    assert.equal(detectDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"), "desktop");
   });
 });
 
@@ -57,20 +48,15 @@ describe("pageHead", () => {
 describe("search params", () => {
   it("give back the query string they read, empty values included (no 307 for ?utm_source=)", () => {
     for (const search of ["?utm_source=", "?q=react&page=", "?a=&b=", "?tag=a&tag=b", "?q=caf%C3%A9"]) {
-      assert.equal(stringifySearch(parseSearch(search)), search);
+      assert.equal(decoStringifySearch(decoParseSearch(search)), search);
     }
-    assert.equal(stringifySearch({ q: undefined, page: null, s: "" }), "?s=");
+    assert.equal(decoStringifySearch({ q: undefined, page: null, s: "" }), "?s=");
   });
 });
 
-describe("security headers", () => {
-  it("let deco Studio frame the site, and no other origin", () => {
-    const headers = securityHeaders(false);
-    assert.equal(headers["X-Frame-Options"], undefined);
-    assert.equal(
-      headers["Content-Security-Policy"],
-      "frame-ancestors 'self' https://studio.decocms.com https://*.deco.studio",
-    );
-    assert.match(securityHeaders(true)["Content-Security-Policy"], /http:\/\/localhost:\*/);
+describe("content security policy", () => {
+  it("keeps v7's report-only list and its extra frame ancestor (the worker adds Studio's origins)", () => {
+    assert.deepEqual(LEGACY_FRAME_ANCESTORS, ["https://*.deco.studio"]);
+    assert.ok(CSP_REPORT_ONLY.some((d) => d.startsWith("script-src 'self'")));
   });
 });

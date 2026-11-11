@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { HeadContent, Scripts, ScrollRestoration } from "@tanstack/react-router";
-import { LiveControls } from "../vendor/blocks/LiveControls";
+import { DecoPreview } from "@decocms/tanstack/react";
 import { NavigationProgress } from "./NavigationProgress";
 import { StableOutlet } from "./StableOutlet";
 
@@ -37,8 +37,10 @@ export function RootLayout({
           <StableOutlet />
         </main>
         {children}
-        {/* v7's editor bridge: click-to-select sections in Studio's preview, and the "." shortcut. */}
-        <LiveControls site={siteName} />
+        {/* The v8 Studio bridge: Studio's editor channel (it selects the sections by their
+            data-manifest-key), the draft notice and the "." shortcut that opens the page in Studio.
+            Tailwind reads this file: a daisyUI component name in a comment adds its rules to the CSS. */}
+        <DecoPreview site={siteName} />
         <ScrollRestoration />
         <Scripts />
       </body>

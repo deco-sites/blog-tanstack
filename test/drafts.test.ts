@@ -1,11 +1,11 @@
-// Draft previews (src/cms.ts, src/start.ts, src/edge/headers.ts): a `?__draft=` link or the draft
-// cookie picks the draft, a junk pointer is no draft, and a draft's response is never stored or indexed.
+// Draft previews: a `?__draft=` link or the draft cookie picks the draft and a junk pointer is no
+// draft. `createDecoWorker` decides it once per request and sends a draft no-store and noindex.
+import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { client, cms } from "../src/cms";
 
 const versionOf = async (request: Request) => (await cms.readVersion(request))?.version ?? null;
-import { withDraftHeaders } from "../src/edge/headers";
 
 const POINTER = "blog.test/@abc123";
 
@@ -52,19 +52,5 @@ describe("draft client", () => {
     const unreadable = encodeURIComponent("127.0.0.1:9/drafts/gone@v1");
     const c = await client(new Request(`http://blog.test/?__draft=${unreadable}`));
     assert.equal(await c.revision(), await cms.client().revision());
-  });
-});
-
-describe("draft response headers", () => {
-  it("are never stored and never indexed, as on v7", () => {
-    const resp = withDraftHeaders(
-      new Response("<html></html>", {
-        headers: { "content-type": "text/html", "cache-control": "public, max-age=60", vary: "Accept-Encoding" },
-      }),
-    );
-    assert.equal(resp.headers.get("cache-control"), "no-store, private");
-    assert.equal(resp.headers.get("cdn-cache-control"), "no-store");
-    assert.equal(resp.headers.get("vary"), "Accept-Encoding, Cookie");
-    assert.equal(resp.headers.get("x-robots-tag"), "noindex, nofollow");
   });
 });

@@ -1,5 +1,7 @@
 // Resolves real pages from the committed content through the same openPage the
-// catch-all route calls. Run `deco content` first (npm test does, via pretest).
+// catch-all route calls, read from the committed content served as a release by the fake delivery
+// CDN (test/fake-delivery.ts).
+import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { BlockDescriptor } from "../src/model";

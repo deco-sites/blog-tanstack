@@ -1,15 +1,12 @@
-import { createRouter } from "@tanstack/react-router";
+import { createDecoRouter } from "@decocms/tanstack/router";
 import { routeTree } from "./routeTree.gen";
-import { parseSearch, stringifySearch } from "./search-params";
 
+/**
+ * Deco's router: TanStack's with scroll restoration, preload on intent and plain URLSearchParams
+ * search params (`?q=react&page=2`, empty values kept, so `?utm_source=` never answers a 307).
+ */
 export function getRouter() {
-  return createRouter({
-    routeTree,
-    scrollRestoration: true,
-    defaultPreload: "intent",
-    parseSearch,
-    stringifySearch,
-  });
+  return createDecoRouter({ routeTree });
 }
 
 declare module "@tanstack/react-router" {

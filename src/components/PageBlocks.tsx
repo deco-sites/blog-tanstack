@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Await } from "@tanstack/react-router";
 import type { loadPage } from "../page.functions";
-import { PAGE_STATUS_HEADER } from "../page-status";
+import { PAGE_STATUS_HEADER } from "@decocms/tanstack/router";
 import { View } from "../views";
 
 export type PageData = Awaited<ReturnType<typeof loadPage>>;
@@ -29,7 +29,7 @@ export function pageHref(path: string, search: Record<string, string> | undefine
   return path + (search ? `?${new URLSearchParams(search).toString()}` : "");
 }
 
-/** The page's status, for the worker entry (see ../page-status.ts). */
+/** The page's status: the worker (`createDecoWorker`) turns `x-page-status` into the response status. */
 export function pageHeaders({ loaderData }: { loaderData?: PageData }): Record<string, string> {
   return loaderData && loaderData.status !== 200 ? { [PAGE_STATUS_HEADER]: String(loaderData.status) } : {};
 }

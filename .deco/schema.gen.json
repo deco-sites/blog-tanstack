@@ -1,7 +1,7 @@
 {
   "major": 1,
   "blocksMajor": 8,
-  "version": "8.6.0",
+  "version": "8.17.0",
   "namespace": "site",
   "site": "blog-tanstack",
   "manifest": {
@@ -401,20 +401,12 @@
           "$ref": "#/definitions/bXVsdGl2YXJpYXRl",
           "namespace": "deco"
         },
-        "secret": {
-          "$ref": "#/definitions/c2VjcmV0",
-          "namespace": "deco"
-        },
         "website/flags/multivariate.ts": {
           "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUudHM=",
           "namespace": "website"
         },
         "website/flags/multivariate/section.ts": {
           "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvc2VjdGlvbi50cw==",
-          "namespace": "website"
-        },
-        "website/loaders/secret.ts": {
-          "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw==",
           "namespace": "website"
         }
       },
@@ -461,6 +453,10 @@
       "redirects": {
         "redirect": {
           "$ref": "#/definitions/cmVkaXJlY3Q=",
+          "namespace": "deco"
+        },
+        "redirects": {
+          "$ref": "#/definitions/cmVkaXJlY3Rz",
           "namespace": "deco"
         },
         "website/loaders/redirect.ts": {
@@ -6575,7 +6571,7 @@
           "permanent": {
             "type": "boolean",
             "title": "Permanent",
-            "description": "301 when true, 302 otherwise"
+            "description": "301 when true, 307 otherwise"
           },
           "status": {
             "type": "number",
@@ -6590,6 +6586,65 @@
           "discardQueryParameters": {
             "type": "boolean",
             "title": "Discard query parameters"
+          }
+        }
+      },
+      "cmVkaXJlY3Rz": {
+        "title": "redirects",
+        "description": "The site's redirects: every rule in one block (the saved block Redirects)",
+        "type": "object",
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "redirects"
+            ],
+            "default": "redirects"
+          },
+          "redirects": {
+            "type": "array",
+            "title": "Redirects",
+            "items": {
+              "type": "object",
+              "required": [
+                "from",
+                "to",
+                "permanent"
+              ],
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "title": "From"
+                },
+                "to": {
+                  "type": "string",
+                  "title": "To"
+                },
+                "permanent": {
+                  "type": "boolean",
+                  "title": "Permanent",
+                  "description": "301 when true, 307 otherwise"
+                },
+                "status": {
+                  "type": "number",
+                  "enum": [
+                    301,
+                    302,
+                    307,
+                    308
+                  ],
+                  "title": "Status"
+                },
+                "discardQueryParameters": {
+                  "type": "boolean",
+                  "title": "Discard query parameters"
+                }
+              },
+              "title": "Redirect"
+            }
           }
         }
       },
@@ -6651,31 +6706,17 @@
                 "type": "boolean",
                 "title": "Enabled",
                 "default": true
+              },
+              "decoAnalyticsKey": {
+                "type": "string",
+                "title": "Deco Analytics key"
+              },
+              "decoAnalyticsFirstParty": {
+                "type": "boolean",
+                "title": "Deco Analytics first-party",
+                "default": false
               }
             }
-          }
-        }
-      },
-      "c2VjcmV0": {
-        "title": "secret",
-        "description": "An encrypted value, decrypted on the server",
-        "type": "object",
-        "required": [
-          "__resolveType",
-          "ciphertext"
-        ],
-        "properties": {
-          "__resolveType": {
-            "type": "string",
-            "enum": [
-              "secret"
-            ],
-            "default": "secret"
-          },
-          "ciphertext": {
-            "type": "string",
-            "title": "Ciphertext",
-            "writeOnly": true
           }
         }
       },
@@ -7252,29 +7293,6 @@
                 "title": "Discard query parameters"
               }
             }
-          }
-        }
-      },
-      "d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw==": {
-        "title": "website/loaders/secret.ts",
-        "description": "An encrypted value, decrypted on the server",
-        "type": "object",
-        "required": [
-          "__resolveType",
-          "ciphertext"
-        ],
-        "properties": {
-          "__resolveType": {
-            "type": "string",
-            "enum": [
-              "website/loaders/secret.ts"
-            ],
-            "default": "website/loaders/secret.ts"
-          },
-          "ciphertext": {
-            "type": "string",
-            "title": "Ciphertext",
-            "writeOnly": true
           }
         }
       },
@@ -7963,9 +7981,6 @@
           },
           {
             "$ref": "#/definitions/bXVsdGl2YXJpYXRl"
-          },
-          {
-            "$ref": "#/definitions/c2VjcmV0"
           }
         ]
       },
@@ -8005,6 +8020,9 @@
           },
           {
             "$ref": "#/definitions/cmVkaXJlY3Q="
+          },
+          {
+            "$ref": "#/definitions/cmVkaXJlY3Rz"
           }
         ]
       },
@@ -8044,7 +8062,6 @@
     "website/flags/multivariate/section.ts": "multivariate",
     "website/matchers/always.ts": "always",
     "website/matchers/never.ts": "never",
-    "website/loaders/redirect.ts": "redirect",
-    "website/loaders/secret.ts": "secret"
+    "website/loaders/redirect.ts": "redirect"
   }
 }

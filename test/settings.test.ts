@@ -1,5 +1,7 @@
 // Site-wide settings come from the saved block `CMS` (built-in type `cms-settings`), read from the
-// release in memory: this site saves an empty analytics section, so every section is its default.
+// index (it is inline in `latest.json`): this site saves an empty analytics section, so every
+// section is its default, and the telemetry defaults are src/cms.ts's.
+import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { cms } from "../src/cms";
@@ -12,10 +14,9 @@ describe("CMS settings", () => {
     assert.deepEqual(settings.telemetry, {
       enabled: true,
       metrics: true,
-      errorSampleRate: 0.05,
+      errorSampleRate: 1, // src/cms.ts sends every CMS error log by default, as osklen and demo-storefront do
       traceSampleRate: 0,
     });
-    // No preview hosts in content or code: previews are allowed on every host, as before.
-    assert.deepEqual(settings.preview, { hosts: ["*"] });
+    // Preview hosts are the release's (Studio writes them into `latest.json`), not content's.
   });
 });

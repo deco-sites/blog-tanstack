@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { client } from "../cms";
-import type { StoredPage } from "../model";
 
 function escapeXml(str: string): string {
   return str
@@ -11,16 +10,20 @@ function escapeXml(str: string): string {
     .replace(/'/g, "&apos;");
 }
 
-/** Every page with a fixed path (no :param or *), deepest paths first, the home page last. */
+/**
+ * Every page with a fixed path (no :param or *), deepest paths first, the home page last. The paths
+ * come from the content index (`entries("page")`): no page body is read.
+ */
 async function sitemapXml(request: Request): Promise<string> {
   const origin = new URL(request.url).origin;
-  const [pages, error] = await (await client(request)).list<StoredPage>("page");
+  const [pages, error] = await (await client(request)).entries("page");
   if (error) throw error;
   const today = new Date().toISOString().split("T")[0];
   const depth = (path: string) => path.split("/").filter(Boolean).length;
 
   const urls = pages
-    .filter((page) => typeof page.path === "string" && !page.path.includes(":") && !page.path.includes("*"))
+    .filter((page): page is typeof page & { path: string } =>
+      typeof page.path === "string" && !page.path.includes(":") && !page.path.includes("*"))
     .sort((a, b) => depth(b.path) - depth(a.path))
     .map((page) => {
       const isHome = page.path === "/";

@@ -1,113 +1,73 @@
 /**
- * The Worker's entry: TanStack Start's handler, wrapped with what the site
- * adds around every response (formerly createDecoWorkerEntry from
- * @decocms/start 6.x): security headers, the CSS preload hint, cache headers
- * per URL, and an edge page cache in the Cloudflare Cache API, split by device.
+ * The Worker's entry: TanStack Start behind `createDecoWorker` (@decocms/tanstack), which owns drafts
+ * (a `?__draft=` link or the draft cookie, on a host the CMS allows), the CMS redirects, the visitor
+ * and its tests and campaigns, Studio framing (CSP `frame-ancestors` and `script-src`), the security
+ * headers, `x-page-status`, `/deco/_liveness` and the request metric.
  *
- * A draft preview (a valid `?__draft=` pointer or the draft cookie, on a host
- * allowed to preview) skips the page cache and is sent with v7's no-store /
- * noindex headers. `vite dev` skips the page cache too, so a content edit
- * shows on the next load.
- *
- * A/B tests and campaigns are decided once here, for the visitor, and handed
- * to the page (src/edge/assignments.ts); the cache key carries that decision
- * (`assignmentsKey`), never the visitor's id, so visitors on the same side of
- * every test share an entry. The visitor's first-visit cookie is added after
- * the cache answered, so a stored copy never carries it, and never on a
- * preview.
+ * What stays the site's is the page cache below: the Cloudflare Cache API, with the profiles this
+ * blog has always served (src/edge/cache-profiles.ts), keyed by path and query (tracking params
+ * dropped), `<build>.<content revision>` (`cacheVersion`: a publish changes every key without a
+ * deploy), the device and the tests and campaigns the worker decided (never the visitor's id).
+ * The worker calls it only for GETs of the current release, never for a preview, never in `vite dev`.
  */
+import {
+  assignmentsKey,
+  cacheVersion,
+  createDecoWorker,
+  DEGRADED_HEADER,
+  isServerFnPath,
+  type PageRequest,
+  serverFnPagePath,
+} from "@decocms/tanstack/worker";
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 import { cms } from "./cms";
-import { decideAssignments, withoutAssignments } from "./edge/assignments";
-import { PAGE_STATUS_HEADER } from "./page-status";
 import { cacheControl, detectCacheProfile, PROFILES } from "./edge/cache-profiles";
-import { detectDevice } from "./edge/device";
-import { securityHeaders, withDraftHeaders } from "./edge/headers";
+import { CSP_REPORT_ONLY, LEGACY_FRAME_ANCESTORS } from "./edge/headers";
 // @ts-ignore Vite ?url import
 import appCss from "./styles/app.css?url";
-
-interface Env {
-  CF_VERSION_METADATA?: { id?: string };
-}
-
-interface Ctx {
-  waitUntil(promise: Promise<unknown>): void;
-}
-
-const serverEntry = createServerEntry({ fetch: handler.fetch });
-
-/** Every HTML response's security headers, with Studio allowed to frame the site (src/edge/headers.ts). */
-const SECURITY_HEADERS = securityHeaders(import.meta.env.DEV);
 
 /** Query params that never change a page: left out of the cache key. */
 const TRACKING_PARAMS = /^(utm_\w+|gclid|gclsrc|dclid|fbclid|msclkid|mc_cid|mc_eid|_ga|_gl|yclid|igshid|ttclid|twclid|li_fat_id)$/i;
 
-/**
- * Paths the page cache never serves: built assets and framework routes.
- * GET server functions (the page data a client-side navigation loads) are
- * cached like pages, as on v6: listing profile, split by device. POST server
- * functions are never cached (only GET is).
- */
-const BYPASS_PREFIXES = ["/_build", "/assets/", "/api/"];
-
-const isServerFn = (url: URL) => url.pathname.startsWith("/_serverFn/");
-
 /** When the edge copy was stored, so its age can be compared with the profile. */
 const STORED_AT = "x-edge-stored-at";
 
-const isHtml = (resp: Response) => (resp.headers.get("content-type") ?? "").includes("text/html");
-
-/** A page's own status (a CMS page can be a 404), set by the route through PAGE_STATUS_HEADER. */
-function withPageStatus(resp: Response): Response {
-  const status = Number(resp.headers.get(PAGE_STATUS_HEADER));
-  if (!status) return resp;
-  const headers = new Headers(resp.headers);
-  headers.delete(PAGE_STATUS_HEADER);
-  return new Response(resp.body, { status, statusText: "", headers });
+/** A request's profile: a GET server function (a client-side navigation) takes its page's. */
+function profileOf(url: URL) {
+  if (!isServerFnPath(url.pathname)) return detectCacheProfile(url);
+  const page = serverFnPagePath(url);
+  return page ? detectCacheProfile(new URL(page, url.origin)) : "listing";
 }
 
-function decorate(resp: Response): Response {
-  const out = new Response(resp.body, resp);
-  if (isHtml(out)) {
-    for (const [k, v] of Object.entries(SECURITY_HEADERS)) {
-      if (!out.headers.has(k)) out.headers.set(k, v);
-    }
-    out.headers.append("Link", `<${appCss}>; rel=preload; as=style`);
+function cacheKey(url: URL, version: string, device: string, assigned: string): Request {
+  const key = new URL(url);
+  key.hash = "";
+  for (const name of [...key.searchParams.keys()]) {
+    if (TRACKING_PARAMS.test(name)) key.searchParams.delete(name);
   }
-  return out;
-}
-
-function cacheKey(request: Request, env: Env, assigned: string): Request {
-  const url = new URL(request.url);
-  for (const name of [...url.searchParams.keys()]) {
-    if (TRACKING_PARAMS.test(name)) url.searchParams.delete(name);
-  }
-  const version = env.CF_VERSION_METADATA?.id;
-  if (version) url.searchParams.set("__v", version);
-  url.searchParams.set("__device", detectDevice(request.headers.get("user-agent") ?? ""));
+  if (version) key.searchParams.set("__v", version);
+  key.searchParams.set("__device", device);
   // The request's tests and campaigns (`assignmentsKey`), never the visitor: "" without any.
-  if (assigned) url.searchParams.set("__a", assigned);
-  return new Request(url.toString(), { method: "GET" });
+  if (assigned) key.searchParams.set("__a", assigned);
+  return new Request(key.toString(), { method: "GET" });
 }
 
-async function pageCache(request: Request, env: Env, ctx: Ctx, assigned: string): Promise<Response> {
-  const url = new URL(request.url);
-  const profileName = detectCacheProfile(url);
+function edgeCache(): Cache | null {
+  return typeof caches !== "undefined" ? ((caches as unknown as { default?: Cache }).default ?? null) : null;
+}
+
+async function pageCache(page: PageRequest): Promise<Response> {
+  const { url, ctx } = page;
+  const profileName = profileOf(url);
   const profile = PROFILES[profileName];
-  const cacheable =
-    request.method === "GET" &&
-    profile.isPublic &&
-    !import.meta.env.DEV &&
-    !BYPASS_PREFIXES.some((prefix) => url.pathname.startsWith(prefix)) &&
-    typeof caches !== "undefined";
 
   const withHeaders = (resp: Response, state: string) => {
     const out = new Response(resp.body, resp);
     out.headers.delete(STORED_AT);
+    out.headers.delete("cf-cache-status");
     // A 404 page is content too: it gets the same cache headers (only 200s are stored, below).
     if ((out.ok || out.status === 404) && !out.headers.has("set-cookie")) {
-      // `vite dev` tells the browser to revalidate too, so a content edit shows on the next visit.
-      out.headers.set("Cache-Control", import.meta.env.DEV ? "no-cache" : cacheControl(profileName));
+      out.headers.set("Cache-Control", cacheControl(profileName));
       out.headers.set("Vary", "Accept-Encoding");
       out.headers.set("CDN-Cache-Control", "no-store");
     }
@@ -116,10 +76,9 @@ async function pageCache(request: Request, env: Env, ctx: Ctx, assigned: string)
     return out;
   };
 
-  if (!cacheable) {
-    const resp = withPageStatus(await serverEntry.fetch(request));
-    // POST server functions and built assets keep their own headers.
-    if (isServerFn(url) || url.pathname.startsWith("/assets/")) return resp;
+  const cache = edgeCache();
+  if (!profile.isPublic || !cache) {
+    const resp = await page.render();
     if (!profile.isPublic) {
       const out = new Response(resp.body, resp);
       out.headers.set("Cache-Control", cacheControl(profileName));
@@ -129,16 +88,18 @@ async function pageCache(request: Request, env: Env, ctx: Ctx, assigned: string)
     return withHeaders(resp, "BYPASS");
   }
 
-  const cache = (caches as unknown as { default: Cache }).default;
-  const key = cacheKey(request, env, assigned);
+  // The revision the page renders (on the previous index while a publish's new blocks load).
+  const version = await cacheVersion(cms, __BUILD_HASH__, url);
+  const key = cacheKey(url, version, page.device, assignmentsKey(page.assignments));
+  const { edge } = profile;
 
   const revalidate = async () => {
-    const fresh = withPageStatus(await serverEntry.fetch(request.clone()));
-    if (fresh.status === 200 && !fresh.headers.has("set-cookie")) {
+    const fresh = await page.render();
+    if (fresh.status === 200 && !fresh.headers.has("set-cookie") && fresh.headers.get(DEGRADED_HEADER) !== "true") {
       const stored = new Response(fresh.clone().body, fresh);
-      stored.headers.set("Cache-Control", `public, max-age=${profile.edge.fresh + profile.edge.swr + profile.edge.sie}`);
+      stored.headers.set("Cache-Control", `public, max-age=${edge.fresh + edge.swr + edge.sie}`);
       stored.headers.set(STORED_AT, String(Date.now()));
-      await cache.put(key, stored);
+      ctx.waitUntil(cache.put(key, stored).catch(() => {}));
     }
     return fresh;
   };
@@ -146,8 +107,8 @@ async function pageCache(request: Request, env: Env, ctx: Ctx, assigned: string)
   const hit = await cache.match(key).catch(() => undefined);
   if (hit) {
     const age = (Date.now() - Number(hit.headers.get(STORED_AT) ?? 0)) / 1000;
-    if (age <= profile.edge.fresh) return withHeaders(hit, "HIT");
-    if (age <= profile.edge.fresh + profile.edge.swr) {
+    if (age <= edge.fresh) return withHeaders(hit, "HIT");
+    if (age <= edge.fresh + edge.swr) {
       ctx.waitUntil(revalidate().catch(() => undefined));
       return withHeaders(hit, "STALE-HIT");
     }
@@ -157,38 +118,19 @@ async function pageCache(request: Request, env: Env, ctx: Ctx, assigned: string)
     } catch {
       // fall through to the stale copy
     }
-    if (age <= profile.edge.fresh + profile.edge.swr + profile.edge.sie) return withHeaders(hit, "STALE-ERROR");
+    if (age <= edge.fresh + edge.swr + edge.sie) return withHeaders(hit, "STALE-ERROR");
   }
 
-  const resp = await revalidate();
-  return withHeaders(resp, "MISS");
+  return withHeaders(await revalidate(), "MISS");
 }
 
-/** The health check v6 answered (uptime monitors and load balancers may poll it). */
-const LIVENESS_PATH = "/deco/_liveness";
-
-export default {
-  async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
-    if (new URL(request.url).pathname === LIVENESS_PATH) {
-      return new Response("OK", {
-        headers: { "Content-Type": "text/plain", "Cache-Control": "no-store, no-cache, must-revalidate", "CDN-Cache-Control": "no-store" },
-      });
-    }
-    const url = new URL(request.url);
-    // Built assets and framework routes render no page: no tests, no visitor cookie.
-    if (BYPASS_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))) {
-      return decorate(await pageCache(withoutAssignments(request), env, ctx, ""));
-    }
-    // Only a version the CMS accepts counts, so `?__draft=x` can't push requests past the page cache.
-    const version = await cms.readVersion(request);
-    const decision = await decideAssignments(cms, request, version);
-    if (version !== null) {
-      return decorate(withDraftHeaders(withPageStatus(await serverEntry.fetch(decision.request))));
-    }
-    const resp = decorate(await pageCache(decision.request, env, ctx, decision.key));
-    // After the cache answered: a stored copy never carries a visitor's cookie, and a new visitor
-    // served from the cache still gets theirs.
-    if (decision.cookie) resp.headers.append("Set-Cookie", decision.cookie);
-    return resp;
-  },
-};
+export default createDecoWorker({
+  serverEntry: createServerEntry({ fetch: handler.fetch }),
+  cms,
+  dev: import.meta.env.DEV,
+  // v7's report-only list, and v7's extra frame ancestor; the worker adds Studio's origins
+  // (production and staging) to `frame-ancestors` and `script-src`.
+  csp: { reportOnly: CSP_REPORT_ONLY, frameAncestors: LEGACY_FRAME_ANCESTORS },
+  preload: { styles: [appCss] },
+  pageCache,
+});

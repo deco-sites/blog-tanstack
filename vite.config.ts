@@ -1,5 +1,5 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
-import { decoContent } from "@decocms/blocks/vite";
+import { decoTanstack } from "@decocms/tanstack/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -29,9 +29,9 @@ export default defineConfig({
       },
     }),
     tailwindcss(),
-    // `vite dev`: a block saved in the site editor (`deco serve`) goes into the CMS src/cms.ts
-    // created, and open pages reload once the server has it.
-    decoContent(),
+    // `__BUILD_HASH__` (the commit: Workers Builds' sha, else git's) for the page cache's key, the
+    // browser stub for `node:async_hooks` and one copy of React and TanStack.
+    decoTanstack({ buildHash: process.env.WORKERS_CI_COMMIT_SHA }),
   ],
   build: {
     sourcemap: "hidden",

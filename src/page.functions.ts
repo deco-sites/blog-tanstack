@@ -5,5 +5,13 @@ import type { BlockDescriptor } from "./model";
 import { openPage } from "./open-page.server";
 
 export const loadPage = createServerFn({ method: "GET" })
-  .inputValidator(z.object({ href: z.string().startsWith("/") }))
+  // A path on this site: `//host/x` and `/\host` are protocol-relative URLs that would move the page to another origin.
+  .inputValidator(
+    z.object({
+      href: z
+        .string()
+        .startsWith("/")
+        .refine((href) => !href.startsWith("//") && !href.startsWith("/\\"), "not a local path"),
+    }),
+  )
   .handler(({ data }) => openPage<BlockDescriptor>(data.href, getRequest()));
