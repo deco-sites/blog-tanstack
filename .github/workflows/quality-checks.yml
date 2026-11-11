@@ -1,10 +1,12 @@
-# Quality checks that run on merges to main, and on demand. Each job is one independent check and
-# shows up as its own tick; the name says what it proves. Like osklen's, no pull_request runs
-# (Actions budget): run `bun run deco:check`, `bun run typecheck`, `bun run test` and
-# `bun run build` before asking for a merge.
+# Quality checks that run on pull requests to main, on merges to main, and on demand. Each job is
+# one independent check and shows up as its own tick; the name says what it proves. Unlike osklen's,
+# pull requests run them too: every main commit deploys, and "Website builds successfully" is what
+# shows a pull request that the hosted release it needs exists (README.md, Deployment).
 name: Quality checks
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
@@ -24,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -39,6 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -52,6 +58,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -65,18 +73,27 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
       - uses: actions/setup-node@v6
         with:
           node-version: 24
       - run: bun install --frozen-lockfile
+      # As on Workers Builds (`WORKERS_CI`), the build fails while the site has no hosted release
+      # (scripts/require-release.mjs): that build would answer 500 on every page.
       - run: bun run build
+        env:
+          REQUIRE_RELEASE: "1"
       # As osklen's: a worker that builds but fails to start fails here. `/deco/_liveness` is
-      # answered by createDecoWorker itself, so it needs no published content.
+      # answered by createDecoWorker itself; the home page then reads the hosted release.
       - name: Start the built website and check it answers
         run: |
           npx vite preview --port 4319 --strictPort > preview.log 2>&1 &
           for i in $(seq 1 60); do
-            if curl -fsS -o /dev/null http://localhost:4319/deco/_liveness; then exit 0; fi
+            if curl -fsS -o /dev/null http://localhost:4319/deco/_liveness; then
+              curl -fsS -o /dev/null http://localhost:4319/ && exit 0
+              break
+            fi
             sleep 2
           done
           cat preview.log

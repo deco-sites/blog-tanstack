@@ -4,7 +4,8 @@
 import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { cms } from "../src/cms";
+import { readFileSync } from "node:fs";
+import { cms, CMS_SITE } from "../src/cms";
 
 describe("CMS settings", () => {
   it("fills in the defaults for the sections CMS.json leaves out", async () => {
@@ -18,5 +19,12 @@ describe("CMS settings", () => {
       traceSampleRate: 0,
     });
     // Preview hosts are the release's (Studio writes them into `latest.json`), not content's.
+  });
+});
+
+describe("the deploy's release guard (scripts/require-release.mjs)", () => {
+  it("checks the release of the site src/cms.ts reads", () => {
+    const script = readFileSync(new URL("../scripts/require-release.mjs", import.meta.url), "utf8");
+    assert.match(script, new RegExp(`const SITE = "${CMS_SITE}";`));
   });
 });

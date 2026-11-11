@@ -30,7 +30,7 @@ Open [http://localhost:5173](http://localhost:5173). Pages read the published re
 ### Build, check and test
 
 ```sh
-bun run build      # prebuild runs `deco schema && deco check`
+bun run build      # prebuild runs `deco schema && deco check`, and on Workers Builds the release guard
 bun run deco:check # deco schema --check && deco check (the saved blocks in .deco/blocks against the schema)
 bun run typecheck
 bun run test       # against the committed content, served by a fake delivery CDN (test/fake-delivery.ts)
@@ -128,13 +128,31 @@ Follow the same pattern with `collections%2Fblog%2Fcategories%2F<slug>.json` (`b
 
 ## Deployment
 
-This template is pre-configured for [deco.cx hosting](https://deco.cx):
+Cloudflare Workers Builds deploys every commit on `main` as the worker `blog-tanstack`
+(`https://blog-tanstack.deco-cx.workers.dev`). Content is the Studio site's hosted release, read at
+runtime: a publish goes live without a deploy. (`https://blog-tanstack.deco.site`, the content's
+`canonicalBaseUrl`, serves another site today.)
 
-```sh
-git push origin main
-```
+### First deploy on v8: publish, then merge
 
-The production site is available at `https://blog-tanstack.deco.site`.
+The v8 worker answers 500 on every page until the site has a release
+(`https://delivery.decocms.com/sites/blog-tanstack/latest.json` answers 404 until then). In order:
+
+1. `DECO_SITE=blog-tanstack DECO_TOKEN=<token> npx deco schema push`: Studio learns the block types.
+2. `DECO_SITE=blog-tanstack npx deco push --draft=v8-seed`, from this branch's `.deco/blocks`. Never
+   from v7 content (main's, or Studio's v7 copy): `deco push` doesn't run `deco check`, and v7
+   content fails it (`website/functions/requestToParam.ts`, v7's app fields in `site`).
+3. Check the draft (its `?__draft=` link), then `DECO_SITE=blog-tanstack npx deco publish --draft=v8-seed`.
+4. Confirm `latest.json` answers 200, then merge.
+
+The build refuses to deploy without a release: `prebuild` runs `scripts/require-release.mjs`, which
+on Workers Builds (`WORKERS_CI`) fails unless `latest.json` answers, so a merge before the publish
+keeps the live worker. That holds while the Workers Builds build command runs the `build` script
+(`bun run build`). CI's "Website builds successfully" runs the same check (`REQUIRE_RELEASE=1`) and
+requests `/`, so a pull request shows it too.
+
+After that, content is edited in Studio. On every main commit `deco-schema-push.yml` pushes the
+schema and checks the live release against the code (`deco check` with `DECO_SITE`).
 
 ## Links
 

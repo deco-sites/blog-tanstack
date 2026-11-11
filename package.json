@@ -7,7 +7,7 @@
     "predev": "deco schema",
     "dev": "vite dev",
     "dev:clean": "rm -rf node_modules/.vite .wrangler/state .tanstack && vite dev",
-    "prebuild": "deco schema && deco check",
+    "prebuild": "deco schema && deco check && node scripts/require-release.mjs",
     "build": "tsr generate && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy",

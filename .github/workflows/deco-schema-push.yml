@@ -4,7 +4,7 @@
 # changed blocks. Runs on main only, since every main commit deploys.
 #
 # Needs the repository secret DECO_TOKEN (a Studio token with write access to the site). Without it
-# the job says so and passes, so a missing secret never blocks main.
+# the upload says so and passes, so a missing secret never blocks main; the content check still runs.
 name: Push the CMS schema to Studio
 
 on:
@@ -35,6 +35,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -49,3 +51,8 @@ jobs:
             exit 0
           fi
           bunx deco schema push
+      # With DECO_SITE set, `deco check` checks the live release (from the CDN) against this code:
+      # content Studio saved that the code no longer accepts fails here. Before the first publish
+      # it says "no release yet" and passes.
+      - name: Check the live content fits the code
+        run: bunx deco check

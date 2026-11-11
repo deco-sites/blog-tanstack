@@ -36,6 +36,10 @@ version). Bun is the package manager (`bun.lock`).
   cookie while the release saves no test.
 - `DECO_SITE` is deliberately not in `wrangler.jsonc`/`.env`: `deco check` then checks the committed
   `.deco/blocks`. Jobs that talk to Studio set it in their own env (`deco-schema-push.yml`).
+- **Publish before the first merge.** Until the site has a release (`latest.json` 404s), the worker
+  answers 500 on every page, and every main commit deploys. README.md (Deployment) has the order;
+  `scripts/require-release.mjs` (prebuild) fails Workers Builds (`WORKERS_CI`) and CI's build
+  (`REQUIRE_RELEASE=1`) without a release. Keep it in `prebuild`.
 - Same-site links and redirect targets are relative paths.
 
 ## Commands
