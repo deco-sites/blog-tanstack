@@ -29,8 +29,9 @@ export interface SeoProps {
   /** @title No Indexing */
   noIndexing?: boolean;
   /**
-   * v7's legacy field, kept in saved content (the search page sets it). v7
-   * ignored it; v8 honors it as "No Indexing". Hidden, as v7's form never offered it.
+   * v7's legacy field, kept in saved content (the search page sets it, beside
+   * `noIndexing`). v7 ignored it; v8 honors it as "No Indexing", but the content
+   * index (and so the sitemap) reads only `noIndexing`. Hidden, as v7's form never offered it.
    * @hide
    */
   noIndex?: boolean;
@@ -210,5 +211,10 @@ export async function seoBlogAuthor(_props: SeoBlogAuthorProps): Promise<PageSeo
 /** The URL's last segment, decoded (/authors/a%40b.com is a@b.com). */
 function lastSegment(): string {
   const segment = requestState().url.pathname.split("/").filter(Boolean).pop();
-  return segment ? decodeURIComponent(segment) : "";
+  if (!segment) return "";
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment; // a malformed escape (/authors/%E0): as matchRoute reads it
+  }
 }

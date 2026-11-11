@@ -24,18 +24,23 @@ describe("a page whose content fails to load", () => {
   it("renders degraded while a post's body can't be read, and whole again once it can", async () => {
     failingBlocks.add("collections/blog/posts/react-compiler");
     try {
+      // Every section of the home page reads the posts: nothing rendered, so a 503.
       const home = await open("/");
-      assert.equal(home.status, 200);
+      assert.equal(home.status, 503);
       assert.equal(home.degraded, true);
-      assert.ok((await failedSections(home)) > 0);
-      assert.equal(pageHeaders({ loaderData: home })[DEGRADED_HEADER], "true");
+      assert.equal(await failedSections(home), home.blocks.length);
+      assert.deepEqual(pageHeaders({ loaderData: home }), { "x-page-status": "503", [DEGRADED_HEADER]: "true" });
 
       // The post page doesn't throw (a 500): it can't tell whether the slug names a post, so it
-      // renders, degraded. A topic page's listing catches the failure, and is degraded too.
+      // renders, degraded, but without its own SEO (title, canonical) it is a 503 too.
       const post = await open("/tanstack-start-guide");
-      assert.equal(post.status, 200);
+      assert.equal(post.status, 503);
       assert.equal(post.degraded, true);
-      assert.equal((await open("/topics/engineering")).degraded, true);
+      // A topic page's listing catches the failure, but its header (the search index) reads the
+      // posts too: nothing rendered, a 503.
+      const topic = await open("/topics/engineering");
+      assert.equal(topic.degraded, true);
+      assert.equal(topic.status, 503);
     } finally {
       failingBlocks.clear();
     }
@@ -50,7 +55,7 @@ describe("a page whose content fails to load", () => {
   it("is degraded when a read the page catches fails (the categories of a post's breadcrumb)", async () => {
     failingBlocks.add("collections/blog/categories/engineering");
     try {
-      // The post page catches it and renders without the category chain: not a page to cache.
+      // The post page catches it and renders without the category chain: a 200, not a page to cache.
       const post = await open("/tanstack-start-guide");
       assert.equal(post.status, 200);
       assert.equal(post.degraded, true);

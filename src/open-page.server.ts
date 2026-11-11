@@ -95,6 +95,10 @@ export async function openPage<T>(href: string, request: Request) {
   // way React's use() reads a settled promise lets <Await> render them inline.
   const settled = await Promise.all(blocks.map((block) => block.value));
   blocks.forEach((block, index) => Object.assign(block.value, { status: "fulfilled", value: settled[index] }));
+  // Without its own SEO (the post's title, canonical and robots) or with no section rendered, the
+  // page can't stand for itself: a 503, which search engines retry instead of indexing, and which
+  // the page cache answers from a stale copy when it has one.
+  if (seoError !== null || (settled.length > 0 && settled.every((block) => block.failed))) status = 503;
   return {
     name: page.name,
     // As on v7, what the page's SEO leaves empty comes from the site's SEO.

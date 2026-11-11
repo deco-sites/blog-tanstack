@@ -1232,7 +1232,7 @@
           "noIndex": {
             "type": "boolean",
             "nullable": true,
-            "description": "v7's legacy field, kept in saved content (the search page sets it). v7\nignored it; v8 honors it as \"No Indexing\". Hidden, as v7's form never offered it.",
+            "description": "v7's legacy field, kept in saved content (the search page sets it, beside\n`noIndexing`). v7 ignored it; v8 honors it as \"No Indexing\", but the content\nindex (and so the sitemap) reads only `noIndexing`. Hidden, as v7's form never offered it.",
             "hide": "true",
             "title": "No Index"
           },
