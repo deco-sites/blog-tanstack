@@ -2,17 +2,18 @@
 
 A deterministic visual and snapshot baseline of this site as it is today, so a migrated build can be diffed against it at threshold 0.
 
-`parity/baseline/` is not committed (it is ~50MB of HAR fixtures and PNGs) and is gitignored, as are `parity/results/` and `parity/runs/`. Keep the recorded baseline on disk, or re-record it with `bun run parity:record` from this branch (the pre-migration build).
+`parity/baseline/` is not committed (it is ~50MB of HAR fixtures and PNGs) and is gitignored, as are `parity/results/` and `parity/runs/`. Keep the recorded baseline on disk, or re-record it with `bun run build && bun run parity:record` in a worktree of the pre-migration build (`main`, which bundles its content).
 
 ## Run it
 
 ```sh
 bun install
-bun run parity:build            # production build
-bun run parity:record           # records parity/baseline/ (HAR fixtures, PNGs, snapshots); starts the server itself
-bun run parity:compare          # compares a fresh build of this repo against parity/baseline/
-# migrated site: point at its URL and tell the harness how to (re)start it
-bun run parity:compare -- --target http://localhost:4319 --serve-cmd "<command that serves the v8 build on 4319>" --out /tmp/parity-run
+# the v8 build reads its content from a delivery CDN: serve the committed .deco/blocks as a release
+bun run parity:delivery &       # http://127.0.0.1:4329 (--port, PARITY_DELIVERY_PORT; --log <file> lists every request)
+bun run parity:build            # production build pointed at it (PARITY_DELIVERY_ORIGIN, default http://127.0.0.1:4329)
+bun run parity:compare          # compares it against parity/baseline/, starting a fresh server per entry
+# other ports: tell the harness where the build is served and how to (re)start it
+bun run parity:compare -- --target http://localhost:4500 --serve-cmd "node node_modules/vite/bin/vite.js preview --port 4500 --strictPort" --out /tmp/parity-run
 ```
 
 Flags (both modes): `--target URL` (default `baseUrl` in `pages.json`, or `PARITY_TARGET`), `--serve-cmd CMD` / `--no-serve`, `--only <id substring>`, `--viewport mobile|desktop`. `PARITY_CHROMIUM_PATH` overrides the Chromium binary, which must be the same build Playwright pins. Compare also takes `--out DIR` (default `parity/results/<timestamp>/`, gitignored).
@@ -49,7 +50,7 @@ Viewports: mobile 390x844 (touch, iPhone UA) and desktop 1440x900, both at DPR 1
 - `record` makes two passes. Pass 1 loads every page and flow against live upstreams only to write the HAR, and its captures are thrown away. Pass 2 replays the HAR and writes `baseline/` through exactly the same code path `compare` uses, so record-only timing cannot leak into the baseline.
 - Failed upstream requests are not kept in the HAR. These are entries Playwright stores with status -1, such as the Unsplash images that 404 and that Chromium's ORB blocks. Replaying them would leave the request pending forever. Instead they are aborted (`net::ERR_FAILED`) in both modes, and the page shows the broken image with its alt text.
 - The animation/transition freeze is injected as a constructable stylesheet (`document.adoptedStyleSheets`), never as a `<style>` element. An extra node in `<html>`/`<head>` would make React's hydration of the document mismatch.
-- Fresh server per entry: the harness starts `server.command` from `pages.json` itself and restarts it before every page, flow and text entry. Against one long-lived server, the post page's reading-progress bar appeared in some runs and not in others. The likely cause, not fully proven, is server state that depends on request order. `BlogHeader` is a `layout` section, and `@decocms/start` 6.12.1 caches resolved layout sections in memory for 5 minutes, keyed by section type (`resolve.ts`, `RESOLVE_CACHE_TTL`). With a fresh server per entry, runs are identical. Run `bun run parity:build` first. Use `--serve-cmd "<cmd>"` to start a different build (for example the v8 one), or `--no-serve` to use a server that is already running. That last option is not deterministic for this site.
+- Fresh server per entry: the harness starts `server.command` from `pages.json` itself and restarts it before every page, flow and text entry. Against one long-lived server, the post page's reading-progress bar appeared in some runs and not in others. The cause is server state that depends on request order (reproduced on main and on production, 2026-11-11). On main `BlogHeader` exports `layout = true`, and `@decocms/blocks` 7.77.3 caches its resolved props (`resolve.ts`, `RESOLVE_CACHE_TTL`) and its loader output (`sectionLoaders.ts`, `LAYOUT_CACHE_TTL`) for 5 minutes per device, so the first page in that window decides `showReadingProgress` for every page. The v8 build has no layout cache. With a fresh server per entry, runs are identical. Run `bun run parity:build` first. Use `--serve-cmd "<cmd>"` to start a different build (for example the v8 one), or `--no-serve` to use a server that is already running. That last option is not deterministic for this site.
 
 ## Approved differences
 
@@ -62,6 +63,7 @@ Viewports: mobile 390x844 (touch, iPhone UA) and desktop 1440x900, both at DPR 1
 - The target origin becomes `{ORIGIN}`, its URL-encoded form becomes `{ORIGIN_ENC}`, and `//host:port` becomes `//{HOST}`. This lets the baseline and a migrated build run on different ports.
 - Dates equal to the server's today (±1 day) become `{SERVER_TODAY}`. Today only the sitemap's `<lastmod>`, which is `new Date()`, matches. Content dates are untouched.
 - Hashed build assets are left out of head snapshots: `link[rel=modulepreload]` and `/assets/*` hrefs.
+- Elsewhere (the `link: <...>; rel=preload` response header) a hashed asset name loses its hash: `/assets/app-BgG53AcV.css` becomes `/assets/app-{HASH}.css`, in the capture and in the baseline it is compared with.
 - HTML bodies of `text` entries are not stored. Those routes are HTML pages already covered by page snapshots.
 
 ## Tailwind and the harness

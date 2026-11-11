@@ -35,10 +35,10 @@ const target = (flag("target") ?? process.env.PARITY_TARGET ?? MANIFEST.baseUrl)
 const only = flag("only");
 // Harness-managed server (default when pages.json has `server`): restarted before
 // every page/flow so no server-side state leaks between entries. Against a single
-// long-lived server, today's post page showed its reading-progress bar in some runs
-// and not in others (likely request-order-dependent server state: BlogHeader is a
-// `layout` section, and @decocms/start caches resolved layout sections for 5 minutes
-// per section type). A fresh server per entry makes runs identical.
+// long-lived server, main's post page showed its reading-progress bar in some runs
+// and not in others (request-order-dependent server state: on main BlogHeader is a
+// `layout` section, and @decocms/blocks 7.77.3 caches its props and loader output for
+// 5 minutes per device; see parity/README.md). A fresh server per entry makes runs identical.
 const serveCmd = flag("serve-cmd") ?? process.env.PARITY_SERVE_CMD ?? MANIFEST.server?.command;
 const manageServer = !argv.includes("--no-serve") && !!serveCmd;
 const onlyViewport = flag("viewport");
@@ -221,9 +221,13 @@ function todayStrings() {
   for (const d of [-1, 0, 1]) out.add(new Date(Date.now() + d * 86400000).toISOString().slice(0, 10));
   return [...out];
 }
+// A hashed build asset's name (`/assets/app-BgG53AcV.css` -> `/assets/app-{HASH}.css`), e.g. in the
+// `link: <...>; rel=preload` header: the hash changes with every build, the asset it names does not.
+const unhashAssets = (s) => s.replace(/(\/assets\/[\w.-]+?)-[\w-]{8}(\.[a-z0-9]+)\b/g, "$1-{HASH}$2");
+
 function normalizeText(s, origin) {
   const host = new URL(origin).host;
-  let out = s
+  let out = unhashAssets(s)
     .split(origin).join("{ORIGIN}")
     .split(encodeURIComponent(origin)).join("{ORIGIN_ENC}")
     .split(`//${host}`).join("//{HOST}");
@@ -454,7 +458,7 @@ function pixelsInApprovedRects(rel, diff) {
 function compareText(rel, actualFile) {
   const baseFile = path.join(BASELINE, rel);
   if (!fs.existsSync(baseFile)) return { rel, kind: "snapshot", ok: false, reason: "missing in baseline" };
-  const a = applyApprovals(rel, canonBaseline(rel, fs.readFileSync(baseFile, "utf8")));
+  const a = applyApprovals(rel, unhashAssets(canonBaseline(rel, fs.readFileSync(baseFile, "utf8"))));
   const b = fs.readFileSync(actualFile, "utf8");
   return a === b ? { rel, kind: "snapshot", ok: true } : { rel, kind: "snapshot", ok: false, diff: firstDiffLines(a, b) };
 }
