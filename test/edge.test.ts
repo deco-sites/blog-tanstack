@@ -95,6 +95,7 @@ describe("the worker (src/edge/worker.ts)", () => {
   });
 
   it("sends a first-time visitor no cookie while the release saves no test (as v7)", async () => {
+    // The live assignments: no test, no campaign (what the worker's visitor cookie would split by).
     assert.deepEqual(await liveAssignmentKeys(cms), [""]);
     const { res } = await request("/authors");
     assert.equal(res.status, 200);
