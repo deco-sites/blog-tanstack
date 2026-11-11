@@ -37,12 +37,14 @@ const token = typeof vars.DECO_SITE_TOKEN === "string" && vars.DECO_SITE_TOKEN ?
 
 /**
  * The telemetry identity (/next/telemetry): `service.name` from DECO_SITE_NAME, the environment from
- * DECO_ENV_NAME (wrangler.jsonc vars). The SDK's defaults fill what is unset.
+ * DECO_ENV_NAME (wrangler.jsonc vars) and `service.version` from the build (`__BUILD_HASH__`, the
+ * commit Workers Builds built; undefined under Node). The SDK's defaults fill what is unset.
  */
 const resource = Object.fromEntries(
   Object.entries({
     "service.name": vars.DECO_SITE_NAME,
     "deployment.environment.name": vars.DECO_ENV_NAME,
+    "service.version": typeof __BUILD_HASH__ === "string" ? __BUILD_HASH__ : undefined,
   }).filter((entry): entry is [string, string] => typeof entry[1] === "string" && entry[1] !== ""),
 );
 

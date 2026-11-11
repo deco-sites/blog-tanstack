@@ -61,8 +61,6 @@ type BlockComponent = ComponentType<any>;
 
 export const DEFAULT_BLOCK_PREFIX = "blog/sections/blocks/";
 export const CUSTOM_BLOCK_PREFIX = "site/sections/Blog/Post/";
-/** Where the custom blocks lived before they moved to Post/ (older v7 content). */
-const LEGACY_CUSTOM_PREFIX = "sections/Blog/blocks/";
 
 /** The blog app's default blocks, keyed by name. */
 export const DEFAULT_BLOCKS = {
@@ -160,7 +158,6 @@ function blockType(type: string): Pick<ContentBlock, "name" | "kind"> | undefine
   const key = type.replace(/\.tsx?$/, "");
   for (const [prefix, kind] of [
     [CUSTOM_BLOCK_PREFIX, "custom"],
-    [LEGACY_CUSTOM_PREFIX, "custom"],
     [DEFAULT_BLOCK_PREFIX, "default"],
   ] as const) {
     if (key.startsWith(prefix)) {

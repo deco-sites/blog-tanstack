@@ -38,7 +38,6 @@ describe("post body blocks", () => {
 
   it("renders the same headings saved under their v7 name", () => {
     assert.equal(render(headings("site/sections/Blog/Post/Heading.tsx")), render(headings("post-heading")));
-    assert.equal(render(headings("sections/Blog/blocks/Heading.tsx")), render(headings("post-heading")));
   });
 
   it("renders the blog app's default blocks with the app's components, anchored for the table of contents", () => {

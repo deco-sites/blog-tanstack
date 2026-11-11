@@ -29,7 +29,7 @@ export type BlockDescriptor =
   // A post's body blocks are sections too, as on v7 (rendered alone if placed on a page).
   | PostBodyBlock;
 
-/** A saved page, as client.list returns it (nothing run): seo and sections are still blocks. */
+/** A saved page, as `resolve(name, { run: false })` reads it (nothing run): seo and sections are still blocks. */
 export interface StoredPage extends Route {
   seo?: Block;
   sections: Block[] | Block;
