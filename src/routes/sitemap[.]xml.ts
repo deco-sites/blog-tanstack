@@ -11,8 +11,10 @@ function escapeXml(str: string): string {
 }
 
 /**
- * Every page with a fixed path (no :param or *), deepest paths first, the home page last. The paths
- * come from the content index (`entries("page")`): no page body is read.
+ * Every page with a fixed path (no :param or *) that search engines may index, deepest paths first,
+ * the home page last. The paths come from the content index (`entries("page")`): no page body is
+ * read. The index's `noIndex` is a page whose SEO says `noIndexing: true` (not v7's legacy `noIndex`
+ * field, which the search page saves: it stays listed, as on v7).
  */
 async function sitemapXml(request: Request): Promise<string> {
   const origin = new URL(request.url).origin;
@@ -23,7 +25,7 @@ async function sitemapXml(request: Request): Promise<string> {
 
   const urls = pages
     .filter((page): page is typeof page & { path: string } =>
-      typeof page.path === "string" && !page.path.includes(":") && !page.path.includes("*"))
+      typeof page.path === "string" && !page.path.includes(":") && !page.path.includes("*") && page.noIndex !== true)
     .sort((a, b) => depth(b.path) - depth(a.path))
     .map((page) => {
       const isHome = page.path === "/";

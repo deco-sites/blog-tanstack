@@ -13,6 +13,8 @@ it("the sitemap reads the content index and no body of its own", async () => {
   assert.equal(res.status, 200);
   assert.match(body, /<loc>http:\/\/blog\.test\/topics<\/loc>/);
   assert.doesNotMatch(body, /:slug|:email/);
+  // The search page's SEO saves v7's legacy `noIndex`, which the index doesn't read: still listed.
+  assert.match(body, /<loc>http:\/\/blog\.test\/search<\/loc>/);
   assert.equal(deliveryLog[0], "latest.json");
   assert.deepEqual(blockNamesRead(), ["pages-blog-post"]); // the worker's prefetch, not the route's
   assert.equal(deliveryLog.length, 2);
