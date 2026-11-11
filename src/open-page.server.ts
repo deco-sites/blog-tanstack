@@ -27,8 +27,11 @@ export async function openPage<T>(href: string, request: Request) {
   const [routes, routesError] = await c.routes();
   if (routesError) throw routesError;
   let match = matchRoute<Route>(url, { routes });
-  // The page's blocks download with the redirects block, in one wave.
+  // The page's blocks download with the redirects block and the config blocks every page reads
+  // (`site`; `deco-blog`, the header's and the SEO's settings), in one wave.
   if (match.kind === "match") c.prefetch(match.entry.name);
+  c.prefetch("site");
+  c.prefetch("deco-blog");
   // The worker already answers redirects for page navigations; a client-side navigation reaches
   // this as a server-function call, which the worker doesn't redirect.
   const [redirects, redirectsError] = await c.redirects();
