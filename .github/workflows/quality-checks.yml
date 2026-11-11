@@ -70,3 +70,14 @@ jobs:
           node-version: 24
       - run: bun install --frozen-lockfile
       - run: bun run build
+      # As osklen's: a worker that builds but fails to start fails here. `/deco/_liveness` is
+      # answered by createDecoWorker itself, so it needs no published content.
+      - name: Start the built website and check it answers
+        run: |
+          npx vite preview --port 4319 --strictPort > preview.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -fsS -o /dev/null http://localhost:4319/deco/_liveness; then exit 0; fi
+            sleep 2
+          done
+          cat preview.log
+          exit 1

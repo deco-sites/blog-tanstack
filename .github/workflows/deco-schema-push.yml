@@ -39,6 +39,9 @@ jobs:
         with:
           node-version: 24
       - run: bun install --frozen-lockfile
+      # The committed schema must be the code's: a stale one would give Studio stale forms.
+      - name: Check the schema is current
+        run: bunx deco schema --check
       - name: Upload the schema to Studio
         run: |
           if [ -z "$DECO_TOKEN" ]; then
