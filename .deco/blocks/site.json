@@ -1,5 +1,5 @@
 {
-  "__resolveType": "site-settings",
+  "__resolveType": "site/apps/site.ts",
   "seo": {
     "titleTemplate": "%s",
     "descriptionTemplate": "%s",

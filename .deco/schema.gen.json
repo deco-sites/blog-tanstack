@@ -161,10 +161,6 @@
           "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4",
           "namespace": "website"
         },
-        "site/sections/Seo/SeoBlogPost.tsx": {
-          "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
-          "namespace": "site"
-        },
         "blog/sections/Seo/SeoBlogPost.tsx": {
           "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4",
           "namespace": "blog"
@@ -176,10 +172,6 @@
         "site/sections/Seo/SeoBlogAuthor.tsx": {
           "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g=",
           "namespace": "site"
-        },
-        "blog/loaders/BlogpostList.ts": {
-          "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==",
-          "namespace": "blog"
         },
         "site/loaders/BlogpostList.ts": {
           "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==",
@@ -277,12 +269,8 @@
         }
       },
       "content": {
-        "site-settings": {
-          "$ref": "#/definitions/c2l0ZS1zZXR0aW5ncw==",
-          "namespace": "site"
-        },
-        "blog-settings": {
-          "$ref": "#/definitions/YmxvZy1zZXR0aW5ncw==",
+        "site/apps/site.ts": {
+          "$ref": "#/definitions/c2l0ZS9hcHBzL3NpdGUudHM=",
           "namespace": "site"
         },
         "site/apps/deco/blog.ts": {
@@ -332,8 +320,8 @@
           }
         }
       },
-      "c2l0ZS1zZXR0aW5ncw==": {
-        "title": "site-settings",
+      "c2l0ZS9hcHBzL3NpdGUudHM=": {
+        "title": "site/apps/site.ts",
         "type": "object",
         "required": [
           "__resolveType"
@@ -342,9 +330,9 @@
           "__resolveType": {
             "type": "string",
             "enum": [
-              "site-settings"
+              "site/apps/site.ts"
             ],
-            "default": "site-settings"
+            "default": "site/apps/site.ts"
           },
           "seo": {
             "type": "object",
@@ -416,83 +404,6 @@
           "name"
         ],
         "titleBy": "name"
-      },
-      "YmxvZy1zZXR0aW5ncw==": {
-        "title": "blog-settings",
-        "type": "object",
-        "required": [
-          "__resolveType"
-        ],
-        "properties": {
-          "__resolveType": {
-            "type": "string",
-            "enum": [
-              "blog-settings"
-            ],
-            "default": "blog-settings"
-          },
-          "categorySlug": {
-            "type": "string",
-            "nullable": true,
-            "title": "Category Slug",
-            "description": "The route of a category page. Use :category.",
-            "example": "/topics/:category"
-          },
-          "pageSlug": {
-            "type": "string",
-            "nullable": true,
-            "title": "Page Slug",
-            "description": "The route of a post page. Use :slug.",
-            "example": "/:slug"
-          },
-          "canonicalBaseUrl": {
-            "type": "string",
-            "nullable": true,
-            "title": "Canonical Base URL",
-            "description": "The origin of canonicals and of the URLs in the JSON-LD, which otherwise use the request host.",
-            "example": "https://www.mysite.com"
-          },
-          "publisher": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/Resolvable"
-              },
-              {
-                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@Publisher",
-                "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0F1dGhvci50cw=="
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0NhdGVnb3J5LnRz"
-              }
-            ],
-            "nullable": true,
-            "title": "Publisher",
-            "description": "Emitted as the publisher of the blog posts in the JSON-LD."
-          },
-          "seo": {
-            "type": "object",
-            "properties": {
-              "titleTemplate": {
-                "type": "string",
-                "nullable": true,
-                "title": "Title template",
-                "description": "Applied to post and topic titles, e.g. \"%s — Blog\"."
-              },
-              "descriptionTemplate": {
-                "type": "string",
-                "nullable": true,
-                "title": "Description template",
-                "description": "Applied to post and topic descriptions."
-              }
-            },
-            "description": "Title/description templates for the post and topic pages.",
-            "nullable": true,
-            "title": "SEO defaults"
-          }
-        }
       },
       "c2l0ZS9hcHBzL2RlY28vYmxvZy50cw==": {
         "title": "site/apps/deco/blog.ts",
@@ -877,9 +788,6 @@
                 "title": "Inline data"
               },
               {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
-              },
-              {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               }
             ],
@@ -925,9 +833,6 @@
                   "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
                 },
                 "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               },
               {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
@@ -999,9 +904,6 @@
                   "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
                 },
                 "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               },
               {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
@@ -1094,9 +996,6 @@
                 "title": "Inline data"
               },
               {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
-              },
-              {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               }
             ],
@@ -1151,9 +1050,6 @@
                   "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
                 },
                 "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               },
               {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
@@ -1260,9 +1156,6 @@
                   "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
                 },
                 "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               },
               {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
@@ -1381,49 +1274,6 @@
           }
         }
       },
-      "c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4": {
-        "title": "site/sections/Seo/SeoBlogPost.tsx",
-        "description": "The post's SEO, as",
-        "type": "object",
-        "required": [
-          "__resolveType"
-        ],
-        "properties": {
-          "__resolveType": {
-            "type": "string",
-            "enum": [
-              "site/sections/Seo/SeoBlogPost.tsx"
-            ],
-            "default": "site/sections/Seo/SeoBlogPost.tsx"
-          },
-          "jsonLD": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/Resolvable"
-              },
-              {
-                "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPostPage",
-                "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dQb3N0UGFnZS50cw=="
-              }
-            ],
-            "nullable": true,
-            "title": "Data Source"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true,
-            "title": "Title Override"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true,
-            "title": "Description Override"
-          }
-        }
-      },
       "YmxvZy9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4": {
         "title": "blog/sections/Seo/SeoBlogPost.tsx",
         "description": "The post's SEO, as",
@@ -1481,9 +1331,6 @@
                   "$ref": "#/definitions/c3JjL3ZlbmRvci9ibG9nL3R5cGVzLnRz@BlogPost"
                 },
                 "title": "Inline data"
-              },
-              {
-                "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
               },
               {
                 "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
@@ -1640,64 +1487,6 @@
             "nullable": true,
             "description": "Not used: the description comes from the author in the URL",
             "title": "Description"
-          }
-        }
-      },
-      "YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==": {
-        "title": "blog/loaders/BlogpostList.ts",
-        "type": "object",
-        "required": [
-          "__resolveType"
-        ],
-        "properties": {
-          "__resolveType": {
-            "type": "string",
-            "enum": [
-              "blog/loaders/BlogpostList.ts"
-            ],
-            "default": "blog/loaders/BlogpostList.ts"
-          },
-          "count": {
-            "type": "number",
-            "nullable": true,
-            "title": "Posts por página (ou total)",
-            "default": 50
-          },
-          "sortBy": {
-            "type": "string",
-            "enum": [
-              "date_desc",
-              "date_asc",
-              "title_asc",
-              "title_desc",
-              "view_asc",
-              "view_desc"
-            ],
-            "nullable": true,
-            "title": "Ordenação",
-            "default": "date_desc"
-          },
-          "filterBy": {
-            "type": "string",
-            "enum": [
-              "category",
-              "author"
-            ],
-            "nullable": true,
-            "title": "Filtrar por",
-            "description": "\"category\" filtra pelo slug da categoria; \"author\" filtra pelo email do autor"
-          },
-          "slug": {
-            "type": "string",
-            "nullable": true,
-            "title": "Slug / Email para filtro",
-            "description": "Slug da categoria ou email do autor, dependendo de filterBy"
-          },
-          "param": {
-            "type": "string",
-            "nullable": true,
-            "title": "Parâmetro da rota",
-            "description": "Sem slug, filtra pelo valor deste parâmetro da URL da página (ex.: \"slug\" em /topics/:slug, \"email\" em /authors/:email)"
           }
         }
       },
@@ -3705,9 +3494,6 @@
                 "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
               },
               {
-                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
-              },
-              {
                 "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
               },
               {
@@ -4103,9 +3889,6 @@
                 "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
               },
               {
-                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
-              },
-              {
                 "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
               },
               {
@@ -4260,9 +4043,6 @@
               },
               {
                 "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
-              },
-              {
-                "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
               },
               {
                 "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
@@ -4880,9 +4660,6 @@
             "$ref": "#/definitions/d2Vic2l0ZS9zZWN0aW9ucy9TZW8vU2VvVjIudHN4"
           },
           {
-            "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
-          },
-          {
             "$ref": "#/definitions/YmxvZy9zZWN0aW9ucy9TZW8vU2VvQmxvZ1Bvc3QudHN4"
           },
           {
@@ -4890,9 +4667,6 @@
           },
           {
             "$ref": "#/definitions/c2l0ZS9zZWN0aW9ucy9TZW8vU2VvQmxvZ0F1dGhvci50c3g="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
           },
           {
             "$ref": "#/definitions/c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw=="
@@ -4968,10 +4742,7 @@
             "$ref": "#/definitions/Resolvable"
           },
           {
-            "$ref": "#/definitions/c2l0ZS1zZXR0aW5ncw=="
-          },
-          {
-            "$ref": "#/definitions/YmxvZy1zZXR0aW5ncw=="
+            "$ref": "#/definitions/c2l0ZS9hcHBzL3NpdGUudHM="
           },
           {
             "$ref": "#/definitions/c2l0ZS9hcHBzL2RlY28vYmxvZy50cw=="

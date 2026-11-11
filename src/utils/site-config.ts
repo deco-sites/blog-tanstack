@@ -2,8 +2,10 @@
  * Site configuration, reduced to what the blog's JSON-LD, SEO and GEO markup
  * needs, from two saved blocks:
  *
- *   .deco/blocks/site.json       a `site-settings` block: `seo` (title, description, favicon…)
- *   .deco/blocks/deco-blog.json  a `blog-settings` block: publisher, canonicalBaseUrl, SEO templates
+ *   .deco/blocks/site.json       a `site/apps/site.ts` block: `seo` (title, description, favicon…)
+ *   .deco/blocks/deco-blog.json  a `site/apps/deco/blog.ts` block: publisher, canonicalBaseUrl, SEO templates
+ *
+ * Both keep their v7 types (v7's app blocks), registered as plain settings blocks.
  *
  * Block functions resolve the saved blocks on the server and pass the result
  * to sections as their `siteConfig` prop.

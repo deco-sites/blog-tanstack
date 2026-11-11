@@ -3,8 +3,9 @@
 // those: two keys bound to one function are two types in Studio's pickers (`deco schema` folds only
 // the SDK's own legacy aliases), so a short name next to the v7 one listed every block twice. The
 // short names (`blog-header`, `post-heading`, ...) stay the descriptors' component names.
-// `site-settings` and `blog-settings` are the types the one-time content migration gave the v7 app
-// blocks `site` and `deco-blog` (apps are code now); `deco-blog` keeps its v7 name as an alias.
+// The v7 app blocks `site` and `deco-blog` keep their types too (`site/apps/site.ts`,
+// `site/apps/deco/blog.ts`): v8 has no apps, so here they are plain settings blocks editors fill in
+// (the migration skill deletes app blocks; this site keeps them because they hold its SEO settings).
 import type { Blocks } from "@decocms/blocks";
 import BlogpostList, { type Props as BlogpostListProps } from "../src/blog/BlogpostList";
 import {
@@ -110,8 +111,8 @@ const blogSettings = (props: BlogSettings) => props;
 const blogpostList = (props: BlogpostListProps) => BlogpostList(props);
 
 export default {
-  "site-settings": siteSettings,
-  "blog-settings": blogSettings,
+  // Settings blocks, saved once each: `site` and `deco-blog`
+  "site/apps/site.ts": siteSettings,
   "site/apps/deco/blog.ts": blogSettings,
 
   // Page sections
@@ -124,13 +125,11 @@ export default {
 
   // SEO, the page's `seo` field
   "website/sections/Seo/SeoV2.tsx": seo,
-  "site/sections/Seo/SeoBlogPost.tsx": seoBlogPost,
   "blog/sections/Seo/SeoBlogPost.tsx": seoBlogPost,
   "blog/sections/Seo/SeoBlogPostListing.tsx": seoBlogPostListing,
   "site/sections/Seo/SeoBlogAuthor.tsx": seoBlogAuthor,
 
   // Blog data (loaders vendored from @decocms/apps)
-  "blog/loaders/BlogpostList.ts": blogpostList,
   "site/loaders/BlogpostList.ts": blogpostList,
   "blog/loaders/BlogpostListing.ts": blogBlogpostListing,
   "blog/loaders/BlogPostPage.ts": blogBlogPostPage,

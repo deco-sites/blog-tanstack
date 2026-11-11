@@ -16,10 +16,15 @@ version). Bun is the package manager (`bun.lock`).
   `test/fetch-budget.test.ts` pins the CDN requests a cold and a warm request make; keep it green.
 - **Never rename a saved type.** Content stores v7 names (`site/sections/Blog/*.tsx`,
   `blog/loaders/*.ts`, `website/sections/Seo/SeoV2.tsx`, ...): `.deco/index.ts` registers each under
-  those names only (a second key for the same function is listed twice in Studio). The one-time
-  content migration rewrote what has no v8 block (`deco-v7-to-v8-migration`): the v7 app block `site`
-  is `site-settings`, and `website/functions/requestToParam.ts` became the page's route `param`. So
-  the release is published from this repository's `.deco/blocks`, never from v7 content.
+  the one name content uses, and one function under one key only (a second key is listed twice in
+  Studio; `test/settings.test.ts` fails on it). The v7 app blocks `site` (`site/apps/site.ts`) and
+  `deco-blog` (`site/apps/deco/blog.ts`) keep their types as plain settings blocks: a deviation from
+  `deco-v7-to-v8-migration`, which deletes app blocks, because they hold the SEO settings editors
+  change. The one-time content migration rewrote only what has no v8 block: `site` lost v7's app
+  runtime fields (`routes`, `global`, `caching`, `firstByteThresholdMS`), and
+  `website/functions/requestToParam.ts` became the page's route `param` (as the skill says). So the
+  release is published from this repository's `.deco/blocks`, never from v7 content (`deco push`
+  doesn't run `deco check`: v7 content fails it).
 - **Studio**: `DecoPreview` in `src/components/RootLayout.tsx` is the only bridge (v8; no v7 editor
   script). Every section renders in `<section data-manifest-key>` (`src/views.tsx`), header included.
   `createDecoWorker` owns drafts, CMS redirects, Studio's CSP (`frame-ancestors`, `script-src`) and
