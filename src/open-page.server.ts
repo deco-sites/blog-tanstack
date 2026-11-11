@@ -54,13 +54,22 @@ export async function openPage<T>(href: string, request: Request) {
 
   // Variants of the whole list are one multivariate block: it resolves to the chosen list and streams as one.
   const sections = Array.isArray(page.sections) ? page.sections : [page.sections];
-  const blocks = sections.map((block, index) => ({
-    key: `${url.pathname}${url.search}:${index}`,
-    value: runWithRequestState(state, () => c.resolve<T | T[] | undefined>(block)).then(([value, blockError]) => {
-      if (blockError) console.error(blockError);
-      return { value: value ?? undefined, failed: blockError !== null };
-    }),
-  }));
+  const blocks = sections.map((block, index) => {
+    // The saved section type: what Studio knows the section by (its data-manifest-key).
+    const component = typeOf(block);
+    return {
+      // Keyed by type and position, as in demo-storefront, never by URL: a save in Studio moves the
+      // page to its new `?__draft=` (StudioRefresh), and a section still on the page is patched in
+      // place. Remounted, it would lose what its inline scripts set up when the HTML was parsed
+      // (the cards' reveal, the table of contents), which no client render runs again.
+      key: `${component ?? "block"}-${index}`,
+      component,
+      value: runWithRequestState(state, () => c.resolve<T | T[] | undefined>(block)).then(([value, blockError]) => {
+        if (blockError) console.error(blockError);
+        return { value: value ?? undefined, failed: blockError !== null };
+      }),
+    };
+  });
 
   // Every block has started before SEO is awaited. `site` is a config block named in code.
   const [[seo, seoError], [site, siteError]] = await Promise.all([
@@ -85,7 +94,14 @@ export async function openPage<T>(href: string, request: Request) {
     seo: withSiteSeo(seo ?? undefined, site?.seo),
     status,
     blocks,
-    // The page's path template: Studio's "." shortcut opens this page in the editor (DecoPreview).
+    // The page's path template and name: Studio's "." shortcut opens this page in the editor (DecoPreview).
     pathTemplate: match.entry.path,
+    pageId: match.entry.name,
   };
+}
+
+/** A saved block's type, if it is one. */
+function typeOf(block: unknown): string | undefined {
+  const type = block && typeof block === "object" ? (block as { __resolveType?: unknown }).__resolveType : undefined;
+  return typeof type === "string" ? type : undefined;
 }

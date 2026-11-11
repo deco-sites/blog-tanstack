@@ -12,7 +12,11 @@ export function PageBlocks({ blocks }: { blocks: PageData["blocks"] }) {
     <Suspense key={block.key} fallback={null}>
       <Await promise={block.value}>
         {({ value, failed }) => {
-          if (failed) return <p role="status">Este conteúdo está temporariamente indisponível.</p>;
+          if (failed) {
+            const notice = <p role="status">Este conteúdo está temporariamente indisponível.</p>;
+            // Still a section Studio can pick out, so an editor can fix the block where it failed.
+            return block.component ? <section data-manifest-key={block.component}>{notice}</section> : notice;
+          }
           return value ? <View block={value} /> : null; // undefined when an editor hid the block
         }}
       </Await>

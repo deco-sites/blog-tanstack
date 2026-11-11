@@ -29,6 +29,16 @@ function section<C extends BlockDescriptor["component"]>(sections: BlockDescript
 }
 
 describe("openPage", () => {
+  it("keys each block by its saved type and position, the same for any query, so a Studio save patches the page in place", async () => {
+    const page = await open("/");
+    const keys = page.blocks.map((block) => block.key);
+    assert.deepEqual(keys, ["site/sections/Blog/BlogHeader.tsx-0", "site/sections/Blog/BlogHome.tsx-1"]);
+    assert.deepEqual(page.blocks.map((block) => block.component), ["site/sections/Blog/BlogHeader.tsx", "site/sections/Blog/BlogHome.tsx"]);
+    assert.deepEqual((await open("/?__draft=x&utm_source=y")).blocks.map((block) => block.key), keys);
+    assert.equal(page.pageId, "pages-blog-home");
+    assert.equal(page.pathTemplate, "/");
+  });
+
   it("renders the home page with its SEO and the latest posts", async () => {
     const page = await open("/");
     assert.equal(page.status, 200);
