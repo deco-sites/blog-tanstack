@@ -1,6 +1,6 @@
-// A post's body blocks render by type: stored under the short name the block
-// map gives them (what the site editor saves for a new block) or the v7 name
-// older content uses, and as the descriptor a resolved body block returns.
+// A post's body blocks render by type: stored under the v7 name the block map
+// registers (what the site editor saves), or a short descriptor name, and as
+// the descriptor a resolved body block returns.
 import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
@@ -55,10 +55,10 @@ describe("post body blocks", () => {
     assert.match(html, /Bloco de teste/);
   });
 
-  it("renders the descriptor a resolved post-heading block returns", async () => {
+  it("renders the descriptor a resolved heading block returns", async () => {
     const c = await client(new Request("http://blog.test/"));
     const resolved = await Promise.all(
-      headings("post-heading").map(async (block) => {
+      headings("site/sections/Blog/Post/Heading.tsx").map(async (block) => {
         const [value, error] = await c.resolve<PostBodyBlock>(block);
         assert.equal(error, null);
         return value;
@@ -87,5 +87,10 @@ describe("post body blocks", () => {
     );
     assert.match(html, /^<section id="Blog-Post-Heading" data-manifest-key="site\/sections\/Blog\/Post\/Heading.tsx">/);
     assert.match(html, /<h2[^>]*>Olá<\/h2>/);
+  });
+
+  it("marks the header with its saved type, like every page section, so Studio can select it", () => {
+    const html = renderToStaticMarkup(createElement(View, { block: { component: "blog-header", props: { posts: [] } } }));
+    assert.match(html, /^<section id="Blog-BlogHeader" data-manifest-key="site\/sections\/Blog\/BlogHeader.tsx">/);
   });
 });

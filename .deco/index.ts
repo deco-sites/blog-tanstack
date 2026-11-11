@@ -1,6 +1,10 @@
 // The block map (/next/blocks#the-block-map). Started by @decocms/blocks-migrate from the v7 site,
-// then finished by hand. Each block has a short name plus an alias under every v7 name saved
-// content stores (/next/renames-and-migrations#rename-a-type-with-an-alias).
+// then finished by hand. Each block is registered under the v7 names saved content stores, and only
+// those: two keys bound to one function are two types in Studio's pickers (`deco schema` folds only
+// the SDK's own legacy aliases), so a short name next to the v7 one listed every block twice. The
+// short names (`blog-header`, `post-heading`, ...) stay the descriptors' component names.
+// `site-settings` and `blog-settings` are the types the one-time content migration gave the v7 app
+// blocks `site` and `deco-blog` (apps are code now); `deco-blog` keeps its v7 name as an alias.
 import type { Blocks } from "@decocms/blocks";
 import BlogpostList, { type Props as BlogpostListProps } from "../src/blog/BlogpostList";
 import {
@@ -111,108 +115,61 @@ export default {
   "site/apps/deco/blog.ts": blogSettings,
 
   // Page sections
-  "blog-header": blogHeader,
   "site/sections/Blog/BlogHeader.tsx": blogHeader,
-  "blog-home": blogHome,
   "site/sections/Blog/BlogHome.tsx": blogHome,
-  "blog-authors": blogAuthors,
   "site/sections/Blog/BlogAuthors.tsx": blogAuthors,
-  "blog-topics": blogTopics,
   "site/sections/Blog/BlogTopics.tsx": blogTopics,
-  "blog-search": blogSearch,
   "site/sections/Blog/BlogSearch.tsx": blogSearch,
-  "blog-post-section": blogPostSection,
   "site/sections/Blog/BlogPostSection.tsx": blogPostSection,
 
   // SEO, the page's `seo` field
-  seo,
   "website/sections/Seo/SeoV2.tsx": seo,
-  "seo-blog-post": seoBlogPost,
   "site/sections/Seo/SeoBlogPost.tsx": seoBlogPost,
   "blog/sections/Seo/SeoBlogPost.tsx": seoBlogPost,
-  "seo-blog-post-listing": seoBlogPostListing,
   "blog/sections/Seo/SeoBlogPostListing.tsx": seoBlogPostListing,
-  "seo-blog-author": seoBlogAuthor,
   "site/sections/Seo/SeoBlogAuthor.tsx": seoBlogAuthor,
 
   // Blog data (loaders vendored from @decocms/apps)
-  "blog-post-list": blogpostList,
   "blog/loaders/BlogpostList.ts": blogpostList,
   "site/loaders/BlogpostList.ts": blogpostList,
-  "blog-post-listing": blogBlogpostListing,
   "blog/loaders/BlogpostListing.ts": blogBlogpostListing,
-  "blog-post-page": blogBlogPostPage,
   "blog/loaders/BlogPostPage.ts": blogBlogPostPage,
-  "blog-post": blogBlogpost,
   "blog/loaders/Blogpost.ts": blogBlogpost,
-  "blog-author": blogAuthor,
   "blog/loaders/Author.ts": blogAuthor,
-  "blog-category": blogCategory,
   "blog/loaders/Category.ts": blogCategory,
 
   // Post body blocks: this template's (v7: site/sections/Blog/Post/*)
-  "post-heading": postHeading,
   "site/sections/Blog/Post/Heading.tsx": postHeading,
-  "post-paragraph": postParagraph,
   "site/sections/Blog/Post/Paragraph.tsx": postParagraph,
-  "post-quote": postQuote,
   "site/sections/Blog/Post/Quote.tsx": postQuote,
-  "post-code": postCode,
   "site/sections/Blog/Post/Code.tsx": postCode,
-  "post-list": postList,
   "site/sections/Blog/Post/List.tsx": postList,
-  "post-checklist": postChecklist,
   "site/sections/Blog/Post/Checklist.tsx": postChecklist,
-  "post-steps": postSteps,
   "site/sections/Blog/Post/Steps.tsx": postSteps,
-  "post-callout": postCallout,
   "site/sections/Blog/Post/Callout.tsx": postCallout,
-  "post-image": postImage,
   "site/sections/Blog/Post/BlockImage.tsx": postImage,
-  "post-video": postVideo,
   "site/sections/Blog/Post/Video.tsx": postVideo,
-  "post-divider": postDivider,
   "site/sections/Blog/Post/Divider.tsx": postDivider,
-  "post-call-to-action": postCallToAction,
   "site/sections/Blog/Post/CallToAction.tsx": postCallToAction,
-  "post-faq": postFaq,
   "site/sections/Blog/Post/Faq.tsx": postFaq,
-  "post-custom-block": postCustomBlock,
   "site/sections/Blog/Post/CustomBlock.tsx": postCustomBlock,
 
   // Post body blocks: the blog app's defaults (v7: blog/sections/blocks/*)
-  "post-default-image": postDefaultImage,
   "blog/sections/blocks/BlockImage.tsx": postDefaultImage,
-  "post-default-callout": postDefaultCallout,
   "blog/sections/blocks/Callout.tsx": postDefaultCallout,
-  "post-default-card-group": postDefaultCardGroup,
   "blog/sections/blocks/CardGroup.tsx": postDefaultCardGroup,
-  "post-default-checklist": postDefaultChecklist,
   "blog/sections/blocks/Checklist.tsx": postDefaultChecklist,
-  "post-default-code": postDefaultCode,
   "blog/sections/blocks/Code.tsx": postDefaultCode,
-  "post-default-comparison": postDefaultComparison,
   "blog/sections/blocks/Comparison.tsx": postDefaultComparison,
-  "post-default-cta": postDefaultCta,
   "blog/sections/blocks/Cta.tsx": postDefaultCta,
-  "post-default-divider": postDefaultDivider,
   "blog/sections/blocks/Divider.tsx": postDefaultDivider,
-  "post-default-heading": postDefaultHeading,
   "blog/sections/blocks/Heading.tsx": postDefaultHeading,
-  "post-default-list": postDefaultList,
   "blog/sections/blocks/List.tsx": postDefaultList,
-  "post-default-paragraph": postDefaultParagraph,
   "blog/sections/blocks/Paragraph.tsx": postDefaultParagraph,
-  "post-default-quote": postDefaultQuote,
   "blog/sections/blocks/Quote.tsx": postDefaultQuote,
-  "post-default-stat": postDefaultStat,
   "blog/sections/blocks/Stat.tsx": postDefaultStat,
-  "post-default-stat-group": postDefaultStatGroup,
   "blog/sections/blocks/StatGroup.tsx": postDefaultStatGroup,
-  "post-default-steps": postDefaultSteps,
   "blog/sections/blocks/Steps.tsx": postDefaultSteps,
-  "post-default-table": postDefaultTable,
   "blog/sections/blocks/Table.tsx": postDefaultTable,
-  "post-default-video": postDefaultVideo,
   "blog/sections/blocks/Video.tsx": postDefaultVideo,
 } satisfies Blocks;

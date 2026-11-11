@@ -4,20 +4,20 @@
  *
  * Two families coexist, as on the v7 site:
  *
- *   default  `blog/sections/blocks/<Name>.tsx` in saved content, `post-default-*` in the block map.
+ *   default  `blog/sections/blocks/<Name>.tsx` in saved content and the block map, `post-default-*` descriptors.
  *            The blog app's own components (vendored from @decocms/apps-blog
  *            into src/vendor/blog/sections/blocks), never a local copy.
  *
- *   custom   `site/sections/Blog/Post/<Name>.tsx` in saved content, `post-*` in the block map.
+ *   custom   `site/sections/Blog/Post/<Name>.tsx` in saved content and the block map, `post-*` descriptors.
  *            This template's blocks (src/sections/Blog/Post/*), styled with
  *            the blog's design system. Add a file there, register it below and
  *            in .deco/index.ts.
  *
- * Each `post-*` block of the block map returns a descriptor
+ * Each of these blocks in the block map returns a descriptor
  * (`{ component: "post-heading", props }`), so the site editor offers them in
  * a post's section list. Posts are listed as saved, though, so a body usually
  * reaches BlogPostSection as stored: `{ __resolveType, ...props }`, under the
- * short name or a v7 one. toContentBlock reads both shapes.
+ * v7 name (or a descriptor name). toContentBlock reads both shapes.
  */
 import type { ComponentType, ReactNode } from "react";
 
@@ -103,7 +103,7 @@ export const CUSTOM_BLOCKS = {
   Video,
 } satisfies Record<string, BlockComponent>;
 
-/** The block map's short name of each custom block. */
+/** The descriptor name of each custom block. */
 export const CUSTOM_TYPES = {
   "post-heading": "Heading",
   "post-paragraph": "Paragraph",
@@ -121,7 +121,7 @@ export const CUSTOM_TYPES = {
   "post-custom-block": "CustomBlock",
 } as const satisfies Record<string, keyof typeof CUSTOM_BLOCKS>;
 
-/** The block map's short name of each default block. */
+/** The descriptor name of each default block. */
 export const DEFAULT_TYPES = {
   "post-default-image": "BlockImage",
   "post-default-callout": "Callout",
@@ -153,7 +153,7 @@ export interface ContentBlock {
   props: Record<string, any>;
 }
 
-/** A block's family and name by its type: a short name or a v7 one. */
+/** A block's family and name by its type: a descriptor name or a v7 one. */
 function blockType(type: string): Pick<ContentBlock, "name" | "kind"> | undefined {
   if (type in CUSTOM_TYPES) return { name: CUSTOM_TYPES[type as keyof typeof CUSTOM_TYPES], kind: "custom" };
   if (type in DEFAULT_TYPES) return { name: DEFAULT_TYPES[type as keyof typeof DEFAULT_TYPES], kind: "default" };

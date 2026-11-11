@@ -15,7 +15,11 @@ version). Bun is the package manager (`bun.lock`).
   document, kept per revision). Sitemaps and enumerations read `entries()`, never bodies.
   `test/fetch-budget.test.ts` pins the CDN requests a cold and a warm request make; keep it green.
 - **Never rename a saved type.** Content stores v7 names (`site/sections/Blog/*.tsx`,
-  `blog/loaders/*.ts`, `website/sections/Seo/SeoV2.tsx`, ...): each stays an alias in `.deco/index.ts`.
+  `blog/loaders/*.ts`, `website/sections/Seo/SeoV2.tsx`, ...): `.deco/index.ts` registers each under
+  those names only (a second key for the same function is listed twice in Studio). The one-time
+  content migration rewrote what has no v8 block (`deco-v7-to-v8-migration`): the v7 app block `site`
+  is `site-settings`, and `website/functions/requestToParam.ts` became the page's route `param`. So
+  the release is published from this repository's `.deco/blocks`, never from v7 content.
 - **Studio**: `DecoPreview` in `src/components/RootLayout.tsx` is the only bridge (v8; no v7 editor
   script). Every section renders in `<section data-manifest-key>` (`src/views.tsx`), header included.
   `createDecoWorker` owns drafts, CMS redirects, Studio's CSP (`frame-ancestors`, `script-src`) and
