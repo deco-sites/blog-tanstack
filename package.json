@@ -10,7 +10,7 @@
     "prebuild": "deco schema && deco check && node scripts/require-release.mjs",
     "build": "tsr generate && vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "REQUIRE_RELEASE=1 npm run build && wrangler deploy",
     "types": "wrangler types",
     "typecheck": "tsr generate && tsc --noEmit",
     "pretest": "deco schema",

@@ -35,6 +35,13 @@ jobs:
       # `deco schema --check` fails when .deco/schema.gen.json is out of date; `deco check` checks
       # the saved blocks in .deco/blocks against it (no DECO_SITE is set: src/cms.ts names the site).
       - run: bun run deco:check
+      # The content Studio published must fit this code too (it drifts from the seed once editors
+      # work): with DECO_SITE, `deco check` reads the live release from the CDN (no token needed).
+      # Before the first publish it says "no release yet" and passes.
+      - name: Check the live content fits the code
+        run: bunx deco check
+        env:
+          DECO_SITE: blog-tanstack
 
   types-check:
     name: Code types check

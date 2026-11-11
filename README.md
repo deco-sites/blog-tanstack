@@ -110,7 +110,7 @@ Create `.deco/blocks/collections%2Fblog%2Fposts%2Fyour-post.json`:
 
 A post's `sections` are its body blocks: this template's `site/sections/Blog/Post/*` and the blog app's `blog/sections/blocks/*` sections of `.deco/index.ts`, saved under those v7 names.
 
-Then run `npx deco check` and send it to a draft with `DECO_SITE=blog-tanstack npx deco push --draft=<name>` (`DECO_SITE` is deliberately not in `.env` or `wrangler.jsonc`, so `deco check` checks these files).
+Then run `npx deco check` and send it to a draft with `DECO_SITE=blog-tanstack npx deco push --draft=<name>` (`DECO_SITE` is deliberately not in `.env` or `wrangler.jsonc`, so `deco check` checks these files). Once the site is published, content lives in Studio: run `DECO_SITE=blog-tanstack npx deco pull` first (and `deco diff` before the push), or the push sends the seed's stale copies of the documents editors changed, and brings back the ones they deleted.
 
 ### Adding categories / authors
 
@@ -125,7 +125,7 @@ Follow the same pattern with `collections%2Fblog%2Fcategories%2F<slug>.json` (`b
 - **Edge cache.** `src/edge/page-cache.ts` caches HTML pages and GET server functions (the page data of client-side navigations) in the Cloudflare Cache API, as v7's worker entry did, split by device and keyed by `<build>.<content revision>` (`cacheVersion`), so a deploy or a publish changes every key and nothing needs a purge. A page whose content failed to load (`x-deco-degraded`) is never stored; a stale copy stands in for it. HEAD answers GET's headers. `/deco/_liveness` answers `OK` (`createDecoWorker`).
 - **Telemetry.** v7's `DECO_METRICS` Analytics Engine binding, the `DECO_OTEL_*` vars and the `CF_VERSION_METADATA` binding are gone. `createCMS` sends the CMS's metrics and every CMS error log (`errorSampleRate: 1`) to the hosted collector only when the `DECO_SITE_TOKEN` secret is set, as `blog-tanstack` (`DECO_SITE_NAME`), `production` (`DECO_ENV_NAME`) and the build's commit as `service.version` (`src/cms.ts`). The `deco-otel-tail` tail worker stays.
 - **No visitor cookie.** `createDecoWorker` gives a first-time visitor a year-long `deco_segment` cookie for A/B tests; v7 sent none. `src/edge/worker.ts` drops it while the release saves no test and runs no campaign, so it comes back on its own once a test is saved in Studio.
-- **Content.** `website/functions/requestToParam.ts` (v7's "the last path segment" function) was rewritten in content to the page's route `param` (`/:slug`, `/topics/:slug`, `/authors/:email`), a documented content migration that gives the same values. The v7 app blocks `site` and `deco-blog` keep their types (`site/apps/site.ts`, `site/apps/deco/blog.ts`) as settings blocks; `site` lost v7's app runtime fields (`routes`, `global`, `caching`, `firstByteThresholdMS`), which v8 doesn't read. v7 content no longer passes `deco check`, so publish only from these files.
+- **Content.** `website/functions/requestToParam.ts` (v7's "the last path segment" function) was rewritten in content to the page's route `param` (`/:slug`, `/topics/:slug`, `/authors/:email`), a documented content migration that gives the same values. The v7 app blocks `site` and `deco-blog` keep their types (`site/apps/site.ts`, `site/apps/deco/blog.ts`) as settings blocks; `site` lost v7's app runtime fields (`routes`, `global`, `caching`, `firstByteThresholdMS`), which v8 doesn't read. The search page's SEO saves `noIndexing: true` beside v7's legacy `noIndex` (which v7 ignored and v8 honors, an approved change), so `/search` is noindex and out of `sitemap.xml`. v7 content no longer passes `deco check`, so publish only from these files.
 
 ## Deployment
 
@@ -143,8 +143,13 @@ The v8 worker answers 500 on every page until the site has a release
 2. `DECO_SITE=blog-tanstack npx deco push --draft=v8-seed`, from this branch's `.deco/blocks`. Never
    from v7 content (main's, or Studio's v7 copy): `deco push` doesn't run `deco check`, and v7
    content fails it (`website/functions/requestToParam.ts`, v7's app fields in `site`).
-3. Check the draft (its `?__draft=` link), then `DECO_SITE=blog-tanstack npx deco publish --draft=v8-seed`.
-4. Confirm `latest.json` answers 200, then merge.
+3. `DECO_SITE=blog-tanstack npx deco check --draft=v8-seed`, then
+   `DECO_SITE=blog-tanstack npx deco publish --draft=v8-seed`. The draft can't be previewed first: a
+   draft layers over a release, and there is none yet (the v8 worker answers 500, and production's
+   v7 worker ignores `?__draft=`). The same `.deco/blocks` can be browsed locally with
+   `bun run parity:build`, served beside `parity/delivery.mjs` (parity/README.md).
+4. Confirm `latest.json` answers 200, re-run the pull request's checks ("Website builds
+   successfully" requests `/` against the real release), then merge.
 
 The build refuses to deploy without a release: `prebuild` runs `scripts/require-release.mjs`, which
 on Workers Builds (`WORKERS_CI`) fails unless `latest.json` answers, so a merge before the publish
@@ -152,8 +157,10 @@ keeps the live worker. That holds while the Workers Builds build command runs th
 (`bun run build`). CI's "Website builds successfully" runs the same check (`REQUIRE_RELEASE=1`) and
 requests `/`, so a pull request shows it too.
 
-After that, content is edited in Studio. On every main commit `deco-schema-push.yml` pushes the
-schema and checks the live release against the code (`deco check` with `DECO_SITE`).
+After that, content is edited in Studio, and `.deco/blocks` is only the seed the tests and the
+parity build read. Pull requests check the live release against the code ("CMS schema is current
+and content fits it" runs `deco check` with `DECO_SITE`), and `deco-schema-push.yml` pushes the
+schema on every main commit that changes `.deco/`, `src/`, `package.json` or `bun.lock`.
 
 ## Links
 

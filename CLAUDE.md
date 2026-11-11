@@ -20,11 +20,12 @@ version). Bun is the package manager (`bun.lock`).
 - **Never rename a saved type.** Content stores v7 names (`site/sections/Blog/*.tsx`,
   `blog/loaders/*.ts`, `website/sections/Seo/SeoV2.tsx`, ...): `.deco/index.ts` registers each under
   the one name content uses, and one function under one key only (a second key is listed twice in
-  Studio; `test/settings.test.ts` fails on it). The v7 app blocks `site` (`site/apps/site.ts`) and
+  Studio; `test/block-map.test.ts` fails on it). The v7 app blocks `site` (`site/apps/site.ts`) and
   `deco-blog` (`site/apps/deco/blog.ts`) keep their types as plain settings blocks: a deviation from
   `deco-v7-to-v8-migration`, which deletes app blocks, because they hold the SEO settings editors
   change. The one-time content migration rewrote only what has no v8 block: `site` lost v7's app
-  runtime fields (`routes`, `global`, `caching`, `firstByteThresholdMS`), and
+  runtime fields (`routes`, `global`, `caching`, `firstByteThresholdMS`), the search page's SEO got
+  `noIndexing: true` beside v7's legacy `noIndex` (so the index, and the sitemap, see it), and
   `website/functions/requestToParam.ts` became the page's route `param` (as the skill says). So the
   release is published from this repository's `.deco/blocks`, never from v7 content (`deco push`
   doesn't run `deco check`: v7 content fails it).
@@ -38,8 +39,8 @@ version). Bun is the package manager (`bun.lock`).
   `.deco/blocks`. Jobs that talk to Studio set it in their own env (`deco-schema-push.yml`).
 - **Publish before the first merge.** Until the site has a release (`latest.json` 404s), the worker
   answers 500 on every page, and every main commit deploys. README.md (Deployment) has the order;
-  `scripts/require-release.mjs` (prebuild) fails Workers Builds (`WORKERS_CI`) and CI's build
-  (`REQUIRE_RELEASE=1`) without a release. Keep it in `prebuild`.
+  `scripts/require-release.mjs` (prebuild) fails Workers Builds (`WORKERS_CI`), CI's build and
+  `bun run deploy` (`REQUIRE_RELEASE=1`) without a release. Keep it in `prebuild`.
 - Same-site links and redirect targets are relative paths.
 
 ## Commands
