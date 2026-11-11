@@ -22,7 +22,7 @@ import {
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 import { cms } from "./cms";
 import { cacheControl, detectCacheProfile, PROFILES } from "./edge/cache-profiles";
-import { CSP_REPORT_ONLY, LEGACY_FRAME_ANCESTORS } from "./edge/headers";
+import { CSP_REPORT_ONLY } from "./edge/headers";
 // @ts-ignore Vite ?url import
 import appCss from "./styles/app.css?url";
 
@@ -128,9 +128,9 @@ export default createDecoWorker({
   serverEntry: createServerEntry({ fetch: handler.fetch }),
   cms,
   dev: import.meta.env.DEV,
-  // v7's report-only list, and v7's extra frame ancestor; the worker adds Studio's origins
-  // (production and staging) to `frame-ancestors` and `script-src`.
-  csp: { reportOnly: CSP_REPORT_ONLY, frameAncestors: LEGACY_FRAME_ANCESTORS },
+  // v7's report-only list. The worker adds Studio's origins (production and staging, and
+  // `*.deco.studio`, which v7 also allowed) to `frame-ancestors` and `script-src`.
+  csp: { reportOnly: CSP_REPORT_ONLY },
   preload: { styles: [appCss] },
   pageCache,
 });

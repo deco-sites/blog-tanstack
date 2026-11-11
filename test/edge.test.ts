@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { cacheControl, detectCacheProfile } from "../src/edge/cache-profiles";
 import { decoParseSearch, decoStringifySearch } from "@decocms/tanstack/router";
-import { CSP_REPORT_ONLY, LEGACY_FRAME_ANCESTORS } from "../src/edge/headers";
+import { createCMS } from "@decocms/blocks";
+import { createDecoWorker } from "@decocms/tanstack/worker";
+import { CSP_REPORT_ONLY } from "../src/edge/headers";
 import { pageHead } from "../src/seo/head";
 
 describe("cache profiles", () => {
@@ -54,9 +56,43 @@ describe("search params", () => {
   });
 });
 
-describe("content security policy", () => {
-  it("keeps v7's report-only list and its extra frame ancestor (the worker adds Studio's origins)", () => {
-    assert.deepEqual(LEGACY_FRAME_ANCESTORS, ["https://*.deco.studio"]);
-    assert.ok(CSP_REPORT_ONLY.some((d) => d.startsWith("script-src 'self'")));
+describe("the worker (createDecoWorker, as src/worker-entry.ts configures it)", () => {
+  const cms = createCMS({ blocks: {}, content: { revision: "r1", blocks: {} }, telemetry: false, preview: { hosts: ["blog.test"] } });
+  let cached = 0;
+  const worker = createDecoWorker({
+    serverEntry: { fetch: async () => new Response("<html></html>", { headers: { "content-type": "text/html; charset=utf-8" } }) },
+    cms,
+    csp: { reportOnly: CSP_REPORT_ONLY },
+    pageCache: async (page) => {
+      cached++;
+      return page.render();
+    },
+  });
+  const get = async (url: string, headers?: HeadersInit) => {
+    cached = 0;
+    return worker.fetch(new Request(url, { headers }), {}, { waitUntil() {} });
+  };
+
+  it("lets Studio (production and staging) and v7's *.deco.studio frame the site, and keeps v7's report-only list", async () => {
+    const res = await get("https://blog.test/");
+    const ancestors = res.headers.get("content-security-policy") ?? "";
+    for (const origin of ["'self'", "https://studio.decocms.com", "https://studio-stg.decocms.com", "https://*.deco.studio"]) {
+      assert.ok(ancestors.startsWith("frame-ancestors ") && ancestors.includes(` ${origin}`), `${origin} in ${ancestors}`);
+    }
+    const reportOnly = res.headers.get("content-security-policy-report-only") ?? "";
+    assert.ok(reportOnly.includes("img-src 'self' data: https: blob:"));
+    assert.ok(cached === 1, "a live page goes through the page cache");
+  });
+
+  it("never puts a draft in the page cache, and sends it uncached and noindex", async () => {
+    for (const [url, headers] of [
+      ["https://blog.test/?__draft=" + encodeURIComponent("blog.test/drafts/gone/index.json@v1"), undefined],
+      ["https://blog.test/", { cookie: "__deco_draft=junk" }],
+    ] as const) {
+      const res = await get(url, headers);
+      assert.equal(cached, 0, url);
+      assert.match(res.headers.get("cache-control") ?? "", /no-cache/);
+      assert.equal(res.headers.get("x-robots-tag"), "noindex, nofollow");
+    }
   });
 });

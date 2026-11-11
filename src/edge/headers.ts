@@ -4,12 +4,6 @@
  * and `script-src`, and a draft's no-store / noindex headers itself.
  */
 
-/**
- * Frame ancestors besides `'self'` and Studio's own origins, which the worker always allows:
- * `*.deco.studio`, which v7's `DECO_ADMIN_FRAME_ANCESTORS` allowed.
- */
-export const LEGACY_FRAME_ANCESTORS: readonly string[] = ["https://*.deco.studio"];
-
 /** Report-only CSP: v7 sent this site's list the same way (`csp` option of createDecoWorkerEntry). */
 export const CSP_REPORT_ONLY: readonly string[] = [
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com",
