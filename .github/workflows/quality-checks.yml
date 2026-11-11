@@ -1,0 +1,72 @@
+# Quality checks that run on merges to main, and on demand. Each job is one independent check and
+# shows up as its own tick; the name says what it proves. Like osklen's, no pull_request runs
+# (Actions budget): run `bun run deco:check`, `bun run typecheck`, `bun run test` and
+# `bun run build` before asking for a merge.
+name: Quality checks
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  content-check:
+    name: CMS schema is current and content fits it
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      # `deco schema --check` fails when .deco/schema.gen.json is out of date; `deco check` checks
+      # the saved blocks in .deco/blocks against it (no DECO_SITE is set: src/cms.ts names the site).
+      - run: bun run deco:check
+
+  types-check:
+    name: Code types check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+
+  automated-tests:
+    name: Automated tests pass
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run test
+
+  production-build:
+    name: Website builds successfully
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run build

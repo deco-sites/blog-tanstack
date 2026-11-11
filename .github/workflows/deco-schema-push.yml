@@ -1,0 +1,48 @@
+# Uploads .deco/schema.gen.json to Studio, so the site editor draws its forms from the block types
+# of the code that is live. Content is read from the hosted release (src/cms.ts), and Studio no
+# longer reads the schema from the repository: `deco schema push` is how it learns about new or
+# changed blocks. Runs on main only, since every main commit deploys.
+#
+# Needs the repository secret DECO_TOKEN (a Studio token with write access to the site). Without it
+# the job says so and passes, so a missing secret never blocks main.
+name: Push the CMS schema to Studio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.deco/**'
+      - 'src/**'
+      - 'package.json'
+      - 'bun.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deco-schema-push
+  cancel-in-progress: true
+
+jobs:
+  schema-push:
+    name: Push the CMS schema
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DECO_SITE: blog-tanstack
+      DECO_TOKEN: ${{ secrets.DECO_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - name: Upload the schema to Studio
+        run: |
+          if [ -z "$DECO_TOKEN" ]; then
+            echo "::warning::DECO_TOKEN is not set; the schema was not pushed to Studio."
+            exit 0
+          fi
+          bunx deco schema push
