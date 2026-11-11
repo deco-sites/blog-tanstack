@@ -16,8 +16,8 @@ import { requestState } from "../../../request-state.server";
  *
  * The bodies are content-addressed and the SDK keeps them per isolate by
  * hash, so a document fetches once per isolate until it changes. The records
- * are also kept here per revision (the client's `version`: the release, or a
- * draft), so the requests of one revision share one read of the collection.
+ * are also kept here per revision (the release, or a draft over it), so the
+ * requests of one revision share one read of the collection.
  */
 export async function getRecordsByPath<T>(type: string, path: string, accessor: string): Promise<T[]> {
 	const client = requestState().client;
@@ -50,10 +50,13 @@ interface Saved {
 const KEPT = 4;
 const memo = new Map<string, Promise<Saved[]>>();
 
-/** The saved documents of `type` for the client's revision, read once per revision. */
+/**
+ * The saved documents of `type` for the client's revision, read once per revision. The key is the
+ * content the client pinned (`revision()`: a draft's includes the release under it, so a publish
+ * shows in an open preview) and its version (a draft's pointer moves on every save).
+ */
 async function savedCollection(client: Client, type: string): Promise<Saved[]> {
-	const revision = client.version ?? (await client.revision());
-	const key = `${revision}\u0000${type}`;
+	const key = `${await client.revision()}\u0000${client.version ?? ""}\u0000${type}`;
 	let read = memo.get(key);
 	if (!read) {
 		read = readCollection(client, type);
