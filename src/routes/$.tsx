@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { PageBlocks, pageHeaders, pageHref, pageLoaderDeps } from "../components/PageBlocks";
+import { PageBlocks, pageHeaders, pageHref, pageLoaderDeps, splatPath } from "../components/PageBlocks";
 import { loadPage } from "../page.functions";
 import { pageHead } from "../seo/head";
 
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/$")({
   // Keep every search param, so they reach loaderDeps (?q=, ?page=).
   validateSearch: (search: Record<string, unknown>) => search as Record<string, string>,
   loaderDeps: pageLoaderDeps,
-  loader: ({ params, deps }) => loadPage({ data: { href: pageHref(`/${params._splat ?? ""}`, deps.search) } }),
+  loader: ({ params, deps }) => loadPage({ data: { href: pageHref(splatPath(params._splat), deps.search) } }),
   pendingMs: 200,
   pendingMinMs: 300,
   staleTime: 60_000,

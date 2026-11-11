@@ -4,6 +4,7 @@
 import "./fake-delivery";
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { splatPath } from "../src/components/PageBlocks";
 import type { BlockDescriptor } from "../src/model";
 import { openPage } from "../src/open-page.server";
 import { pageHead } from "../src/seo/head";
@@ -128,6 +129,20 @@ describe("openPage", () => {
     const page = await open("/a/b/c");
     assert.equal(page.status, 404);
     assert.equal(page.name, "Blog Post");
+  });
+
+  it("answers a path whose first segment starts with an encoded / or \\ with the /404 page and a 404, not a 500", async () => {
+    // TanStack decodes the splat: "/%2Fx" is "/x", which made the protocol-relative "//x" the
+    // server function refuses.
+    assert.equal(splatPath("/x"), "/%2Fx");
+    assert.equal(splatPath("\\x"), "/%5Cx");
+    assert.equal(splatPath("//evil.com"), "/%2F/evil.com");
+    assert.equal(splatPath("topics/engineering"), "/topics/engineering");
+    assert.equal(splatPath(undefined), "/");
+    for (const splat of ["/tanstack-start-guide", "/x", "\\x", "//evil.com", "/topics/engineering"]) {
+      const page = await open(splatPath(splat));
+      assert.equal(page.status, 404, splat);
+    }
   });
 
   it("hands over every block already settled, so the first HTML chunk holds them all", async () => {

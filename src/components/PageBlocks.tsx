@@ -29,6 +29,15 @@ export function pageLoaderDeps({ search }: { search: Record<string, string> }) {
   return { search: search && Object.keys(search).length ? search : undefined };
 }
 
+/**
+ * The page path of the catch-all's splat (`/$`, decoded). A splat starting with "/" or "\" (from
+ * `/%2F…`, `/%5C…`) would make `//host` or `/\host`, a URL on another origin: that first character
+ * stays encoded, so the path names no page and gets the 404 page, as any unknown URL.
+ */
+export function splatPath(splat: string | undefined): string {
+  return `/${(splat ?? "").replace(/^[/\\]/, (c) => encodeURIComponent(c))}`;
+}
+
 export function pageHref(path: string, search: Record<string, string> | undefined): string {
   return path + (search ? `?${new URLSearchParams(search).toString()}` : "");
 }
