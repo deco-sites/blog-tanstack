@@ -60,6 +60,14 @@
       "from": "\"content\": \"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\"",
       "to": "\"content\": \"noindex, nofollow\"",
       "note": "product owner, 2026-10-17: \"Restore it and honor it\". The search page's saved SEO keeps noIndex: true (main's content) and v8 honors it, so /search carries robots noindex, nofollow; prod ignored the field. Approved head difference."
+    },
+    {
+      "files": [
+        "text/sitemap.txt"
+      ],
+      "from": "  <url>\n    <loc>{ORIGIN}/search</loc>\n    <lastmod>{SERVER_TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n",
+      "to": "",
+      "note": "follows the 2026-10-17 approval (/search honors noindex): a noindex page is not submitted in sitemap.xml. The search page's SEO saves noIndexing: true (beside v7's legacy noIndex), which the content index reads."
     }
   ],
   "approvedPixelDifferences": [

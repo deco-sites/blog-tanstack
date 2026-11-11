@@ -13,8 +13,8 @@ function escapeXml(str: string): string {
 /**
  * Every page with a fixed path (no :param or *) that search engines may index, deepest paths first,
  * the home page last. The paths come from the content index (`entries("page")`): no page body is
- * read. The index's `noIndex` is a page whose SEO says `noIndexing: true` (not v7's legacy `noIndex`
- * field, which the search page saves: it stays listed, as on v7).
+ * read. The index's `noIndex` is a page whose SEO says `noIndexing: true` (the search page's does).
+ * v7's legacy `noIndex` field alone, which the index doesn't read, keeps a page listed.
  */
 async function sitemapXml(request: Request): Promise<string> {
   const origin = new URL(request.url).origin;
