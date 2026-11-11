@@ -44,14 +44,14 @@ async function releaseSavesTests(): Promise<boolean> {
  * `createDecoWorker` gives every first-time visitor a year-long `deco_segment` cookie: a random id
  * an A/B test splits visitors by (campaigns are by date, for everyone). v7 sent none, and while the
  * release saves no test nothing reads it, so it is dropped; a test saved in Studio brings it back,
- * without a deploy. A failed render (5xx, often content that didn't load) is left as it is, and so
- * is a response when the release can't be read.
+ * without a deploy. A failed render (5xx, often content that didn't load) reads nothing more: the
+ * last decision stands, and with none yet the cookie stays, as it does when the release can't be read.
  */
 async function withoutIdleVisitorCookie(response: Response): Promise<Response> {
-  if (response.status >= 500) return response;
   const cookies = response.headers.getSetCookie();
   if (!cookies.some((cookie) => cookie.startsWith(VISITOR_COOKIE))) return response;
-  if (await releaseSavesTests().catch(() => true)) return response;
+  const saves = response.status >= 500 ? (savedTests?.any ?? Promise.resolve(true)) : releaseSavesTests();
+  if (await saves.catch(() => true)) return response;
   const out = new Response(response.body, response);
   out.headers.delete("Set-Cookie");
   for (const cookie of cookies) if (!cookie.startsWith(VISITOR_COOKIE)) out.headers.append("Set-Cookie", cookie);
