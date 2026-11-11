@@ -22,6 +22,7 @@
     "parity:record": "node parity/run.mjs record",
     "parity:compare": "node parity/run.mjs compare",
     "deco:check": "deco schema --check && deco check",
+    "knip": "knip",
     "parity:delivery": "node parity/delivery.mjs"
   },
   "author": "deco.cx",
@@ -46,6 +47,7 @@
     "@vitejs/plugin-react": "^5.1.4",
     "babel-plugin-react-compiler": "^1.0.0",
     "daisyui": "^5.5.19",
+    "knip": "^6.27.0",
     "pixelmatch": "7.2.0",
     "playwright": "1.63.0",
     "pngjs": "7.0.0",

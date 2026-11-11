@@ -47,7 +47,9 @@ version). Bun is the package manager (`bun.lock`).
 ```bash
 bun run dev          # vite dev (reads the published release)
 bun run deco:check   # deco schema --check && deco check: 0 errors
-bun run typecheck && bun run test && bun run build
+bun run typecheck && bun run knip && bun run test && bun run build
+# lint gate: knip (unused files and dependencies, as osklen) and tsc. `format:check` (prettier) is
+# not a gate: it fails on main too, and the code is not formatted with it.
 bun run parity:build # a build that reads parity/delivery.mjs (the committed content) instead of the CDN
 ```
 

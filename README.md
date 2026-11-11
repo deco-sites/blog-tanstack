@@ -33,6 +33,7 @@ Open [http://localhost:5173](http://localhost:5173). Pages read the published re
 bun run build      # prebuild runs `deco schema && deco check`, and on Workers Builds the release guard
 bun run deco:check # deco schema --check && deco check (the saved blocks in .deco/blocks against the schema)
 bun run typecheck
+bun run knip       # no unused files or dependencies (knip.ts), as CI checks
 bun run test       # against the committed content, served by a fake delivery CDN (test/fake-delivery.ts)
 ```
 
