@@ -14,10 +14,7 @@
         "sortBy": "date_desc",
         "count": 100,
         "filterBy": "author",
-        "slug": {
-          "__resolveType": "website/functions/requestToParam.ts",
-          "param": "email"
-        }
+        "param": "email"
       },
       "perPage": 10,
       "baseUrl": "/authors/"

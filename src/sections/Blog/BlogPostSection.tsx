@@ -1,4 +1,4 @@
-import type { Author, BlogPost, BlogPostPage } from "@decocms/apps-blog/types";
+import type { Author, BlogPost, BlogPostPage } from "../../vendor/blog/types";
 import AuthorAvatar from "../../components/blog/AuthorAvatar";
 import { getContentBlocks, renderBlock } from "../../sdk/blog/blocks";
 import { formatDate, toIsoDate } from "../../sdk/blog/format";
@@ -402,6 +402,7 @@ export default function BlogPostSection(
                 </p>
                 <nav
                   id={tocNavId}
+                  data-blog-toc=""
                   className="flex flex-col gap-0 max-h-[calc(100vh-140px)] overflow-y-auto"
                 >
                   {toc.map((item) => (
@@ -472,6 +473,3 @@ export default function BlogPostSection(
     </div>
   );
 }
-
-export const eager = true;
-export const sync = true;

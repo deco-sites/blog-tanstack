@@ -1,38 +1,15 @@
-import "./setup";
+/**
+ * The Worker's entry: TanStack Start behind the blog's `createDecoWorker` (src/edge/worker.ts),
+ * which owns drafts, the CMS redirects, Studio framing, the security headers and the page cache.
+ */
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
-import { createDecoWorkerEntry } from "@decocms/tanstack";
-import { detectDevice } from "@decocms/blocks/sdk/useDevice";
-import {
-  handleMeta,
-  handleDecofileRead,
-  handleDecofileReload,
-  handleRender,
-  corsHeaders,
-} from "@decocms/blocks-admin";
+import { blogWorker } from "./edge/worker";
+// @ts-ignore Vite ?url import
+import appCss from "./styles/app.css?url";
 
-const serverEntry = createServerEntry({ fetch: handler.fetch });
-
-const CSP_DIRECTIVES = [
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com",
-  "img-src 'self' data: https: blob:",
-  "connect-src 'self'",
-  "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
-  "font-src 'self' fonts.gstatic.com data:",
-];
-
-export default createDecoWorkerEntry(serverEntry, {
-  observability: false,
-  admin: {
-    handleMeta,
-    handleDecofileRead,
-    handleDecofileReload,
-    handleRender,
-    corsHeaders,
-  },
-  csp: CSP_DIRECTIVES,
-  buildSegment: (request) => {
-    const device = detectDevice(request.headers.get("user-agent") ?? "");
-    return { device };
-  },
-  proxyHandler: async (_request, _url) => null,
+export default blogWorker({
+  serverEntry: createServerEntry({ fetch: handler.fetch }),
+  buildHash: __BUILD_HASH__,
+  dev: import.meta.env.DEV,
+  styles: [appCss],
 });

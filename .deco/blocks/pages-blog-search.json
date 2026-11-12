@@ -21,6 +21,7 @@
   "seo": {
     "__resolveType": "website/sections/Seo/SeoV2.tsx",
     "title": "Busca — Blog",
-    "noIndex": true
+    "noIndex": true,
+    "noIndexing": true
   }
 }

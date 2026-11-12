@@ -1,21 +1,12 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createDecoRouter } from "@decocms/tanstack";
+import { createDecoRouter } from "@decocms/tanstack/router";
 import { routeTree } from "./routeTree.gen";
-import "./setup";
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 60_000 } },
-});
-
+/**
+ * Deco's router: TanStack's with scroll restoration, preload on intent and plain URLSearchParams
+ * search params (`?q=react&page=2`, empty values kept, so `?utm_source=` never answers a 307).
+ */
 export function getRouter() {
-  return createDecoRouter({
-    routeTree,
-    context: { queryClient },
-    defaultPreload: "intent",
-    Wrap: ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    ),
-  });
+  return createDecoRouter({ routeTree });
 }
 
 declare module "@tanstack/react-router" {

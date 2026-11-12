@@ -1,6 +1,6 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { decoTanstack } from "@decocms/tanstack/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import { decoVitePlugin } from "@decocms/tanstack/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
@@ -13,10 +13,8 @@ export default defineConfig({
     port: parseInt(process.env.PORT ?? "5173", 10),
     host: process.env.PORT ? "0.0.0.0" : undefined,
     allowedHosts: [".decocdn.com", ".deco.host", ".deco.studio", ".decocms.com"],
-    headers: {
-      "Content-Security-Policy":
-        "frame-ancestors 'self' https://*.deco.studio http://localhost:* https://localhost:* https://admin.deco.cx https://studio.decocms.com",
-    },
+    // No CSP here: Vite would only add it to the files it serves itself. The worker
+    // (`createDecoWorker`) sends Studio's frame-ancestors on every page, in dev too.
   },
   plugins: [
     cloudflare({ viteEnvironment: { name: "ssr" } }),
@@ -29,7 +27,9 @@ export default defineConfig({
       },
     }),
     tailwindcss(),
-    decoVitePlugin(),
+    // `__BUILD_HASH__` (the commit: Workers Builds' sha, else git's) for the page cache's key, the
+    // browser stub for `node:async_hooks` and one copy of React and TanStack.
+    decoTanstack({ buildHash: process.env.WORKERS_CI_COMMIT_SHA }),
   ],
   build: {
     sourcemap: "hidden",
@@ -57,12 +57,6 @@ export default defineConfig({
   },
   resolve: {
     dedupe: [
-      "@decocms/blocks",
-      "@decocms/blocks-admin",
-      "@decocms/tanstack",
-      "@decocms/apps-commerce",
-      "@decocms/apps-website",
-      "@decocms/apps-blog",
       "@tanstack/react-start",
       "@tanstack/react-router",
       "@tanstack/react-start-server",

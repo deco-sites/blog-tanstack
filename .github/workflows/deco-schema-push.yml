@@ -1,0 +1,58 @@
+# Uploads .deco/schema.gen.json to Studio, so the site editor draws its forms from the block types
+# of the code that is live. Content is read from the hosted release (src/cms.ts), and Studio no
+# longer reads the schema from the repository: `deco schema push` is how it learns about new or
+# changed blocks. Runs on main only, since every main commit deploys.
+#
+# Needs the repository secret DECO_TOKEN (a Studio token with write access to the site). Without it
+# the upload says so and passes, so a missing secret never blocks main; the content check still runs.
+name: Push the CMS schema to Studio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.deco/**'
+      - 'src/**'
+      - 'package.json'
+      - 'bun.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deco-schema-push
+  cancel-in-progress: true
+
+jobs:
+  schema-push:
+    name: Push the CMS schema
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DECO_SITE: blog-tanstack
+      DECO_TOKEN: ${{ secrets.DECO_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      # The committed schema must be the code's: a stale one would give Studio stale forms.
+      - name: Check the schema is current
+        run: bunx deco schema --check
+      - name: Upload the schema to Studio
+        run: |
+          if [ -z "$DECO_TOKEN" ]; then
+            echo "::warning::DECO_TOKEN is not set; the schema was not pushed to Studio."
+            exit 0
+          fi
+          bunx deco schema push
+      # With DECO_SITE set, `deco check` checks the live release (from the CDN) against this code:
+      # content Studio saved that the code no longer accepts fails here. Before the first publish
+      # it says "no release yet" and passes.
+      - name: Check the live content fits the code
+        run: bunx deco check

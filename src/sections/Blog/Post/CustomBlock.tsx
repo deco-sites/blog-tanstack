@@ -1,4 +1,4 @@
-import type { ImageWidget } from "@decocms/blocks/types/widgets";
+import type { ImageWidget } from "../../../vendor/website/types";
 
 export interface CustomImage {
   /** @title Imagem */

@@ -1,11 +1,11 @@
-import type { BlogPost, Category } from "@decocms/apps-blog/types";
+import type { BlogPost, Category } from "../../vendor/blog/types";
 import { pluralize } from "../../sdk/blog/format";
 import {
   collectionPageJsonLd,
   homeCrumb,
   serializeJsonLd,
 } from "../../sdk/blog/jsonLd";
-import { getSiteContext, type SiteContext } from "../../sdk/blog/loader";
+import type { SiteContext } from "../../utils/site-config";
 import { revealScript } from "../../sdk/blog/scripts";
 
 export interface Props {
@@ -29,9 +29,6 @@ export interface Props {
   description?: string;
 }
 
-export function loader(props: Props, req: Request): Props & SiteContext {
-  return { ...props, ...getSiteContext(req) };
-}
 
 function countPostsByCategory(posts: BlogPost[]): Record<string, number> {
   const counts: Record<string, number> = {};
@@ -219,6 +216,3 @@ export default function BlogTopics({
     </div>
   );
 }
-
-export const eager = true;
-export const sync = true;
