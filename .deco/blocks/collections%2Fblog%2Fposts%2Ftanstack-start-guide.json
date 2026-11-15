@@ -39,7 +39,7 @@
       },
       {
         "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "success",
+        "variant": "tip",
         "title": "React Query integration",
         "body": "TanStack Start funciona nativamente com TanStack Query. Loaders podem pre-popular o cache do Query, e os componentes usam <code>useSuspenseQuery</code> para data fetching progressivo sem waterfalls."
       },

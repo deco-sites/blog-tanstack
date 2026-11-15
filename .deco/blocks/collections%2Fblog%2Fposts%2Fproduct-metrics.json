@@ -16,8 +16,7 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "summary",
+        "__resolveType": "site/sections/Blog/Post/Summary.tsx",
         "title": "TL;DR",
         "body": "Boa métrica: é acionável, é uma taxa (não um número absoluto), e muda quando você muda o produto. Ruim: pageviews, downloads, usuários cadastrados. Boa: DAU/MAU ratio, retention D30, time-to-value."
       },

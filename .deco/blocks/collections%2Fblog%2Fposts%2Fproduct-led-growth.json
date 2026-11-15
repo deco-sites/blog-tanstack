@@ -16,8 +16,7 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "definition",
+        "__resolveType": "site/sections/Blog/Post/Definition.tsx",
         "title": "O que é PLG",
         "body": "Product-led growth (PLG) é uma estratégia onde o produto é o principal mecanismo de aquisição, conversão e expansão. O produto entrega valor imediatamente, sem necessidade de vendedor. Exemplos: Figma, Notion, Slack, Vercel."
       },

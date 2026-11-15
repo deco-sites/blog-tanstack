@@ -44,7 +44,7 @@
       },
       {
         "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "success",
+        "variant": "tip",
         "title": "Tailwind e Critical CSS",
         "body": "Com Tailwind v4, todo o CSS é gerado estaticamente no build. Isso torna trivial injetar o CSS crítico inline — basta ler o arquivo gerado e colocá-lo em uma tag <code>&lt;style&gt;</code> no head. Sem CSS não-crítico bloqueando o render."
       },

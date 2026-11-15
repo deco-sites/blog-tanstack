@@ -16,8 +16,7 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "summary",
+        "__resolveType": "site/sections/Blog/Post/Summary.tsx",
         "title": "TL;DR",
         "body": "Arquitetura composable divide o sistema em unidades pequenas, bem definidas e intercambiáveis. Cada unidade tem contrato claro. Times entregam mais rápido porque mudanças são locais, não globais."
       },
