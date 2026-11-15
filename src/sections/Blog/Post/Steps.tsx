@@ -1,20 +1,26 @@
+import { jsonList } from "../../../sdk/blog/jsonList";
+
 export interface Step {
   /** @title Título do passo */
   title: string;
-  /** @title Conteúdo HTML */
-  content: string;
+  /** @title Descrição (HTML) */
+  description?: string;
 }
 
 export interface Props {
   /** @title Título (usado no TOC) */
   title?: string;
   /** @title Passos */
-  steps: Step[];
+  steps: Step[] | string;
   id?: string;
 }
 
-export default function Steps({ title, steps, id }: Props) {
-  if (!steps?.length) return null;
+/** Steps written before this block took the blog app's props kept the text in `content`. */
+type StoredStep = Step & { content?: string };
+
+export default function Steps({ title, steps: stored, id }: Props) {
+  const steps = jsonList<StoredStep>(stored);
+  if (!steps.length) return null;
   return (
     <div className="my-8">
       {title && (
@@ -36,7 +42,7 @@ export default function Steps({ title, steps, id }: Props) {
             </div>
             <div className={`flex-1 pb-8 ${i === steps.length - 1 ? "pb-0" : ""}`}>
               <h4 className="font-semibold text-[#1a1a18] mb-1.5 mt-1.5 leading-snug">{step.title}</h4>
-              <div className="text-[#4a4a46] text-[1rem] leading-relaxed" dangerouslySetInnerHTML={{ __html: step.content }} />
+              <div className="text-[#4a4a46] text-[1rem] leading-relaxed" dangerouslySetInnerHTML={{ __html: step.description ?? step.content ?? "" }} />
             </div>
           </li>
         ))}

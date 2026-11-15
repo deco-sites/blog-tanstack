@@ -42,6 +42,7 @@ import Callout from "../../sections/Blog/Post/Callout";
 import Checklist from "../../sections/Blog/Post/Checklist";
 import Code from "../../sections/Blog/Post/Code";
 import CustomBlock from "../../sections/Blog/Post/CustomBlock";
+import Definition from "../../sections/Blog/Post/Definition";
 import Divider from "../../sections/Blog/Post/Divider";
 import Faq from "../../sections/Blog/Post/Faq";
 import Heading from "../../sections/Blog/Post/Heading";
@@ -49,6 +50,7 @@ import List from "../../sections/Blog/Post/List";
 import Paragraph from "../../sections/Blog/Post/Paragraph";
 import Quote from "../../sections/Blog/Post/Quote";
 import Steps from "../../sections/Blog/Post/Steps";
+import Summary from "../../sections/Blog/Post/Summary";
 import Video from "../../sections/Blog/Post/Video";
 
 import { tocAnchorFor } from "./toc";
@@ -87,6 +89,7 @@ export const CUSTOM_BLOCKS: Record<string, BlockComponent> = {
   Checklist,
   Code,
   CustomBlock,
+  Definition,
   Divider,
   Faq,
   Heading,
@@ -94,6 +97,7 @@ export const CUSTOM_BLOCKS: Record<string, BlockComponent> = {
   Paragraph,
   Quote,
   Steps,
+  Summary,
   Video,
 };
 
