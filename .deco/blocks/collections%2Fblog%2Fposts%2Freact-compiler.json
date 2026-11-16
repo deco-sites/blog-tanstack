@@ -16,8 +16,7 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "summary",
+        "__resolveType": "site/sections/Blog/Post/Summary.tsx",
         "title": "O que é",
         "body": "React Compiler é um compilador Babel/SWC que analisa seus componentes em build time e insere memoização automaticamente onde é seguro. Resultado: menos re-renders, sem esforço manual."
       },

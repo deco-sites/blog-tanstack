@@ -1,20 +1,21 @@
-export interface CheckItem {
-  /** @title Texto */
-  text: string;
-  /** @title Marcado como completo */
-  checked?: boolean;
-}
+import { jsonList } from "../../../sdk/blog/jsonList";
 
 export interface Props {
   /** @title Título da lista (usado no TOC) */
   title?: string;
   /** @title Itens */
-  items: CheckItem[];
+  items: string[] | string;
   id?: string;
 }
 
-export default function Checklist({ title, items, id }: Props) {
-  if (!items?.length) return null;
+/** Items written before this block took the blog app's props were objects that could be checked. */
+type StoredItem = string | { text: string; checked?: boolean };
+
+const toItem = (item: StoredItem) => (typeof item === "string" ? { text: item, checked: undefined } : item);
+
+export default function Checklist({ title, items: stored, id }: Props) {
+  const items = jsonList<StoredItem>(stored).map(toItem);
+  if (!items.length) return null;
   return (
     <div className="my-6 border border-[#e4e3df] rounded-lg overflow-hidden">
       {title && (

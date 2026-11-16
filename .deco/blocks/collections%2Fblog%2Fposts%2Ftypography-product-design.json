@@ -48,7 +48,7 @@
       },
       {
         "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "success",
+        "variant": "tip",
         "title": "Regra de ouro",
         "body": "Aplique <code>text-wrap: balance</code> em todos os elementos <code>h1</code>-<code>h3</code> e <code>text-wrap: pretty</code> em todos os parágrafos. É a melhoria de UX de menor custo que existe."
       },

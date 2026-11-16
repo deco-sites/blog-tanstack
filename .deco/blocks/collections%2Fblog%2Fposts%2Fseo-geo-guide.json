@@ -16,8 +16,7 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "definition",
+        "__resolveType": "site/sections/Blog/Post/Definition.tsx",
         "title": "O que é GEO",
         "body": "GEO (Generative Engine Optimization) é o conjunto de práticas para fazer seu conteúdo aparecer em respostas geradas por IAs (ChatGPT, Perplexity, Gemini, Google SGE). Diferente do SEO clássico que otimiza para ranking em páginas de resultado, GEO otimiza para ser citado em respostas geradas."
       },
@@ -56,7 +55,7 @@
       },
       {
         "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "success",
+        "variant": "tip",
         "title": "Dica prática",
         "body": "Escreva o título e o primeiro parágrafo assumindo que a IA vai ler apenas isso. Se o valor do artigo não estiver claro nesses 150 primeiros caracteres, reescreva."
       }

@@ -1,5 +1,11 @@
+/**
+ * `info`, `tip` and `warning` are the variants deco Studio's blog editor offers.
+ * `success` is the name `tip` had before; `summary` and `definition` are kept for
+ * posts written before they became the Summary and Definition blocks.
+ */
 export type CalloutVariant =
   | "info"
+  | "tip"
   | "warning"
   | "success"
   | "summary"
@@ -17,7 +23,7 @@ export interface Props {
 }
 
 const VARIANTS: Record<
-  CalloutVariant,
+  Exclude<CalloutVariant, "tip">,
   { border: string; bg: string; icon: string; label: string }
 > = {
   info: {
@@ -61,8 +67,10 @@ export default function Callout(
   { variant = "info", title, body, content }: Props,
 ) {
   const resolvedContent = body ?? content ?? "";
-  const v = VARIANTS[variant];
-  const isDefinition = variant === "definition";
+  // `tip` draws as `success`; a variant this site does not draw (Studio also offers `product`) draws as `info`.
+  const key = variant === "tip" ? "success" : variant in VARIANTS ? (variant as keyof typeof VARIANTS) : "info";
+  const v = VARIANTS[key];
+  const isDefinition = key === "definition";
   return (
     <aside
       className={`my-6 border-l-4 ${v.border} ${v.bg} rounded-r-lg px-5 py-4`}
@@ -77,13 +85,13 @@ export default function Callout(
           viewBox="0 0 24 24"
           fill="none"
           className={`flex-shrink-0 mt-0.5 ${
-            variant === "info"
+            key === "info"
               ? "text-[#3b82f6]"
-              : variant === "warning"
+              : key === "warning"
               ? "text-[#f59e0b]"
-              : variant === "success"
+              : key === "success"
               ? "text-[#10b981]"
-              : variant === "summary"
+              : key === "summary"
               ? "text-[#ff6011]"
               : "text-[#8b5cf6]"
           }`}

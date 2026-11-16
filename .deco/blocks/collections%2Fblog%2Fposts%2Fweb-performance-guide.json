@@ -16,8 +16,7 @@
     },
     "sections": [
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "summary",
+        "__resolveType": "site/sections/Blog/Post/Summary.tsx",
         "title": "TL;DR",
         "body": "LCP: imagem hero com loading=eager e fetchpriority=high. INP: evite JS pesado no main thread. CLS: defina width e height em imagens. Edge cache: SWR 24h para conteúdo editorial."
       },

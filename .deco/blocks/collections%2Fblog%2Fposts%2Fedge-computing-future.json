@@ -49,8 +49,7 @@
         "items": "Queries pesadas em banco de dados relacional\nProcessamento de arquivos grandes\nLLM inference (ainda — isso está mudando)\nOperações que precisam de estado global consistente"
       },
       {
-        "__resolveType": "site/sections/Blog/Post/Callout.tsx",
-        "variant": "definition",
+        "__resolveType": "site/sections/Blog/Post/Definition.tsx",
         "title": "Stale-While-Revalidate",
         "body": "SWR é uma estratégia de cache onde o servidor retorna a resposta em cache imediatamente (evitando latência) e revalida em segundo plano. Para blogs editoriais, é a estratégia perfeita: conteúdo serve em &lt;10ms e atualiza silenciosamente quando muda."
       },

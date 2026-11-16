@@ -74,7 +74,9 @@ Its configuration lives in `.deco/blocks/deco-blog.json`: `pageSlug`,
 | custom  | `site/sections/Blog/Post/<Name>.tsx`   | this template (`src/sections/Blog/Post/`)  |
 
 The mapping lives in `src/sdk/blog/blocks.tsx`. To add a custom block, create it in
-`src/sections/Blog/Post/` and register it in `CUSTOM_BLOCKS`.
+`src/sections/Blog/Post/` and register it in `CUSTOM_BLOCKS`. Custom blocks keep
+the props deco Studio's blog editor reads and writes: read [AGENTS.md](AGENTS.md)
+before adding or changing a block or writing post content.
 
 ## Content management
 
