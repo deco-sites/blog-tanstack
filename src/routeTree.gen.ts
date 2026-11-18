@@ -9,16 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DecoRenderRouteImport } from './routes/deco/render'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DecoMetaRouteImport } from './routes/deco/meta'
+import { Route as DecoRenderRouteImport } from './routes/deco/render'
 import { Route as DecoInvokeSplatRouteImport } from './routes/deco/invoke.$'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SplatRoute = SplatRouteImport.update({
@@ -26,19 +26,19 @@ const SplatRoute = SplatRouteImport.update({
   path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DecoRenderRoute = DecoRenderRouteImport.update({
-  id: '/deco/render',
-  path: '/deco/render',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DecoMetaRoute = DecoMetaRouteImport.update({
   id: '/deco/meta',
   path: '/deco/meta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DecoRenderRoute = DecoRenderRouteImport.update({
+  id: '/deco/render',
+  path: '/deco/render',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DecoInvokeSplatRoute = DecoInvokeSplatRouteImport.update({
@@ -110,11 +110,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$': {
@@ -124,18 +124,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/deco/render': {
-      id: '/deco/render'
-      path: '/deco/render'
-      fullPath: '/deco/render'
-      preLoaderRoute: typeof DecoRenderRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/deco/meta': {
@@ -143,6 +136,13 @@ declare module '@tanstack/react-router' {
       path: '/deco/meta'
       fullPath: '/deco/meta'
       preLoaderRoute: typeof DecoMetaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deco/render': {
+      id: '/deco/render'
+      path: '/deco/render'
+      fullPath: '/deco/render'
+      preLoaderRoute: typeof DecoRenderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/deco/invoke/$': {
