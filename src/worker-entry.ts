@@ -2,13 +2,6 @@ import "./setup";
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 import { createDecoWorkerEntry } from "@decocms/tanstack";
 import { detectDevice } from "@decocms/blocks/sdk/useDevice";
-import {
-  handleMeta,
-  handleDecofileRead,
-  handleDecofileReload,
-  handleRender,
-  corsHeaders,
-} from "@decocms/blocks-admin";
 
 const serverEntry = createServerEntry({ fetch: handler.fetch });
 
@@ -22,13 +15,6 @@ const CSP_DIRECTIVES = [
 
 export default createDecoWorkerEntry(serverEntry, {
   observability: false,
-  admin: {
-    handleMeta,
-    handleDecofileRead,
-    handleDecofileReload,
-    handleRender,
-    corsHeaders,
-  },
   csp: CSP_DIRECTIVES,
   buildSegment: (request) => {
     const device = detectDevice(request.headers.get("user-agent") ?? "");
