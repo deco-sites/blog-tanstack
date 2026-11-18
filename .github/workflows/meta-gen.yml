@@ -1,0 +1,30 @@
+name: Check meta.gen.json
+
+# deco Studio's editor builds its forms from the committed .deco/meta.gen.json,
+# so a section change must ship with the regenerated file.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  meta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.5
+      - run: bun install --frozen-lockfile
+      - run: bun run generate
+      - name: meta.gen.json matches the code
+        run: |
+          if ! git diff --exit-code -- .deco/meta.gen.json; then
+            echo "::error file=.deco/meta.gen.json::Run \`bun run generate\` and commit .deco/meta.gen.json."
+            exit 1
+          fi

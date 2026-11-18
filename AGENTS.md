@@ -32,3 +32,9 @@ When you write post content (`.deco/blocks/collections%2Fblog%2Fposts%2F*.json`)
 give each block the props its section's `Props` declares. Callout takes `info`,
 `tip` or `warning`; the "Resumo" and "Definição" boxes are the Summary and
 Definition blocks.
+
+## Section schema
+
+deco Studio's editor reads every section's form from `.deco/meta.gen.json`, so
+the file is committed. After changing a section, loader or app, run
+`bun run generate` and commit the regenerated file; CI fails when it is stale.
