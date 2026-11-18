@@ -203,29 +203,14 @@
         "website/loaders/secret.ts": {
           "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw==",
           "namespace": "website"
-        },
-        "website/loaders/secretString.ts": {
-          "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldFN0cmluZy50cw==",
+        }
+      },
+      "flags": {
+        "website/flags/multivariate/image.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=",
           "namespace": "website"
         }
       },
-      "apps": {
-        "site/apps/deco/blog.ts": {
-          "$ref": "#/definitions/c2l0ZS9hcHBzL2RlY28vYmxvZy50cw==",
-          "namespace": "site"
-        },
-        "site/apps/site.ts": {
-          "$ref": "#/definitions/c2l0ZS9hcHBzL3NpdGUudHM=",
-          "namespace": "site"
-        }
-      },
-      "pages": {
-        "website/pages/Page.tsx": {
-          "$ref": "#/definitions/d2Vic2l0ZS9wYWdlcy9QYWdlLnRzeA==",
-          "namespace": "website"
-        }
-      },
-      "actions": {},
       "matchers": {
         "website/matchers/always.ts": {
           "$ref": "#/definitions/d2Vic2l0ZS9tYXRjaGVycy9hbHdheXMudHM=",
@@ -285,6 +270,29 @@
         },
         "website/matchers/negate.ts": {
           "$ref": "#/definitions/d2Vic2l0ZS9tYXRjaGVycy9uZWdhdGUudHM=",
+          "namespace": "website"
+        }
+      },
+      "apps": {
+        "site/apps/deco/blog.ts": {
+          "$ref": "#/definitions/c2l0ZS9hcHBzL2RlY28vYmxvZy50cw==",
+          "namespace": "site"
+        },
+        "site/apps/site.ts": {
+          "$ref": "#/definitions/c2l0ZS9hcHBzL3NpdGUudHM=",
+          "namespace": "site"
+        }
+      },
+      "pages": {
+        "website/pages/Page.tsx": {
+          "$ref": "#/definitions/d2Vic2l0ZS9wYWdlcy9QYWdlLnRzeA==",
+          "namespace": "website"
+        }
+      },
+      "actions": {},
+      "functions": {
+        "website/functions/requestToParam.ts": {
+          "$ref": "#/definitions/d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=",
           "namespace": "website"
         }
       }
@@ -347,6 +355,10 @@
           "mobile": {
             "type": "boolean",
             "title": "Mobile"
+          },
+          "tablet": {
+            "type": "boolean",
+            "title": "Tablet"
           },
           "desktop": {
             "type": "boolean",
@@ -452,9 +464,18 @@
             ],
             "default": "website/matchers/host.ts"
           },
+          "includes": {
+            "type": "string",
+            "title": "Includes"
+          },
+          "match": {
+            "type": "string",
+            "title": "Match"
+          },
           "host": {
             "type": "string",
-            "title": "Hostname"
+            "title": "Hostname",
+            "hide": "true"
           }
         }
       },
@@ -474,23 +495,115 @@
             ],
             "default": "website/matchers/pathname.ts"
           },
+          "case": {
+            "title": "Operation",
+            "anyOf": [
+              {
+                "title": "Equals",
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "pathname": {
+                    "type": "string",
+                    "title": "Pathname",
+                    "description": "Must start with \"/\""
+                  },
+                  "negate": {
+                    "type": "boolean",
+                    "title": "Negate",
+                    "description": "Inverts the match result (NOT)",
+                    "default": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "Equals",
+                    "default": "Equals",
+                    "readonly": "*",
+                    "hide": "true",
+                    "title": "Type"
+                  }
+                }
+              },
+              {
+                "title": "Includes",
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "pathname": {
+                    "type": "string",
+                    "title": "Pathname",
+                    "description": "Must start with \"/\""
+                  },
+                  "negate": {
+                    "type": "boolean",
+                    "title": "Negate",
+                    "description": "Inverts the match result (NOT)",
+                    "default": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "Includes",
+                    "default": "Includes",
+                    "readonly": "*",
+                    "hide": "true",
+                    "title": "Type"
+                  }
+                }
+              },
+              {
+                "title": "Template",
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "pathname": {
+                    "type": "string",
+                    "title": "Pathname",
+                    "description": "Must start with \"/\""
+                  },
+                  "negate": {
+                    "type": "boolean",
+                    "title": "Negate",
+                    "description": "Inverts the match result (NOT)",
+                    "default": false
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "Template",
+                    "default": "Template",
+                    "readonly": "*",
+                    "hide": "true",
+                    "title": "Type"
+                  }
+                }
+              }
+            ]
+          },
           "pattern": {
             "type": "string",
-            "title": "Regex Pattern"
+            "title": "Regex Pattern",
+            "hide": "true"
           },
           "includes": {
             "type": "array",
             "title": "Includes",
             "items": {
               "type": "string"
-            }
+            },
+            "hide": "true"
           },
           "excludes": {
             "type": "array",
             "title": "Excludes",
             "items": {
               "type": "string"
-            }
+            },
+            "hide": "true"
           }
         }
       },
@@ -510,13 +623,187 @@
             ],
             "default": "website/matchers/queryString.ts"
           },
+          "conditions": {
+            "type": "array",
+            "title": "Conditions",
+            "items": {
+              "type": "object",
+              "title": "{{{param}}} {{{case.type}}} {{{case.value}}}",
+              "required": [
+                "param",
+                "case"
+              ],
+              "properties": {
+                "param": {
+                  "type": "string",
+                  "title": "Param"
+                },
+                "case": {
+                  "title": "Case",
+                  "anyOf": [
+                    {
+                      "title": "Equals",
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "Equals",
+                          "default": "Equals",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Greater",
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "Greater",
+                          "default": "Greater",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Lesser",
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "Lesser",
+                          "default": "Lesser",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    },
+                    {
+                      "title": "GreaterOrEquals",
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "GreaterOrEquals",
+                          "default": "GreaterOrEquals",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    },
+                    {
+                      "title": "LesserOrEquals",
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "LesserOrEquals",
+                          "default": "LesserOrEquals",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Includes",
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "title": "Value"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "Includes",
+                          "default": "Includes",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Exists",
+                      "type": "object",
+                      "required": [
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "const": "Exists",
+                          "default": "Exists",
+                          "readonly": "*",
+                          "hide": "true",
+                          "title": "Type"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
           "key": {
             "type": "string",
-            "title": "Parameter Name"
+            "title": "Parameter Name",
+            "hide": "true"
           },
           "value": {
             "type": "string",
-            "title": "Parameter Value"
+            "title": "Parameter Value",
+            "hide": "true"
           }
         }
       },
@@ -787,6 +1074,72 @@
             "title": "Matcher"
           }
         }
+      },
+      "d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=": {
+        "title": "Get params from request parameters",
+        "description": "Set param to slug for routes of type /:slug",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/functions/requestToParam.ts"
+            ],
+            "default": "website/functions/requestToParam.ts"
+          }
+        }
+      },
+      "d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=@Props": {
+        "type": "object",
+        "properties": {
+          "param": {
+            "type": "string",
+            "default": "slug",
+            "description": "Param name to extract from the Request URL",
+            "title": "Param"
+          }
+        },
+        "required": [
+          "param"
+        ]
+      },
+      "d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=@RequestURLParam": {
+        "anyOf": [
+          {
+            "type": "string",
+            "title": "Force param"
+          },
+          {
+            "title": "Get params from request parameters",
+            "description": "Set param to slug for routes of type /:slug",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/definitions/d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=@Props"
+              }
+            ],
+            "required": [
+              "__resolveType"
+            ],
+            "properties": {
+              "__resolveType": {
+                "type": "string",
+                "enum": [
+                  "website/functions/requestToParam.ts"
+                ],
+                "default": "website/functions/requestToParam.ts"
+              }
+            }
+          }
+        ]
       },
       "d2Vic2l0ZS9zZWN0aW9ucy9SZW5kZXJpbmcvTGF6eS50c3g=": {
         "title": "website/sections/Rendering/Lazy.tsx",
@@ -1117,9 +1470,6 @@
               },
               {
                 "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw=="
-              },
-              {
-                "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldFN0cmluZy50cw=="
               }
             ]
           },
@@ -1232,9 +1582,6 @@
               },
               {
                 "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw=="
-              },
-              {
-                "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldFN0cmluZy50cw=="
               }
             ]
           },
@@ -1851,8 +2198,70 @@
           }
         }
       },
+      "d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props": {
+        "title": "Multivariate",
+        "type": "object",
+        "required": [
+          "variants"
+        ],
+        "properties": {
+          "variants": {
+            "type": "array",
+            "title": "Variants",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "rule",
+                "value"
+              ],
+              "properties": {
+                "rule": {
+                  "title": "Rule",
+                  "type": "object",
+                  "required": [
+                    "__resolveType"
+                  ],
+                  "properties": {
+                    "__resolveType": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "value": {
+                  "type": "string",
+                  "format": "image-uri",
+                  "title": "Content"
+                }
+              }
+            }
+          }
+        }
+      },
+      "d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=": {
+        "title": "Image Variants",
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+          }
+        ],
+        "required": [
+          "__resolveType"
+        ],
+        "properties": {
+          "__resolveType": {
+            "type": "string",
+            "enum": [
+              "website/flags/multivariate/image.ts"
+            ],
+            "default": "website/flags/multivariate/image.ts"
+          }
+        }
+      },
       "c2l0ZS9sb2FkZXJzL0Jsb2dwb3N0TGlzdC50cw==": {
-        "title": "site/loaders/BlogpostList.ts",
+        "title": "BlogpostList",
         "type": "object",
         "required": [
           "__resolveType"
@@ -1941,15 +2350,41 @@
                 "default": "Person"
               },
               "avatar": {
-                "type": "string",
-                "nullable": true,
-                "format": "image-uri",
-                "title": "Avatar"
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "image-uri",
+                    "title": "Avatar"
+                  },
+                  {
+                    "title": "Image Variants",
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                      }
+                    ],
+                    "required": [
+                      "__resolveType"
+                    ],
+                    "properties": {
+                      "__resolveType": {
+                        "type": "string",
+                        "enum": [
+                          "website/flags/multivariate/image.ts"
+                        ],
+                        "default": "website/flags/multivariate/image.ts"
+                      }
+                    }
+                  }
+                ],
+                "title": "Avatar",
+                "nullable": true
               },
               "jobTitle": {
                 "type": "string",
                 "nullable": true,
-                "title": "JobTitle"
+                "title": "Job Title"
               },
               "company": {
                 "type": "string",
@@ -1979,7 +2414,7 @@
             "type": "string",
             "nullable": true,
             "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-            "title": "UploadDate"
+            "title": "Upload Date"
           },
           "duration": {
             "type": "string",
@@ -1991,25 +2426,25 @@
             "type": "string",
             "nullable": true,
             "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-            "title": "EncodingFormat"
+            "title": "Encoding Format"
           },
           "embedUrl": {
             "type": "string",
             "nullable": true,
             "description": "A URL pointing to a player for a specific video.",
-            "title": "EmbedUrl"
+            "title": "Embed Url"
           },
           "contentUrl": {
             "type": "string",
             "nullable": true,
             "description": "Actual bytes of the media object, for example the image file or video file.",
-            "title": "ContentUrl"
+            "title": "Content Url"
           },
           "thumbnailUrl": {
             "type": "string",
             "nullable": true,
             "description": "A thumbnail image relevant to the Thing",
-            "title": "ThumbnailUrl"
+            "title": "Thumbnail Url"
           },
           "@id": {
             "type": "string",
@@ -2021,13 +2456,13 @@
             "type": "string",
             "nullable": true,
             "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-            "title": "AdditionalType"
+            "title": "Additional Type"
           },
           "alternateName": {
             "type": "string",
             "nullable": true,
             "description": "An alias for the item.",
-            "title": "AlternateName"
+            "title": "Alternate Name"
           },
           "description": {
             "type": "string",
@@ -2039,7 +2474,7 @@
             "type": "string",
             "nullable": true,
             "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-            "title": "DisambiguatingDescription"
+            "title": "Disambiguating Description"
           },
           "identifier": {
             "type": "string",
@@ -2074,13 +2509,13 @@
             "type": "string",
             "nullable": true,
             "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-            "title": "SameAs"
+            "title": "Same As"
           },
           "subjectOf": {
             "type": "string",
             "nullable": true,
             "description": "A CreativeWork or Event about this Thing.",
-            "title": "SubjectOf"
+            "title": "Subject Of"
           }
         }
       },
@@ -2097,25 +2532,25 @@
             "type": "string",
             "nullable": true,
             "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-            "title": "EncodingFormat"
+            "title": "Encoding Format"
           },
           "embedUrl": {
             "type": "string",
             "nullable": true,
             "description": "A URL pointing to a player for a specific video.",
-            "title": "EmbedUrl"
+            "title": "Embed Url"
           },
           "contentUrl": {
             "type": "string",
             "nullable": true,
             "description": "Actual bytes of the media object, for example the image file or video file.",
-            "title": "ContentUrl"
+            "title": "Content Url"
           },
           "thumbnailUrl": {
             "type": "string",
             "nullable": true,
             "description": "A thumbnail image relevant to the Thing",
-            "title": "ThumbnailUrl"
+            "title": "Thumbnail Url"
           },
           "@id": {
             "type": "string",
@@ -2127,13 +2562,13 @@
             "type": "string",
             "nullable": true,
             "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-            "title": "AdditionalType"
+            "title": "Additional Type"
           },
           "alternateName": {
             "type": "string",
             "nullable": true,
             "description": "An alias for the item.",
-            "title": "AlternateName"
+            "title": "Alternate Name"
           },
           "description": {
             "type": "string",
@@ -2145,7 +2580,7 @@
             "type": "string",
             "nullable": true,
             "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-            "title": "DisambiguatingDescription"
+            "title": "Disambiguating Description"
           },
           "identifier": {
             "type": "string",
@@ -2171,7 +2606,7 @@
                   "type": "string",
                   "nullable": true,
                   "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                  "title": "UploadDate"
+                  "title": "Upload Date"
                 },
                 "duration": {
                   "type": "string",
@@ -2183,25 +2618,25 @@
                   "type": "string",
                   "nullable": true,
                   "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                  "title": "EncodingFormat"
+                  "title": "Encoding Format"
                 },
                 "embedUrl": {
                   "type": "string",
                   "nullable": true,
                   "description": "A URL pointing to a player for a specific video.",
-                  "title": "EmbedUrl"
+                  "title": "Embed Url"
                 },
                 "contentUrl": {
                   "type": "string",
                   "nullable": true,
                   "description": "Actual bytes of the media object, for example the image file or video file.",
-                  "title": "ContentUrl"
+                  "title": "Content Url"
                 },
                 "thumbnailUrl": {
                   "type": "string",
                   "nullable": true,
                   "description": "A thumbnail image relevant to the Thing",
-                  "title": "ThumbnailUrl"
+                  "title": "Thumbnail Url"
                 },
                 "@id": {
                   "type": "string",
@@ -2213,13 +2648,13 @@
                   "type": "string",
                   "nullable": true,
                   "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                  "title": "AdditionalType"
+                  "title": "Additional Type"
                 },
                 "alternateName": {
                   "type": "string",
                   "nullable": true,
                   "description": "An alias for the item.",
-                  "title": "AlternateName"
+                  "title": "Alternate Name"
                 },
                 "description": {
                   "type": "string",
@@ -2231,7 +2666,7 @@
                   "type": "string",
                   "nullable": true,
                   "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                  "title": "DisambiguatingDescription"
+                  "title": "Disambiguating Description"
                 },
                 "identifier": {
                   "type": "string",
@@ -2266,13 +2701,13 @@
                   "type": "string",
                   "nullable": true,
                   "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                  "title": "SameAs"
+                  "title": "Same As"
                 },
                 "subjectOf": {
                   "type": "string",
                   "nullable": true,
                   "description": "A CreativeWork or Event about this Thing.",
-                  "title": "SubjectOf"
+                  "title": "Subject Of"
                 }
               }
             },
@@ -2289,13 +2724,13 @@
             "type": "string",
             "nullable": true,
             "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-            "title": "SameAs"
+            "title": "Same As"
           },
           "subjectOf": {
             "type": "string",
             "nullable": true,
             "description": "A CreativeWork or Event about this Thing.",
-            "title": "SubjectOf"
+            "title": "Subject Of"
           }
         }
       },
@@ -2326,10 +2761,36 @@
                 "title": "Excerpt"
               },
               "image": {
-                "type": "string",
-                "nullable": true,
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "image-uri",
+                    "title": "Main image"
+                  },
+                  {
+                    "title": "Image Variants",
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                      }
+                    ],
+                    "required": [
+                      "__resolveType"
+                    ],
+                    "properties": {
+                      "__resolveType": {
+                        "type": "string",
+                        "enum": [
+                          "website/flags/multivariate/image.ts"
+                        ],
+                        "default": "website/flags/multivariate/image.ts"
+                      }
+                    }
+                  }
+                ],
                 "title": "Main image",
-                "format": "image-uri"
+                "nullable": true
               },
               "alt": {
                 "type": "string",
@@ -2337,11 +2798,37 @@
                 "title": "Alt text for the image"
               },
               "mobileImage": {
-                "type": "string",
-                "nullable": true,
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "image-uri",
+                    "title": "Mobile image"
+                  },
+                  {
+                    "title": "Image Variants",
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                      }
+                    ],
+                    "required": [
+                      "__resolveType"
+                    ],
+                    "properties": {
+                      "__resolveType": {
+                        "type": "string",
+                        "enum": [
+                          "website/flags/multivariate/image.ts"
+                        ],
+                        "default": "website/flags/multivariate/image.ts"
+                      }
+                    }
+                  }
+                ],
                 "title": "Mobile image",
                 "description": "Optional mobile-optimized version of the main image. Served below 768px. Falls back to the main image when empty.",
-                "format": "image-uri"
+                "nullable": true
               },
               "authors": {
                 "type": "array",
@@ -2368,15 +2855,41 @@
                       "default": "Person"
                     },
                     "avatar": {
-                      "type": "string",
-                      "nullable": true,
-                      "format": "image-uri",
-                      "title": "Avatar"
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "image-uri",
+                          "title": "Avatar"
+                        },
+                        {
+                          "title": "Image Variants",
+                          "type": "object",
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                            }
+                          ],
+                          "required": [
+                            "__resolveType"
+                          ],
+                          "properties": {
+                            "__resolveType": {
+                              "type": "string",
+                              "enum": [
+                                "website/flags/multivariate/image.ts"
+                              ],
+                              "default": "website/flags/multivariate/image.ts"
+                            }
+                          }
+                        }
+                      ],
+                      "title": "Avatar",
+                      "nullable": true
                     },
                     "jobTitle": {
                       "type": "string",
                       "nullable": true,
-                      "title": "JobTitle"
+                      "title": "Job Title"
                     },
                     "company": {
                       "type": "string",
@@ -2402,49 +2915,75 @@
                 "title": "Authors"
               },
               "categories": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "title": "Name"
-                    },
-                    "slug": {
-                      "type": "string",
-                      "title": "Slug"
-                    },
-                    "description": {
-                      "type": "string",
-                      "nullable": true,
-                      "title": "Description"
-                    },
-                    "parentSlug": {
-                      "type": "string",
-                      "nullable": true,
-                      "title": "Parent category",
-                      "description": "Slug of the parent category. Leave empty for a root category."
-                    },
-                    "sections": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/__SECTION_REF__"
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "title": "Name"
+                        },
+                        "slug": {
+                          "type": "string",
+                          "title": "Slug"
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true,
+                          "title": "Description"
+                        },
+                        "parentSlug": {
+                          "type": "string",
+                          "nullable": true,
+                          "title": "Parent category",
+                          "description": "Slug of the parent category. Leave empty for a root category."
+                        },
+                        "sections": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/__SECTION_REF__"
+                          },
+                          "title": "Sections",
+                          "nullable": true,
+                          "label": "hidden",
+                          "changeable": "true"
+                        }
                       },
-                      "title": "Sections",
-                      "nullable": true,
-                      "label": "hidden",
-                      "changeable": "true"
-                    }
+                      "required": [
+                        "name",
+                        "slug"
+                      ]
+                    },
+                    "widget": "blog",
+                    "collection": "categories",
+                    "title": "Categories"
                   },
-                  "required": [
-                    "name",
-                    "slug"
-                  ]
-                },
-                "nullable": true,
-                "widget": "blog",
-                "collection": "categories",
-                "title": "Categories"
+                  {
+                    "title": "GetCategories",
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/YmxvZy9sb2FkZXJzL0dldENhdGVnb3JpZXMudHM="
+                      }
+                    ],
+                    "required": [
+                      "__resolveType"
+                    ],
+                    "properties": {
+                      "__resolveType": {
+                        "type": "string",
+                        "enum": [
+                          "blog/loaders/GetCategories.ts"
+                        ],
+                        "default": "blog/loaders/GetCategories.ts"
+                      }
+                    }
+                  }
+                ],
+                "title": "Categories",
+                "nullable": true
               },
               "date": {
                 "type": "string",
@@ -2474,7 +3013,7 @@
                 ],
                 "nullable": true,
                 "title": "Status",
-                "description": "Publication status. Anything other than `published` is kept out of listings and never indexed. Posts with no status are treated as published."
+                "description": "Publication status. A post is live with no status, as `published`, or as `scheduled` once its scheduled date has passed. Any other post (a draft, a `scheduled` post before its date, or any other status) is kept out of listings and never indexed, and its page only renders with `?draft=true` in the URL."
               },
               "scheduledDatetime": {
                 "type": "string",
@@ -2511,10 +3050,36 @@
                           "type": "object",
                           "properties": {
                             "image": {
-                              "type": "string",
-                              "nullable": true,
-                              "format": "image-uri",
-                              "title": "Image"
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "format": "image-uri",
+                                  "title": "Image"
+                                },
+                                {
+                                  "title": "Image Variants",
+                                  "type": "object",
+                                  "allOf": [
+                                    {
+                                      "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                                    }
+                                  ],
+                                  "required": [
+                                    "__resolveType"
+                                  ],
+                                  "properties": {
+                                    "__resolveType": {
+                                      "type": "string",
+                                      "enum": [
+                                        "website/flags/multivariate/image.ts"
+                                      ],
+                                      "default": "website/flags/multivariate/image.ts"
+                                    }
+                                  }
+                                }
+                              ],
+                              "title": "Image",
+                              "nullable": true
                             },
                             "width": {
                               "type": "number",
@@ -2534,10 +3099,36 @@
                           "type": "object",
                           "properties": {
                             "image": {
-                              "type": "string",
-                              "nullable": true,
-                              "format": "image-uri",
-                              "title": "Image"
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "format": "image-uri",
+                                  "title": "Image"
+                                },
+                                {
+                                  "title": "Image Variants",
+                                  "type": "object",
+                                  "allOf": [
+                                    {
+                                      "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                                    }
+                                  ],
+                                  "required": [
+                                    "__resolveType"
+                                  ],
+                                  "properties": {
+                                    "__resolveType": {
+                                      "type": "string",
+                                      "enum": [
+                                        "website/flags/multivariate/image.ts"
+                                      ],
+                                      "default": "website/flags/multivariate/image.ts"
+                                    }
+                                  }
+                                }
+                              ],
+                              "title": "Image",
+                              "nullable": true
                             },
                             "width": {
                               "type": "number",
@@ -2607,10 +3198,36 @@
                     "title": "Description"
                   },
                   "image": {
-                    "type": "string",
-                    "nullable": true,
-                    "format": "image-uri",
-                    "title": "Image"
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "image-uri",
+                        "title": "Image"
+                      },
+                      {
+                        "title": "Image Variants",
+                        "type": "object",
+                        "allOf": [
+                          {
+                            "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                          }
+                        ],
+                        "required": [
+                          "__resolveType"
+                        ],
+                        "properties": {
+                          "__resolveType": {
+                            "type": "string",
+                            "enum": [
+                              "website/flags/multivariate/image.ts"
+                            ],
+                            "default": "website/flags/multivariate/image.ts"
+                          }
+                        }
+                      }
+                    ],
+                    "title": "Image",
+                    "nullable": true
                   },
                   "canonical": {
                     "type": "string",
@@ -2620,7 +3237,7 @@
                   "noIndexing": {
                     "type": "boolean",
                     "nullable": true,
-                    "title": "NoIndexing"
+                    "title": "No Indexing"
                   }
                 },
                 "nullable": true,
@@ -2660,36 +3277,36 @@
                     "type": "number",
                     "nullable": true,
                     "description": "The count of total number of ratings.",
-                    "title": "RatingCount"
+                    "title": "Rating Count"
                   },
                   "reviewCount": {
                     "type": "number",
                     "nullable": true,
                     "description": "The count of total number of reviews.",
-                    "title": "ReviewCount"
+                    "title": "Review Count"
                   },
                   "ratingValue": {
                     "type": "number",
                     "nullable": true,
                     "description": "The rating for the content.",
-                    "title": "RatingValue"
+                    "title": "Rating Value"
                   },
                   "bestRating": {
                     "type": "number",
                     "nullable": true,
                     "description": "The highest value allowed in this rating system.",
-                    "title": "BestRating"
+                    "title": "Best Rating"
                   },
                   "worstRating": {
                     "type": "number",
                     "nullable": true,
                     "description": "The lowest value allowed in this rating system.",
-                    "title": "WorstRating"
+                    "title": "Worst Rating"
                   }
                 },
                 "nullable": true,
                 "hide": "true",
-                "title": "AggregateRating"
+                "title": "Aggregate Rating"
               },
               "review": {
                 "type": "array",
@@ -2714,13 +3331,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "Given name. In the U.S., the first name of a Person.",
-                          "title": "GivenName"
+                          "title": "Given Name"
                         },
                         "familyName": {
                           "type": "string",
                           "nullable": true,
                           "description": "Family name. In the U.S., the last name of a Person.",
-                          "title": "FamilyName"
+                          "title": "Family Name"
                         },
                         "gender": {
                           "type": "string",
@@ -2747,25 +3364,25 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                "title": "EncodingFormat"
+                                "title": "Encoding Format"
                               },
                               "embedUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A URL pointing to a player for a specific video.",
-                                "title": "EmbedUrl"
+                                "title": "Embed Url"
                               },
                               "contentUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Actual bytes of the media object, for example the image file or video file.",
-                                "title": "ContentUrl"
+                                "title": "Content Url"
                               },
                               "thumbnailUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A thumbnail image relevant to the Thing",
-                                "title": "ThumbnailUrl"
+                                "title": "Thumbnail Url"
                               },
                               "@id": {
                                 "type": "string",
@@ -2777,13 +3394,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                "title": "AdditionalType"
+                                "title": "Additional Type"
                               },
                               "alternateName": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An alias for the item.",
-                                "title": "AlternateName"
+                                "title": "Alternate Name"
                               },
                               "description": {
                                 "type": "string",
@@ -2795,7 +3412,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                "title": "DisambiguatingDescription"
+                                "title": "Disambiguating Description"
                               },
                               "identifier": {
                                 "type": "string",
@@ -2821,7 +3438,7 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                                      "title": "UploadDate"
+                                      "title": "Upload Date"
                                     },
                                     "duration": {
                                       "type": "string",
@@ -2833,25 +3450,25 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                      "title": "EncodingFormat"
+                                      "title": "Encoding Format"
                                     },
                                     "embedUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A URL pointing to a player for a specific video.",
-                                      "title": "EmbedUrl"
+                                      "title": "Embed Url"
                                     },
                                     "contentUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Actual bytes of the media object, for example the image file or video file.",
-                                      "title": "ContentUrl"
+                                      "title": "Content Url"
                                     },
                                     "thumbnailUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A thumbnail image relevant to the Thing",
-                                      "title": "ThumbnailUrl"
+                                      "title": "Thumbnail Url"
                                     },
                                     "@id": {
                                       "type": "string",
@@ -2863,13 +3480,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                      "title": "AdditionalType"
+                                      "title": "Additional Type"
                                     },
                                     "alternateName": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An alias for the item.",
-                                      "title": "AlternateName"
+                                      "title": "Alternate Name"
                                     },
                                     "description": {
                                       "type": "string",
@@ -2881,7 +3498,7 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                      "title": "DisambiguatingDescription"
+                                      "title": "Disambiguating Description"
                                     },
                                     "identifier": {
                                       "type": "string",
@@ -2916,13 +3533,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                      "title": "SameAs"
+                                      "title": "Same As"
                                     },
                                     "subjectOf": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A CreativeWork or Event about this Thing.",
-                                      "title": "SubjectOf"
+                                      "title": "Subject Of"
                                     }
                                   }
                                 },
@@ -2939,13 +3556,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                "title": "SameAs"
+                                "title": "Same As"
                               },
                               "subjectOf": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A CreativeWork or Event about this Thing.",
-                                "title": "SubjectOf"
+                                "title": "Subject Of"
                               }
                             }
                           },
@@ -2957,7 +3574,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.",
-                          "title": "TaxID"
+                          "title": "Tax ID"
                         },
                         "telephone": {
                           "type": "string",
@@ -2975,13 +3592,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                          "title": "AdditionalType"
+                          "title": "Additional Type"
                         },
                         "alternateName": {
                           "type": "string",
                           "nullable": true,
                           "description": "An alias for the item.",
-                          "title": "AlternateName"
+                          "title": "Alternate Name"
                         },
                         "description": {
                           "type": "string",
@@ -2993,7 +3610,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                          "title": "DisambiguatingDescription"
+                          "title": "Disambiguating Description"
                         },
                         "identifier": {
                           "type": "string",
@@ -3010,7 +3627,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                                "title": "UploadDate"
+                                "title": "Upload Date"
                               },
                               "duration": {
                                 "type": "string",
@@ -3022,25 +3639,25 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                "title": "EncodingFormat"
+                                "title": "Encoding Format"
                               },
                               "embedUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A URL pointing to a player for a specific video.",
-                                "title": "EmbedUrl"
+                                "title": "Embed Url"
                               },
                               "contentUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Actual bytes of the media object, for example the image file or video file.",
-                                "title": "ContentUrl"
+                                "title": "Content Url"
                               },
                               "thumbnailUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A thumbnail image relevant to the Thing",
-                                "title": "ThumbnailUrl"
+                                "title": "Thumbnail Url"
                               },
                               "@id": {
                                 "type": "string",
@@ -3052,13 +3669,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                "title": "AdditionalType"
+                                "title": "Additional Type"
                               },
                               "alternateName": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An alias for the item.",
-                                "title": "AlternateName"
+                                "title": "Alternate Name"
                               },
                               "description": {
                                 "type": "string",
@@ -3070,7 +3687,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                "title": "DisambiguatingDescription"
+                                "title": "Disambiguating Description"
                               },
                               "identifier": {
                                 "type": "string",
@@ -3093,25 +3710,25 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                      "title": "EncodingFormat"
+                                      "title": "Encoding Format"
                                     },
                                     "embedUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A URL pointing to a player for a specific video.",
-                                      "title": "EmbedUrl"
+                                      "title": "Embed Url"
                                     },
                                     "contentUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Actual bytes of the media object, for example the image file or video file.",
-                                      "title": "ContentUrl"
+                                      "title": "Content Url"
                                     },
                                     "thumbnailUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A thumbnail image relevant to the Thing",
-                                      "title": "ThumbnailUrl"
+                                      "title": "Thumbnail Url"
                                     },
                                     "@id": {
                                       "type": "string",
@@ -3123,13 +3740,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                      "title": "AdditionalType"
+                                      "title": "Additional Type"
                                     },
                                     "alternateName": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An alias for the item.",
-                                      "title": "AlternateName"
+                                      "title": "Alternate Name"
                                     },
                                     "description": {
                                       "type": "string",
@@ -3141,7 +3758,7 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                      "title": "DisambiguatingDescription"
+                                      "title": "Disambiguating Description"
                                     },
                                     "identifier": {
                                       "type": "string",
@@ -3176,13 +3793,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                      "title": "SameAs"
+                                      "title": "Same As"
                                     },
                                     "subjectOf": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A CreativeWork or Event about this Thing.",
-                                      "title": "SubjectOf"
+                                      "title": "Subject Of"
                                     }
                                   }
                                 },
@@ -3208,13 +3825,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                "title": "SameAs"
+                                "title": "Same As"
                               },
                               "subjectOf": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A CreativeWork or Event about this Thing.",
-                                "title": "SubjectOf"
+                                "title": "Subject Of"
                               }
                             }
                           },
@@ -3231,13 +3848,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                          "title": "SameAs"
+                          "title": "Same As"
                         },
                         "subjectOf": {
                           "type": "string",
                           "nullable": true,
                           "description": "A CreativeWork or Event about this Thing.",
-                          "title": "SubjectOf"
+                          "title": "Subject Of"
                         },
                         "url": {
                           "type": "string",
@@ -3254,43 +3871,43 @@
                       "type": "string",
                       "nullable": true,
                       "description": "The date that the review was published, in ISO 8601 date format.",
-                      "title": "DatePublished"
+                      "title": "Date Published"
                     },
                     "dateModified": {
                       "type": "string",
                       "nullable": true,
                       "description": "The date that the review was modified, in ISO 8601 date format.",
-                      "title": "DateModified"
+                      "title": "Date Modified"
                     },
                     "itemReviewed": {
                       "type": "string",
                       "nullable": true,
                       "description": "The item that is being reviewed/rated.",
-                      "title": "ItemReviewed"
+                      "title": "Item Reviewed"
                     },
                     "reviewHeadline": {
                       "type": "string",
                       "nullable": true,
                       "description": "Emphasis part of the review",
-                      "title": "ReviewHeadline"
+                      "title": "Review Headline"
                     },
                     "reviewBody": {
                       "type": "string",
                       "nullable": true,
                       "description": "The actual body of the review.",
-                      "title": "ReviewBody"
+                      "title": "Review Body"
                     },
                     "additionalType": {
                       "type": "string",
                       "nullable": true,
                       "description": "Review status",
-                      "title": "AdditionalType"
+                      "title": "Additional Type"
                     },
                     "isAnonymous": {
                       "type": "boolean",
                       "nullable": true,
                       "description": "Anonymous comment. Not in Schema.org",
-                      "title": "IsAnonymous"
+                      "title": "Is Anonymous"
                     }
                   }
                 },
@@ -3321,13 +3938,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "Given name. In the U.S., the first name of a Person.",
-                          "title": "GivenName"
+                          "title": "Given Name"
                         },
                         "familyName": {
                           "type": "string",
                           "nullable": true,
                           "description": "Family name. In the U.S., the last name of a Person.",
-                          "title": "FamilyName"
+                          "title": "Family Name"
                         },
                         "gender": {
                           "type": "string",
@@ -3354,25 +3971,25 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                "title": "EncodingFormat"
+                                "title": "Encoding Format"
                               },
                               "embedUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A URL pointing to a player for a specific video.",
-                                "title": "EmbedUrl"
+                                "title": "Embed Url"
                               },
                               "contentUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Actual bytes of the media object, for example the image file or video file.",
-                                "title": "ContentUrl"
+                                "title": "Content Url"
                               },
                               "thumbnailUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A thumbnail image relevant to the Thing",
-                                "title": "ThumbnailUrl"
+                                "title": "Thumbnail Url"
                               },
                               "@id": {
                                 "type": "string",
@@ -3384,13 +4001,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                "title": "AdditionalType"
+                                "title": "Additional Type"
                               },
                               "alternateName": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An alias for the item.",
-                                "title": "AlternateName"
+                                "title": "Alternate Name"
                               },
                               "description": {
                                 "type": "string",
@@ -3402,7 +4019,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                "title": "DisambiguatingDescription"
+                                "title": "Disambiguating Description"
                               },
                               "identifier": {
                                 "type": "string",
@@ -3428,7 +4045,7 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                                      "title": "UploadDate"
+                                      "title": "Upload Date"
                                     },
                                     "duration": {
                                       "type": "string",
@@ -3440,25 +4057,25 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                      "title": "EncodingFormat"
+                                      "title": "Encoding Format"
                                     },
                                     "embedUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A URL pointing to a player for a specific video.",
-                                      "title": "EmbedUrl"
+                                      "title": "Embed Url"
                                     },
                                     "contentUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Actual bytes of the media object, for example the image file or video file.",
-                                      "title": "ContentUrl"
+                                      "title": "Content Url"
                                     },
                                     "thumbnailUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A thumbnail image relevant to the Thing",
-                                      "title": "ThumbnailUrl"
+                                      "title": "Thumbnail Url"
                                     },
                                     "@id": {
                                       "type": "string",
@@ -3470,13 +4087,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                      "title": "AdditionalType"
+                                      "title": "Additional Type"
                                     },
                                     "alternateName": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An alias for the item.",
-                                      "title": "AlternateName"
+                                      "title": "Alternate Name"
                                     },
                                     "description": {
                                       "type": "string",
@@ -3488,7 +4105,7 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                      "title": "DisambiguatingDescription"
+                                      "title": "Disambiguating Description"
                                     },
                                     "identifier": {
                                       "type": "string",
@@ -3523,13 +4140,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                      "title": "SameAs"
+                                      "title": "Same As"
                                     },
                                     "subjectOf": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A CreativeWork or Event about this Thing.",
-                                      "title": "SubjectOf"
+                                      "title": "Subject Of"
                                     }
                                   }
                                 },
@@ -3546,13 +4163,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                "title": "SameAs"
+                                "title": "Same As"
                               },
                               "subjectOf": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A CreativeWork or Event about this Thing.",
-                                "title": "SubjectOf"
+                                "title": "Subject Of"
                               }
                             }
                           },
@@ -3564,7 +4181,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.",
-                          "title": "TaxID"
+                          "title": "Tax ID"
                         },
                         "telephone": {
                           "type": "string",
@@ -3582,13 +4199,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                          "title": "AdditionalType"
+                          "title": "Additional Type"
                         },
                         "alternateName": {
                           "type": "string",
                           "nullable": true,
                           "description": "An alias for the item.",
-                          "title": "AlternateName"
+                          "title": "Alternate Name"
                         },
                         "description": {
                           "type": "string",
@@ -3600,7 +4217,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                          "title": "DisambiguatingDescription"
+                          "title": "Disambiguating Description"
                         },
                         "identifier": {
                           "type": "string",
@@ -3617,7 +4234,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                                "title": "UploadDate"
+                                "title": "Upload Date"
                               },
                               "duration": {
                                 "type": "string",
@@ -3629,25 +4246,25 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                "title": "EncodingFormat"
+                                "title": "Encoding Format"
                               },
                               "embedUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A URL pointing to a player for a specific video.",
-                                "title": "EmbedUrl"
+                                "title": "Embed Url"
                               },
                               "contentUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Actual bytes of the media object, for example the image file or video file.",
-                                "title": "ContentUrl"
+                                "title": "Content Url"
                               },
                               "thumbnailUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A thumbnail image relevant to the Thing",
-                                "title": "ThumbnailUrl"
+                                "title": "Thumbnail Url"
                               },
                               "@id": {
                                 "type": "string",
@@ -3659,13 +4276,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                "title": "AdditionalType"
+                                "title": "Additional Type"
                               },
                               "alternateName": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An alias for the item.",
-                                "title": "AlternateName"
+                                "title": "Alternate Name"
                               },
                               "description": {
                                 "type": "string",
@@ -3677,7 +4294,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                "title": "DisambiguatingDescription"
+                                "title": "Disambiguating Description"
                               },
                               "identifier": {
                                 "type": "string",
@@ -3700,25 +4317,25 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                      "title": "EncodingFormat"
+                                      "title": "Encoding Format"
                                     },
                                     "embedUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A URL pointing to a player for a specific video.",
-                                      "title": "EmbedUrl"
+                                      "title": "Embed Url"
                                     },
                                     "contentUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "Actual bytes of the media object, for example the image file or video file.",
-                                      "title": "ContentUrl"
+                                      "title": "Content Url"
                                     },
                                     "thumbnailUrl": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A thumbnail image relevant to the Thing",
-                                      "title": "ThumbnailUrl"
+                                      "title": "Thumbnail Url"
                                     },
                                     "@id": {
                                       "type": "string",
@@ -3730,13 +4347,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                      "title": "AdditionalType"
+                                      "title": "Additional Type"
                                     },
                                     "alternateName": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "An alias for the item.",
-                                      "title": "AlternateName"
+                                      "title": "Alternate Name"
                                     },
                                     "description": {
                                       "type": "string",
@@ -3748,7 +4365,7 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                      "title": "DisambiguatingDescription"
+                                      "title": "Disambiguating Description"
                                     },
                                     "identifier": {
                                       "type": "string",
@@ -3783,13 +4400,13 @@
                                       "type": "string",
                                       "nullable": true,
                                       "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                      "title": "SameAs"
+                                      "title": "Same As"
                                     },
                                     "subjectOf": {
                                       "type": "string",
                                       "nullable": true,
                                       "description": "A CreativeWork or Event about this Thing.",
-                                      "title": "SubjectOf"
+                                      "title": "Subject Of"
                                     }
                                   }
                                 },
@@ -3815,13 +4432,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                "title": "SameAs"
+                                "title": "Same As"
                               },
                               "subjectOf": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A CreativeWork or Event about this Thing.",
-                                "title": "SubjectOf"
+                                "title": "Subject Of"
                               }
                             }
                           },
@@ -3838,13 +4455,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                          "title": "SameAs"
+                          "title": "Same As"
                         },
                         "subjectOf": {
                           "type": "string",
                           "nullable": true,
                           "description": "A CreativeWork or Event about this Thing.",
-                          "title": "SubjectOf"
+                          "title": "Subject Of"
                         },
                         "url": {
                           "type": "string",
@@ -3861,37 +4478,37 @@
                       "type": "string",
                       "nullable": true,
                       "description": "The item that is being reviewed/rated.",
-                      "title": "ItemReviewed"
+                      "title": "Item Reviewed"
                     },
                     "bestRating": {
                       "type": "number",
                       "nullable": true,
                       "description": "The highest value allowed in this rating system.",
-                      "title": "BestRating"
+                      "title": "Best Rating"
                     },
                     "worstRating": {
                       "type": "number",
                       "nullable": true,
                       "description": "The lowest value allowed in this rating system.",
-                      "title": "WorstRating"
+                      "title": "Worst Rating"
                     },
                     "ratingValue": {
                       "type": "number",
                       "nullable": true,
                       "description": "A short explanation providing background context and other information that led to the conclusion expressed in the rating.",
-                      "title": "RatingValue"
+                      "title": "Rating Value"
                     },
                     "additionalType": {
                       "type": "string",
                       "nullable": true,
                       "description": "Review status",
-                      "title": "AdditionalType"
+                      "title": "Additional Type"
                     }
                   }
                 },
                 "nullable": true,
                 "hide": "true",
-                "title": "ContentRating"
+                "title": "Content Rating"
               },
               "interactionStatistic": {
                 "type": "object",
@@ -3900,7 +4517,7 @@
                     "type": "number",
                     "nullable": true,
                     "description": "The number of interactions or views",
-                    "title": "UserInteractionCount"
+                    "title": "User Interaction Count"
                   },
                   "@id": {
                     "type": "string",
@@ -3912,13 +4529,13 @@
                     "type": "string",
                     "nullable": true,
                     "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                    "title": "AdditionalType"
+                    "title": "Additional Type"
                   },
                   "alternateName": {
                     "type": "string",
                     "nullable": true,
                     "description": "An alias for the item.",
-                    "title": "AlternateName"
+                    "title": "Alternate Name"
                   },
                   "description": {
                     "type": "string",
@@ -3930,7 +4547,7 @@
                     "type": "string",
                     "nullable": true,
                     "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                    "title": "DisambiguatingDescription"
+                    "title": "Disambiguating Description"
                   },
                   "identifier": {
                     "type": "string",
@@ -3953,25 +4570,25 @@
                           "type": "string",
                           "nullable": true,
                           "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                          "title": "EncodingFormat"
+                          "title": "Encoding Format"
                         },
                         "embedUrl": {
                           "type": "string",
                           "nullable": true,
                           "description": "A URL pointing to a player for a specific video.",
-                          "title": "EmbedUrl"
+                          "title": "Embed Url"
                         },
                         "contentUrl": {
                           "type": "string",
                           "nullable": true,
                           "description": "Actual bytes of the media object, for example the image file or video file.",
-                          "title": "ContentUrl"
+                          "title": "Content Url"
                         },
                         "thumbnailUrl": {
                           "type": "string",
                           "nullable": true,
                           "description": "A thumbnail image relevant to the Thing",
-                          "title": "ThumbnailUrl"
+                          "title": "Thumbnail Url"
                         },
                         "@id": {
                           "type": "string",
@@ -3983,13 +4600,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                          "title": "AdditionalType"
+                          "title": "Additional Type"
                         },
                         "alternateName": {
                           "type": "string",
                           "nullable": true,
                           "description": "An alias for the item.",
-                          "title": "AlternateName"
+                          "title": "Alternate Name"
                         },
                         "description": {
                           "type": "string",
@@ -4001,7 +4618,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                          "title": "DisambiguatingDescription"
+                          "title": "Disambiguating Description"
                         },
                         "identifier": {
                           "type": "string",
@@ -4027,7 +4644,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                                "title": "UploadDate"
+                                "title": "Upload Date"
                               },
                               "duration": {
                                 "type": "string",
@@ -4039,25 +4656,25 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                "title": "EncodingFormat"
+                                "title": "Encoding Format"
                               },
                               "embedUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A URL pointing to a player for a specific video.",
-                                "title": "EmbedUrl"
+                                "title": "Embed Url"
                               },
                               "contentUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Actual bytes of the media object, for example the image file or video file.",
-                                "title": "ContentUrl"
+                                "title": "Content Url"
                               },
                               "thumbnailUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A thumbnail image relevant to the Thing",
-                                "title": "ThumbnailUrl"
+                                "title": "Thumbnail Url"
                               },
                               "@id": {
                                 "type": "string",
@@ -4069,13 +4686,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                "title": "AdditionalType"
+                                "title": "Additional Type"
                               },
                               "alternateName": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An alias for the item.",
-                                "title": "AlternateName"
+                                "title": "Alternate Name"
                               },
                               "description": {
                                 "type": "string",
@@ -4087,7 +4704,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                "title": "DisambiguatingDescription"
+                                "title": "Disambiguating Description"
                               },
                               "identifier": {
                                 "type": "string",
@@ -4122,13 +4739,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                "title": "SameAs"
+                                "title": "Same As"
                               },
                               "subjectOf": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A CreativeWork or Event about this Thing.",
-                                "title": "SubjectOf"
+                                "title": "Subject Of"
                               }
                             }
                           },
@@ -4145,13 +4762,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                          "title": "SameAs"
+                          "title": "Same As"
                         },
                         "subjectOf": {
                           "type": "string",
                           "nullable": true,
                           "description": "A CreativeWork or Event about this Thing.",
-                          "title": "SubjectOf"
+                          "title": "Subject Of"
                         }
                       }
                     },
@@ -4168,7 +4785,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "date when video was published first time, format ISO 8601: https://en.wikipedia.org/wiki/ISO_8601",
-                          "title": "UploadDate"
+                          "title": "Upload Date"
                         },
                         "duration": {
                           "type": "string",
@@ -4180,25 +4797,25 @@
                           "type": "string",
                           "nullable": true,
                           "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                          "title": "EncodingFormat"
+                          "title": "Encoding Format"
                         },
                         "embedUrl": {
                           "type": "string",
                           "nullable": true,
                           "description": "A URL pointing to a player for a specific video.",
-                          "title": "EmbedUrl"
+                          "title": "Embed Url"
                         },
                         "contentUrl": {
                           "type": "string",
                           "nullable": true,
                           "description": "Actual bytes of the media object, for example the image file or video file.",
-                          "title": "ContentUrl"
+                          "title": "Content Url"
                         },
                         "thumbnailUrl": {
                           "type": "string",
                           "nullable": true,
                           "description": "A thumbnail image relevant to the Thing",
-                          "title": "ThumbnailUrl"
+                          "title": "Thumbnail Url"
                         },
                         "@id": {
                           "type": "string",
@@ -4210,13 +4827,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                          "title": "AdditionalType"
+                          "title": "Additional Type"
                         },
                         "alternateName": {
                           "type": "string",
                           "nullable": true,
                           "description": "An alias for the item.",
-                          "title": "AlternateName"
+                          "title": "Alternate Name"
                         },
                         "description": {
                           "type": "string",
@@ -4228,7 +4845,7 @@
                           "type": "string",
                           "nullable": true,
                           "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                          "title": "DisambiguatingDescription"
+                          "title": "Disambiguating Description"
                         },
                         "identifier": {
                           "type": "string",
@@ -4251,25 +4868,25 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Media type typically expressed using a MIME format (see IANA site and MDN reference)",
-                                "title": "EncodingFormat"
+                                "title": "Encoding Format"
                               },
                               "embedUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A URL pointing to a player for a specific video.",
-                                "title": "EmbedUrl"
+                                "title": "Embed Url"
                               },
                               "contentUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "Actual bytes of the media object, for example the image file or video file.",
-                                "title": "ContentUrl"
+                                "title": "Content Url"
                               },
                               "thumbnailUrl": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A thumbnail image relevant to the Thing",
-                                "title": "ThumbnailUrl"
+                                "title": "Thumbnail Url"
                               },
                               "@id": {
                                 "type": "string",
@@ -4281,13 +4898,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
-                                "title": "AdditionalType"
+                                "title": "Additional Type"
                               },
                               "alternateName": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "An alias for the item.",
-                                "title": "AlternateName"
+                                "title": "Alternate Name"
                               },
                               "description": {
                                 "type": "string",
@@ -4299,7 +4916,7 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
-                                "title": "DisambiguatingDescription"
+                                "title": "Disambiguating Description"
                               },
                               "identifier": {
                                 "type": "string",
@@ -4334,13 +4951,13 @@
                                 "type": "string",
                                 "nullable": true,
                                 "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                                "title": "SameAs"
+                                "title": "Same As"
                               },
                               "subjectOf": {
                                 "type": "string",
                                 "nullable": true,
                                 "description": "A CreativeWork or Event about this Thing.",
-                                "title": "SubjectOf"
+                                "title": "Subject Of"
                               }
                             }
                           },
@@ -4366,13 +4983,13 @@
                           "type": "string",
                           "nullable": true,
                           "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                          "title": "SameAs"
+                          "title": "Same As"
                         },
                         "subjectOf": {
                           "type": "string",
                           "nullable": true,
                           "description": "A CreativeWork or Event about this Thing.",
-                          "title": "SubjectOf"
+                          "title": "Subject Of"
                         }
                       }
                     },
@@ -4389,13 +5006,13 @@
                     "type": "string",
                     "nullable": true,
                     "description": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
-                    "title": "SameAs"
+                    "title": "Same As"
                   },
                   "subjectOf": {
                     "type": "string",
                     "nullable": true,
                     "description": "A CreativeWork or Event about this Thing.",
-                    "title": "SubjectOf"
+                    "title": "Subject Of"
                   },
                   "url": {
                     "type": "string",
@@ -4406,7 +5023,7 @@
                 },
                 "nullable": true,
                 "hide": "true",
-                "title": "InteractionStatistic"
+                "title": "Interaction Statistic"
               },
               "id": {
                 "type": "string",
@@ -4742,13 +5359,13 @@
             },
             "nullable": true,
             "description": "Ignore ratings in the aggregateRating calc",
-            "title": "IgnoreRatings"
+            "title": "Ignore Ratings"
           },
           "onlyAggregate": {
             "type": "boolean",
             "nullable": true,
             "description": "Return only aggregate rating object",
-            "title": "OnlyAggregate"
+            "title": "Only Aggregate"
           }
         }
       },
@@ -4785,17 +5402,17 @@
             },
             "nullable": true,
             "description": "Ignore specific reviews",
-            "title": "IgnoreReviews"
+            "title": "Ignore Reviews"
           },
           "orderBy": {
             "type": "string",
             "enum": [
-              "date_asc",
-              "date_desc"
+              "date_desc",
+              "date_asc"
             ],
             "nullable": true,
             "description": "Order By",
-            "title": "OrderBy"
+            "title": "Order By"
           }
         }
       },
@@ -4832,13 +5449,13 @@
             },
             "nullable": true,
             "description": "Ignore ratings in the aggregateRating calc",
-            "title": "IgnoreRatings"
+            "title": "Ignore Ratings"
           },
           "onlyAggregate": {
             "type": "boolean",
             "nullable": true,
             "description": "Return only aggregate rating object",
-            "title": "OnlyAggregate"
+            "title": "Only Aggregate"
           }
         }
       },
@@ -4875,17 +5492,17 @@
             },
             "nullable": true,
             "description": "Ignore specific reviews",
-            "title": "IgnoreReviews"
+            "title": "Ignore Reviews"
           },
           "orderBy": {
             "type": "string",
             "enum": [
-              "date_asc",
-              "date_desc"
+              "date_desc",
+              "date_asc"
             ],
             "nullable": true,
             "description": "Order By",
-            "title": "OrderBy"
+            "title": "Order By"
           }
         }
       },
@@ -4922,7 +5539,7 @@
             },
             "nullable": true,
             "description": "Ignore ratings in the aggregateRating calc",
-            "title": "IgnoreRatings"
+            "title": "Ignore Ratings"
           }
         }
       },
@@ -4959,17 +5576,17 @@
             },
             "nullable": true,
             "description": "Ignore specific reviews",
-            "title": "IgnoreReviews"
+            "title": "Ignore Reviews"
           },
           "orderBy": {
             "type": "string",
             "enum": [
-              "date_asc",
-              "date_desc"
+              "date_desc",
+              "date_asc"
             ],
             "nullable": true,
             "description": "Order By",
-            "title": "OrderBy"
+            "title": "Order By"
           }
         }
       },
@@ -5213,30 +5830,6 @@
             "title": "Secret Name",
             "description": "Used in dev mode as a environment variable (should not contain spaces or special characters)",
             "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
-          }
-        }
-      },
-      "d2Vic2l0ZS9sb2FkZXJzL3NlY3JldFN0cmluZy50cw==": {
-        "title": "Secret String",
-        "type": "object",
-        "required": [
-          "__resolveType",
-          "secret"
-        ],
-        "properties": {
-          "__resolveType": {
-            "type": "string",
-            "enum": [
-              "website/loaders/secretString.ts"
-            ],
-            "default": "website/loaders/secretString.ts"
-          },
-          "secret": {
-            "type": "object",
-            "properties": {},
-            "title": "Secret",
-            "hideOption": "true",
-            "format": "password"
           }
         }
       },
@@ -5907,9 +6500,35 @@
             "type": "object",
             "properties": {
               "src": {
-                "type": "string",
-                "title": "Imagem",
-                "format": "image-uri"
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "image-uri",
+                    "title": "Imagem"
+                  },
+                  {
+                    "title": "Image Variants",
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                      }
+                    ],
+                    "required": [
+                      "__resolveType"
+                    ],
+                    "properties": {
+                      "__resolveType": {
+                        "type": "string",
+                        "enum": [
+                          "website/flags/multivariate/image.ts"
+                        ],
+                        "default": "website/flags/multivariate/image.ts"
+                      }
+                    }
+                  }
+                ],
+                "title": "Imagem"
               },
               "alt": {
                 "type": "string",
@@ -6564,10 +7183,36 @@
                 "title": "Name"
               },
               "logo": {
-                "type": "string",
-                "nullable": true,
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "image-uri",
+                    "title": "Logo"
+                  },
+                  {
+                    "title": "Image Variants",
+                    "type": "object",
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+                      }
+                    ],
+                    "required": [
+                      "__resolveType"
+                    ],
+                    "properties": {
+                      "__resolveType": {
+                        "type": "string",
+                        "enum": [
+                          "website/flags/multivariate/image.ts"
+                        ],
+                        "default": "website/flags/multivariate/image.ts"
+                      }
+                    }
+                  }
+                ],
                 "title": "Logo",
-                "format": "image-uri"
+                "nullable": true
               },
               "url": {
                 "type": "string",
@@ -6589,12 +7234,12 @@
               "titleTemplate": {
                 "type": "string",
                 "nullable": true,
-                "title": "TitleTemplate"
+                "title": "Title Template"
               },
               "descriptionTemplate": {
                 "type": "string",
                 "nullable": true,
-                "title": "DescriptionTemplate"
+                "title": "Description Template"
               }
             },
             "description": "Title/description templates folded into the output of the blog's SEO sections.",
@@ -6744,7 +7389,7 @@
                 "type": "string",
                 "nullable": true,
                 "description": "URL to run the A/B test against",
-                "title": "UrlToRunAgainst"
+                "title": "Url To Run Against"
               },
               "replaces": {
                 "type": "array",
@@ -6774,7 +7419,7 @@
                   }
                 },
                 "nullable": true,
-                "title": "IncludeScriptsToHead"
+                "title": "Include Scripts To Head"
               },
               "includeScriptsToBody": {
                 "type": "object",
@@ -6798,7 +7443,7 @@
                   }
                 },
                 "nullable": true,
-                "title": "IncludeScriptsToBody"
+                "title": "Include Scripts To Body"
               }
             },
             "nullable": true,
@@ -6855,7 +7500,7 @@
             "type": "boolean",
             "nullable": true,
             "hide": "true",
-            "title": "SendToClickHouse"
+            "title": "Send To Click House"
           },
           "defaultImageQuality": {
             "type": "string",
@@ -7218,9 +7863,6 @@
           },
           {
             "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldC50cw=="
-          },
-          {
-            "$ref": "#/definitions/d2Vic2l0ZS9sb2FkZXJzL3NlY3JldFN0cmluZy50cw=="
           }
         ]
       },
@@ -7293,10 +7935,27 @@
         ]
       },
       "flags": {
-        "anyOf": []
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=",
+            "inputSchema": "#/definitions/d2Vic2l0ZS9mbGFncy9tdWx0aXZhcmlhdGUvaW1hZ2UudHM=@Props"
+          }
+        ]
       },
       "functions": {
-        "anyOf": []
+        "title": "functions",
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Resolvable"
+          },
+          {
+            "$ref": "#/definitions/d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=",
+            "inputSchema": "#/definitions/d2Vic2l0ZS9mdW5jdGlvbnMvcmVxdWVzdFRvUGFyYW0udHM=@Props"
+          }
+        ]
       },
       "apps": {
         "anyOf": [

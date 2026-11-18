@@ -9,7 +9,7 @@
 
 import { createLoaderEntry } from "@decocms/blocks/sdk/cachedLoader";
 
-export const siteLoaders: Record<string, (props: any, request?: Request) => Promise<any>> = {
+export const siteLoaders: Record<string, (props: any, request?: Request, ctx?: any) => Promise<any>> = {
   "site/loaders/BlogpostList": createLoaderEntry("site/loaders/BlogpostList", () => import("../src/loaders/BlogpostList")),
   "site/loaders/BlogpostList.ts": createLoaderEntry("site/loaders/BlogpostList", () => import("../src/loaders/BlogpostList")),
 };
